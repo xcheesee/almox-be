@@ -11,8 +11,8 @@ class OrdemServico extends Model
 
     protected $fillable = [
         'departamento_id',
-        //'origem_id',
-        //'destino_id',
+        'origem_id',
+        'destino_id',
         'local_servico_id',
         'almoxarife_nome',
         'almoxarife_email',
@@ -28,5 +28,25 @@ class OrdemServico extends Model
     public function departamento()
     {
         return $this->belongsTo(Departamento::class);
+    }
+
+    public function origem()
+    {
+        return $this->belongsTo(Local::class);
+    }
+
+    public function destino()
+    {
+        return $this->belongsTo(Local::class);
+    }
+
+    public function local_servico()
+    {
+        return $this->belongsTo(Local::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

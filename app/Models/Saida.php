@@ -28,4 +28,9 @@ class Saida extends Model
     {
         return $this->belongsTo(OrdemServico::class);
     }
+
+    public function baixa_user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
