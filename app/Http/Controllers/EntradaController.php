@@ -45,7 +45,7 @@ class EntradaController extends Controller
      * @bodyParam processo_sei string required Processo SEI. Example: 0123000134569000
      * @bodyParam numero_contrato string required Número do contrato. Example: 2343rbte67b63
      * @bodyParam numero_nota_fiscal string required Número da Nota Fiscal. Example: 1234
-     * @bodyParam arquivo_nota_fiscal string required Arquivo da Nota Fiscal. Example: DANFE?
+     * @bodyParam arquivo_nota_fiscal string nullable Arquivo da Nota Fiscal. Example: DANFE?
      * 
      *
      * @response 200 {
@@ -56,7 +56,7 @@ class EntradaController extends Controller
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?",
+     *         "arquivo_nota_fiscal": "DANFE?"
      *     }
      * }
      */
@@ -90,7 +90,7 @@ class EntradaController extends Controller
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?",
+     *         "arquivo_nota_fiscal": "DANFE?"
      *     }
      * }
      */
@@ -133,7 +133,7 @@ class EntradaController extends Controller
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?",
+     *         "arquivo_nota_fiscal": "DANFE?"
      *     }
      * }
      */
@@ -165,7 +165,7 @@ class EntradaController extends Controller
      *         "id": 1,
      *         "nome": "Teste LTDA",
      *         "andar": "5",
-     *         "ativo": "1",
+     *         "ativo": "1"
      *     }
      * }
      */
@@ -175,7 +175,7 @@ class EntradaController extends Controller
 
         if ($entrada->delete()) {
             return response()->json([
-                'message' => 'entrada deletada com sucesso!',
+                'message' => 'Entrada deletada com sucesso!',
                 'data' => new EntradaResource($entrada)
             ]);
         }

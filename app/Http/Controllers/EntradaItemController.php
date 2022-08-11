@@ -21,8 +21,8 @@ class EntradaItemController extends Controller
      */
     public function index()
     {
-        $entradaitens = EntradaItem::paginate(15);
-            return EntradaItemResource::collection($entradaitens);
+        $entrada_itens = EntradaItem::paginate(15);
+            return EntradaItemResource::collection($entrada_itens);
     }
 
     /**
@@ -49,19 +49,19 @@ class EntradaItemController extends Controller
      *         "id": 1,
      *         "entrada_id": 2,
      *         "item_id": 2,
-     *         "quantidade": "10",
+     *         "quantidade": "10"
      *     }
      * }
      */
     public function store(Request $request)
     {
-        $entradaitem = new EntradaItem();
-        $entradaitem->entrada_id = $request->input('entrada_id');
-        $entradaitem->item_id = $request->input('item_id');
-        $entradaitem->quantidade = $request->input('quantidade');
+        $entrada_item = new EntradaItem();
+        $entrada_item->entrada_id = $request->input('entrada_id');
+        $entrada_item->item_id = $request->input('item_id');
+        $entrada_item->quantidade = $request->input('quantidade');
 
-        if ($entradaitem->save()) {
-            return new EntradaItemResource($entradaitem);
+        if ($entrada_item->save()) {
+            return new EntradaItemResource($entrada_item);
         }
     }
 
@@ -77,14 +77,14 @@ class EntradaItemController extends Controller
      *         "id": 1,
      *         "entrada_id": 2,
      *         "item_id": 2,
-     *         "quantidade": "10",
+     *         "quantidade": "10"
      *     }
      * }
      */
     public function show($id)
     {
-        $entradaitem = EntradaItem::findOrFail($id);
-        return new EntradaItemResource($entradaitem);
+        $entrada_item = EntradaItem::findOrFail($id);
+        return new EntradaItemResource($entrada_item);
     }
 
     /**
@@ -114,19 +114,19 @@ class EntradaItemController extends Controller
      *         "id": 1,
      *         "entrada_id": 2,
      *         "item_id": 2,
-     *         "quantidade": "10",
+     *         "quantidade": "10"
      *     }
      * }
      */
     public function update(Request $request, $id)
     {
-        $entradaitem = EntradaItem::findOrFail($id);
-        $entradaitem->entrada_id = $request->input('entrada_id');
-        $entradaitem->item_id = $request->input('item_id');
-        $entradaitem->quantidade = $request->input('quantidade');
+        $entrada_item = EntradaItem::findOrFail($id);
+        $entrada_item->entrada_id = $request->input('entrada_id');
+        $entrada_item->item_id = $request->input('item_id');
+        $entradai_tem->quantidade = $request->input('quantidade');
 
-        if ($entradaitem->save()) {
-            return new EntradaItemResource($entradaitem);
+        if ($entrada_item->save()) {
+            return new EntradaItemResource($entrada_item);
         }
     }
 
@@ -143,18 +143,18 @@ class EntradaItemController extends Controller
      *         "id": 1,
      *         "entrada_id": 2,
      *         "item_id": 2,
-     *         "quantidade": "10",
+     *         "quantidade": "10"
      *     }
      * }
      */
     public function destroy($id)
     {
-        $entradaitem = EntradaItem::findOrFail($id);
+        $entrada_item = EntradaItem::findOrFail($id);
 
-        if ($entradaitem->delete()) {
+        if ($entrada_item->delete()) {
             return response()->json([
-                'message' => 'entrada de item deletada com sucesso!',
-                'data' => new EntradaItemResource($entradaitem)
+                'message' => 'Entrada de item deletada com sucesso!',
+                'data' => new EntradaItemResource($entrada_item)
             ]);
         }
     } 

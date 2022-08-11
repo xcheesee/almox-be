@@ -49,7 +49,7 @@ class DepartamentoController extends Controller
      *         "id": 1,
      *         "nome": "Teste LTDA",
      *         "andar": "5",
-     *         "ativo": "1",
+     *         "ativo": "1"
      *     }
      * }
      */
@@ -77,7 +77,7 @@ class DepartamentoController extends Controller
      *         "id": 1,
      *         "nome": "Teste LTDA",
      *         "andar": "5",
-     *         "ativo": "1",
+     *         "ativo": "1"
      *     }
      * }
      */
@@ -114,7 +114,7 @@ class DepartamentoController extends Controller
      *         "id": 1,
      *         "nome": "Teste LTDA",
      *         "andar": "5",
-     *         "ativo": "1",
+     *         "ativo": "1"
      *     }
      * }
      */
@@ -143,7 +143,7 @@ class DepartamentoController extends Controller
      *         "id": 1,
      *         "nome": "Teste LTDA",
      *         "andar": "5",
-     *         "ativo": "1",
+     *         "ativo": "1"
      *     }
      * }
      */
@@ -153,7 +153,7 @@ class DepartamentoController extends Controller
 
         if ($departamento->delete()) {
             return response()->json([
-                'message' => 'departamento deletado com sucesso!',
+                'message' => 'Departamento deletado com sucesso!',
                 'data' => new DepartamentoResource($departamento)
             ]);
         }
