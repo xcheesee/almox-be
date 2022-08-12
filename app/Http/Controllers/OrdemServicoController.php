@@ -7,7 +7,7 @@ use App\Models\OrdemServico;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
 
 /**
- * @group Local
+ * @group OrdemServico
  *
  * APIs para listar, cadastrar, editar e remover dados de ordens de serviços
  */
@@ -181,7 +181,7 @@ class OrdemServicoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ordem_servico = Item::findOrFail($id);
+        $ordem_servico = OrdemServico::findOrFail($id);
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
         $ordem_servico->destino_id = $request->input('destino_id');
