@@ -20,8 +20,8 @@ class DepartamentoHelper
         return $arrSelect;
     }
 
-    public static function deptosByUser($user, string $coluna){
-        if ($user->hasRole('admin')){
+    public static function deptosByUser($user, string $coluna, $bypass_admin = true){
+        if ($user->hasRole('admin') && $bypass_admin){
             $departamentos = Departamento::query()->orderBy('id')->get(); //->where('ativo','=',1)
             $arrSelect = array();
             foreach($departamentos as $v){

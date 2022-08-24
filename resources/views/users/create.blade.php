@@ -18,6 +18,10 @@
                 {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
             </div>
             <div class="form-group mb-3">
+                <strong>Departamentos:</strong>
+                {!! Form::select('departamentos[]', $departamentos, [], array('class' => 'form-control','multiple')) !!}
+            </div>
+            <div class="form-group mb-3">
                 <strong>Senha:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>
