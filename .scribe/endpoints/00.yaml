@@ -1,0 +1,115 @@
+name: Autenticação
+description: |-
+
+  APIs para login e logout do sistema
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/cadastrar
+    metadata:
+      title: 'Cria um novo usuário no sistema'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: unanekhsefnxdgcpksobpylkdisqdvpxmgbjbmjzvqavvvydffrqujohrkrayyohocrxyqmjxahezahsozrekdcoaifcknlegxzytmtzhebbhpubizwqqambxxhtcwcruedulghdexohzryekpwiyfklbokvuzhpbdtisjldoxhvcdeimxddgzniavbcvmsitorlauptatsqnklrpacvlclwpvf
+        type: string
+        custom: []
+      email:
+        name: email
+        description: 'E-mail corporativo do usuário.'
+        required: true
+        example: tisvma@prefeitura.sp.gov.br
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Senha do usuário.'
+        required: true
+        example: Teste!123
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "name": "Teste Silva",
+                  "email": "teste@prefeitura.sp.gov.br",
+                  "updated_at": "2022-05-20T16:00:22.000000Z",
+                  "created_at": "2022-05-20T16:00:22.000000Z",
+                  "id": 2
+              },
+              "access_token": "3|LWV2yqNvqdIztktLYlvKehKMFn4aCOvKWc7xqMGf",
+              "token_type": "Bearer"
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      title: 'Efetua login no sistema'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'E-mail corporativo do usuário.'
+        required: true
+        example: tisvma@prefeitura.sp.gov.br
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Senha do usuário.'
+        required: true
+        example: Teste!123
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Oi username, bem-vindo!",
+              "username": "username",
+              "id": 1,
+              "access_token": "1|IEXWeQ8KFQCu3d3giZbTJ7dOTNf9dSACPypztMB3",
+              "token_type": "Bearer",
+              "departamentos": {
+                  "3": "CGPABI",
+                  "4": "CGPABI/DIPO",
+                  "5": "CGPABI/DFS",
+              }
+          }
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: |-
+          {
+              "message": "E-mail ou senha está incorreto"
+          }
+        headers: []
+        description: '401'
+    responseFields: []

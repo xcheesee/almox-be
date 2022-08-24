@@ -65,5 +65,27 @@
       }
     };
 
+function consultaCEP(cep,id_endereco,id_bairro,id_cidade){
+    numcep = parseInt(cep.replace('-',''));
+
+    $('#spinner-div').show(); //Exibe spinner de loading (template base)
+    jQuery.ajax({
+        url : "https://viacep.com.br/ws/"+cep+"/json/",
+        type : "GET",
+        dataType : "json",
+        success:function(data)
+        {
+            console.log(data);
+            $('#'+id_endereco).val(data.logradouro);
+            $('#'+id_bairro).val(data.bairro);
+            //$('#'+id_uf).val(data.uf);
+            $('#'+id_cidade).val(data.localidade);
+        },
+        complete: function () {
+            $('#spinner-div').hide(); //Oculta o spinner ao completar a request
+        }
+    });
+}
+
     //$("select").bsMultiSelect();
   </script>

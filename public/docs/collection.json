@@ -1,0 +1,438 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "http:\/\/localhost"
+        }
+    ],
+    "info": {
+        "name": "Almoxarifado",
+        "_postman_id": "e2e7cbbd-c69f-4371-80ce-bb07e2ba8e86",
+        "description": "API do sistema de Almoxarifado",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Autentica\u00e7\u00e3o",
+            "description": "\nAPIs para login e logout do sistema",
+            "item": [
+                {
+                    "name": "Cria um novo usu\u00e1rio no sistema",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/cadastrar",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/cadastrar"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"unanekhsefnxdgcpksobpylkdisqdvpxmgbjbmjzvqavvvydffrqujohrkrayyohocrxyqmjxahezahsozrekdcoaifcknlegxzytmtzhebbhpubizwqqambxxhtcwcruedulghdexohzryekpwiyfklbokvuzhpbdtisjldoxhvcdeimxddgzniavbcvmsitorlauptatsqnklrpacvlclwpvf\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"name\": \"Teste Silva\",\n        \"email\": \"teste@prefeitura.sp.gov.br\",\n        \"updated_at\": \"2022-05-20T16:00:22.000000Z\",\n        \"created_at\": \"2022-05-20T16:00:22.000000Z\",\n        \"id\": 2\n    },\n    \"access_token\": \"3|LWV2yqNvqdIztktLYlvKehKMFn4aCOvKWc7xqMGf\",\n    \"token_type\": \"Bearer\"\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Efetua login no sistema",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/login",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/login"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                        },
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Oi username, bem-vindo!\",\n    \"username\": \"username\",\n    \"id\": 1,\n    \"access_token\": \"1|IEXWeQ8KFQCu3d3giZbTJ7dOTNf9dSACPypztMB3\",\n    \"token_type\": \"Bearer\",\n    \"departamentos\": {\n        \"3\": \"CGPABI\",\n        \"4\": \"CGPABI\/DIPO\",\n        \"5\": \"CGPABI\/DFS\",\n    }\n}",
+                            "name": ""
+                        },
+                        {
+                            "header": [],
+                            "code": 401,
+                            "body": "{\n    \"message\": \"E-mail ou senha est\u00e1 incorreto\"\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Endpoints",
+            "description": "",
+            "item": [
+                {
+                    "name": "api\/user",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Entrada",
+            "description": "\nAPIs para listar, cadastrar, editar e remover dados de entrada",
+            "item": [
+                {
+                    "name": "Lista as entradas",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entradas",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entradas"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/entradas\",\"per_page\":15,\"to\":null,\"total\":0}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cadastra uma nova entrada",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "departamento_id",
+                                    "value": 2,
+                                    "type": "text",
+                                    "description": "ID do departamento."
+                                },
+                                {
+                                    "key": "local_id",
+                                    "value": 2,
+                                    "type": "text",
+                                    "description": "ID do local."
+                                },
+                                {
+                                    "key": "processo_sei",
+                                    "value": "0123000134569000",
+                                    "type": "text",
+                                    "description": "Processo SEI."
+                                },
+                                {
+                                    "key": "numero_contrato",
+                                    "value": "0001SVMA2022",
+                                    "type": "text",
+                                    "description": "N\u00famero do contrato."
+                                },
+                                {
+                                    "key": "numero_nota_fiscal",
+                                    "value": "1234",
+                                    "type": "text",
+                                    "description": "N\u00famero da Nota Fiscal."
+                                },
+                                {
+                                    "key": "entrada_items[0][id]",
+                                    "value": 1,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "entrada_items[0][quantidade]",
+                                    "value": 500,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "entrada_items[1][id]",
+                                    "value": 2,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "entrada_items[1][quantidade]",
+                                    "value": 480,
+                                    "type": "text",
+                                    "description": ""
+                                },
+                                {
+                                    "key": "arquivo_nota_fiscal",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mostra uma entrada espec\u00edfica",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da entrada."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Edita uma entrada",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da entrada que deseja editar."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"local_id\":2,\"processo_sei\":\"0123000134569000\",\"numero_contrato\":\"2343rbte67b63\",\"numero_nota_fiscal\":\"1234\",\"arquivo_nota_fiscal\":\"DANFE?\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Deleta uma entrada",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da entrada que deseja deletar."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"entrada deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"nome\": \"Teste LTDA\",\n        \"andar\": \"5\",\n        \"ativo\": \"1\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "noauth"
+    }
+}

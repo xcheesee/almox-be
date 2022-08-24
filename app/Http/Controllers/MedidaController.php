@@ -19,10 +19,17 @@ class MedidaController extends Controller
      * @authenticated
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $medidas = Medida::paginate(15);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        if ($is_api_request){
+            $medidas = Medida::get();
             return MedidaResource::collection($medidas);
+        }
+
+        $medidas = Medida::query()->orderBy('id')->get();
+        $mensagem = $request->session()->get('mensagem');
+        return view ('cadaux.medida', compact('medidas','mensagem'));
     }
 
     /**
@@ -41,7 +48,7 @@ class MedidaController extends Controller
      *
      *
      * @bodyParam tipo string required Tipo. Example: peça
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -56,7 +63,13 @@ class MedidaController extends Controller
         $medida->tipo = $request->input('tipo');
 
         if ($medida->save()) {
-            return new MedidaResource($medida);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request) {
+                return new MedidaResource($medida);
+            }
+
+            $request->session()->flash('mensagem',"Medida '{$medida->nome}' criada com sucesso, ID {$medida->id}.");
+            return redirect()->route('cadaux-medidas');
         }
     }
 
@@ -98,7 +111,7 @@ class MedidaController extends Controller
      * @urlParam id integer required ID da medida que deseja editar. Example: 1
      *
      * @bodyParam tipo string required Tipo. Example: peça
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -113,7 +126,12 @@ class MedidaController extends Controller
         $medida->tipo = $request->input('tipo');
 
         if ($medida->save()) {
-            return new MedidaResource($medida);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request){
+                return new MedidaResource($medida);
+            }
+
+            return response()->json(['mensagem' => "Medida '{$medida->nome}' - ID {$medida->id} editada com sucesso!"], 200);
         }
     }
 

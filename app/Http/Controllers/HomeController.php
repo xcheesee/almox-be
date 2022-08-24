@@ -29,6 +29,17 @@ class HomeController extends Controller
         //return view('home');
     }
 
+    public function welcome(Request $request)
+    {
+        $ee = $request->query('ee');
+        if($ee == 'HORIZONS'){
+            $ee = 1;
+        }else{
+            $ee = 0;
+        }
+        return view('welcome', compact('ee'));
+    }
+
     /**
      * Show the application dashboard.
      *
@@ -40,5 +51,16 @@ class HomeController extends Controller
         //return view ('series.index', compact('series','mensagem'));
         return view('admin', compact('mensagem'));
         //return view('home');
+    }
+
+    /**
+     * Show cadaux index.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function cadaux(Request $request)
+    {
+        $mensagem = $request->session()->get('mensagem');
+        return view('cadaux.index', compact('mensagem'));
     }
 }

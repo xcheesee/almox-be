@@ -4,16 +4,20 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class Item extends Model
 {
     use HasFactory;
+    use Sortable;
+
+    public $sortable = ['id','nome'];
 
     protected $fillable = [
         'departamento_id',
         'medida_id',
+        'tipo_item_id',
         'nome',
-        'tipo',
         'descricao',
     ];
 
@@ -25,5 +29,10 @@ class Item extends Model
     public function medida()
     {
         return $this->belongsTo(Medida::class);
+    }
+
+    public function tipo_item()
+    {
+        return $this->belongsTo(TipoItem::class);
     }
 }

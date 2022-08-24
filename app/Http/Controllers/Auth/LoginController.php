@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    use AuthenticatesUsers;
+    protected $redirectTo = RouteServiceProvider::HOME;
+
     public function index()
     {
         return view ('login.index');

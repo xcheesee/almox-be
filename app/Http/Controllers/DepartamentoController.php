@@ -19,10 +19,37 @@ class DepartamentoController extends Controller
      * @authenticated
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $departamentos = Departamento::where('ativo', '=', true)->paginate(15);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        if ($is_api_request){
+            $departamentos = Departamento::get();
             return DepartamentoResource::collection($departamentos);
+        }
+
+        $filtros = array();
+        $filtros['andar'] = $request->query('f-andar');
+        $filtros['nome'] = $request->query('f-nome');
+        $filtros['ativo'] = $request->query('f-ativo');
+
+        $data = Departamento::sortable()
+            ->when($filtros['andar'], function ($query, $val) {
+                return $query->where('andar','=',$val);
+            })
+            ->when($filtros['ativo'], function ($query, $val) {
+                if ($val == 's'){
+                    return $query->where('ativo','=',1);
+                }elseif ($val == 'n'){
+                    return $query->where('ativo','=',0);
+                }
+            })
+            ->when($filtros['nome'], function ($query, $val) {
+                return $query->where('nome','like','%'.$val.'%');
+            })
+            ->paginate(10);
+
+        $mensagem = $request->session()->get('mensagem');
+        return view('cadaux.departamentos.index', compact('data','mensagem','filtros'));
     }
 
     /**
@@ -30,9 +57,10 @@ class DepartamentoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $mensagem = $request->session()->get('mensagem');
+        return view ('cadaux.departamentos.create',compact('mensagem'));
     }
 
     /**
@@ -58,10 +86,16 @@ class DepartamentoController extends Controller
         $departamento = new Departamento();
         $departamento->nome = $request->input('nome');
         $departamento->andar = $request->input('andar');
-        $departamento->ativo = $request->input('ativo');
+        $departamento->ativo = $request->input('ativo') ? 1 : 0;
 
         if ($departamento->save()) {
-            return new DepartamentoResource($departamento);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request){
+                return new DepartamentoResource($departamento);
+            }
+
+            $request->session()->flash('mensagem',"Departamento '{$departamento->nome}' (ID {$departamento->id}) criado com sucesso");
+            return redirect()->route('cadaux-departamentos');
         }
     }
 
@@ -81,10 +115,14 @@ class DepartamentoController extends Controller
      *     }
      * }
      */
-    public function show($id)
+    public function show(Request $request, int $id)
     {
         $departamento = Departamento::findOrFail($id);
-        return new DepartamentoResource($departamento);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        if ($is_api_request){
+            return new DepartamentoResource($departamento);
+        }
+        return view('cadaux.departamentos.show', compact('departamento'));
     }
 
     /**
@@ -93,9 +131,11 @@ class DepartamentoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, int $id)
     {
-        //
+        $departamento = Departamento::findOrFail($id);
+        $mensagem = $request->session()->get('mensagem');
+        return view ('cadaux.departamentos.edit', compact('departamento','mensagem'));
     }
 
     /**
@@ -123,10 +163,16 @@ class DepartamentoController extends Controller
         $departamento = Departamento::findOrFail($id);
         $departamento->nome = $request->input('nome');
         $departamento->andar = $request->input('andar');
-        $departamento->ativo = $request->input('ativo');
+        $departamento->ativo = $request->input('ativo') ? 1 : 0;
 
         if ($departamento->save()) {
-            return new DepartamentoResource($departamento);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request){
+                return new DepartamentoResource($departamento);
+            }
+
+            $request->session()->flash('mensagem',"Departamento '{$departamento->nome}' (ID {$departamento->id}) editado com sucesso");
+            return redirect()->route('cadaux-departamentos');
         }
     }
 
@@ -157,5 +203,5 @@ class DepartamentoController extends Controller
                 'data' => new DepartamentoResource($departamento)
             ]);
         }
-    } 
+    }
 }

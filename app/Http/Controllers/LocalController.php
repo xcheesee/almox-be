@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Models\Local;
 use App\Http\Resources\Local as LocalResource;
@@ -19,10 +20,39 @@ class LocalController extends Controller
      * @authenticated
      *
      */
-    public function index()
+    public function index(Request $request)
     {
-        $locais = Local::paginate(15);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        if ($is_api_request){
+            $locais = Local::paginate(15);
             return LocalResource::collection($locais);
+        }
+
+        $filtros = array();
+        $filtros['tipo'] = $request->query('f-tipo');
+        $filtros['nome'] = $request->query('f-nome');
+        $filtros['cep'] = $request->query('f-cep');
+        $filtros['departamento'] = $request->query('f-departamento');
+
+        $data = Local::sortable()
+            ->select('locais.*')
+            ->leftJoin('departamentos as dp', 'departamento_id', '=', 'dp.id')
+            ->when($filtros['tipo'], function ($query, $val) {
+                return $query->where('tipo','like','%'.$val.'%');
+            })
+            ->when($filtros['cep'], function ($query, $val) {
+                return $query->where('cep','like','%'.$val.'%');
+            })
+            ->when($filtros['departamento'], function ($query, $val) {
+                return $query->where('dp.nome','like','%'.$val.'%');
+            })
+            ->when($filtros['nome'], function ($query, $val) {
+                return $query->where('locais.nome','like','%'.$val.'%');
+            })
+            ->paginate(10);
+
+        $mensagem = $request->session()->get('mensagem');
+        return view('cadaux.locais.index', compact('data','mensagem','filtros'));
     }
 
     /**
@@ -30,9 +60,19 @@ class LocalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
+        $mensagem = $request->session()->get('mensagem');
+        $tipos = [
+            'autarquia' => "Autarquia",
+            'base' => "Base",
+            'parque' => "Parque",
+            'secretaria' => "Secretaria",
+            'subprefeitura' => "Subprefeitura"
+        ];
+        return view ('cadaux.locais.create',compact('mensagem','userDeptos','tipos'));
     }
 
     /**
@@ -48,7 +88,7 @@ class LocalController extends Controller
      * @bodyParam numero string nullable Numero. Example: 387
      * @bodyParam bairro string nullable Bairro. Example: Paraiso
      * @bodyParam cidade string nullable Cidade. Example: São Paulo
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -77,7 +117,13 @@ class LocalController extends Controller
         $local->cidade = $request->input('cidade');
 
         if ($local->save()) {
-            return new LocalResource($local);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request){
+                return new LocalResource($local);
+            }
+
+            $request->session()->flash('mensagem',"Local '{$local->nome}' (ID {$local->id}) criado com sucesso");
+            return redirect()->route('cadaux-locais');
         }
     }
 
@@ -101,10 +147,14 @@ class LocalController extends Controller
      *     }
      * }
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $local= Local::findOrFail($id);
-        return new LocalResource($local);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        if ($is_api_request){
+            return new LocalResource($local);
+        }
+        return view('cadaux.locais.show', compact('local'));
     }
 
     /**
@@ -113,9 +163,20 @@ class LocalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $local = Local::findOrFail($id);
+        $user = auth()->user();
+        $tipos = [
+            'autarquia' => "Autarquia",
+            'base' => "Base",
+            'parque' => "Parque",
+            'secretaria' => "Secretaria",
+            'subprefeitura' => "Subprefeitura"
+        ];
+        $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
+        $mensagem = $request->session()->get('mensagem');
+        return view ('cadaux.locais.edit',compact('local','mensagem','userDeptos','tipos'));
     }
 
     /**
@@ -133,7 +194,7 @@ class LocalController extends Controller
      * @bodyParam numero string nullable Numero. Example: 387
      * @bodyParam bairro string nullable Bairro. Example: Paraiso
      * @bodyParam cidade string nullable Cidade. Example: São Paulo
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -151,7 +212,7 @@ class LocalController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $local = Item::findOrFail($id);
+        $local = Local::findOrFail($id);
         $local->departamento_id = $request->input('departamento_id');
         $local->nome = $request->input('nome');
         $local->tipo = $request->input('tipo');
@@ -162,7 +223,13 @@ class LocalController extends Controller
         $local->cidade = $request->input('cidade');
 
         if ($local->save()) {
-            return new LocalResource($local);
+            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+            if ($is_api_request){
+                return new LocalResource($local);
+            }
+
+            $request->session()->flash('mensagem',"Local '{$local->nome}' (ID {$local->id}) editado com sucesso");
+            return redirect()->route('cadaux-locais');
         }
     }
 
@@ -198,5 +265,5 @@ class LocalController extends Controller
                 'data' => new LocalResource($local)
             ]);
         }
-    }    
+    }
 }

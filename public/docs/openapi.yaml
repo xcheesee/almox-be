@@ -1,0 +1,566 @@
+openapi: 3.0.3
+info:
+  title: Almoxarifado
+  description: 'API do sistema de Almoxarifado'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/cadastrar:
+    post:
+      summary: 'Cria um novo usuário no sistema'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    name: 'Teste Silva'
+                    email: teste@prefeitura.sp.gov.br
+                    updated_at: '2022-05-20T16:00:22.000000Z'
+                    created_at: '2022-05-20T16:00:22.000000Z'
+                    id: 2
+                  access_token: 3|LWV2yqNvqdIztktLYlvKehKMFn4aCOvKWc7xqMGf
+                  token_type: Bearer
+                properties:
+                  data:
+                    type: object
+                    example:
+                      name: 'Teste Silva'
+                      email: teste@prefeitura.sp.gov.br
+                      updated_at: '2022-05-20T16:00:22.000000Z'
+                      created_at: '2022-05-20T16:00:22.000000Z'
+                      id: 2
+                  access_token:
+                    type: string
+                    example: 3|LWV2yqNvqdIztktLYlvKehKMFn4aCOvKWc7xqMGf
+                  token_type:
+                    type: string
+                    example: Bearer
+      tags:
+        - Autenticação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: unanekhsefnxdgcpksobpylkdisqdvpxmgbjbmjzvqavvvydffrqujohrkrayyohocrxyqmjxahezahsozrekdcoaifcknlegxzytmtzhebbhpubizwqqambxxhtcwcruedulghdexohzryekpwiyfklbokvuzhpbdtisjldoxhvcdeimxddgzniavbcvmsitorlauptatsqnklrpacvlclwpvf
+                email:
+                  type: string
+                  description: 'E-mail corporativo do usuário.'
+                  example: tisvma@prefeitura.sp.gov.br
+                password:
+                  type: string
+                  description: 'Senha do usuário.'
+                  example: Teste!123
+              required:
+                - name
+                - email
+                - password
+  /api/login:
+    post:
+      summary: 'Efetua login no sistema'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n    \"message\": \"Oi username, bem-vindo!\",\n    \"username\": \"username\",\n    \"id\": 1,\n    \"access_token\": \"1|IEXWeQ8KFQCu3d3giZbTJ7dOTNf9dSACPypztMB3\",\n    \"token_type\": \"Bearer\",\n    \"departamentos\": {\n        \"3\": \"CGPABI\",\n        \"4\": \"CGPABI/DIPO\",\n        \"5\": \"CGPABI/DFS\",\n    }\n}"
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'E-mail ou senha está incorreto'
+                properties:
+                  message:
+                    type: string
+                    example: 'E-mail ou senha está incorreto'
+      tags:
+        - Autenticação
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'E-mail corporativo do usuário.'
+                  example: tisvma@prefeitura.sp.gov.br
+                password:
+                  type: string
+                  description: 'Senha do usuário.'
+                  example: Teste!123
+              required:
+                - email
+                - password
+      security: []
+  /api/user:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+  /api/entradas:
+    get:
+      summary: 'Lista as entradas'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  links:
+                    first: 'http://localhost/api/entradas?page=1'
+                    last: 'http://localhost/api/entradas?page=1'
+                    prev: null
+                    next: null
+                  meta:
+                    current_page: 1
+                    from: null
+                    last_page: 1
+                    links:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/entradas?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    path: 'http://localhost/api/entradas'
+                    per_page: 15
+                    to: null
+                    total: 0
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  links:
+                    type: object
+                    example:
+                      first: 'http://localhost/api/entradas?page=1'
+                      last: 'http://localhost/api/entradas?page=1'
+                      prev: null
+                      next: null
+                  meta:
+                    type: object
+                    example:
+                      current_page: 1
+                      from: null
+                      last_page: 1
+                      links:
+                        -
+                          url: null
+                          label: '&laquo; Previous'
+                          active: false
+                        -
+                          url: 'http://localhost/api/entradas?page=1'
+                          label: '1'
+                          active: true
+                        -
+                          url: null
+                          label: 'Next &raquo;'
+                          active: false
+                      path: 'http://localhost/api/entradas'
+                      per_page: 15
+                      to: null
+                      total: 0
+      tags:
+        - Entrada
+  /api/entrada:
+    post:
+      summary: 'Cadastra uma nova entrada'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    departamento_id: 2
+                    local_id: 2
+                    processo_sei: '0123000134569000'
+                    numero_contrato: 2343rbte67b63
+                    numero_nota_fiscal: '1234'
+                    arquivo_nota_fiscal: 'DANFE?'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      departamento_id: 2
+                      local_id: 2
+                      processo_sei: '0123000134569000'
+                      numero_contrato: 2343rbte67b63
+                      numero_nota_fiscal: '1234'
+                      arquivo_nota_fiscal: 'DANFE?'
+      tags:
+        - Entrada
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                departamento_id:
+                  type: integer
+                  description: 'ID do departamento.'
+                  example: 2
+                local_id:
+                  type: integer
+                  description: 'ID do local.'
+                  example: 2
+                processo_sei:
+                  type: string
+                  description: 'Processo SEI.'
+                  example: '0123000134569000'
+                numero_contrato:
+                  type: string
+                  description: 'Número do contrato.'
+                  example: 0001SVMA2022
+                numero_nota_fiscal:
+                  type: string
+                  description: 'Número da Nota Fiscal.'
+                  example: '1234'
+                arquivo_nota_fiscal:
+                  type: string
+                  format: binary
+                  description: 'nullable Arquivo da Nota Fiscal.'
+                entrada_items:
+                  type: object
+                  description: 'Lista de itens.'
+                  example:
+                    -
+                      id: 1
+                      quantidade: 500
+                    -
+                      id: 2
+                      quantidade: 480
+                  properties:
+                    id:
+                      type: integer
+                      description: 'ID do item.'
+                      example: 2
+                    quantidade:
+                      type: integer
+                      description: 'Quantidade informada para o item.'
+                      example: 480
+              required:
+                - processo_sei
+                - numero_contrato
+                - numero_nota_fiscal
+  '/api/entrada/{id}':
+    get:
+      summary: 'Mostra uma entrada específica'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    departamento_id: 2
+                    local_id: 2
+                    processo_sei: '0123000134569000'
+                    numero_contrato: 2343rbte67b63
+                    numero_nota_fiscal: '1234'
+                    arquivo_nota_fiscal: 'DANFE?'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      departamento_id: 2
+                      local_id: 2
+                      processo_sei: '0123000134569000'
+                      numero_contrato: 2343rbte67b63
+                      numero_nota_fiscal: '1234'
+                      arquivo_nota_fiscal: 'DANFE?'
+      tags:
+        - Entrada
+    put:
+      summary: 'Edita uma entrada'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    id: 1
+                    departamento_id: 2
+                    local_id: 2
+                    processo_sei: '0123000134569000'
+                    numero_contrato: 2343rbte67b63
+                    numero_nota_fiscal: '1234'
+                    arquivo_nota_fiscal: 'DANFE?'
+                properties:
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      departamento_id: 2
+                      local_id: 2
+                      processo_sei: '0123000134569000'
+                      numero_contrato: 2343rbte67b63
+                      numero_nota_fiscal: '1234'
+                      arquivo_nota_fiscal: 'DANFE?'
+      tags:
+        - Entrada
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                departamento_id:
+                  type: integer
+                  description: 'ID do departamento.'
+                  example: 2
+                local_id:
+                  type: integer
+                  description: 'ID do local.'
+                  example: 2
+                processo_sei:
+                  type: string
+                  description: 'Processo SEI.'
+                  example: '0123000134569000'
+                numero_contrato:
+                  type: string
+                  description: 'Número do contrato.'
+                  example: 2343rbte67b63
+                numero_nota_fiscal:
+                  type: string
+                  description: 'Número da Nota Fiscal.'
+                  example: '1234'
+                arquivo_nota_fiscal:
+                  type: string
+                  description: 'Arquivo da Nota Fiscal.'
+                  example: 'DANFE?'
+              required:
+                - processo_sei
+                - numero_contrato
+                - numero_nota_fiscal
+                - arquivo_nota_fiscal
+    delete:
+      summary: 'Deleta uma entrada'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'entrada deletada com sucesso!'
+                  data:
+                    id: 1
+                    nome: 'Teste LTDA'
+                    andar: '5'
+                    ativo: '1'
+                properties:
+                  message:
+                    type: string
+                    example: 'entrada deletada com sucesso!'
+                  data:
+                    type: object
+                    example:
+                      id: 1
+                      nome: 'Teste LTDA'
+                      andar: '5'
+                      ativo: '1'
+      tags:
+        - Entrada
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'ID da entrada.'
+        example: 1
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Autenticação
+    description: "\nAPIs para login e logout do sistema"
+  -
+    name: Endpoints
+    description: ''
+  -
+    name: Entrada
+    description: "\nAPIs para listar, cadastrar, editar e remover dados de entrada"

@@ -18,8 +18,9 @@ class Item extends JsonResource
             'id' => $this->id,
             'departamento_id' => $this->departamento_id,
             'medida_id' => $this->medida_id,
+            'tipo_item_id' => $this->tipo_item_id,
+            'tipo_item' => $this->tipo_item ? $this->tipo_item->nome : null,
             'nome' => $this->nome,
-            'tipo' => $this->tipo,
             'descricao' => $this->descricao,
         ];
     }

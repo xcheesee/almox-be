@@ -18,7 +18,7 @@ class Autenticador
     public function handle(Request $request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect('/'.env('APP_FOLDER', 'ndtic').'/entrar'); //trocar pelo prefixo do aplicativo
+            return redirect(env('APP_FOLDER', '').'/entrar'); //trocar pelo prefixo do aplicativo
         }
 
         return $next($request);

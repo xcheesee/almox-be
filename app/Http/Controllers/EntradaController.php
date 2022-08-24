@@ -43,10 +43,13 @@ class EntradaController extends Controller
      * @bodyParam departamento_id integer ID do departamento. Example: 2
      * @bodyParam local_id integer ID do local. Example: 2
      * @bodyParam processo_sei string required Processo SEI. Example: 0123000134569000
-     * @bodyParam numero_contrato string required Número do contrato. Example: 2343rbte67b63
+     * @bodyParam numero_contrato string required Número do contrato. Example: 0001SVMA2022
      * @bodyParam numero_nota_fiscal string required Número da Nota Fiscal. Example: 1234
-     * @bodyParam arquivo_nota_fiscal string nullable Arquivo da Nota Fiscal. Example: DANFE?
-     * 
+     * @bodyParam arquivo_nota_fiscal file nullable Arquivo da Nota Fiscal.
+     * @bodyParam entrada_items object Lista de itens. Example: [{"id": 1, "quantidade": 500},{"id": 2, "quantidade": 480}]
+     * @bodyParam entrada_items[].id integer ID do item. Example: 2
+     * @bodyParam entrada_items[].quantidade integer Quantidade informada para o item. Example: 480
+     *
      *
      * @response 200 {
      *     "data": {
@@ -68,6 +71,8 @@ class EntradaController extends Controller
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
+
+        //TODO: alterar este campo para receber upload de arquivo (https://laratutorials.com/laravel-8-file-upload-via-api/)
         $entrada->arquivo_nota_fiscal = $request->input('arquivo_nota_fiscal');
 
         if ($entrada->save()) {
@@ -179,5 +184,5 @@ class EntradaController extends Controller
                 'data' => new EntradaResource($entrada)
             ]);
         }
-    } 
+    }
 }
