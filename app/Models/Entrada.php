@@ -12,6 +12,7 @@ class Entrada extends Model
     protected $fillable = [
         'departamento_id',
         'local_id',
+        'data_entrada',
         'processo_sei',
         'numero_contrato',
         'numero_nota_fiscal',

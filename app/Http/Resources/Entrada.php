@@ -18,6 +18,7 @@ class Entrada extends JsonResource
             'id' => $this->id,
             'departamento_id' => $this->departamento_id,
             'local_id' => $this->local_id,
+            'data_entrada' => $this->data_entrada,
             'processo_sei' => $this->processo_sei,
             'numero_contrato' => $this->numero_contrato,
             'numero_nota_fiscal' => $this->numero_nota_fiscal,
