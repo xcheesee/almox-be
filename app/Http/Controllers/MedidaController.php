@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\MedidaFormRequest;
 use App\Models\Medida;
 use App\Http\Resources\Medida as MedidaResource;
 
@@ -19,7 +20,7 @@ class MedidaController extends Controller
      * @authenticated
      *
      */
-    public function index(Request $request)
+    public function index(MedidaFormRequest $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
@@ -57,7 +58,7 @@ class MedidaController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(MedidaFormRequest $request)
     {
         $medida = new Medida();
         $medida->tipo = $request->input('tipo');
@@ -120,7 +121,7 @@ class MedidaController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(MedidaFormRequest $request, $id)
     {
         $medida = Medida::findOrFail($id);
         $medida->tipo = $request->input('tipo');

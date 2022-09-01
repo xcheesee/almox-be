@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EntradaItemFormRequest;
 use App\Models\EntradaItem;
 use App\Http\Resources\EntradaItem as EntradaItemResource;
 
@@ -53,7 +54,7 @@ class EntradaItemController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(EntradaItemFormRequest $request)
     {
         $entrada_item = new EntradaItem();
         $entrada_item->entrada_id = $request->input('entrada_id');
@@ -123,7 +124,7 @@ class EntradaItemController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(EntradaItemFormRequest $request, $id)
     {
         $entrada_item = EntradaItem::findOrFail($id);
         $entrada_item->entrada_id = $request->input('entrada_id');

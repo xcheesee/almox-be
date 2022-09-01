@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
 use App\Http\Resources\Inventario as InventarioResource;
 
@@ -58,7 +59,7 @@ class InventarioController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(InventarioFormRequest $request)
     {
         $inventario = new Inventario();
         $inventario->departamento_id = $request->input('departamento_id');
@@ -131,7 +132,7 @@ class InventarioController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(InventarioFormRequest $request, $id)
     {
         $inventario = Inventario::findOrFail($id);
         $inventario->departamento_id = $request->input('departamento_id');

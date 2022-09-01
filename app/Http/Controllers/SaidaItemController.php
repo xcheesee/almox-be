@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SaidaItemFormRequest;
 use App\Models\SaidaItem;
 use App\Http\Resources\SaidaItem as SaidaItemResource;
 
@@ -54,7 +55,7 @@ class SaidaItemController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(SaidaItemFormRequest $request)
     {
         $saida_item = new SaidaItem();
         $saida_item->saida_id = $request->input('saida_id');
@@ -119,7 +120,7 @@ class SaidaItemController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(SaidaItemFormRequest $request, $id)
     {
         $saida_item = OrdemServicoItem::findOrFail($id);
         $saida_item->saida_id = $request->input('saida_id');

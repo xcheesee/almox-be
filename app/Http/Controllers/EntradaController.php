@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\EntradaFormRequest;
 use App\Models\Entrada;
 use App\Models\EntradaItem;
 use App\Models\Inventario;
-use App\Models\Item;
 use App\Http\Resources\Entrada as EntradaResource;
-use Validator;
 
 /**
  * @group Entrada
@@ -76,7 +75,7 @@ class EntradaController extends Controller
      *       ]
      *   }
      */
-    public function store(Request $request)
+    public function store(EntradaFormRequest $request)
     {
         $entrada = new Entrada();
         $entrada->departamento_id = $request->input('departamento_id');
@@ -87,15 +86,6 @@ class EntradaController extends Controller
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
         // Campo para adicionar os arquivos das notas fiscais.
         $entrada->arquivo_nota_fiscal = $request->file('arquivo_nota_fiscal');
-
-            $validator = Validator::make($request->all(),[
-                'arquivo_nota_fiscal' => 'required|mimes:png,jpg,jpeg,gif,pdf|max:2048',
-            ]);
-
-            if($validator->fails()) {
-
-                return response()->json(['error'=>$validator->errors()], 401);
-            }
 
             $upload = $request->arquivo_nota_fiscal->store('public/files');
 
@@ -210,7 +200,7 @@ class EntradaController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(EntradaFormRequest $request, $id)
     {
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
@@ -218,7 +208,10 @@ class EntradaController extends Controller
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
+        // Campo para adicionar os arquivos das notas fiscais.
         $entrada->arquivo_nota_fiscal = $request->input('arquivo_nota_fiscal');
+
+            $upload = $request->arquivo_nota_fiscal->store('public/files');
 
         if ($entrada->save()) {
             return new EntradaResource($entrada);

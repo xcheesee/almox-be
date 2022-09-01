@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\SaidaFormRequest;
 use App\Models\Saida;
 use App\Http\Resources\Saida as SaidaResource;
 
@@ -60,7 +61,7 @@ class SaidaController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(SaidaFormRequest $request)
     {
         $saida = new Saida();
         $saida->departamento_id = $request->input('departamento_id');
@@ -137,7 +138,7 @@ class SaidaController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(SaidaFormRequest $request, $id)
     {
         $saida = Saida::findOrFail($id);
         $saida->departamento_id = $request->input('departamento_id');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
+use App\Http\Requests\ItemFormRequest;
 use App\Models\Item;
 use App\Http\Resources\Item as ItemResource;
 use App\Models\Medida;
@@ -22,7 +23,7 @@ class ItemController extends Controller
      * @authenticated
      *
      */
-    public function index(Request $request)
+    public function index(ItemFormRequest $request)
     {
 
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
@@ -65,7 +66,7 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(ItemFormRequest $request)
     {
         $user = auth()->user();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
@@ -98,12 +99,12 @@ class ItemController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(ItemFormRequest $request)
     {
         $item = new Item();
         $item->departamento_id = $request->input('departamento_id');
-        $item->medida_id = $request->input('medida_id');
         $item->tipo_item_id = $request->input('tipo_item_id');
+        $item->medida_id = $request->input('medida_id');
         $item->nome = $request->input('nome');
         $item->descricao = $request->input('descricao');
 
@@ -135,7 +136,7 @@ class ItemController extends Controller
      *     }
      * }
      */
-    public function show(Request $request, $id)
+    public function show(ItemFormRequest $request, $id)
     {
         $item = Item::findOrFail($id);
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
@@ -151,7 +152,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(ItemFormRequest $request, $id)
     {
         $item = Item::findOrFail($id);
         $user = auth()->user();
@@ -187,7 +188,7 @@ class ItemController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(ItemFormRequest $request, $id)
     {
         $item = Item::findOrFail($id);
         $item->departamento_id = $request->input('departamento_id');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
+use App\Http\Requests\TipoItemFormRequest;
 use App\Models\TipoItem;
 use App\Http\Resources\TipoItem as TipoItemResource;
 
@@ -20,7 +21,7 @@ class TipoItemController extends Controller
      * @authenticated
      *
      */
-    public function index(Request $request)
+    public function index(TipoItemFormRequest $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
@@ -62,7 +63,7 @@ class TipoItemController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(TipoItemFormRequest $request)
     {
         $tipo_item = new TipoItem();
         $tipo_item->departamento_id = $request->input('departamento');
@@ -129,7 +130,7 @@ class TipoItemController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(TipoItemFormRequest $request, $id)
     {
         $tipo_item = TipoItem::findOrFail($id);
         $tipo_item->departamento_id = $request->input('departamento');

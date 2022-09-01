@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
+use App\Http\Requests\LocalFormRequest;
 use App\Models\Local;
 use App\Http\Resources\Local as LocalResource;
 
@@ -20,7 +21,7 @@ class LocalController extends Controller
      * @authenticated
      *
      */
-    public function index(Request $request)
+    public function index(LocalFormRequest $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
@@ -60,7 +61,7 @@ class LocalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(LocalFormRequest $request)
     {
         $user = auth()->user();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
@@ -104,7 +105,7 @@ class LocalController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(LocalFormRequest $request)
     {
         $local = new Local();
         $local->departamento_id = $request->input('departamento_id');
@@ -147,7 +148,7 @@ class LocalController extends Controller
      *     }
      * }
      */
-    public function show(Request $request, $id)
+    public function show(LocalFormRequest $request, $id)
     {
         $local= Local::findOrFail($id);
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
@@ -163,7 +164,7 @@ class LocalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(LocalFormRequest $request, $id)
     {
         $local = Local::findOrFail($id);
         $user = auth()->user();
@@ -210,7 +211,7 @@ class LocalController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(LocalFormRequest $request, $id)
     {
         $local = Local::findOrFail($id);
         $local->departamento_id = $request->input('departamento_id');

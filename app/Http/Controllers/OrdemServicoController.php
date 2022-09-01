@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\HtmlHelper;
 use Illuminate\Http\Request;
+use App\Http\Requests\OrdemServicoFormRequest;
 use App\Models\OrdemServico;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
 
@@ -73,7 +74,7 @@ class OrdemServicoController extends Controller
      *     }
      * }
      */
-    public function store(Request $request)
+    public function store(OrdemServicoFormRequest $request)
     {
         $ordem_servico = new OrdemServico();
         $ordem_servico->departamento_id = $request->input('departamento_id');
@@ -174,7 +175,7 @@ class OrdemServicoController extends Controller
      *     }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(OrdemServicoFormRequest $request, $id)
     {
         $ordem_servico = OrdemServico::findOrFail($id);
         $ordem_servico->departamento_id = $request->input('departamento_id');
