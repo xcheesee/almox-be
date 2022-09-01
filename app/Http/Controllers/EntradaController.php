@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Entrada;
-use App\Http\Resources\Entrada as EntradaResource;
 use App\Models\EntradaItem;
+use App\Models\Inventario;
+use App\Models\Item;
+use App\Http\Resources\Entrada as EntradaResource;
+use Validator;
 
 /**
  * @group Entrada
@@ -53,18 +56,25 @@ class EntradaController extends Controller
      * @bodyParam entrada_items[].quantidade integer Quantidade informada para o item. Example: 480
      *
      *
-     * @response 200 {
-     *     "data": {
-     *         "id": 1,
-     *         "departamento_id": 2,
-     *         "local_id": 2,
-     *         "data_entrada": "2022-08-11",
-     *         "processo_sei": "0123000134569000",
-     *         "numero_contrato": "2343rbte67b63",
-     *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?"
-     *     }
-     * }
+     * {
+     *       "departamento_id": 2,
+     *       "local_id": 2,
+     *       "data_entrada": "2022-08-11",
+     *       "processo_sei": "0123000134569000",
+     *       "numero_contrato": "0001SVMA2022",
+     *       "numero_nota_fiscal": "1234",
+     *       "arquivo_nota_fiscal": "DANFE?"
+     *       "entrada_items": [
+     *           {
+     *               "id": 1,
+     *               "quantidade": 500
+     *           },
+     *           {
+     *               "id": 2,
+     *               "quantidade": 480
+     *           }
+     *       ]
+     *   }
      */
     public function store(Request $request)
     {
@@ -75,12 +85,63 @@ class EntradaController extends Controller
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
+        // Campo para adicionar os arquivos das notas fiscais.
+        $entrada->arquivo_nota_fiscal = $request->file('arquivo_nota_fiscal');
 
-        //TODO: alterar este campo para receber upload de arquivo (https://laratutorials.com/laravel-8-file-upload-via-api/)
-        $entrada->arquivo_nota_fiscal = $request->input('arquivo_nota_fiscal');
+            $validator = Validator::make($request->all(),[
+                'arquivo_nota_fiscal' => 'required|mimes:png,jpg,jpeg,gif,pdf|max:2048',
+            ]);
+
+            if($validator->fails()) {
+
+                return response()->json(['error'=>$validator->errors()], 401);
+            }
+
+            $upload = $request->arquivo_nota_fiscal->store('public/files');
 
         if ($entrada->save()) {
-            return new EntradaResource($entrada);
+
+            // Lógica para retornar uma array de "entrada_items", contendo uma coleção de objetos com id do item e a quantidade.
+            $entradaItens = EntradaItem::query()->where('entrada_id','=',$entrada->id)->get();
+
+            $entrada_items = array();
+
+            foreach ($entradaItens as $key => $entradaItem){
+                $entrada_items[$key]['id'] = $entradaItem->item_id;
+                $entrada_items[$key]['quantidade'] = $entradaItem->quantidade;
+            }
+
+            $entrada_item = (object) $entrada_items;
+
+            //lógica para adicionar a quantidade dos itens de entrada no inventario
+            foreach ($entradaItens as $entrada_items){
+                $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
+                                        ->where('local_id','=',$entrada->local_id)
+                                        ->where('item_id','=',$entrada_items->item_id)
+                                        ->first();
+
+                if ($inventario) {
+                    $inventario->quantidade += $entrada_items->quantidade;
+                    $inventario->save();
+                } else {
+                    $inventario = new Inventario();
+                    $inventario->departamento_id = $entrada->departamento_id;
+                    $inventario->item_id = $entrada_items->item_id;
+                    $inventario->local_id = $entrada->local_id;
+                    $inventario->quantidade = $entrada_items->quantidade;
+                    $inventario->qtd_alerta = 0;
+                    $inventario->save();
+                }
+            }
+
+            return response()->json([
+                'departamento_id' => $entrada->departamento_id,
+                'local_id' => $entrada->local_id,
+                'processo_sei' => $entrada->processo_sei,
+                'numero_contrato' => $entrada->numero_contrato,
+                'numero_nota_fiscal' => $entrada->numero_nota_fiscal,
+                'entrada_items' => $entrada_item,
+            ]);
         }
     }
 

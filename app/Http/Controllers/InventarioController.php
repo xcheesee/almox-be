@@ -36,7 +36,7 @@ class InventarioController extends Controller
     }
 
     /**
-     * Cadastra uma nova inventário
+     * Cadastra um novo inventário
      * @authenticated
      *
      *
