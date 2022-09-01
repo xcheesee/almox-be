@@ -17,7 +17,9 @@ class Item extends JsonResource
         return [
             'id' => $this->id,
             'departamento_id' => $this->departamento_id,
+            'departamento' => $this->departamento ? $this->departamento->nome : null,
             'medida_id' => $this->medida_id,
+            'medida' => $this->medida ? $this->medida->tipo : null,
             'tipo_item_id' => $this->tipo_item_id,
             'tipo_item' => $this->tipo_item ? $this->tipo_item->nome : null,
             'nome' => $this->nome,

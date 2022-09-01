@@ -17,6 +17,7 @@ class Local extends JsonResource
         return [
             'id' => $this->id,
             'departamento_id' => $this->departamento_id,
+            'departamento' => $this->departamento ? $this->departamento->nome : null,
             'nome' => $this->nome,
             'tipo' => $this->tipo,
             'cep' => $this->cep,

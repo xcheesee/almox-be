@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Almoxarifado",
-        "_postman_id": "e2e7cbbd-c69f-4371-80ce-bb07e2ba8e86",
+        "_postman_id": "ddd20f76-6e6c-4138-9893-55727a77a0e6",
         "description": "API do sistema de Almoxarifado",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"unanekhsefnxdgcpksobpylkdisqdvpxmgbjbmjzvqavvvydffrqujohrkrayyohocrxyqmjxahezahsozrekdcoaifcknlegxzytmtzhebbhpubizwqqambxxhtcwcruedulghdexohzryekpwiyfklbokvuzhpbdtisjldoxhvcdeimxddgzniavbcvmsitorlauptatsqnklrpacvlclwpvf\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                            "raw": "{\"name\":\"airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
                         },
                         "description": ""
                     },
@@ -206,7 +206,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":null,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/entradas\",\"per_page\":15,\"to\":null,\"total\":0}}",
+                            "body": "{\"data\":[{\"id\":33,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-01\",\"processo_sei\":\"12345\",\"numero_contrato\":\"12345\",\"numero_nota_fiscal\":\"123\",\"arquivo_nota_fiscal\":null},{\"id\":44,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-02\",\"processo_sei\":\"12345\",\"numero_contrato\":\"12345\",\"numero_nota_fiscal\":\"123\",\"arquivo_nota_fiscal\":null},{\"id\":144,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-03\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":196,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":203,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":204,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":205,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-26\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":206,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-26\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/entradas\",\"per_page\":15,\"to\":8,\"total\":8}}",
                             "name": ""
                         }
                     ]
@@ -245,6 +245,12 @@
                                     "value": 2,
                                     "type": "text",
                                     "description": "ID do local."
+                                },
+                                {
+                                    "key": "data_entrada",
+                                    "value": "\"2022-08-11\"",
+                                    "type": "text",
+                                    "description": "Data do servi\u00e7o."
                                 },
                                 {
                                     "key": "processo_sei",
@@ -301,7 +307,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -341,7 +347,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -376,7 +382,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"local_id\":2,\"processo_sei\":\"0123000134569000\",\"numero_contrato\":\"2343rbte67b63\",\"numero_nota_fiscal\":\"1234\",\"arquivo_nota_fiscal\":\"DANFE?\"}"
+                            "raw": "{\"departamento_id\":2,\"local_id\":2,\"data_entrada\":\"\\\"2022-08-11\\\"\",\"processo_sei\":\"0123000134569000\",\"numero_contrato\":\"2343rbte67b63\",\"numero_nota_fiscal\":\"1234\",\"arquivo_nota_fiscal\":\"DANFE?\"}"
                         },
                         "description": ""
                     },
@@ -384,7 +390,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -424,7 +430,511 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n    \"message\": \"entrada deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"nome\": \"Teste LTDA\",\n        \"andar\": \"5\",\n        \"ativo\": \"1\"\n    }\n}",
+                            "body": "{\n    \"message\": \"entrada deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "EntradaItem",
+            "description": "\nAPIs para listar, cadastrar, editar e remover dados de entrada de itens",
+            "item": [
+                {
+                    "name": "api\/entrada\/{id}\/items",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada\/:id\/items",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada\/:id\/items",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "33",
+                                    "description": "The ID of the entrada."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":34,\"entrada_id\":33,\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"quantidade\":20},{\"id\":103,\"entrada_id\":33,\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"quantidade\":100}]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Invent\u00e1rio",
+            "description": "\nAPIs para listar, cadastrar, editar e remover dados de invent\u00e1rios",
+            "item": [
+                {
+                    "name": "Lista as entradas de invent\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/inventario",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/inventario"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":73,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":1210,\"qtd_alerta\":0},{\"id\":74,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":200,\"qtd_alerta\":0},{\"id\":78,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":81,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":2,\"local\":\"UEM Base Leopoldina\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":91,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":92,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":93,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/inventario\",\"per_page\":15,\"to\":7,\"total\":7}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cadastra uma nova invent\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/inventario",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/inventario"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"qtd_alerta\":10}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"item_id\": 2,\n        \"local_id\": 2,\n        \"quantidade\": \"10\",\n        \"qtd_alerta\": \"10\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mostra uma entrada de invent\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/inventario\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/inventario\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID de invent\u00e1rio."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"item_id\": 2,\n        \"local_id\": 2,\n        \"quantidade\": \"10\",\n        \"qtd_alerta\": \"10\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Edita um inventario",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/inventario\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/inventario\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID do invent\u00e1rio que deseja editar."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"qtd_alerta\":10}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"item_id\": 2,\n        \"local_id\": 2,\n        \"quantidade\": \"10\",\n        \"qtd_alerta\": \"10\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Deleta um invent\u00e1rio",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/inventario\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/inventario\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID do invent\u00e1rio que deseja deletar."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"entrada deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"item_id\": 2,\n        \"local_id\": 2,\n        \"quantidade\": \"10\",\n        \"qtd_alerta\": \"10\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "OrdemServico",
+            "description": "\nAPIs para listar, cadastrar, editar e remover dados de ordens de servi\u00e7os",
+            "item": [
+                {
+                    "name": "Lista as ordens de servi\u00e7os",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "56"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":1,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"almoxarife_nome\":\"Jo\\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"data_servico\":null,\"especificacao\":\"reforma\",\"profissional\":\"Jos\\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\\u00e7\\u00f5es referente ao servi\\u00e7o\",\"user_id\":1,\"user\":\"Admin NDTIC\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico\",\"per_page\":15,\"to\":1,\"total\":1}}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Cadastra uma ordem de servi\u00e7o",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"data_fim_servico\":\"2022-08-31T17:50\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\",\"user_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Mostra uma ordem de servi\u00e7o",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da ordem de servi\u00e7o."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Edita uma ordem de servi\u00e7o",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da ordem de servi\u00e7o que deseja editar."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"data_fim_servico\":\"2022-08-31T17:50\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\",\"user_id\":1}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Deleta uma ordem de servi\u00e7o",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da ordem de servi\u00e7o que deseja deletar."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"message\": \"Ordem de servi\u00e7o deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
                             "name": ""
                         }
                     ]

@@ -17,11 +17,12 @@ class Saida extends JsonResource
         return [
             'id' => $this->id,
             'departamento_id' => $this->departamento_id,
+            'departamento' => $this->departamento ? $this->departamento->nome : null,
             'ordem_servico_id' => $this->ordem_servico_id,
             'almoxarife_nome' => $this->almoxarife_nome,
             'almoxarife_email' => $this->almoxarife_email,
-            'almoxarife_cargo' => $this->almoxarife_cargo,
             'baixa_user_id' => $this->baixa_user_id,
+            'baixa_user' => $this->baixa_user->name,
             'baixa_datahora' => $this->baixa_datahora,
         ];
     }

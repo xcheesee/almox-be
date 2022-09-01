@@ -1,0 +1,252 @@
+name: Inventário
+description: |-
+
+  APIs para listar, cadastrar, editar e remover dados de inventários
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/inventario
+    metadata:
+      title: 'Lista as entradas de inventário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":73,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":1210,"qtd_alerta":0},{"id":74,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":200,"qtd_alerta":0},{"id":78,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":81,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":91,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":92,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":93,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0}],"links":{"first":"http:\/\/localhost\/api\/inventario?page=1","last":"http:\/\/localhost\/api\/inventario?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/inventario?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/inventario","per_page":15,"to":7,"total":7}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '57'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/inventario
+    metadata:
+      title: 'Cadastra uma nova inventário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      departamento_id:
+        name: departamento_id
+        description: 'ID do departamento.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      item_id:
+        name: item_id
+        description: 'ID do item.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      local_id:
+        name: local_id
+        description: 'ID do local.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      quantidade:
+        name: quantidade
+        description: Quantidade.
+        required: true
+        example: 10.0
+        type: number
+        custom: []
+      qtd_alerta:
+        name: qtd_alerta
+        description: Quantidade.
+        required: true
+        example: 10.0
+        type: number
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "item_id": 2,
+                  "local_id": 2,
+                  "quantidade": "10",
+                  "qtd_alerta": "10"
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/inventario/{id}'
+    metadata:
+      title: 'Mostra uma entrada de inventário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID de inventário.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "item_id": 2,
+                  "local_id": 2,
+                  "quantidade": "10",
+                  "qtd_alerta": "10"
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+    uri: 'api/inventario/{id}'
+    metadata:
+      title: 'Edita um inventario'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID do inventário que deseja editar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      departamento_id:
+        name: departamento_id
+        description: 'ID do departamento.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      item_id:
+        name: item_id
+        description: 'ID do item.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      local_id:
+        name: local_id
+        description: 'ID do local.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      quantidade:
+        name: quantidade
+        description: Quantidade.
+        required: true
+        example: 10.0
+        type: number
+        custom: []
+      qtd_alerta:
+        name: qtd_alerta
+        description: Quantidade.
+        required: true
+        example: 10.0
+        type: number
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "item_id": 2,
+                  "local_id": 2,
+                  "quantidade": "10",
+                  "qtd_alerta": "10"
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/inventario/{id}'
+    metadata:
+      title: 'Deleta um inventário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID do inventário que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "entrada deletada com sucesso!",
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "item_id": 2,
+                  "local_id": 2,
+                  "quantidade": "10",
+                  "qtd_alerta": "10"
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []

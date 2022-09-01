@@ -22,7 +22,7 @@ class EntradaItemController extends Controller
     public function index()
     {
         $entrada_itens = EntradaItem::paginate(15);
-            return EntradaItemResource::collection($entrada_itens);
+        return EntradaItemResource::collection($entrada_itens);
     }
 
     /**
@@ -42,7 +42,7 @@ class EntradaItemController extends Controller
      *
      * @bodyParam entrada_id integer ID da entrada. Example: 2
      * @bodyParam item_id integer ID do item. Example: 2
-     * @bodyParam quantidade float required Quantidade. Example: 10 
+     * @bodyParam quantidade float required Quantidade. Example: 10
      *
      * @response 200 {
      *     "data": {
@@ -87,6 +87,11 @@ class EntradaItemController extends Controller
         return new EntradaItemResource($entrada_item);
     }
 
+    public function items_entrada($id){
+        $entrada_itens = EntradaItem::where("entrada_id","=",$id)->get();
+        return EntradaItemResource::collection($entrada_itens);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -107,7 +112,7 @@ class EntradaItemController extends Controller
      *
      * @bodyParam entrada_id integer ID da entrada. Example: 2
      * @bodyParam item_id integer ID do item. Example: 2
-     * @bodyParam quantidade float required Quantidade. Example: 10 
+     * @bodyParam quantidade float required Quantidade. Example: 10
      *
      * @response 200 {
      *     "data": {
@@ -123,7 +128,7 @@ class EntradaItemController extends Controller
         $entrada_item = EntradaItem::findOrFail($id);
         $entrada_item->entrada_id = $request->input('entrada_id');
         $entrada_item->item_id = $request->input('item_id');
-        $entradai_tem->quantidade = $request->input('quantidade');
+        $entrada_item->quantidade = $request->input('quantidade');
 
         if ($entrada_item->save()) {
             return new EntradaItemResource($entrada_item);
@@ -157,5 +162,5 @@ class EntradaItemController extends Controller
                 'data' => new EntradaItemResource($entrada_item)
             ]);
         }
-    } 
+    }
 }

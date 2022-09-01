@@ -21,7 +21,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[],"links":{"first":"http:\/\/localhost\/api\/entradas?page=1","last":"http:\/\/localhost\/api\/entradas?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":null,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/entradas?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/entradas","per_page":15,"to":null,"total":0}}'
+        content: '{"data":[{"id":33,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":1,"local":"LAB","data_entrada":"2022-08-01","processo_sei":"12345","numero_contrato":"12345","numero_nota_fiscal":"123","arquivo_nota_fiscal":null},{"id":44,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":1,"local":"LAB","data_entrada":"2022-08-02","processo_sei":"12345","numero_contrato":"12345","numero_nota_fiscal":"123","arquivo_nota_fiscal":null},{"id":144,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":1,"local":"LAB","data_entrada":"2022-08-03","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null},{"id":196,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":1,"local":"LAB","data_entrada":"2022-08-25","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null},{"id":203,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":1,"local":"LAB","data_entrada":"2022-08-25","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null},{"id":204,"departamento_id":2,"departamento":"GABINETE\/NDTIC","local_id":1,"local":"LAB","data_entrada":"2022-08-25","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null},{"id":205,"departamento_id":2,"departamento":"GABINETE\/NDTIC","local_id":1,"local":"LAB","data_entrada":"2022-08-26","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null},{"id":206,"departamento_id":2,"departamento":"GABINETE\/NDTIC","local_id":1,"local":"LAB","data_entrada":"2022-08-26","processo_sei":"123456","numero_contrato":"123456","numero_nota_fiscal":"12345","arquivo_nota_fiscal":null}],"links":{"first":"http:\/\/localhost\/api\/entradas?page=1","last":"http:\/\/localhost\/api\/entradas?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/entradas?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/entradas","per_page":15,"to":8,"total":8}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -58,6 +58,13 @@ endpoints:
         required: false
         example: 2
         type: integer
+        custom: []
+      data_entrada:
+        name: data_entrada
+        description: 'Data do serviço.'
+        required: true
+        example: '"2022-08-11"'
+        type: date
         custom: []
       processo_sei:
         name: processo_sei
@@ -123,6 +130,7 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "local_id": 2,
+                  "data_entrada": "2022-08-11",
                   "processo_sei": "0123000134569000",
                   "numero_contrato": "2343rbte67b63",
                   "numero_nota_fiscal": "1234",
@@ -163,6 +171,7 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "local_id": 2,
+                  "data_entrada": "2022-08-11",
                   "processo_sei": "0123000134569000",
                   "numero_contrato": "2343rbte67b63",
                   "numero_nota_fiscal": "1234",
@@ -208,6 +217,13 @@ endpoints:
         example: 2
         type: integer
         custom: []
+      data_entrada:
+        name: data_entrada
+        description: 'Data do serviço.'
+        required: true
+        example: '"2022-08-11"'
+        type: date
+        custom: []
       processo_sei:
         name: processo_sei
         description: 'Processo SEI.'
@@ -245,6 +261,7 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "local_id": 2,
+                  "data_entrada": "2022-08-11",
                   "processo_sei": "0123000134569000",
                   "numero_contrato": "2343rbte67b63",
                   "numero_nota_fiscal": "1234",
@@ -284,9 +301,13 @@ endpoints:
               "message": "entrada deletada com sucesso!",
               "data": {
                   "id": 1,
-                  "nome": "Teste LTDA",
-                  "andar": "5",
-                  "ativo": "1"
+                  "departamento_id": 2,
+                  "local_id": 2,
+                  "data_entrada": "2022-08-11",
+                  "processo_sei": "0123000134569000",
+                  "numero_contrato": "2343rbte67b63",
+                  "numero_nota_fiscal": "1234",
+                  "arquivo_nota_fiscal": "DANFE?"
               }
           }
         headers: []

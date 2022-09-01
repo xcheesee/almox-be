@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\HtmlHelper;
 use Illuminate\Http\Request;
 use App\Models\OrdemServico;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
@@ -42,30 +43,28 @@ class OrdemServicoController extends Controller
      *
      * @bodyParam departamento_id integer ID do Departamento. Example: 2
      * @bodyParam origem_id integer ID do Origem. Example: 1
-     * @bodyParam destino_id integer ID do Destino. Example: 2
      * @bodyParam local_servico_id integer ID do Local do serviço. Example: 2
-     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: "João"
-     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: "joao@teste.com.br"
-     * @bodyParam almoxarife_cargo string nullable Cargo do Almoxarife. Example: "Auxiliar de Almoxarifado"
-     * @bodyParam data_servico datetime required Data do serviço. Example: "2022-08-11"
-     * @bodyParam especificacao text nullable Especificação. Example: "reforma"
-     * @bodyParam profissional string nullable Profissional. Example: "José"
+     * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
+     * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
+     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
+     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: joao@teste.com.br
+     * @bodyParam especificacao text nullable Especificação. Example: reforma
+     * @bodyParam profissional string nullable Profissional. Example: José
      * @bodyParam horas_execucao integer nullable Horas de execução. Example: 10
-     * @bodyParam observacoes text nullable Observações. Example: "observações referente ao serviço"
+     * @bodyParam observacoes text nullable Observações. Example: observações referente ao serviço
      * @bodyParam user_id integer required ID do usuário. Example: 1
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
      *         "id": 1,
      *         "departamento_id": 2,
      *         "origem_id": 1,
-     *         "destino_id": 2,
      *         "local_servico_id": 2,
+     *         "data_inicio_servico": "2022-08-30T14:48",
+     *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
      *         "almoxarife_email": "joao@teste.com.br",
-     *         "almoxarife_cargo": "Auxiliar de Almoxarifado",
-     *         "data_servico": "2022-08-11",
      *         "especificacao": "reforma",
      *         "profissional": "José",
      *         "horas_execucao": 10,
@@ -79,12 +78,11 @@ class OrdemServicoController extends Controller
         $ordem_servico = new OrdemServico();
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
-        $ordem_servico->destino_id = $request->input('destino_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
+        $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
+        $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
         $ordem_servico->almoxarife_email = $request->input('almoxarife_email');
-        $ordem_servico->almoxarife_cargo = $request->input('almoxarife_cargo');
-        $ordem_servico->data_servico = $request->input('data_servico');
         $ordem_servico->especificacao = $request->input('especificacao');
         $ordem_servico->profissional = $request->input('profissional');
         $ordem_servico->horas_execucao = $request->input('horas_execucao');
@@ -107,12 +105,11 @@ class OrdemServicoController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "origem_id": 1,
-     *         "destino_id": 2,
      *         "local_servico_id": 2,
+     *         "data_inicio_servico": "2022-08-30T14:48",
+     *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
      *         "almoxarife_email": "joao@teste.com.br",
-     *         "almoxarife_cargo": "Auxiliar de Almoxarifado",
-     *         "data_servico": "2022-08-11",
      *         "especificacao": "reforma",
      *         "profissional": "José",
      *         "horas_execucao": 10,
@@ -147,30 +144,28 @@ class OrdemServicoController extends Controller
      *
      * @bodyParam departamento_id integer ID do Departamento. Example: 2
      * @bodyParam origem_id integer ID do Origem. Example: 1
-     * @bodyParam destino_id integer ID do Destino. Example: 2
      * @bodyParam local_servico_id integer ID do Local do serviço. Example: 2
-     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: "João"
-     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: "joao@teste.com.br"
-     * @bodyParam almoxarife_cargo string nullable Cargo do Almoxarife. Example: "Auxiliar de Almoxarifado"
-     * @bodyParam data_servico datetime required Data do serviço. Example: "2022-08-11"
-     * @bodyParam especificacao text nullable Especificação. Example: "reforma"
-     * @bodyParam profissional string nullable Profissional. Example: "José"
+     * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
+     * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
+     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
+     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: joao@teste.com.br
+     * @bodyParam especificacao text nullable Especificação. Example: reforma
+     * @bodyParam profissional string nullable Profissional. Example: José
      * @bodyParam horas_execucao integer nullable Horas de execução. Example: 10
-     * @bodyParam observacoes text nullable Observações. Example: "observações referente ao serviço"
+     * @bodyParam observacoes text nullable Observações. Example: observações referente ao serviço
      * @bodyParam user_id integer required ID do usuário. Example: 1
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
      *         "id": 1,
      *         "departamento_id": 2,
      *         "origem_id": 1,
-     *         "destino_id": 2,
      *         "local_servico_id": 2,
+     *         "data_inicio_servico": "2022-08-30T14:48",
+     *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
      *         "almoxarife_email": "joao@teste.com.br",
-     *         "almoxarife_cargo": "Auxiliar de Almoxarifado",
-     *         "data_servico": "2022-08-11",
      *         "especificacao": "reforma",
      *         "profissional": "José",
      *         "horas_execucao": 10,
@@ -184,12 +179,11 @@ class OrdemServicoController extends Controller
         $ordem_servico = OrdemServico::findOrFail($id);
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
-        $ordem_servico->destino_id = $request->input('destino_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
+        $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
+        $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
         $ordem_servico->almoxarife_email = $request->input('almoxarife_email');
-        $ordem_servico->almoxarife_cargo = $request->input('almoxarife_cargo');
-        $ordem_servico->data_servico = $request->input('data_servico');
         $ordem_servico->especificacao = $request->input('especificacao');
         $ordem_servico->profissional = $request->input('profissional');
         $ordem_servico->horas_execucao = $request->input('horas_execucao');
@@ -214,12 +208,11 @@ class OrdemServicoController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "origem_id": 1,
-     *         "destino_id": 2,
      *         "local_servico_id": 2,
+     *         "data_inicio_servico": "2022-08-30T14:48",
+     *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
      *         "almoxarife_email": "joao@teste.com.br",
-     *         "almoxarife_cargo": "Auxiliar de Almoxarifado",
-     *         "data_servico": "2022-08-11",
      *         "especificacao": "reforma",
      *         "profissional": "José",
      *         "horas_execucao": 10,
@@ -238,5 +231,5 @@ class OrdemServicoController extends Controller
                 'data' => new OrdemServicoResource($ordem_servico)
             ]);
         }
-    }  
+    }
 }

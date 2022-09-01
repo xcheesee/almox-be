@@ -18,6 +18,8 @@ class SaidaItem extends JsonResource
             'id' => $this->id,
             'saida_id' => $this->saida_id,
             'item_id' => $this->item_id,
+            'item' => $this->item ? $this->item->nome : null,
+            'medida' => $this->item ? $this->item->medida->tipo : null,
             'quantidade' => $this->quantidade,
         ];
     }

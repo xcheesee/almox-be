@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Entrada;
 use App\Http\Resources\Entrada as EntradaResource;
+use App\Models\EntradaItem;
 
 /**
  * @group Entrada
@@ -42,6 +43,7 @@ class EntradaController extends Controller
      *
      * @bodyParam departamento_id integer ID do departamento. Example: 2
      * @bodyParam local_id integer ID do local. Example: 2
+     * @bodyParam data_entrada date required Data do serviço. Example: "2022-08-11"
      * @bodyParam processo_sei string required Processo SEI. Example: 0123000134569000
      * @bodyParam numero_contrato string required Número do contrato. Example: 0001SVMA2022
      * @bodyParam numero_nota_fiscal string required Número da Nota Fiscal. Example: 1234
@@ -56,6 +58,7 @@ class EntradaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "local_id": 2,
+     *         "data_entrada": "2022-08-11",
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
@@ -68,6 +71,7 @@ class EntradaController extends Controller
         $entrada = new Entrada();
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
+        $entrada->data_entrada = $request->input('data_entrada');
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
@@ -92,6 +96,7 @@ class EntradaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "local_id": 2,
+     *         "data_entrada": "2022-08-11",
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
@@ -125,6 +130,7 @@ class EntradaController extends Controller
      *
      * @bodyParam departamento_id integer ID do departamento. Example: 2
      * @bodyParam local_id integer ID do local. Example: 2
+     * @bodyParam data_entrada date required Data do serviço. Example: "2022-08-11"
      * @bodyParam processo_sei string required Processo SEI. Example: 0123000134569000
      * @bodyParam numero_contrato string required Número do contrato. Example: 2343rbte67b63
      * @bodyParam numero_nota_fiscal string required Número da Nota Fiscal. Example: 1234
@@ -135,6 +141,7 @@ class EntradaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "local_id": 2,
+     *         "data_entrada": "2022-08-11",
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
@@ -168,9 +175,13 @@ class EntradaController extends Controller
      *     "message": "entrada deletada com sucesso!",
      *     "data": {
      *         "id": 1,
-     *         "nome": "Teste LTDA",
-     *         "andar": "5",
-     *         "ativo": "1"
+     *         "departamento_id": 2,
+     *         "local_id": 2,
+     *         "data_entrada": "2022-08-11",
+     *         "processo_sei": "0123000134569000",
+     *         "numero_contrato": "2343rbte67b63",
+     *         "numero_nota_fiscal": "1234",
+     *         "arquivo_nota_fiscal": "DANFE?"
      *     }
      * }
      */

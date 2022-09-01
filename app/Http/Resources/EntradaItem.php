@@ -18,6 +18,8 @@ class EntradaItem extends JsonResource
             'id' => $this->id,
             'entrada_id' => $this->entrada_id,
             'item_id' => $this->item_id,
+            'item' => $this->item ? $this->item->nome : null,
+            'medida' => $this->item ? $this->item->medida->tipo : null,
             'quantidade' => $this->quantidade,
         ];
     }
