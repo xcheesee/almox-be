@@ -205,11 +205,18 @@ class EntradaController extends Controller
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
+        $entrada->data_entrada = $request->input('data_entrada');
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
-        // Campo para adicionar os arquivos das notas fiscais.
+        // Campo para alterar o arquivo enviado da nota fiscal.
         $entrada->arquivo_nota_fiscal = $request->input('arquivo_nota_fiscal');
+
+            $arquivo_nota_fiscal = Entrada::query()->where('arquivo_nota_fiscal','=',$id)->first();
+
+                if($arquivo_nota_fiscal){
+                    $arquivo_nota_fiscal->delete();
+                }
 
             $upload = $request->arquivo_nota_fiscal->store('public/files');
 
