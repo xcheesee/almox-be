@@ -8,6 +8,8 @@ use App\Models\Entrada;
 use App\Models\EntradaItem;
 use App\Models\Inventario;
 use App\Http\Resources\Entrada as EntradaResource;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 /**
  * @group Entrada
@@ -84,10 +86,17 @@ class EntradaController extends Controller
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
-        // Campo para adicionar os arquivos das notas fiscais.
-        $entrada->arquivo_nota_fiscal = $request->file('arquivo_nota_fiscal');
 
-            $upload = $request->arquivo_nota_fiscal->store('public/files');
+        // Lidando com o upload de arquivo
+        if ($request->filename){
+            $tabela=DB::select("SHOW TABLE STATUS LIKE 'visitantes'");
+            $next_id=$tabela[0]->Auto_increment;
+            $$file = $request->file('arquivo_nota_fiscal');
+            $extension = $file->extension();
+
+            $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$next_id.'-'.date('Ymdhis').'.'.$extension);
+            $entrada->arquivo_nota_fiscal = $upload;
+        }
 
         if ($entrada->save()) {
 
@@ -202,6 +211,7 @@ class EntradaController extends Controller
      */
     public function update(EntradaFormRequest $request, $id)
     {
+        //dd($request);
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
@@ -209,16 +219,21 @@ class EntradaController extends Controller
         $entrada->processo_sei = $request->input('processo_sei');
         $entrada->numero_contrato = $request->input('numero_contrato');
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
-        // Campo para alterar o arquivo enviado da nota fiscal.
-        $entrada->arquivo_nota_fiscal = $request->input('arquivo_nota_fiscal');
 
-            $arquivo_nota_fiscal = Entrada::query()->where('arquivo_nota_fiscal','=',$id)->first();
+        // Lidando com o upload de arquivo
+        if ($request->hasFile('arquivo_nota_fiscal')){
+            if($entrada->arquivo_nota_fiscal){
+                Storage::delete($entrada->arquivo_nota_fiscal);
+            }
 
-                if($arquivo_nota_fiscal){
-                    $arquivo_nota_fiscal->delete();
-                }
+            $file = $request->file('arquivo_nota_fiscal');
+            $extension = $file->extension();
 
-            $upload = $request->arquivo_nota_fiscal->store('public/files');
+            $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$entrada->id.'-'.date('Ymdhis').'.'.$extension);
+            $entrada->arquivo_nota_fiscal = $upload;
+        }else{
+            dd($request);
+        }
 
         if ($entrada->save()) {
             return new EntradaResource($entrada);
