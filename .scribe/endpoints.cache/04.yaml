@@ -7,37 +7,10 @@ description: |-
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/inventario
-    metadata:
-      title: 'Lista as entradas de inventário'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"data":[{"id":73,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":1210,"qtd_alerta":0},{"id":74,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":200,"qtd_alerta":0},{"id":78,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":81,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":91,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":92,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":93,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0}],"links":{"first":"http:\/\/localhost\/api\/inventario?page=1","last":"http:\/\/localhost\/api\/inventario?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/inventario?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/inventario","per_page":15,"to":7,"total":7}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '57'
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-  -
-    httpMethods:
       - POST
     uri: api/inventario
     metadata:
-      title: 'Cadastra uma nova inventário'
+      title: 'Cadastra um novo inventário'
       description: ''
       authenticated: true
       custom: []
@@ -47,13 +20,6 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      departamento_id:
-        name: departamento_id
-        description: 'ID do departamento.'
-        required: false
-        example: 2
-        type: integer
-        custom: []
       item_id:
         name: item_id
         description: 'ID do item.'
@@ -74,6 +40,13 @@ endpoints:
         required: true
         example: 10.0
         type: number
+        custom: []
+      departamento_id:
+        name: departamento_id
+        description: 'ID do departamento.'
+        required: false
+        example: 2
+        type: integer
         custom: []
       qtd_alerta:
         name: qtd_alerta
@@ -160,13 +133,6 @@ endpoints:
         custom: []
     queryParameters: []
     bodyParameters:
-      departamento_id:
-        name: departamento_id
-        description: 'ID do departamento.'
-        required: false
-        example: 2
-        type: integer
-        custom: []
       item_id:
         name: item_id
         description: 'ID do item.'
@@ -187,6 +153,13 @@ endpoints:
         required: true
         example: 10.0
         type: number
+        custom: []
+      departamento_id:
+        name: departamento_id
+        description: 'ID do departamento.'
+        required: false
+        example: 2
+        type: integer
         custom: []
       qtd_alerta:
         name: qtd_alerta
@@ -251,4 +224,80 @@ endpoints:
           }
         headers: []
         description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/inventarios
+    metadata:
+      title: 'Lista as entradas de inventário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      'filter[base]':
+        name: 'filter[base]'
+        description: 'Filtro de Local (base) do item.'
+        required: false
+        example: Leopoldina
+        type: string
+        custom: []
+      'filter[item]':
+        name: 'filter[item]'
+        description: 'Filtro de Nome do Item'
+        required: false
+        example: 'Adaptador Pvc'
+        type: string
+        custom: []
+      'filter[tipo_item]':
+        name: 'filter[tipo_item]'
+        description: 'Filtro de Tipo de item.'
+        required: false
+        example: alvenaria
+        type: string
+        custom: []
+      'filter[tipo_medida]':
+        name: 'filter[tipo_medida]'
+        description: 'Filtro do Tipo de medida do item.'
+        required: false
+        example: Pç
+        type: string
+        custom: []
+      'filter[quantidade_maior_que]':
+        name: 'filter[quantidade_maior_que]'
+        description: 'Filtro inicial de quantidade.'
+        required: false
+        example: '200'
+        type: string
+        custom: []
+      'filter[quantidade_menor_que]':
+        name: 'filter[quantidade_menor_que]'
+        description: 'Filtro final de quantidade.'
+        required: false
+        example: '800'
+        type: string
+        custom: []
+      sort:
+        name: sort
+        description: 'Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: ''id'', ''items.nome'', ''tipo_items.nome'', ''medidas.tipo'', ''locais.nome'', ''quantidade'''
+        required: false
+        example: '-locais.nome'
+        type: string
+        custom: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":81,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":103,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":3,"local":"Parque Leopoldina - Orlando Villas-B\u00f4as","local_tipo":"parque","quantidade":120,"qtd_alerta":0},{"id":93,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":92,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":375,"qtd_alerta":0},{"id":102,"departamento_id":1,"departamento":"GABINETE\/CG","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":4104,"qtd_alerta":0},{"id":91,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":100,"qtd_alerta":0},{"id":101,"departamento_id":1,"departamento":"GABINETE\/CG","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":2000,"qtd_alerta":0},{"id":100,"departamento_id":1,"departamento":"GABINETE\/CG","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":240,"qtd_alerta":0},{"id":78,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":830,"qtd_alerta":0},{"id":99,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":711,"qtd_alerta":0},{"id":74,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":500,"qtd_alerta":0},{"id":98,"departamento_id":3,"departamento":"CGPABI\/DGPU","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":479,"qtd_alerta":0},{"id":73,"departamento_id":2,"departamento":"GABINETE\/NDTIC","item_id":1,"item":"Argamassa, Na Cor Cinza ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":1910,"qtd_alerta":0},{"id":97,"departamento_id":4,"departamento":"CGPABI\/DAU","item_id":2,"item":"Cimento Portland Composto(cpii-f-32mpa) ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":480,"qtd_alerta":0},{"id":96,"departamento_id":4,"departamento":"CGPABI\/DAU","item_id":3,"item":"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\/ Fispq ","medida":"SC","local_id":1,"local":"LAB","local_tipo":"base","quantidade":1050,"qtd_alerta":0}],"links":{"first":"http:\/\/localhost\/api\/inventarios?page=1","last":"http:\/\/localhost\/api\/inventarios?page=2","prev":null,"next":"http:\/\/localhost\/api\/inventarios?page=2"},"meta":{"current_page":1,"from":1,"last_page":2,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/inventarios?page=1","label":"1","active":true},{"url":"http:\/\/localhost\/api\/inventarios?page=2","label":"2","active":false},{"url":"http:\/\/localhost\/api\/inventarios?page=2","label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/inventarios","per_page":15,"to":15,"total":17}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '56'
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []

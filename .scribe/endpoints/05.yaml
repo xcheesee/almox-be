@@ -5,33 +5,6 @@ description: |-
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/ordem_servico
-    metadata:
-      title: 'Lista as ordens de serviços'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: '{"data":[{"id":1,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":1,"origem":"LAB","local_servico_id":2,"local_servico":"UEM Base Leopoldina","almoxarife_nome":"Jo\u00e3o","almoxarife_email":"joao@teste.com.br","data_servico":null,"especificacao":"reforma","profissional":"Jos\u00e9","horas_execucao":10,"observacoes":"observa\u00e7\u00f5es referente ao servi\u00e7o","user_id":1,"user":"Admin NDTIC"}],"links":{"first":"http:\/\/localhost\/api\/ordem_servico?page=1","last":"http:\/\/localhost\/api\/ordem_servico?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/ordem_servico?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/ordem_servico","per_page":15,"to":1,"total":1}}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '56'
-          access-control-allow-origin: '*'
-        description: null
-    responseFields: []
-  -
-    httpMethods:
       - POST
     uri: api/ordem_servico
     metadata:
@@ -73,13 +46,6 @@ endpoints:
         example: '2022-08-30T14:48'
         type: datetime
         custom: []
-      data_fim_servico:
-        name: data_fim_servico
-        description: 'Data do serviço.'
-        required: true
-        example: '2022-08-31T17:50'
-        type: datetime
-        custom: []
       almoxarife_nome:
         name: almoxarife_nome
         description: 'Nome do Almoxarife.'
@@ -93,6 +59,20 @@ endpoints:
         required: true
         example: joao@teste.com.br
         type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: 'ID do usuário.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      data_fim_servico:
+        name: data_fim_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-31T17:50'
+        type: datetime
         custom: []
       especificacao:
         name: especificacao
@@ -121,13 +101,6 @@ endpoints:
         required: false
         example: 'observações referente ao serviço'
         type: text
-        custom: []
-      user_id:
-        name: user_id
-        description: 'ID do usuário.'
-        required: true
-        example: 1
-        type: integer
         custom: []
     responses:
       -
@@ -201,7 +174,54 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
+      - DELETE
+    uri: 'api/ordem_servico/{id}'
+    metadata:
+      title: 'Deleta uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Ordem de serviço deletada com sucesso!",
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",
+                  "user_id": 1
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
     uri: 'api/ordem_servico/{id}'
     metadata:
       title: 'Edita uma ordem de serviço'
@@ -249,13 +269,6 @@ endpoints:
         example: '2022-08-30T14:48'
         type: datetime
         custom: []
-      data_fim_servico:
-        name: data_fim_servico
-        description: 'Data do serviço.'
-        required: true
-        example: '2022-08-31T17:50'
-        type: datetime
-        custom: []
       almoxarife_nome:
         name: almoxarife_nome
         description: 'Nome do Almoxarife.'
@@ -269,6 +282,20 @@ endpoints:
         required: true
         example: joao@teste.com.br
         type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: 'ID do usuário.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      data_fim_servico:
+        name: data_fim_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-31T17:50'
+        type: datetime
         custom: []
       especificacao:
         name: especificacao
@@ -298,13 +325,6 @@ endpoints:
         example: 'observações referente ao serviço'
         type: text
         custom: []
-      user_id:
-        name: user_id
-        description: 'ID do usuário.'
-        required: true
-        example: 1
-        type: integer
-        custom: []
     responses:
       -
         status: 200
@@ -331,48 +351,77 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/ordem_servico/{id}'
+      - GET
+    uri: api/ordem_servicos
     metadata:
-      title: 'Deleta uma ordem de serviço'
+      title: 'Lista as ordens de serviços'
       description: ''
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'ID da ordem de serviço que deseja deletar.'
-        required: true
-        example: 1
-        type: integer
+    urlParameters: []
+    queryParameters:
+      'filter[origem]':
+        name: 'filter[origem]'
+        description: 'Filtro de Local (base) do item.'
+        required: false
+        example: Leopoldina
+        type: string
         custom: []
-    queryParameters: []
+      'filter[local_servico]':
+        name: 'filter[local_servico]'
+        description: 'Filtro de nome do local de destino dos materiais.'
+        required: false
+        example: Ibirapuera
+        type: string
+        custom: []
+      'filter[almoxarife_nome]':
+        name: 'filter[almoxarife_nome]'
+        description: 'Filtro do Nome do almoxarife responsável.'
+        required: false
+        example: Fulano
+        type: string
+        custom: []
+      'filter[almoxarife_email]':
+        name: 'filter[almoxarife_email]'
+        description: 'Filtro do e-mail do almoxarife responsável.'
+        required: false
+        example: fulano@mail.com
+        type: string
+        custom: []
+      'filter[servico_depois_de]':
+        name: 'filter[servico_depois_de]'
+        description: 'Filtro inicial de período da data de serviço.'
+        required: false
+        example: '2023-01-01'
+        type: string
+        custom: []
+      'filter[servico_antes_de]':
+        name: 'filter[servico_antes_de]'
+        description: 'Filtro final de período da data de serviço.'
+        required: false
+        example: '2023-12-31'
+        type: string
+        custom: []
+      sort:
+        name: sort
+        description: 'Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: ''id'', ''items.nome'', ''tipo_items.nome'', ''medidas.tipo'', ''locais.nome'', ''quantidade'''
+        required: false
+        example: '-locais.nome'
+        type: string
+        custom: []
     bodyParameters: []
     responses:
       -
         status: 200
-        content: |-
-          {
-              "message": "Ordem de serviço deletada com sucesso!",
-              "data": {
-                  "id": 1,
-                  "departamento_id": 2,
-                  "origem_id": 1,
-                  "local_servico_id": 2,
-                  "data_inicio_servico": "2022-08-30T14:48",
-                  "data_fim_servico": "2022-08-31T17:50",
-                  "almoxarife_nome": "João",
-                  "almoxarife_email": "joao@teste.com.br",
-                  "especificacao": "reforma",
-                  "profissional": "José",
-                  "horas_execucao": 10,
-                  "observacoes": "observações referente ao serviço",
-                  "user_id": 1
-              }
-          }
-        headers: []
-        description: '200'
+        content: '{"data":[{"id":2,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":1,"origem":"LAB","local_servico_id":2,"local_servico":"UEM Base Leopoldina","data_inicio_servico":"2022-08-30 14:48:00","data_fim_servico":"2022-08-31 17:50:00","almoxarife_nome":"Jo\u00e3o","almoxarife_email":"joao@teste.com.br","especificacao":"reforma 2","profissional":"Jos\u00e9","horas_execucao":10,"observacoes":"observa\u00e7\u00f5es referente ao servi\u00e7o","user_id":1,"user":"Admin NDTIC"},{"id":3,"departamento_id":1,"departamento":"GABINETE\/CG","origem_id":1,"origem":"LAB","local_servico_id":2,"local_servico":"UEM Base Leopoldina","data_inicio_servico":"2022-08-31 14:23:00","data_fim_servico":"2022-09-30 16:45:00","almoxarife_nome":"Jos\u00e9","almoxarife_email":"jose@jose.com.br","especificacao":"Especifica\u00e7\u00e3o\n\nTeste de quebra de linha","profissional":"Maria","horas_execucao":200,"observacoes":"Observa\u00e7\u00f5es\n\nTeste\nde\nquebra\nde\nlinha","user_id":1,"user":"Admin NDTIC"},{"id":4,"departamento_id":4,"departamento":"CGPABI\/DAU","origem_id":1,"origem":"LAB","local_servico_id":2,"local_servico":"UEM Base Leopoldina","data_inicio_servico":"2022-08-31 10:35:00","data_fim_servico":"2022-08-31 12:45:00","almoxarife_nome":"Fulano","almoxarife_email":"fulano@fulano.com","especificacao":"Especifica\u00e7\u00e3o teste","profissional":"Maria","horas_execucao":2,"observacoes":"servi\u00e7os extras\n\nobserva\u00e7\u00f5es","user_id":1,"user":"Admin NDTIC"},{"id":8,"departamento_id":1,"departamento":"GABINETE\/CG","origem_id":1,"origem":"LAB","local_servico_id":2,"local_servico":"UEM Base Leopoldina","data_inicio_servico":"2022-09-22 14:32:00","data_fim_servico":"2022-09-30 14:32:00","almoxarife_nome":"Fulano","almoxarife_email":"fulano@fulano.com","especificacao":"(\u2256 \u035c\u0296\u2256)","profissional":"Fulano","horas_execucao":100,"observacoes":"(\u2256 \u035c\u0296\u2256)","user_id":1,"user":"Admin NDTIC"},{"id":1,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":2,"origem":"UEM Base Leopoldina","local_servico_id":1,"local_servico":"LAB","data_inicio_servico":"2022-05-12 09:32:00","data_fim_servico":"2022-05-12 19:36:00","almoxarife_nome":"Jo\u00e3o","almoxarife_email":"joao@teste.com.br","especificacao":"reforma","profissional":"Jos\u00e9","horas_execucao":10,"observacoes":"observa\u00e7\u00f5es referente ao servi\u00e7o","user_id":1,"user":"Admin NDTIC"},{"id":9,"departamento_id":1,"departamento":"GABINETE\/CG","origem_id":4,"origem":"Almoxarifado","local_servico_id":1,"local_servico":"LAB","data_inicio_servico":"2022-06-07 09:27:00","data_fim_servico":"2022-06-07 12:27:00","almoxarife_nome":"Sicrano","almoxarife_email":"sicrano@email.com","especificacao":"especifica\u00e7\u00e3o teste de edi\u00e7\u00e3o","profissional":"Sicrano","horas_execucao":4,"observacoes":"observacoes","user_id":1,"user":"Admin NDTIC"},{"id":10,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":4,"origem":"Almoxarifado","local_servico_id":1,"local_servico":"LAB","data_inicio_servico":"2022-06-08 19:08:00","data_fim_servico":"2022-06-08 22:31:00","almoxarife_nome":"Maria","almoxarife_email":"maria@email.com","especificacao":"___\u3006(\u30fb\u2200\u30fb)","profissional":"Sicrano","horas_execucao":3,"observacoes":"observa\u00e7\u00f5es","user_id":1,"user":"Admin NDTIC"},{"id":5,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":3,"origem":"Parque Leopoldina - Orlando Villas-B\u00f4as","local_servico_id":4,"local_servico":"Almoxarifado","data_inicio_servico":"2022-08-02 13:45:00","data_fim_servico":"2022-08-02 15:45:00","almoxarife_nome":"Almoxariferson","almoxarife_email":"almoxariferson@almoxarife.com","especificacao":"Especifica\u00e7\u00e3o","profissional":"Beltrano","horas_execucao":2,"observacoes":"Observa\u00e7\u00f5es","user_id":1,"user":"Admin NDTIC"},{"id":6,"departamento_id":1,"departamento":"GABINETE\/CG","origem_id":3,"origem":"Parque Leopoldina - Orlando Villas-B\u00f4as","local_servico_id":4,"local_servico":"Almoxarifado","data_inicio_servico":"2022-09-02 13:42:00","data_fim_servico":"2022-09-02 17:42:00","almoxarife_nome":"Jos\u00e9","almoxarife_email":"jose@jose.com.br","especificacao":"teste","profissional":"Beltrano","horas_execucao":4,"observacoes":"teste","user_id":1,"user":"Admin NDTIC"},{"id":7,"departamento_id":2,"departamento":"GABINETE\/NDTIC","origem_id":1,"origem":"LAB","local_servico_id":4,"local_servico":"Almoxarifado","data_inicio_servico":"2022-08-29 14:32:00","data_fim_servico":"2022-08-29 15:32:00","almoxarife_nome":"maria","almoxarife_email":"maria@email.com","especificacao":"teste\r\n\r\nteste","profissional":"Fulano","horas_execucao":1,"observacoes":"teste\r\n\r\nteste","user_id":1,"user":"Admin NDTIC"}],"links":{"first":"http:\/\/localhost\/api\/ordem_servicos?page=1","last":"http:\/\/localhost\/api\/ordem_servicos?page=1","prev":null,"next":null},"meta":{"current_page":1,"from":1,"last_page":1,"links":[{"url":null,"label":"&laquo; Previous","active":false},{"url":"http:\/\/localhost\/api\/ordem_servicos?page=1","label":"1","active":true},{"url":null,"label":"Next &raquo;","active":false}],"path":"http:\/\/localhost\/api\/ordem_servicos","per_page":15,"to":10,"total":10}}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '55'
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []

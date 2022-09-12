@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Almoxarifado",
-        "_postman_id": "ddd20f76-6e6c-4138-9893-55727a77a0e6",
+        "_postman_id": "278a57b7-9968-4f0e-939d-5dd86e095f67",
         "description": "API do sistema de Almoxarifado",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                            "raw": "{\"name\":\"vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
                         },
                         "description": ""
                     },
@@ -164,8 +164,57 @@
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/entradas",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/entradas"
+                            "query": [
+                                {
+                                    "key": "filter%5Bprocesso_sei%5D",
+                                    "value": "6000.2022%2F0000123-4",
+                                    "description": "Filtro de n\u00famero do processo.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bnumero_contrato%5D",
+                                    "value": "001%2FSVMA%2F2022",
+                                    "description": "Filtro de n\u00famero do contrato da entrada",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Blocal%5D",
+                                    "value": "Base+Leopoldina",
+                                    "description": "Filtro de nome da base destino dos materiais da entrada.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bnumero_nota_fiscal%5D",
+                                    "value": "1234567",
+                                    "description": "Filtro do n\u00famero da nota fiscal.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bentrada_depois_de%5D",
+                                    "value": "2023-01-01",
+                                    "description": "Filtro inicial de per\u00edodo da data de entrada do contrato.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bentrada_antes_de%5D",
+                                    "value": "2023-12-31",
+                                    "description": "Filtro final de per\u00edodo da data de entrada do contrato.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Btipo%5D",
+                                    "value": "alvenaria",
+                                    "description": "Tipo de material da entrada.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-processo_sei",
+                                    "description": "Campo a ser ordenado (padr\u00e3o ascendente, inserir um h\u00edfen antes para decrescente). Colunas poss\u00edveis: 'numero_nota_fiscal', 'data_entrada', 'processo_sei', 'numero_contrato', 'locais.nome', 'tipo_items.nome'",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/entradas?filter%5Bprocesso_sei%5D=6000.2022%2F0000123-4&filter%5Bnumero_contrato%5D=001%2FSVMA%2F2022&filter%5Blocal%5D=Base+Leopoldina&filter%5Bnumero_nota_fiscal%5D=1234567&filter%5Bentrada_depois_de%5D=2023-01-01&filter%5Bentrada_antes_de%5D=2023-12-31&filter%5Btipo%5D=alvenaria&sort=-processo_sei"
                         },
                         "method": "GET",
                         "header": [
@@ -198,7 +247,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "59"
+                                    "value": "58"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -206,7 +255,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":33,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-01\",\"processo_sei\":\"12345\",\"numero_contrato\":\"12345\",\"numero_nota_fiscal\":\"123\",\"arquivo_nota_fiscal\":null},{\"id\":44,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-02\",\"processo_sei\":\"12345\",\"numero_contrato\":\"12345\",\"numero_nota_fiscal\":\"123\",\"arquivo_nota_fiscal\":null},{\"id\":144,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-03\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":196,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":203,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":204,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-25\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":205,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-26\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null},{\"id\":206,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-26\",\"processo_sei\":\"123456\",\"numero_contrato\":\"123456\",\"numero_nota_fiscal\":\"12345\",\"arquivo_nota_fiscal\":null}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/entradas\",\"per_page\":15,\"to\":8,\"total\":8}}",
+                            "body": "{\"data\":[{\"id\":290,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-05-12\",\"processo_sei\":\"9999202274189632\",\"numero_contrato\":\"632SVMA2022\",\"numero_nota_fiscal\":\"4268\",\"arquivo_nota_fiscal\":\"files\\\/entrada_290-20220905050714.png\"},{\"id\":295,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-09-06\",\"processo_sei\":\"9731202246791346\",\"numero_contrato\":\"886SVMA2022\",\"numero_nota_fiscal\":\"5613\",\"arquivo_nota_fiscal\":\"files\\\/entrada_295-20220905064638.png\"},{\"id\":291,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-09-06\",\"processo_sei\":\"8426202226847391\",\"numero_contrato\":\"753SVMA2022\",\"numero_nota_fiscal\":\"6248\",\"arquivo_nota_fiscal\":\"files\\\/entrada_291-20220905055451.png\"},{\"id\":286,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-29\",\"processo_sei\":\"7788202212344422\",\"numero_contrato\":\"587\\\/SVMA\\\/2022\",\"numero_nota_fiscal\":\"4429\",\"arquivo_nota_fiscal\":\"files\\\/entrada_286-20220902074857.png\"},{\"id\":289,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-10-12\",\"processo_sei\":\"7539202275395123\",\"numero_contrato\":\"635SVMA2022\",\"numero_nota_fiscal\":\"6352\",\"arquivo_nota_fiscal\":\"files\\\/entrada_289-20220905045041.png\"},{\"id\":294,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-09-05\",\"processo_sei\":\"7384202262846231\",\"numero_contrato\":\"558SVMA2022\",\"numero_nota_fiscal\":\"1134\",\"arquivo_nota_fiscal\":\"files\\\/entrada_294-20220905064309.png\"},{\"id\":293,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-09-21\",\"processo_sei\":\"6842202273913719\",\"numero_contrato\":\"651SVMA2022\",\"numero_nota_fiscal\":\"9818\",\"arquivo_nota_fiscal\":\"files\\\/entrada_293-20220905062629.png\"},{\"id\":287,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-06-13\",\"processo_sei\":\"6655202213246579\",\"numero_contrato\":\"984SVMA2022\",\"numero_nota_fiscal\":\"9987\",\"arquivo_nota_fiscal\":\"files\\\/entrada_287-20220905043750.pdf\"},{\"id\":219,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-09\",\"processo_sei\":\"6543202212345678\",\"numero_contrato\":\"453\\\/SVMA\\\/2022\",\"numero_nota_fiscal\":\"5124\",\"arquivo_nota_fiscal\":\"files\\\/entrada_219-20220902055445.png\"},{\"id\":220,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-09\",\"processo_sei\":\"6543202212345678\",\"numero_contrato\":\"453\\\/SVMA\\\/2022\",\"numero_nota_fiscal\":\"5124\",\"arquivo_nota_fiscal\":\"files\\\/entrada_220-20220902055505.png\"},{\"id\":221,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-09\",\"processo_sei\":\"6543202212345678\",\"numero_contrato\":\"453\\\/SVMA\\\/2022\",\"numero_nota_fiscal\":\"5124\",\"arquivo_nota_fiscal\":\"files\\\/entrada_221-20220902055619.png\"},{\"id\":233,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-09\",\"processo_sei\":\"6543202212345678\",\"numero_contrato\":\"453\\\/SVMA\\\/2022\",\"numero_nota_fiscal\":\"5124\",\"arquivo_nota_fiscal\":\"files\\\/entrada_233-20220902060512.png\"},{\"id\":211,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"local_id\":1,\"local\":\"LAB\",\"data_entrada\":\"2022-08-01\",\"processo_sei\":\"6002202212349876\",\"numero_contrato\":\"987SVMA2022\",\"numero_nota_fiscal\":\"123654987\",\"arquivo_nota_fiscal\":null},{\"id\":210,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":2,\"local\":\"UEM Base Leopoldina\",\"data_entrada\":\"2022-08-31\",\"processo_sei\":\"6000202212345678\",\"numero_contrato\":\"461SVMA2022\",\"numero_nota_fiscal\":\"123456789\",\"arquivo_nota_fiscal\":null},{\"id\":249,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"local_id\":3,\"local\":\"Parque Leopoldina - Orlando Villas-B\\u00f4as\",\"data_entrada\":\"2022-08-31\",\"processo_sei\":\"5578202212345678\",\"numero_contrato\":\"222SMVA2022\",\"numero_nota_fiscal\":\"123456789\",\"arquivo_nota_fiscal\":\"files\\\/entrada_249-20220902065734.png\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=3\",\"prev\":null,\"next\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":3,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=3\",\"label\":\"3\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/entradas?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/entradas\",\"per_page\":15,\"to\":15,\"total\":42}}",
                             "name": ""
                         }
                     ]
@@ -247,12 +296,6 @@
                                     "description": "ID do local."
                                 },
                                 {
-                                    "key": "data_entrada",
-                                    "value": "\"2022-08-11\"",
-                                    "type": "text",
-                                    "description": "Data do servi\u00e7o."
-                                },
-                                {
                                     "key": "processo_sei",
                                     "value": "0123000134569000",
                                     "type": "text",
@@ -269,6 +312,12 @@
                                     "value": "1234",
                                     "type": "text",
                                     "description": "N\u00famero da Nota Fiscal."
+                                },
+                                {
+                                    "key": "data_entrada",
+                                    "value": "\"2022-08-11\"",
+                                    "type": "text",
+                                    "description": "Data do servi\u00e7o."
                                 },
                                 {
                                     "key": "entrada_items[0][id]",
@@ -303,14 +352,7 @@
                         },
                         "description": ""
                     },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
-                            "name": ""
-                        }
-                    ]
+                    "response": []
                 },
                 {
                     "name": "Mostra uma entrada espec\u00edfica",
@@ -341,49 +383,6 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Edita uma entrada",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/entrada\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/entrada\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "ID da entrada que deseja editar."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"local_id\":2,\"data_entrada\":\"\\\"2022-08-11\\\"\",\"processo_sei\":\"0123000134569000\",\"numero_contrato\":\"2343rbte67b63\",\"numero_nota_fiscal\":\"1234\",\"arquivo_nota_fiscal\":\"DANFE?\"}"
-                        },
                         "description": ""
                     },
                     "response": [
@@ -431,6 +430,49 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"message\": \"entrada deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Edita uma entrada",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/entrada\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/entrada\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da entrada que deseja editar."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"local_id\":2,\"processo_sei\":\"0123000134569000\",\"numero_contrato\":\"2343rbte67b63\",\"numero_nota_fiscal\":\"1234\",\"data_entrada\":\"\\\"2022-08-11\\\"\",\"arquivo_nota_fiscal\":\"DANFE?\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"local_id\": 2,\n        \"data_entrada\": \"2022-08-11\",\n        \"processo_sei\": \"0123000134569000\",\n        \"numero_contrato\": \"2343rbte67b63\",\n        \"numero_nota_fiscal\": \"1234\",\n        \"arquivo_nota_fiscal\": \"DANFE?\"\n    }\n}",
                             "name": ""
                         }
                     ]
@@ -492,7 +534,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "58"
+                                    "value": "57"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -512,60 +554,7 @@
             "description": "\nAPIs para listar, cadastrar, editar e remover dados de invent\u00e1rios",
             "item": [
                 {
-                    "name": "Lista as entradas de invent\u00e1rio",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/inventario",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/inventario"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "57"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "{\"data\":[{\"id\":73,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":1210,\"qtd_alerta\":0},{\"id\":74,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":200,\"qtd_alerta\":0},{\"id\":78,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":81,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":2,\"local\":\"UEM Base Leopoldina\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":91,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":92,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":93,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/inventario?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/inventario\",\"per_page\":15,\"to\":7,\"total\":7}}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "Cadastra uma nova invent\u00e1rio",
+                    "name": "Cadastra um novo invent\u00e1rio",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -586,7 +575,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"qtd_alerta\":10}"
+                            "raw": "{\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"departamento_id\":2,\"qtd_alerta\":10}"
                         },
                         "description": ""
                     },
@@ -669,7 +658,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"qtd_alerta\":10}"
+                            "raw": "{\"item_id\":2,\"local_id\":2,\"quantidade\":10,\"departamento_id\":2,\"qtd_alerta\":10}"
                         },
                         "description": ""
                     },
@@ -721,21 +710,58 @@
                             "name": ""
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "name": "OrdemServico",
-            "description": "\nAPIs para listar, cadastrar, editar e remover dados de ordens de servi\u00e7os",
-            "item": [
+                },
                 {
-                    "name": "Lista as ordens de servi\u00e7os",
+                    "name": "Lista as entradas de invent\u00e1rio",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/ordem_servico",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/ordem_servico"
+                            "path": "api\/inventarios",
+                            "query": [
+                                {
+                                    "key": "filter%5Bbase%5D",
+                                    "value": "Leopoldina",
+                                    "description": "Filtro de Local (base) do item.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bitem%5D",
+                                    "value": "Adaptador+Pvc",
+                                    "description": "Filtro de Nome do Item",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Btipo_item%5D",
+                                    "value": "alvenaria",
+                                    "description": "Filtro de Tipo de item.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Btipo_medida%5D",
+                                    "value": "P%C3%A7",
+                                    "description": "Filtro do Tipo de medida do item.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bquantidade_maior_que%5D",
+                                    "value": "200",
+                                    "description": "Filtro inicial de quantidade.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bquantidade_menor_que%5D",
+                                    "value": "800",
+                                    "description": "Filtro final de quantidade.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-locais.nome",
+                                    "description": "Campo a ser ordenado (padr\u00e3o ascendente, inserir um h\u00edfen antes para decrescente). Colunas poss\u00edveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/inventarios?filter%5Bbase%5D=Leopoldina&filter%5Bitem%5D=Adaptador+Pvc&filter%5Btipo_item%5D=alvenaria&filter%5Btipo_medida%5D=P%C3%A7&filter%5Bquantidade_maior_que%5D=200&filter%5Bquantidade_menor_que%5D=800&sort=-locais.nome"
                         },
                         "method": "GET",
                         "header": [
@@ -776,11 +802,17 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[{\"id\":1,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"almoxarife_nome\":\"Jo\\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"data_servico\":null,\"especificacao\":\"reforma\",\"profissional\":\"Jos\\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\\u00e7\\u00f5es referente ao servi\\u00e7o\",\"user_id\":1,\"user\":\"Admin NDTIC\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servico\",\"per_page\":15,\"to\":1,\"total\":1}}",
+                            "body": "{\"data\":[{\"id\":81,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":2,\"local\":\"UEM Base Leopoldina\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":103,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":3,\"local\":\"Parque Leopoldina - Orlando Villas-B\\u00f4as\",\"local_tipo\":\"parque\",\"quantidade\":120,\"qtd_alerta\":0},{\"id\":93,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":92,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":375,\"qtd_alerta\":0},{\"id\":102,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":4104,\"qtd_alerta\":0},{\"id\":91,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":100,\"qtd_alerta\":0},{\"id\":101,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":2000,\"qtd_alerta\":0},{\"id\":100,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":240,\"qtd_alerta\":0},{\"id\":78,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":830,\"qtd_alerta\":0},{\"id\":99,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":711,\"qtd_alerta\":0},{\"id\":74,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":500,\"qtd_alerta\":0},{\"id\":98,\"departamento_id\":3,\"departamento\":\"CGPABI\\\/DGPU\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":479,\"qtd_alerta\":0},{\"id\":73,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"item_id\":1,\"item\":\"Argamassa, Na Cor Cinza \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":1910,\"qtd_alerta\":0},{\"id\":97,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"item_id\":2,\"item\":\"Cimento Portland Composto(cpii-f-32mpa) \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":480,\"qtd_alerta\":0},{\"id\":96,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"item_id\":3,\"item\":\"Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C\\\/ Fispq \",\"medida\":\"SC\",\"local_id\":1,\"local\":\"LAB\",\"local_tipo\":\"base\",\"quantidade\":1050,\"qtd_alerta\":0}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=2\",\"prev\":null,\"next\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=2\"},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":2,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=1\",\"label\":\"1\",\"active\":true},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=2\",\"label\":\"2\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios?page=2\",\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/inventarios\",\"per_page\":15,\"to\":15,\"total\":17}}",
                             "name": ""
                         }
                     ]
-                },
+                }
+            ]
+        },
+        {
+            "name": "OrdemServico",
+            "description": "\nAPIs para listar, cadastrar, editar e remover dados de ordens de servi\u00e7os",
+            "item": [
                 {
                     "name": "Cadastra uma ordem de servi\u00e7o",
                     "request": {
@@ -803,7 +835,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"data_fim_servico\":\"2022-08-31T17:50\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\",\"user_id\":1}"
+                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"user_id\":1,\"data_fim_servico\":\"2022-08-31T17:50\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\"}"
                         },
                         "description": ""
                     },
@@ -857,49 +889,6 @@
                     ]
                 },
                 {
-                    "name": "Edita uma ordem de servi\u00e7o",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/ordem_servico\/:id",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/ordem_servico\/:id",
-                            "variable": [
-                                {
-                                    "id": "id",
-                                    "key": "id",
-                                    "value": "1",
-                                    "description": "ID da ordem de servi\u00e7o que deseja editar."
-                                }
-                            ]
-                        },
-                        "method": "PUT",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"data_fim_servico\":\"2022-08-31T17:50\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\",\"user_id\":1}"
-                        },
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
                     "name": "Deleta uma ordem de servi\u00e7o",
                     "request": {
                         "url": {
@@ -935,6 +924,145 @@
                             "header": [],
                             "code": 200,
                             "body": "{\n    \"message\": \"Ordem de servi\u00e7o deletada com sucesso!\",\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Edita uma ordem de servi\u00e7o",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servico\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/ordem_servico\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "ID da ordem de servi\u00e7o que deseja editar."
+                                }
+                            ]
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"departamento_id\":2,\"origem_id\":1,\"local_servico_id\":2,\"data_inicio_servico\":\"2022-08-30T14:48\",\"almoxarife_nome\":\"Jo\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"user_id\":1,\"data_fim_servico\":\"2022-08-31T17:50\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\u00e7\u00f5es referente ao servi\u00e7o\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n    \"data\": {\n        \"id\": 1,\n        \"departamento_id\": 2,\n        \"origem_id\": 1,\n        \"local_servico_id\": 2,\n        \"data_inicio_servico\": \"2022-08-30T14:48\",\n        \"data_fim_servico\": \"2022-08-31T17:50\",\n        \"almoxarife_nome\": \"Jo\u00e3o\",\n        \"almoxarife_email\": \"joao@teste.com.br\",\n        \"especificacao\": \"reforma\",\n        \"profissional\": \"Jos\u00e9\",\n        \"horas_execucao\": 10,\n        \"observacoes\": \"observa\u00e7\u00f5es referente ao servi\u00e7o\",\n        \"user_id\": 1\n    }\n}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Lista as ordens de servi\u00e7os",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/ordem_servicos",
+                            "query": [
+                                {
+                                    "key": "filter%5Borigem%5D",
+                                    "value": "Leopoldina",
+                                    "description": "Filtro de Local (base) do item.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Blocal_servico%5D",
+                                    "value": "Ibirapuera",
+                                    "description": "Filtro de nome do local de destino dos materiais.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Balmoxarife_nome%5D",
+                                    "value": "Fulano",
+                                    "description": "Filtro do Nome do almoxarife respons\u00e1vel.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Balmoxarife_email%5D",
+                                    "value": "fulano%40mail.com",
+                                    "description": "Filtro do e-mail do almoxarife respons\u00e1vel.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bservico_depois_de%5D",
+                                    "value": "2023-01-01",
+                                    "description": "Filtro inicial de per\u00edodo da data de servi\u00e7o.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "filter%5Bservico_antes_de%5D",
+                                    "value": "2023-12-31",
+                                    "description": "Filtro final de per\u00edodo da data de servi\u00e7o.",
+                                    "disabled": false
+                                },
+                                {
+                                    "key": "sort",
+                                    "value": "-locais.nome",
+                                    "description": "Campo a ser ordenado (padr\u00e3o ascendente, inserir um h\u00edfen antes para decrescente). Colunas poss\u00edveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'",
+                                    "disabled": false
+                                }
+                            ],
+                            "raw": "{{baseUrl}}\/api\/ordem_servicos?filter%5Borigem%5D=Leopoldina&filter%5Blocal_servico%5D=Ibirapuera&filter%5Balmoxarife_nome%5D=Fulano&filter%5Balmoxarife_email%5D=fulano%40mail.com&filter%5Bservico_depois_de%5D=2023-01-01&filter%5Bservico_antes_de%5D=2023-12-31&sort=-locais.nome"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "55"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "{\"data\":[{\"id\":2,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"data_inicio_servico\":\"2022-08-30 14:48:00\",\"data_fim_servico\":\"2022-08-31 17:50:00\",\"almoxarife_nome\":\"Jo\\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma 2\",\"profissional\":\"Jos\\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\\u00e7\\u00f5es referente ao servi\\u00e7o\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":3,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"data_inicio_servico\":\"2022-08-31 14:23:00\",\"data_fim_servico\":\"2022-09-30 16:45:00\",\"almoxarife_nome\":\"Jos\\u00e9\",\"almoxarife_email\":\"jose@jose.com.br\",\"especificacao\":\"Especifica\\u00e7\\u00e3o\\n\\nTeste de quebra de linha\",\"profissional\":\"Maria\",\"horas_execucao\":200,\"observacoes\":\"Observa\\u00e7\\u00f5es\\n\\nTeste\\nde\\nquebra\\nde\\nlinha\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":4,\"departamento_id\":4,\"departamento\":\"CGPABI\\\/DAU\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"data_inicio_servico\":\"2022-08-31 10:35:00\",\"data_fim_servico\":\"2022-08-31 12:45:00\",\"almoxarife_nome\":\"Fulano\",\"almoxarife_email\":\"fulano@fulano.com\",\"especificacao\":\"Especifica\\u00e7\\u00e3o teste\",\"profissional\":\"Maria\",\"horas_execucao\":2,\"observacoes\":\"servi\\u00e7os extras\\n\\nobserva\\u00e7\\u00f5es\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":8,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":2,\"local_servico\":\"UEM Base Leopoldina\",\"data_inicio_servico\":\"2022-09-22 14:32:00\",\"data_fim_servico\":\"2022-09-30 14:32:00\",\"almoxarife_nome\":\"Fulano\",\"almoxarife_email\":\"fulano@fulano.com\",\"especificacao\":\"(\\u2256 \\u035c\\u0296\\u2256)\",\"profissional\":\"Fulano\",\"horas_execucao\":100,\"observacoes\":\"(\\u2256 \\u035c\\u0296\\u2256)\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":1,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":2,\"origem\":\"UEM Base Leopoldina\",\"local_servico_id\":1,\"local_servico\":\"LAB\",\"data_inicio_servico\":\"2022-05-12 09:32:00\",\"data_fim_servico\":\"2022-05-12 19:36:00\",\"almoxarife_nome\":\"Jo\\u00e3o\",\"almoxarife_email\":\"joao@teste.com.br\",\"especificacao\":\"reforma\",\"profissional\":\"Jos\\u00e9\",\"horas_execucao\":10,\"observacoes\":\"observa\\u00e7\\u00f5es referente ao servi\\u00e7o\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":9,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"origem_id\":4,\"origem\":\"Almoxarifado\",\"local_servico_id\":1,\"local_servico\":\"LAB\",\"data_inicio_servico\":\"2022-06-07 09:27:00\",\"data_fim_servico\":\"2022-06-07 12:27:00\",\"almoxarife_nome\":\"Sicrano\",\"almoxarife_email\":\"sicrano@email.com\",\"especificacao\":\"especifica\\u00e7\\u00e3o teste de edi\\u00e7\\u00e3o\",\"profissional\":\"Sicrano\",\"horas_execucao\":4,\"observacoes\":\"observacoes\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":10,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":4,\"origem\":\"Almoxarifado\",\"local_servico_id\":1,\"local_servico\":\"LAB\",\"data_inicio_servico\":\"2022-06-08 19:08:00\",\"data_fim_servico\":\"2022-06-08 22:31:00\",\"almoxarife_nome\":\"Maria\",\"almoxarife_email\":\"maria@email.com\",\"especificacao\":\"___\\u3006(\\u30fb\\u2200\\u30fb)\",\"profissional\":\"Sicrano\",\"horas_execucao\":3,\"observacoes\":\"observa\\u00e7\\u00f5es\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":5,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":3,\"origem\":\"Parque Leopoldina - Orlando Villas-B\\u00f4as\",\"local_servico_id\":4,\"local_servico\":\"Almoxarifado\",\"data_inicio_servico\":\"2022-08-02 13:45:00\",\"data_fim_servico\":\"2022-08-02 15:45:00\",\"almoxarife_nome\":\"Almoxariferson\",\"almoxarife_email\":\"almoxariferson@almoxarife.com\",\"especificacao\":\"Especifica\\u00e7\\u00e3o\",\"profissional\":\"Beltrano\",\"horas_execucao\":2,\"observacoes\":\"Observa\\u00e7\\u00f5es\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":6,\"departamento_id\":1,\"departamento\":\"GABINETE\\\/CG\",\"origem_id\":3,\"origem\":\"Parque Leopoldina - Orlando Villas-B\\u00f4as\",\"local_servico_id\":4,\"local_servico\":\"Almoxarifado\",\"data_inicio_servico\":\"2022-09-02 13:42:00\",\"data_fim_servico\":\"2022-09-02 17:42:00\",\"almoxarife_nome\":\"Jos\\u00e9\",\"almoxarife_email\":\"jose@jose.com.br\",\"especificacao\":\"teste\",\"profissional\":\"Beltrano\",\"horas_execucao\":4,\"observacoes\":\"teste\",\"user_id\":1,\"user\":\"Admin NDTIC\"},{\"id\":7,\"departamento_id\":2,\"departamento\":\"GABINETE\\\/NDTIC\",\"origem_id\":1,\"origem\":\"LAB\",\"local_servico_id\":4,\"local_servico\":\"Almoxarifado\",\"data_inicio_servico\":\"2022-08-29 14:32:00\",\"data_fim_servico\":\"2022-08-29 15:32:00\",\"almoxarife_nome\":\"maria\",\"almoxarife_email\":\"maria@email.com\",\"especificacao\":\"teste\\r\\n\\r\\nteste\",\"profissional\":\"Fulano\",\"horas_execucao\":1,\"observacoes\":\"teste\\r\\n\\r\\nteste\",\"user_id\":1,\"user\":\"Admin NDTIC\"}],\"links\":{\"first\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servicos?page=1\",\"last\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servicos?page=1\",\"prev\":null,\"next\":null},\"meta\":{\"current_page\":1,\"from\":1,\"last_page\":1,\"links\":[{\"url\":null,\"label\":\"&laquo; Previous\",\"active\":false},{\"url\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servicos?page=1\",\"label\":\"1\",\"active\":true},{\"url\":null,\"label\":\"Next &raquo;\",\"active\":false}],\"path\":\"http:\\\/\\\/localhost\\\/api\\\/ordem_servicos\",\"per_page\":15,\"to\":10,\"total\":10}}",
                             "name": ""
                         }
                     ]

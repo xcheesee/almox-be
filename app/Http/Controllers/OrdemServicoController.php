@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\OrdemServicoFormRequest;
 use App\Models\OrdemServico;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @group OrdemServico
@@ -20,11 +22,30 @@ class OrdemServicoController extends Controller
      * Lista as ordens de serviços
      * @authenticated
      *
+     * @queryParam filter[origem] Filtro de Local (base) do item. Example: Leopoldina
+     * @queryParam filter[local_servico] Filtro de nome do local de destino dos materiais. Example: Ibirapuera
+     * @queryParam filter[almoxarife_nome] Filtro do Nome do almoxarife responsável. Example: Fulano
+     * @queryParam filter[almoxarife_email] Filtro do e-mail do almoxarife responsável. Example: fulano@mail.com
+     * @queryParam filter[servico_depois_de] Filtro inicial de período da data de serviço. Example: 2023-01-01
+     * @queryParam filter[servico_antes_de] Filtro final de período da data de serviço. Example: 2023-12-31
+     * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade' Example: -locais.nome
+     *
      */
     public function index()
     {
-        $ordem_servicos = OrdemServico::paginate(15);
-            return OrdemServicoResource::collection($ordem_servicos);
+        $ordem_servicos = QueryBuilder::for(OrdemServico::class)
+        ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
+        ->leftJoin('locais as origem', 'origem.id', 'ordem_servicos.origem_id')
+        ->leftJoin('locais', 'locais.id', 'ordem_servicos.local_servico_id')
+        ->allowedFilters([
+                AllowedFilter::partial('origem','origem.nome'), AllowedFilter::partial('local_servico','locais.nome'),
+                'almoxarife_nome', 'almoxarife_email',
+                AllowedFilter::scope('servico_depois_de'),
+                AllowedFilter::scope('servico_antes_de'),
+            ])
+        ->allowedSorts('id', 'data_servico', 'origem.nome', 'locais.nome')
+        ->paginate(15);
+        return OrdemServicoResource::collection($ordem_servicos);
     }
 
     /**

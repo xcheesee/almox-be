@@ -10,6 +10,8 @@ use App\Models\Inventario;
 use App\Http\Resources\Entrada as EntradaResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 /**
  * @group Entrada
@@ -23,11 +25,30 @@ class EntradaController extends Controller
      * Lista as entradas
      * @authenticated
      *
+     * @queryParam filter[processo_sei] Filtro de número do processo. Example: 6000.2022/0000123-4
+     * @queryParam filter[numero_contrato] Filtro de número do contrato da entrada Example: 001/SVMA/2022
+     * @queryParam filter[local] Filtro de nome da base destino dos materiais da entrada. Example: Base Leopoldina
+     * @queryParam filter[numero_nota_fiscal] Filtro do número da nota fiscal. Example: 1234567
+     * @queryParam filter[entrada_depois_de] Filtro inicial de período da data de entrada do contrato. Example: 2023-01-01
+     * @queryParam filter[entrada_antes_de] Filtro final de período da data de entrada do contrato. Example: 2023-12-31
+     * @queryParam filter[tipo] Tipo de material da entrada. Example: alvenaria
+     * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'numero_nota_fiscal', 'data_entrada', 'processo_sei', 'numero_contrato', 'locais.nome', 'tipo_items.nome' Example: -processo_sei
+     *
      */
     public function index()
     {
-        $entradas = Entrada::paginate(15);
-            return EntradaResource::collection($entradas);
+        $entradas = QueryBuilder::for(Entrada::class)
+        ->select('locais.nome', 'tipo_items.nome', 'entradas.*')
+        ->leftJoin('locais', 'locais.id', 'entradas.local_id')
+        ->leftJoin('tipo_items', 'tipo_items.id', 'entradas.tipo_item_id')
+        ->allowedFilters([
+                'processo_sei', 'numero_contrato', 'numero_nota_fiscal', AllowedFilter::partial('local','locais.nome'),
+                AllowedFilter::scope('entrada_depois_de'),
+                AllowedFilter::scope('entrada_antes_de'),
+            ])
+        ->allowedSorts('numero_nota_fiscal', 'processo_sei', 'data_entrada', 'numero_contrato', 'numero_contrato')
+        ->paginate(15);
+        return EntradaResource::collection($entradas);
     }
 
     /**
@@ -88,10 +109,10 @@ class EntradaController extends Controller
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
 
         // Lidando com o upload de arquivo
-        if ($request->filename){
-            $tabela=DB::select("SHOW TABLE STATUS LIKE 'visitantes'");
+        if ($request->hasFile('arquivo_nota_fiscal')){
+            $tabela=DB::select("SHOW TABLE STATUS LIKE 'entradas'");
             $next_id=$tabela[0]->Auto_increment;
-            $$file = $request->file('arquivo_nota_fiscal');
+            $file = $request->file('arquivo_nota_fiscal');
             $extension = $file->extension();
 
             $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$next_id.'-'.date('Ymdhis').'.'.$extension);
@@ -99,48 +120,37 @@ class EntradaController extends Controller
         }
 
         if ($entrada->save()) {
+            $entradaItens = $request->input('entrada_items');
 
-            // Lógica para retornar uma array de "entrada_items", contendo uma coleção de objetos com id do item e a quantidade.
-            $entradaItens = EntradaItem::query()->where('entrada_id','=',$entrada->id)->get();
-
-            $entrada_items = array();
-
-            foreach ($entradaItens as $key => $entradaItem){
-                $entrada_items[$key]['id'] = $entradaItem->item_id;
-                $entrada_items[$key]['quantidade'] = $entradaItem->quantidade;
-            }
-
-            $entrada_item = (object) $entrada_items;
-
-            //lógica para adicionar a quantidade dos itens de entrada no inventario
             foreach ($entradaItens as $entrada_items){
+                //Salvando item na tabela entrada_items
+                $entrada_item = new EntradaItem();
+                $entrada_item->entrada_id = $entrada->id;
+                $entrada_item->item_id = $entrada_items["id"];
+                $entrada_item->quantidade = $entrada_items["quantidade"];
+                $entrada_item->save();
+
+                //lógica para adicionar a quantidade dos itens de entrada no inventario
                 $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
                                         ->where('local_id','=',$entrada->local_id)
-                                        ->where('item_id','=',$entrada_items->item_id)
+                                        ->where('item_id','=',$entrada_items["id"])
                                         ->first();
 
                 if ($inventario) {
-                    $inventario->quantidade += $entrada_items->quantidade;
+                    $inventario->quantidade += $entrada_items["quantidade"];
                     $inventario->save();
                 } else {
                     $inventario = new Inventario();
                     $inventario->departamento_id = $entrada->departamento_id;
-                    $inventario->item_id = $entrada_items->item_id;
+                    $inventario->item_id = $entrada_items["id"];
                     $inventario->local_id = $entrada->local_id;
-                    $inventario->quantidade = $entrada_items->quantidade;
+                    $inventario->quantidade = $entrada_items["quantidade"];
                     $inventario->qtd_alerta = 0;
                     $inventario->save();
                 }
             }
 
-            return response()->json([
-                'departamento_id' => $entrada->departamento_id,
-                'local_id' => $entrada->local_id,
-                'processo_sei' => $entrada->processo_sei,
-                'numero_contrato' => $entrada->numero_contrato,
-                'numero_nota_fiscal' => $entrada->numero_nota_fiscal,
-                'entrada_items' => $entrada_item,
-            ]);
+            return new EntradaResource($entrada);
         }
     }
 
@@ -231,8 +241,6 @@ class EntradaController extends Controller
 
             $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$entrada->id.'-'.date('Ymdhis').'.'.$extension);
             $entrada->arquivo_nota_fiscal = $upload;
-        }else{
-            dd($request);
         }
 
         if ($entrada->save()) {

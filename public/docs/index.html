@@ -109,11 +109,11 @@
                                     <li class="tocify-item level-2" data-unique="entrada-GETapi-entrada--id-">
                         <a href="#entrada-GETapi-entrada--id-">Mostra uma entrada específica</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="entrada-PUTapi-entrada--id-">
-                        <a href="#entrada-PUTapi-entrada--id-">Edita uma entrada</a>
-                    </li>
                                     <li class="tocify-item level-2" data-unique="entrada-DELETEapi-entrada--id-">
                         <a href="#entrada-DELETEapi-entrada--id-">Deleta uma entrada</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="entrada-POSTapi-entrada--id-">
+                        <a href="#entrada-POSTapi-entrada--id-">Edita uma entrada</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -132,11 +132,8 @@
                     <a href="#inventario">Inventário</a>
                 </li>
                                     <ul id="tocify-subheader-inventario" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="inventario-GETapi-inventario">
-                        <a href="#inventario-GETapi-inventario">Lista as entradas de inventário</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="inventario-POSTapi-inventario">
-                        <a href="#inventario-POSTapi-inventario">Cadastra uma nova inventário</a>
+                                                    <li class="tocify-item level-2" data-unique="inventario-POSTapi-inventario">
+                        <a href="#inventario-POSTapi-inventario">Cadastra um novo inventário</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="inventario-GETapi-inventario--id-">
                         <a href="#inventario-GETapi-inventario--id-">Mostra uma entrada de inventário</a>
@@ -147,6 +144,9 @@
                                     <li class="tocify-item level-2" data-unique="inventario-DELETEapi-inventario--id-">
                         <a href="#inventario-DELETEapi-inventario--id-">Deleta um inventário</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="inventario-GETapi-inventarios">
+                        <a href="#inventario-GETapi-inventarios">Lista as entradas de inventário</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-7" class="tocify-header">
@@ -154,20 +154,20 @@
                     <a href="#ordemservico">OrdemServico</a>
                 </li>
                                     <ul id="tocify-subheader-ordemservico" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico">
-                        <a href="#ordemservico-GETapi-ordem_servico">Lista as ordens de serviços</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="ordemservico-POSTapi-ordem_servico">
+                                                    <li class="tocify-item level-2" data-unique="ordemservico-POSTapi-ordem_servico">
                         <a href="#ordemservico-POSTapi-ordem_servico">Cadastra uma ordem de serviço</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id-">
                         <a href="#ordemservico-GETapi-ordem_servico--id-">Mostra uma ordem de serviço</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="ordemservico-PUTapi-ordem_servico--id-">
-                        <a href="#ordemservico-PUTapi-ordem_servico--id-">Edita uma ordem de serviço</a>
-                    </li>
                                     <li class="tocify-item level-2" data-unique="ordemservico-DELETEapi-ordem_servico--id-">
                         <a href="#ordemservico-DELETEapi-ordem_servico--id-">Deleta uma ordem de serviço</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ordemservico-POSTapi-ordem_servico--id-">
+                        <a href="#ordemservico-POSTapi-ordem_servico--id-">Edita uma ordem de serviço</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servicos">
+                        <a href="#ordemservico-GETapi-ordem_servicos">Lista as ordens de serviços</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -181,7 +181,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: August 30 2022</li>
+        <li>Last updated: September 9 2022</li>
     </ul>
 </div>
 
@@ -228,7 +228,7 @@ const headers = {
 };
 
 let body = {
-    "name": "airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu",
+    "name": "vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -246,7 +246,7 @@ import json
 
 url = 'http://localhost/api/cadastrar'
 payload = {
-    "name": "airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu",
+    "name": "vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -269,7 +269,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu',
+            'name' =&gt; 'vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -352,7 +352,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="airizgswyosygaxxqoxtyygcqiuyzupdsjeahvbzfnrqqylubhlhhiwapu"
+               value="vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -683,6 +683,19 @@ access-control-allow-origin: *
     "http://localhost/api/entradas"
 );
 
+const params = {
+    "filter[processo_sei]": "6000.2022/0000123-4",
+    "filter[numero_contrato]": "001/SVMA/2022",
+    "filter[local]": "Base Leopoldina",
+    "filter[numero_nota_fiscal]": "1234567",
+    "filter[entrada_depois_de]": "2023-01-01",
+    "filter[entrada_antes_de]": "2023-12-31",
+    "filter[tipo]": "alvenaria",
+    "sort": "-processo_sei",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -699,12 +712,22 @@ fetch(url, {
 import json
 
 url = 'http://localhost/api/entradas'
+params = {
+  'filter[processo_sei]': '6000.2022/0000123-4',
+  'filter[numero_contrato]': '001/SVMA/2022',
+  'filter[local]': 'Base Leopoldina',
+  'filter[numero_nota_fiscal]': '1234567',
+  'filter[entrada_depois_de]': '2023-01-01',
+  'filter[entrada_antes_de]': '2023-12-31',
+  'filter[tipo]': 'alvenaria',
+  'sort': '-processo_sei',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre></div>
 
 
@@ -716,6 +739,16 @@ $response = $client-&gt;get(
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'filter[processo_sei]'=&gt; '6000.2022/0000123-4',
+            'filter[numero_contrato]'=&gt; '001/SVMA/2022',
+            'filter[local]'=&gt; 'Base Leopoldina',
+            'filter[numero_nota_fiscal]'=&gt; '1234567',
+            'filter[entrada_depois_de]'=&gt; '2023-01-01',
+            'filter[entrada_antes_de]'=&gt; '2023-12-31',
+            'filter[tipo]'=&gt; 'alvenaria',
+            'sort'=&gt; '-processo_sei',
         ],
     ]
 );
@@ -735,7 +768,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -743,112 +776,196 @@ access-control-allow-origin: *
 <code class="language-json">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 33,
+            &quot;id&quot;: 290,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-05-12&quot;,
+            &quot;processo_sei&quot;: &quot;9999202274189632&quot;,
+            &quot;numero_contrato&quot;: &quot;632SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;4268&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_290-20220905050714.png&quot;
+        },
+        {
+            &quot;id&quot;: 295,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-09-06&quot;,
+            &quot;processo_sei&quot;: &quot;9731202246791346&quot;,
+            &quot;numero_contrato&quot;: &quot;886SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;5613&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_295-20220905064638.png&quot;
+        },
+        {
+            &quot;id&quot;: 291,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-09-06&quot;,
+            &quot;processo_sei&quot;: &quot;8426202226847391&quot;,
+            &quot;numero_contrato&quot;: &quot;753SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;6248&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_291-20220905055451.png&quot;
+        },
+        {
+            &quot;id&quot;: 286,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-29&quot;,
+            &quot;processo_sei&quot;: &quot;7788202212344422&quot;,
+            &quot;numero_contrato&quot;: &quot;587/SVMA/2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;4429&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_286-20220902074857.png&quot;
+        },
+        {
+            &quot;id&quot;: 289,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-10-12&quot;,
+            &quot;processo_sei&quot;: &quot;7539202275395123&quot;,
+            &quot;numero_contrato&quot;: &quot;635SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;6352&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_289-20220905045041.png&quot;
+        },
+        {
+            &quot;id&quot;: 294,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-09-05&quot;,
+            &quot;processo_sei&quot;: &quot;7384202262846231&quot;,
+            &quot;numero_contrato&quot;: &quot;558SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;1134&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_294-20220905064309.png&quot;
+        },
+        {
+            &quot;id&quot;: 293,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-09-21&quot;,
+            &quot;processo_sei&quot;: &quot;6842202273913719&quot;,
+            &quot;numero_contrato&quot;: &quot;651SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;9818&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_293-20220905062629.png&quot;
+        },
+        {
+            &quot;id&quot;: 287,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-06-13&quot;,
+            &quot;processo_sei&quot;: &quot;6655202213246579&quot;,
+            &quot;numero_contrato&quot;: &quot;984SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;9987&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_287-20220905043750.pdf&quot;
+        },
+        {
+            &quot;id&quot;: 219,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-09&quot;,
+            &quot;processo_sei&quot;: &quot;6543202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;453/SVMA/2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;5124&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_219-20220902055445.png&quot;
+        },
+        {
+            &quot;id&quot;: 220,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-09&quot;,
+            &quot;processo_sei&quot;: &quot;6543202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;453/SVMA/2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;5124&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_220-20220902055505.png&quot;
+        },
+        {
+            &quot;id&quot;: 221,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-09&quot;,
+            &quot;processo_sei&quot;: &quot;6543202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;453/SVMA/2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;5124&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_221-20220902055619.png&quot;
+        },
+        {
+            &quot;id&quot;: 233,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-09&quot;,
+            &quot;processo_sei&quot;: &quot;6543202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;453/SVMA/2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;5124&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_233-20220902060512.png&quot;
+        },
+        {
+            &quot;id&quot;: 211,
             &quot;departamento_id&quot;: 3,
             &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
             &quot;local_id&quot;: 1,
             &quot;local&quot;: &quot;LAB&quot;,
             &quot;data_entrada&quot;: &quot;2022-08-01&quot;,
-            &quot;processo_sei&quot;: &quot;12345&quot;,
-            &quot;numero_contrato&quot;: &quot;12345&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;123&quot;,
+            &quot;processo_sei&quot;: &quot;6002202212349876&quot;,
+            &quot;numero_contrato&quot;: &quot;987SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;123654987&quot;,
             &quot;arquivo_nota_fiscal&quot;: null
         },
         {
-            &quot;id&quot;: 44,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-02&quot;,
-            &quot;processo_sei&quot;: &quot;12345&quot;,
-            &quot;numero_contrato&quot;: &quot;12345&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;123&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
-        },
-        {
-            &quot;id&quot;: 144,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-03&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
-        },
-        {
-            &quot;id&quot;: 196,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-25&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
-        },
-        {
-            &quot;id&quot;: 203,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-25&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
-        },
-        {
-            &quot;id&quot;: 204,
+            &quot;id&quot;: 210,
             &quot;departamento_id&quot;: 2,
             &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-25&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-31&quot;,
+            &quot;processo_sei&quot;: &quot;6000202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;461SVMA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;123456789&quot;,
             &quot;arquivo_nota_fiscal&quot;: null
         },
         {
-            &quot;id&quot;: 205,
+            &quot;id&quot;: 249,
             &quot;departamento_id&quot;: 2,
             &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-26&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
-        },
-        {
-            &quot;id&quot;: 206,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;data_entrada&quot;: &quot;2022-08-26&quot;,
-            &quot;processo_sei&quot;: &quot;123456&quot;,
-            &quot;numero_contrato&quot;: &quot;123456&quot;,
-            &quot;numero_nota_fiscal&quot;: &quot;12345&quot;,
-            &quot;arquivo_nota_fiscal&quot;: null
+            &quot;local_id&quot;: 3,
+            &quot;local&quot;: &quot;Parque Leopoldina - Orlando Villas-B&ocirc;as&quot;,
+            &quot;data_entrada&quot;: &quot;2022-08-31&quot;,
+            &quot;processo_sei&quot;: &quot;5578202212345678&quot;,
+            &quot;numero_contrato&quot;: &quot;222SMVA2022&quot;,
+            &quot;numero_nota_fiscal&quot;: &quot;123456789&quot;,
+            &quot;arquivo_nota_fiscal&quot;: &quot;files/entrada_249-20220902065734.png&quot;
         }
     ],
     &quot;links&quot;: {
         &quot;first&quot;: &quot;http://localhost/api/entradas?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/entradas?page=1&quot;,
+        &quot;last&quot;: &quot;http://localhost/api/entradas?page=3&quot;,
         &quot;prev&quot;: null,
-        &quot;next&quot;: null
+        &quot;next&quot;: &quot;http://localhost/api/entradas?page=2&quot;
     },
     &quot;meta&quot;: {
         &quot;current_page&quot;: 1,
         &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
+        &quot;last_page&quot;: 3,
         &quot;links&quot;: [
             {
                 &quot;url&quot;: null,
@@ -861,15 +978,25 @@ access-control-allow-origin: *
                 &quot;active&quot;: true
             },
             {
-                &quot;url&quot;: null,
+                &quot;url&quot;: &quot;http://localhost/api/entradas?page=2&quot;,
+                &quot;label&quot;: &quot;2&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost/api/entradas?page=3&quot;,
+                &quot;label&quot;: &quot;3&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost/api/entradas?page=2&quot;,
                 &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
                 &quot;active&quot;: false
             }
         ],
         &quot;path&quot;: &quot;http://localhost/api/entradas&quot;,
         &quot;per_page&quot;: 15,
-        &quot;to&quot;: 8,
-        &quot;total&quot;: 8
+        &quot;to&quot;: 15,
+        &quot;total&quot;: 42
     }
 }</code>
  </pre>
@@ -921,6 +1048,87 @@ access-control-allow-origin: *
                                                                 data-endpoint="GETapi-entradas"
                                                                 data-component="header"></label>
         </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[processo_sei]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[processo_sei]"
+               data-endpoint="GETapi-entradas"
+               value="6000.2022/0000123-4"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de número do processo.</p>
+            </p>
+                    <p>
+                <b><code>filter[numero_contrato]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[numero_contrato]"
+               data-endpoint="GETapi-entradas"
+               value="001/SVMA/2022"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de número do contrato da entrada</p>
+            </p>
+                    <p>
+                <b><code>filter[local]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[local]"
+               data-endpoint="GETapi-entradas"
+               value="Base Leopoldina"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de nome da base destino dos materiais da entrada.</p>
+            </p>
+                    <p>
+                <b><code>filter[numero_nota_fiscal]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[numero_nota_fiscal]"
+               data-endpoint="GETapi-entradas"
+               value="1234567"
+               data-component="query" hidden>
+    <br>
+<p>Filtro do número da nota fiscal.</p>
+            </p>
+                    <p>
+                <b><code>filter[entrada_depois_de]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[entrada_depois_de]"
+               data-endpoint="GETapi-entradas"
+               value="2023-01-01"
+               data-component="query" hidden>
+    <br>
+<p>Filtro inicial de período da data de entrada do contrato.</p>
+            </p>
+                    <p>
+                <b><code>filter[entrada_antes_de]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[entrada_antes_de]"
+               data-endpoint="GETapi-entradas"
+               value="2023-12-31"
+               data-component="query" hidden>
+    <br>
+<p>Filtro final de período da data de entrada do contrato.</p>
+            </p>
+                    <p>
+                <b><code>filter[tipo]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[tipo]"
+               data-endpoint="GETapi-entradas"
+               value="alvenaria"
+               data-component="query" hidden>
+    <br>
+<p>Tipo de material da entrada.</p>
+            </p>
+                    <p>
+                <b><code>sort</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort"
+               data-endpoint="GETapi-entradas"
+               value="-processo_sei"
+               data-component="query" hidden>
+    <br>
+<p>Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'numero_nota_fiscal', 'data_entrada', 'processo_sei', 'numero_contrato', 'locais.nome', 'tipo_items.nome'</p>
+            </p>
                 </form>
 
             <h2 id="entrada-POSTapi-entrada">Cadastra uma nova entrada</h2>
@@ -948,10 +1156,10 @@ const headers = {
 const body = new FormData();
 body.append('departamento_id', '2');
 body.append('local_id', '2');
-body.append('data_entrada', '"2022-08-11"');
 body.append('processo_sei', '0123000134569000');
 body.append('numero_contrato', '0001SVMA2022');
 body.append('numero_nota_fiscal', '1234');
+body.append('data_entrada', '"2022-08-11"');
 body.append('entrada_items[][id]', '1');
 body.append('entrada_items[][quantidade]', '500');
 body.append('arquivo_nota_fiscal', document.querySelector('input[name="arquivo_nota_fiscal"]').files[0]);
@@ -969,15 +1177,15 @@ import json
 
 url = 'http://localhost/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\phpDAC0.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\phpB202.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
     "local_id": 2,
-    "data_entrada": "\"2022-08-11\"",
     "processo_sei": "0123000134569000",
     "numero_contrato": "0001SVMA2022",
     "numero_nota_fiscal": "1234",
+    "data_entrada": "\"2022-08-11\"",
     "entrada_items": [
         {
             "id": 1,
@@ -1017,10 +1225,6 @@ $response = $client-&gt;post(
                 'contents' =&gt; '2'
             ],
             [
-                'name' =&gt; 'data_entrada',
-                'contents' =&gt; '"2022-08-11"'
-            ],
-            [
                 'name' =&gt; 'processo_sei',
                 'contents' =&gt; '0123000134569000'
             ],
@@ -1033,6 +1237,10 @@ $response = $client-&gt;post(
                 'contents' =&gt; '1234'
             ],
             [
+                'name' =&gt; 'data_entrada',
+                'contents' =&gt; '"2022-08-11"'
+            ],
+            [
                 'name' =&gt; 'entrada_items[][id]',
                 'contents' =&gt; '1'
             ],
@@ -1042,7 +1250,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\phpDAC0.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\phpB202.tmp', 'r')
             ],
         ],
     ]
@@ -1053,25 +1261,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 </span>
 
 <span id="example-responses-POSTapi-entrada">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;departamento_id&quot;: 2,
-        &quot;local_id&quot;: 2,
-        &quot;data_entrada&quot;: &quot;2022-08-11&quot;,
-        &quot;processo_sei&quot;: &quot;0123000134569000&quot;,
-        &quot;numero_contrato&quot;: &quot;2343rbte67b63&quot;,
-        &quot;numero_nota_fiscal&quot;: &quot;1234&quot;,
-        &quot;arquivo_nota_fiscal&quot;: &quot;DANFE?&quot;
-    }
-}</code>
- </pre>
-    </span>
+</span>
 <span id="execution-results-POSTapi-entrada" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-entrada"></span>:
@@ -1141,16 +1331,6 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>ID do local.</p>
         </p>
                 <p>
-            <b><code>data_entrada</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
-                <input type="text"
-               name="data_entrada"
-               data-endpoint="POSTapi-entrada"
-               value=""2022-08-11""
-               data-component="body" hidden>
-    <br>
-<p>Data do serviço.</p>
-        </p>
-                <p>
             <b><code>processo_sei</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="processo_sei"
@@ -1179,6 +1359,16 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>Número da Nota Fiscal.</p>
+        </p>
+                <p>
+            <b><code>data_entrada</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_entrada"
+               data-endpoint="POSTapi-entrada"
+               value=""2022-08-11""
+               data-component="body" hidden>
+    <br>
+<p>Data do serviço.</p>
         </p>
                 <p>
             <b><code>arquivo_nota_fiscal</code></b>&nbsp;&nbsp;<small>file</small>     <i>optional</i> &nbsp;
@@ -1359,244 +1549,6 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
-            <h2 id="entrada-PUTapi-entrada--id-">Edita uma entrada</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PUTapi-entrada--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/entrada/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "departamento_id": 2,
-    "local_id": 2,
-    "data_entrada": "\"2022-08-11\"",
-    "processo_sei": "0123000134569000",
-    "numero_contrato": "2343rbte67b63",
-    "numero_nota_fiscal": "1234",
-    "arquivo_nota_fiscal": "DANFE?"
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/entrada/1'
-payload = {
-    "departamento_id": 2,
-    "local_id": 2,
-    "data_entrada": "\"2022-08-11\"",
-    "processo_sei": "0123000134569000",
-    "numero_contrato": "2343rbte67b63",
-    "numero_nota_fiscal": "1234",
-    "arquivo_nota_fiscal": "DANFE?"
-}
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('PUT', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;put(
-    'http://localhost/api/entrada/1',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'departamento_id' =&gt; 2,
-            'local_id' =&gt; 2,
-            'data_entrada' =&gt; '"2022-08-11"',
-            'processo_sei' =&gt; '0123000134569000',
-            'numero_contrato' =&gt; '2343rbte67b63',
-            'numero_nota_fiscal' =&gt; '1234',
-            'arquivo_nota_fiscal' =&gt; 'DANFE?',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-entrada--id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;departamento_id&quot;: 2,
-        &quot;local_id&quot;: 2,
-        &quot;data_entrada&quot;: &quot;2022-08-11&quot;,
-        &quot;processo_sei&quot;: &quot;0123000134569000&quot;,
-        &quot;numero_contrato&quot;: &quot;2343rbte67b63&quot;,
-        &quot;numero_nota_fiscal&quot;: &quot;1234&quot;,
-        &quot;arquivo_nota_fiscal&quot;: &quot;DANFE?&quot;
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PUTapi-entrada--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-entrada--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-entrada--id-"></code></pre>
-</span>
-<span id="execution-error-PUTapi-entrada--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-entrada--id-"></code></pre>
-</span>
-<form id="form-PUTapi-entrada--id-" data-method="PUT"
-      data-path="api/entrada/{id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-entrada--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-entrada--id-"
-                    onclick="tryItOut('PUTapi-entrada--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-entrada--id-"
-                    onclick="cancelTryOut('PUTapi-entrada--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-entrada--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/entrada/{id}</code></b>
-        </p>
-                <p>
-            <label id="auth-PUTapi-entrada--id-" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="PUTapi-entrada--id-"
-                                                                data-component="header"></label>
-        </p>
-                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="PUTapi-entrada--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>ID da entrada que deseja editar.</p>
-            </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="departamento_id"
-               data-endpoint="PUTapi-entrada--id-"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do departamento.</p>
-        </p>
-                <p>
-            <b><code>local_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="local_id"
-               data-endpoint="PUTapi-entrada--id-"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do local.</p>
-        </p>
-                <p>
-            <b><code>data_entrada</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
-                <input type="text"
-               name="data_entrada"
-               data-endpoint="PUTapi-entrada--id-"
-               value=""2022-08-11""
-               data-component="body" hidden>
-    <br>
-<p>Data do serviço.</p>
-        </p>
-                <p>
-            <b><code>processo_sei</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="processo_sei"
-               data-endpoint="PUTapi-entrada--id-"
-               value="0123000134569000"
-               data-component="body" hidden>
-    <br>
-<p>Processo SEI.</p>
-        </p>
-                <p>
-            <b><code>numero_contrato</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="numero_contrato"
-               data-endpoint="PUTapi-entrada--id-"
-               value="2343rbte67b63"
-               data-component="body" hidden>
-    <br>
-<p>Número do contrato.</p>
-        </p>
-                <p>
-            <b><code>numero_nota_fiscal</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="numero_nota_fiscal"
-               data-endpoint="PUTapi-entrada--id-"
-               value="1234"
-               data-component="body" hidden>
-    <br>
-<p>Número da Nota Fiscal.</p>
-        </p>
-                <p>
-            <b><code>arquivo_nota_fiscal</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="arquivo_nota_fiscal"
-               data-endpoint="PUTapi-entrada--id-"
-               value="DANFE?"
-               data-component="body" hidden>
-    <br>
-<p>Arquivo da Nota Fiscal.</p>
-        </p>
-        </form>
-
             <h2 id="entrada-DELETEapi-entrada--id-">Deleta uma entrada</h2>
 
 <p>
@@ -1736,6 +1688,244 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
+            <h2 id="entrada-POSTapi-entrada--id-">Edita uma entrada</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-entrada--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/entrada/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "departamento_id": 2,
+    "local_id": 2,
+    "processo_sei": "0123000134569000",
+    "numero_contrato": "2343rbte67b63",
+    "numero_nota_fiscal": "1234",
+    "data_entrada": "\"2022-08-11\"",
+    "arquivo_nota_fiscal": "DANFE?"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/entrada/1'
+payload = {
+    "departamento_id": 2,
+    "local_id": 2,
+    "processo_sei": "0123000134569000",
+    "numero_contrato": "2343rbte67b63",
+    "numero_nota_fiscal": "1234",
+    "data_entrada": "\"2022-08-11\"",
+    "arquivo_nota_fiscal": "DANFE?"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/entrada/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'departamento_id' =&gt; 2,
+            'local_id' =&gt; 2,
+            'processo_sei' =&gt; '0123000134569000',
+            'numero_contrato' =&gt; '2343rbte67b63',
+            'numero_nota_fiscal' =&gt; '1234',
+            'data_entrada' =&gt; '"2022-08-11"',
+            'arquivo_nota_fiscal' =&gt; 'DANFE?',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-entrada--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;departamento_id&quot;: 2,
+        &quot;local_id&quot;: 2,
+        &quot;data_entrada&quot;: &quot;2022-08-11&quot;,
+        &quot;processo_sei&quot;: &quot;0123000134569000&quot;,
+        &quot;numero_contrato&quot;: &quot;2343rbte67b63&quot;,
+        &quot;numero_nota_fiscal&quot;: &quot;1234&quot;,
+        &quot;arquivo_nota_fiscal&quot;: &quot;DANFE?&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-entrada--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-entrada--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-entrada--id-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-entrada--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-entrada--id-"></code></pre>
+</span>
+<form id="form-POSTapi-entrada--id-" data-method="POST"
+      data-path="api/entrada/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-entrada--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-entrada--id-"
+                    onclick="tryItOut('POSTapi-entrada--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-entrada--id-"
+                    onclick="cancelTryOut('POSTapi-entrada--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-entrada--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/entrada/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-entrada--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-entrada--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="POSTapi-entrada--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID da entrada que deseja editar.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="departamento_id"
+               data-endpoint="POSTapi-entrada--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do departamento.</p>
+        </p>
+                <p>
+            <b><code>local_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="local_id"
+               data-endpoint="POSTapi-entrada--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do local.</p>
+        </p>
+                <p>
+            <b><code>processo_sei</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="processo_sei"
+               data-endpoint="POSTapi-entrada--id-"
+               value="0123000134569000"
+               data-component="body" hidden>
+    <br>
+<p>Processo SEI.</p>
+        </p>
+                <p>
+            <b><code>numero_contrato</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="numero_contrato"
+               data-endpoint="POSTapi-entrada--id-"
+               value="2343rbte67b63"
+               data-component="body" hidden>
+    <br>
+<p>Número do contrato.</p>
+        </p>
+                <p>
+            <b><code>numero_nota_fiscal</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="numero_nota_fiscal"
+               data-endpoint="POSTapi-entrada--id-"
+               value="1234"
+               data-component="body" hidden>
+    <br>
+<p>Número da Nota Fiscal.</p>
+        </p>
+                <p>
+            <b><code>data_entrada</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_entrada"
+               data-endpoint="POSTapi-entrada--id-"
+               value=""2022-08-11""
+               data-component="body" hidden>
+    <br>
+<p>Data do serviço.</p>
+        </p>
+                <p>
+            <b><code>arquivo_nota_fiscal</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="arquivo_nota_fiscal"
+               data-endpoint="POSTapi-entrada--id-"
+               value="DANFE?"
+               data-component="body" hidden>
+    <br>
+<p>Arquivo da Nota Fiscal.</p>
+        </p>
+        </form>
+
         <h1 id="entradaitem">EntradaItem</h1>
 
     <p>APIs para listar, cadastrar, editar e remover dados de entrada de itens</p>
@@ -1808,7 +1998,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -1891,259 +2081,7 @@ access-control-allow-origin: *
 
     <p>APIs para listar, cadastrar, editar e remover dados de inventários</p>
 
-            <h2 id="inventario-GETapi-inventario">Lista as entradas de inventário</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-inventario">
-<blockquote>Example request:</blockquote>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/inventario"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/inventario'
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('GET', url, headers=headers)
-response.json()</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://localhost/api/inventario',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-inventario">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 73,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;item_id&quot;: 1,
-            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 1210,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 74,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;item_id&quot;: 3,
-            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 200,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 78,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;item_id&quot;: 2,
-            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 100,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 81,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;item_id&quot;: 1,
-            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 2,
-            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 100,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 91,
-            &quot;departamento_id&quot;: 2,
-            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;item_id&quot;: 3,
-            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 100,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 92,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;item_id&quot;: 1,
-            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 100,
-            &quot;qtd_alerta&quot;: 0
-        },
-        {
-            &quot;id&quot;: 93,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;item_id&quot;: 1,
-            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;local_id&quot;: 1,
-            &quot;local&quot;: &quot;LAB&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;quantidade&quot;: 100,
-            &quot;qtd_alerta&quot;: 0
-        }
-    ],
-    &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost/api/inventario?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/inventario?page=1&quot;,
-        &quot;prev&quot;: null,
-        &quot;next&quot;: null
-    },
-    &quot;meta&quot;: {
-        &quot;current_page&quot;: 1,
-        &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
-        &quot;links&quot;: [
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
-                &quot;active&quot;: false
-            },
-            {
-                &quot;url&quot;: &quot;http://localhost/api/inventario?page=1&quot;,
-                &quot;label&quot;: &quot;1&quot;,
-                &quot;active&quot;: true
-            },
-            {
-                &quot;url&quot;: null,
-                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
-                &quot;active&quot;: false
-            }
-        ],
-        &quot;path&quot;: &quot;http://localhost/api/inventario&quot;,
-        &quot;per_page&quot;: 15,
-        &quot;to&quot;: 7,
-        &quot;total&quot;: 7
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-inventario" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-inventario"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-inventario"></code></pre>
-</span>
-<span id="execution-error-GETapi-inventario" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-inventario"></code></pre>
-</span>
-<form id="form-GETapi-inventario" data-method="GET"
-      data-path="api/inventario"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-inventario', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-inventario"
-                    onclick="tryItOut('GETapi-inventario');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-inventario"
-                    onclick="cancelTryOut('GETapi-inventario');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-inventario" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/inventario</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-inventario" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-inventario"
-                                                                data-component="header"></label>
-        </p>
-                </form>
-
-            <h2 id="inventario-POSTapi-inventario">Cadastra uma nova inventário</h2>
+            <h2 id="inventario-POSTapi-inventario">Cadastra um novo inventário</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2166,10 +2104,10 @@ const headers = {
 };
 
 let body = {
-    "departamento_id": 2,
     "item_id": 2,
     "local_id": 2,
     "quantidade": 10,
+    "departamento_id": 2,
     "qtd_alerta": 10
 };
 
@@ -2186,10 +2124,10 @@ import json
 
 url = 'http://localhost/api/inventario'
 payload = {
-    "departamento_id": 2,
     "item_id": 2,
     "local_id": 2,
     "quantidade": 10,
+    "departamento_id": 2,
     "qtd_alerta": 10
 }
 headers = {
@@ -2211,10 +2149,10 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'departamento_id' =&gt; 2,
             'item_id' =&gt; 2,
             'local_id' =&gt; 2,
             'quantidade' =&gt; 10.0,
+            'departamento_id' =&gt; 2,
             'qtd_alerta' =&gt; 10.0,
         ],
     ]
@@ -2291,16 +2229,6 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                         <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="departamento_id"
-               data-endpoint="POSTapi-inventario"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do departamento.</p>
-        </p>
-                <p>
             <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
                 <input type="number"
                name="item_id"
@@ -2329,6 +2257,16 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>Quantidade.</p>
+        </p>
+                <p>
+            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="departamento_id"
+               data-endpoint="POSTapi-inventario"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do departamento.</p>
         </p>
                 <p>
             <b><code>qtd_alerta</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
@@ -2501,10 +2439,10 @@ const headers = {
 };
 
 let body = {
-    "departamento_id": 2,
     "item_id": 2,
     "local_id": 2,
     "quantidade": 10,
+    "departamento_id": 2,
     "qtd_alerta": 10
 };
 
@@ -2521,10 +2459,10 @@ import json
 
 url = 'http://localhost/api/inventario/1'
 payload = {
-    "departamento_id": 2,
     "item_id": 2,
     "local_id": 2,
     "quantidade": 10,
+    "departamento_id": 2,
     "qtd_alerta": 10
 }
 headers = {
@@ -2546,10 +2484,10 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'departamento_id' =&gt; 2,
             'item_id' =&gt; 2,
             'local_id' =&gt; 2,
             'quantidade' =&gt; 10.0,
+            'departamento_id' =&gt; 2,
             'qtd_alerta' =&gt; 10.0,
         ],
     ]
@@ -2637,16 +2575,6 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                             <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="departamento_id"
-               data-endpoint="PUTapi-inventario--id-"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do departamento.</p>
-        </p>
-                <p>
             <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
                 <input type="number"
                name="item_id"
@@ -2675,6 +2603,16 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>Quantidade.</p>
+        </p>
+                <p>
+            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="departamento_id"
+               data-endpoint="PUTapi-inventario--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do departamento.</p>
         </p>
                 <p>
             <b><code>qtd_alerta</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
@@ -2825,11 +2763,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
-        <h1 id="ordemservico">OrdemServico</h1>
-
-    <p>APIs para listar, cadastrar, editar e remover dados de ordens de serviços</p>
-
-            <h2 id="ordemservico-GETapi-ordem_servico">Lista as ordens de serviços</h2>
+            <h2 id="inventario-GETapi-inventarios">Lista as entradas de inventário</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2837,14 +2771,26 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 
 
-<span id="example-requests-GETapi-ordem_servico">
+<span id="example-requests-GETapi-inventarios">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/ordem_servico"
+    "http://localhost/api/inventarios"
 );
+
+const params = {
+    "filter[base]": "Leopoldina",
+    "filter[item]": "Adaptador Pvc",
+    "filter[tipo_item]": "alvenaria",
+    "filter[tipo_medida]": "Pç",
+    "filter[quantidade_maior_que]": "200",
+    "filter[quantidade_menor_que]": "800",
+    "sort": "-locais.nome",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -2861,24 +2807,42 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost/api/ordem_servico'
+url = 'http://localhost/api/inventarios'
+params = {
+  'filter[base]': 'Leopoldina',
+  'filter[item]': 'Adaptador Pvc',
+  'filter[tipo_item]': 'alvenaria',
+  'filter[tipo_medida]': 'Pç',
+  'filter[quantidade_maior_que]': '200',
+  'filter[quantidade_menor_que]': '800',
+  'sort': '-locais.nome',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre></div>
 
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/ordem_servico',
+    'http://localhost/api/inventarios',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'filter[base]'=&gt; 'Leopoldina',
+            'filter[item]'=&gt; 'Adaptador Pvc',
+            'filter[tipo_item]'=&gt; 'alvenaria',
+            'filter[tipo_medida]'=&gt; 'Pç',
+            'filter[quantidade_maior_que]'=&gt; '200',
+            'filter[quantidade_menor_que]'=&gt; '800',
+            'sort'=&gt; '-locais.nome',
         ],
     ]
 );
@@ -2887,7 +2851,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-ordem_servico">
+<span id="example-responses-GETapi-inventarios">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
@@ -2906,34 +2870,211 @@ access-control-allow-origin: *
 <code class="language-json">{
     &quot;data&quot;: [
         {
-            &quot;id&quot;: 1,
+            &quot;id&quot;: 81,
             &quot;departamento_id&quot;: 2,
             &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
-            &quot;origem_id&quot;: 1,
-            &quot;origem&quot;: &quot;LAB&quot;,
-            &quot;local_servico_id&quot;: 2,
-            &quot;local_servico&quot;: &quot;UEM Base Leopoldina&quot;,
-            &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
-            &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
-            &quot;data_servico&quot;: null,
-            &quot;especificacao&quot;: &quot;reforma&quot;,
-            &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
-            &quot;horas_execucao&quot;: 10,
-            &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
-            &quot;user_id&quot;: 1,
-            &quot;user&quot;: &quot;Admin NDTIC&quot;
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 100,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 103,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 3,
+            &quot;local&quot;: &quot;Parque Leopoldina - Orlando Villas-B&ocirc;as&quot;,
+            &quot;local_tipo&quot;: &quot;parque&quot;,
+            &quot;quantidade&quot;: 120,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 93,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 100,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 92,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 375,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 102,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 4104,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 91,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 100,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 101,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 2000,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 100,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 240,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 78,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 830,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 99,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 711,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 74,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 500,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 98,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 479,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 73,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 1910,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 97,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 480,
+            &quot;qtd_alerta&quot;: 0
+        },
+        {
+            &quot;id&quot;: 96,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 1050,
+            &quot;qtd_alerta&quot;: 0
         }
     ],
     &quot;links&quot;: {
-        &quot;first&quot;: &quot;http://localhost/api/ordem_servico?page=1&quot;,
-        &quot;last&quot;: &quot;http://localhost/api/ordem_servico?page=1&quot;,
+        &quot;first&quot;: &quot;http://localhost/api/inventarios?page=1&quot;,
+        &quot;last&quot;: &quot;http://localhost/api/inventarios?page=2&quot;,
         &quot;prev&quot;: null,
-        &quot;next&quot;: null
+        &quot;next&quot;: &quot;http://localhost/api/inventarios?page=2&quot;
     },
     &quot;meta&quot;: {
         &quot;current_page&quot;: 1,
         &quot;from&quot;: 1,
-        &quot;last_page&quot;: 1,
+        &quot;last_page&quot;: 2,
         &quot;links&quot;: [
             {
                 &quot;url&quot;: null,
@@ -2941,72 +3082,152 @@ access-control-allow-origin: *
                 &quot;active&quot;: false
             },
             {
-                &quot;url&quot;: &quot;http://localhost/api/ordem_servico?page=1&quot;,
+                &quot;url&quot;: &quot;http://localhost/api/inventarios?page=1&quot;,
                 &quot;label&quot;: &quot;1&quot;,
                 &quot;active&quot;: true
             },
             {
-                &quot;url&quot;: null,
+                &quot;url&quot;: &quot;http://localhost/api/inventarios?page=2&quot;,
+                &quot;label&quot;: &quot;2&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost/api/inventarios?page=2&quot;,
                 &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
                 &quot;active&quot;: false
             }
         ],
-        &quot;path&quot;: &quot;http://localhost/api/ordem_servico&quot;,
+        &quot;path&quot;: &quot;http://localhost/api/inventarios&quot;,
         &quot;per_page&quot;: 15,
-        &quot;to&quot;: 1,
-        &quot;total&quot;: 1
+        &quot;to&quot;: 15,
+        &quot;total&quot;: 17
     }
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-ordem_servico" hidden>
+<span id="execution-results-GETapi-inventarios" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-ordem_servico"></span>:
+                id="execution-response-status-GETapi-inventarios"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-ordem_servico"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-inventarios"></code></pre>
 </span>
-<span id="execution-error-GETapi-ordem_servico" hidden>
+<span id="execution-error-GETapi-inventarios" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-ordem_servico"></code></pre>
+    <pre><code id="execution-error-message-GETapi-inventarios"></code></pre>
 </span>
-<form id="form-GETapi-ordem_servico" data-method="GET"
-      data-path="api/ordem_servico"
+<form id="form-GETapi-inventarios" data-method="GET"
+      data-path="api/inventarios"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servico', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-inventarios', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-ordem_servico"
-                    onclick="tryItOut('GETapi-ordem_servico');">Try it out ⚡
+                    id="btn-tryout-GETapi-inventarios"
+                    onclick="tryItOut('GETapi-inventarios');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-ordem_servico"
-                    onclick="cancelTryOut('GETapi-ordem_servico');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-inventarios"
+                    onclick="cancelTryOut('GETapi-inventarios');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-ordem_servico" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-inventarios" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/ordem_servico</code></b>
+            <b><code>api/inventarios</code></b>
         </p>
                 <p>
-            <label id="auth-GETapi-ordem_servico" hidden>Authorization header:
+            <label id="auth-GETapi-inventarios" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="GETapi-ordem_servico"
+                                                                data-endpoint="GETapi-inventarios"
                                                                 data-component="header"></label>
         </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[base]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[base]"
+               data-endpoint="GETapi-inventarios"
+               value="Leopoldina"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de Local (base) do item.</p>
+            </p>
+                    <p>
+                <b><code>filter[item]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[item]"
+               data-endpoint="GETapi-inventarios"
+               value="Adaptador Pvc"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de Nome do Item</p>
+            </p>
+                    <p>
+                <b><code>filter[tipo_item]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[tipo_item]"
+               data-endpoint="GETapi-inventarios"
+               value="alvenaria"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de Tipo de item.</p>
+            </p>
+                    <p>
+                <b><code>filter[tipo_medida]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[tipo_medida]"
+               data-endpoint="GETapi-inventarios"
+               value="Pç"
+               data-component="query" hidden>
+    <br>
+<p>Filtro do Tipo de medida do item.</p>
+            </p>
+                    <p>
+                <b><code>filter[quantidade_maior_que]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[quantidade_maior_que]"
+               data-endpoint="GETapi-inventarios"
+               value="200"
+               data-component="query" hidden>
+    <br>
+<p>Filtro inicial de quantidade.</p>
+            </p>
+                    <p>
+                <b><code>filter[quantidade_menor_que]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[quantidade_menor_que]"
+               data-endpoint="GETapi-inventarios"
+               value="800"
+               data-component="query" hidden>
+    <br>
+<p>Filtro final de quantidade.</p>
+            </p>
+                    <p>
+                <b><code>sort</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort"
+               data-endpoint="GETapi-inventarios"
+               value="-locais.nome"
+               data-component="query" hidden>
+    <br>
+<p>Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'</p>
+            </p>
                 </form>
+
+        <h1 id="ordemservico">OrdemServico</h1>
+
+    <p>APIs para listar, cadastrar, editar e remover dados de ordens de serviços</p>
 
             <h2 id="ordemservico-POSTapi-ordem_servico">Cadastra uma ordem de serviço</h2>
 
@@ -3035,14 +3256,14 @@ let body = {
     "origem_id": 1,
     "local_servico_id": 2,
     "data_inicio_servico": "2022-08-30T14:48",
-    "data_fim_servico": "2022-08-31T17:50",
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
+    "user_id": 1,
+    "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
     "horas_execucao": 10,
-    "observacoes": "observações referente ao serviço",
-    "user_id": 1
+    "observacoes": "observações referente ao serviço"
 };
 
 fetch(url, {
@@ -3062,14 +3283,14 @@ payload = {
     "origem_id": 1,
     "local_servico_id": 2,
     "data_inicio_servico": "2022-08-30T14:48",
-    "data_fim_servico": "2022-08-31T17:50",
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
+    "user_id": 1,
+    "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
     "horas_execucao": 10,
-    "observacoes": "observações referente ao serviço",
-    "user_id": 1
+    "observacoes": "observações referente ao serviço"
 }
 headers = {
   'Content-Type': 'application/json',
@@ -3094,14 +3315,14 @@ $response = $client-&gt;post(
             'origem_id' =&gt; 1,
             'local_servico_id' =&gt; 2,
             'data_inicio_servico' =&gt; '2022-08-30T14:48',
-            'data_fim_servico' =&gt; '2022-08-31T17:50',
             'almoxarife_nome' =&gt; 'João',
             'almoxarife_email' =&gt; 'joao@teste.com.br',
+            'user_id' =&gt; 1,
+            'data_fim_servico' =&gt; '2022-08-31T17:50',
             'especificacao' =&gt; 'reforma',
             'profissional' =&gt; 'José',
             'horas_execucao' =&gt; 10,
             'observacoes' =&gt; 'observações referente ao serviço',
-            'user_id' =&gt; 1,
         ],
     ]
 );
@@ -3224,16 +3445,6 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>Data do serviço.</p>
         </p>
                 <p>
-            <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
-                <input type="text"
-               name="data_fim_servico"
-               data-endpoint="POSTapi-ordem_servico"
-               value="2022-08-31T17:50"
-               data-component="body" hidden>
-    <br>
-<p>Data do serviço.</p>
-        </p>
-                <p>
             <b><code>almoxarife_nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="almoxarife_nome"
@@ -3252,6 +3463,26 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>E-mail do Almoxarife.</p>
+        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-ordem_servico"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do usuário.</p>
+        </p>
+                <p>
+            <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
+                <input type="text"
+               name="data_fim_servico"
+               data-endpoint="POSTapi-ordem_servico"
+               value="2022-08-31T17:50"
+               data-component="body" hidden>
+    <br>
+<p>Data do serviço.</p>
         </p>
                 <p>
             <b><code>especificacao</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
@@ -3292,16 +3523,6 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>nullable Observações.</p>
-        </p>
-                <p>
-            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="user_id"
-               data-endpoint="POSTapi-ordem_servico"
-               value="1"
-               data-component="body" hidden>
-    <br>
-<p>ID do usuário.</p>
         </p>
         </form>
 
@@ -3448,314 +3669,6 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
-            <h2 id="ordemservico-PUTapi-ordem_servico--id-">Edita uma ordem de serviço</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-PUTapi-ordem_servico--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/ordem_servico/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-let body = {
-    "departamento_id": 2,
-    "origem_id": 1,
-    "local_servico_id": 2,
-    "data_inicio_servico": "2022-08-30T14:48",
-    "data_fim_servico": "2022-08-31T17:50",
-    "almoxarife_nome": "João",
-    "almoxarife_email": "joao@teste.com.br",
-    "especificacao": "reforma",
-    "profissional": "José",
-    "horas_execucao": 10,
-    "observacoes": "observações referente ao serviço",
-    "user_id": 1
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body),
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="python-example">
-    <pre><code class="language-python">import requests
-import json
-
-url = 'http://localhost/api/ordem_servico/1'
-payload = {
-    "departamento_id": 2,
-    "origem_id": 1,
-    "local_servico_id": 2,
-    "data_inicio_servico": "2022-08-30T14:48",
-    "data_fim_servico": "2022-08-31T17:50",
-    "almoxarife_nome": "João",
-    "almoxarife_email": "joao@teste.com.br",
-    "especificacao": "reforma",
-    "profissional": "José",
-    "horas_execucao": 10,
-    "observacoes": "observações referente ao serviço",
-    "user_id": 1
-}
-headers = {
-  'Content-Type': 'application/json',
-  'Accept': 'application/json'
-}
-
-response = requests.request('PUT', url, headers=headers, json=payload)
-response.json()</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;put(
-    'http://localhost/api/ordem_servico/1',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-        ],
-        'json' =&gt; [
-            'departamento_id' =&gt; 2,
-            'origem_id' =&gt; 1,
-            'local_servico_id' =&gt; 2,
-            'data_inicio_servico' =&gt; '2022-08-30T14:48',
-            'data_fim_servico' =&gt; '2022-08-31T17:50',
-            'almoxarife_nome' =&gt; 'João',
-            'almoxarife_email' =&gt; 'joao@teste.com.br',
-            'especificacao' =&gt; 'reforma',
-            'profissional' =&gt; 'José',
-            'horas_execucao' =&gt; 10,
-            'observacoes' =&gt; 'observações referente ao serviço',
-            'user_id' =&gt; 1,
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-ordem_servico--id-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <pre>
-
-<code class="language-json">{
-    &quot;data&quot;: {
-        &quot;id&quot;: 1,
-        &quot;departamento_id&quot;: 2,
-        &quot;origem_id&quot;: 1,
-        &quot;local_servico_id&quot;: 2,
-        &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
-        &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
-        &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
-        &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
-        &quot;especificacao&quot;: &quot;reforma&quot;,
-        &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
-        &quot;horas_execucao&quot;: 10,
-        &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
-        &quot;user_id&quot;: 1
-    }
-}</code>
- </pre>
-    </span>
-<span id="execution-results-PUTapi-ordem_servico--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-ordem_servico--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-ordem_servico--id-"></code></pre>
-</span>
-<span id="execution-error-PUTapi-ordem_servico--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-ordem_servico--id-"></code></pre>
-</span>
-<form id="form-PUTapi-ordem_servico--id-" data-method="PUT"
-      data-path="api/ordem_servico/{id}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-ordem_servico--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-ordem_servico--id-"
-                    onclick="tryItOut('PUTapi-ordem_servico--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-ordem_servico--id-"
-                    onclick="cancelTryOut('PUTapi-ordem_servico--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-ordem_servico--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/ordem_servico/{id}</code></b>
-        </p>
-                <p>
-            <label id="auth-PUTapi-ordem_servico--id-" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="PUTapi-ordem_servico--id-"
-                                                                data-component="header"></label>
-        </p>
-                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>ID da ordem de serviço que deseja editar.</p>
-            </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="departamento_id"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do Departamento.</p>
-        </p>
-                <p>
-            <b><code>origem_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="origem_id"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="1"
-               data-component="body" hidden>
-    <br>
-<p>ID do Origem.</p>
-        </p>
-                <p>
-            <b><code>local_servico_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="local_servico_id"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="2"
-               data-component="body" hidden>
-    <br>
-<p>ID do Local do serviço.</p>
-        </p>
-                <p>
-            <b><code>data_inicio_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
-                <input type="text"
-               name="data_inicio_servico"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="2022-08-30T14:48"
-               data-component="body" hidden>
-    <br>
-<p>Data do serviço.</p>
-        </p>
-                <p>
-            <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
-                <input type="text"
-               name="data_fim_servico"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="2022-08-31T17:50"
-               data-component="body" hidden>
-    <br>
-<p>Data do serviço.</p>
-        </p>
-                <p>
-            <b><code>almoxarife_nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="almoxarife_nome"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="João"
-               data-component="body" hidden>
-    <br>
-<p>Nome do Almoxarife.</p>
-        </p>
-                <p>
-            <b><code>almoxarife_email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="almoxarife_email"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="joao@teste.com.br"
-               data-component="body" hidden>
-    <br>
-<p>E-mail do Almoxarife.</p>
-        </p>
-                <p>
-            <b><code>especificacao</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="especificacao"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="reforma"
-               data-component="body" hidden>
-    <br>
-<p>nullable Especificação.</p>
-        </p>
-                <p>
-            <b><code>profissional</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="profissional"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="José"
-               data-component="body" hidden>
-    <br>
-<p>nullable Profissional.</p>
-        </p>
-                <p>
-            <b><code>horas_execucao</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
-                <input type="number"
-               name="horas_execucao"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="10"
-               data-component="body" hidden>
-    <br>
-<p>nullable Horas de execução.</p>
-        </p>
-                <p>
-            <b><code>observacoes</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
-                <input type="text"
-               name="observacoes"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="observações referente ao serviço"
-               data-component="body" hidden>
-    <br>
-<p>nullable Observações.</p>
-        </p>
-                <p>
-            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="user_id"
-               data-endpoint="PUTapi-ordem_servico--id-"
-               value="1"
-               data-component="body" hidden>
-    <br>
-<p>ID do usuário.</p>
-        </p>
-        </form>
-
             <h2 id="ordemservico-DELETEapi-ordem_servico--id-">Deleta uma ordem de serviço</h2>
 
 <p>
@@ -3899,6 +3812,766 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>ID da ordem de serviço que deseja deletar.</p>
             </p>
                     </form>
+
+            <h2 id="ordemservico-POSTapi-ordem_servico--id-">Edita uma ordem de serviço</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-ordem_servico--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/ordem_servico/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "departamento_id": 2,
+    "origem_id": 1,
+    "local_servico_id": 2,
+    "data_inicio_servico": "2022-08-30T14:48",
+    "almoxarife_nome": "João",
+    "almoxarife_email": "joao@teste.com.br",
+    "user_id": 1,
+    "data_fim_servico": "2022-08-31T17:50",
+    "especificacao": "reforma",
+    "profissional": "José",
+    "horas_execucao": 10,
+    "observacoes": "observações referente ao serviço"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/ordem_servico/1'
+payload = {
+    "departamento_id": 2,
+    "origem_id": 1,
+    "local_servico_id": 2,
+    "data_inicio_servico": "2022-08-30T14:48",
+    "almoxarife_nome": "João",
+    "almoxarife_email": "joao@teste.com.br",
+    "user_id": 1,
+    "data_fim_servico": "2022-08-31T17:50",
+    "especificacao": "reforma",
+    "profissional": "José",
+    "horas_execucao": 10,
+    "observacoes": "observações referente ao serviço"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/ordem_servico/1',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'departamento_id' =&gt; 2,
+            'origem_id' =&gt; 1,
+            'local_servico_id' =&gt; 2,
+            'data_inicio_servico' =&gt; '2022-08-30T14:48',
+            'almoxarife_nome' =&gt; 'João',
+            'almoxarife_email' =&gt; 'joao@teste.com.br',
+            'user_id' =&gt; 1,
+            'data_fim_servico' =&gt; '2022-08-31T17:50',
+            'especificacao' =&gt; 'reforma',
+            'profissional' =&gt; 'José',
+            'horas_execucao' =&gt; 10,
+            'observacoes' =&gt; 'observações referente ao serviço',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-ordem_servico--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: {
+        &quot;id&quot;: 1,
+        &quot;departamento_id&quot;: 2,
+        &quot;origem_id&quot;: 1,
+        &quot;local_servico_id&quot;: 2,
+        &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
+        &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
+        &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
+        &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
+        &quot;especificacao&quot;: &quot;reforma&quot;,
+        &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
+        &quot;horas_execucao&quot;: 10,
+        &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
+        &quot;user_id&quot;: 1
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-ordem_servico--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-ordem_servico--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-ordem_servico--id-"></code></pre>
+</span>
+<span id="execution-error-POSTapi-ordem_servico--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-ordem_servico--id-"></code></pre>
+</span>
+<form id="form-POSTapi-ordem_servico--id-" data-method="POST"
+      data-path="api/ordem_servico/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-ordem_servico--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-ordem_servico--id-"
+                    onclick="tryItOut('POSTapi-ordem_servico--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-ordem_servico--id-"
+                    onclick="cancelTryOut('POSTapi-ordem_servico--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-ordem_servico--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/ordem_servico/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-ordem_servico--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-ordem_servico--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID da ordem de serviço que deseja editar.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>departamento_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="departamento_id"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do Departamento.</p>
+        </p>
+                <p>
+            <b><code>origem_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="origem_id"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do Origem.</p>
+        </p>
+                <p>
+            <b><code>local_servico_id</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="local_servico_id"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do Local do serviço.</p>
+        </p>
+                <p>
+            <b><code>data_inicio_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
+                <input type="text"
+               name="data_inicio_servico"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="2022-08-30T14:48"
+               data-component="body" hidden>
+    <br>
+<p>Data do serviço.</p>
+        </p>
+                <p>
+            <b><code>almoxarife_nome</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="almoxarife_nome"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="João"
+               data-component="body" hidden>
+    <br>
+<p>Nome do Almoxarife.</p>
+        </p>
+                <p>
+            <b><code>almoxarife_email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="almoxarife_email"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="joao@teste.com.br"
+               data-component="body" hidden>
+    <br>
+<p>E-mail do Almoxarife.</p>
+        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="user_id"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do usuário.</p>
+        </p>
+                <p>
+            <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
+                <input type="text"
+               name="data_fim_servico"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="2022-08-31T17:50"
+               data-component="body" hidden>
+    <br>
+<p>Data do serviço.</p>
+        </p>
+                <p>
+            <b><code>especificacao</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="especificacao"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="reforma"
+               data-component="body" hidden>
+    <br>
+<p>nullable Especificação.</p>
+        </p>
+                <p>
+            <b><code>profissional</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="profissional"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="José"
+               data-component="body" hidden>
+    <br>
+<p>nullable Profissional.</p>
+        </p>
+                <p>
+            <b><code>horas_execucao</code></b>&nbsp;&nbsp;<small>integer</small>     <i>optional</i> &nbsp;
+                <input type="number"
+               name="horas_execucao"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="10"
+               data-component="body" hidden>
+    <br>
+<p>nullable Horas de execução.</p>
+        </p>
+                <p>
+            <b><code>observacoes</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="observacoes"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="observações referente ao serviço"
+               data-component="body" hidden>
+    <br>
+<p>nullable Observações.</p>
+        </p>
+        </form>
+
+            <h2 id="ordemservico-GETapi-ordem_servicos">Lista as ordens de serviços</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ordem_servicos">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/ordem_servicos"
+);
+
+const params = {
+    "filter[origem]": "Leopoldina",
+    "filter[local_servico]": "Ibirapuera",
+    "filter[almoxarife_nome]": "Fulano",
+    "filter[almoxarife_email]": "fulano@mail.com",
+    "filter[servico_depois_de]": "2023-01-01",
+    "filter[servico_antes_de]": "2023-12-31",
+    "sort": "-locais.nome",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost/api/ordem_servicos'
+params = {
+  'filter[origem]': 'Leopoldina',
+  'filter[local_servico]': 'Ibirapuera',
+  'filter[almoxarife_nome]': 'Fulano',
+  'filter[almoxarife_email]': 'fulano@mail.com',
+  'filter[servico_depois_de]': '2023-01-01',
+  'filter[servico_antes_de]': '2023-12-31',
+  'sort': '-locais.nome',
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/ordem_servicos',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'filter[origem]'=&gt; 'Leopoldina',
+            'filter[local_servico]'=&gt; 'Ibirapuera',
+            'filter[almoxarife_nome]'=&gt; 'Fulano',
+            'filter[almoxarife_email]'=&gt; 'fulano@mail.com',
+            'filter[servico_depois_de]'=&gt; '2023-01-01',
+            'filter[servico_antes_de]'=&gt; '2023-12-31',
+            'sort'=&gt; '-locais.nome',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ordem_servicos">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 2,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;origem_id&quot;: 1,
+            &quot;origem&quot;: &quot;LAB&quot;,
+            &quot;local_servico_id&quot;: 2,
+            &quot;local_servico&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-08-30 14:48:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-08-31 17:50:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
+            &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
+            &quot;especificacao&quot;: &quot;reforma 2&quot;,
+            &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
+            &quot;horas_execucao&quot;: 10,
+            &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;origem_id&quot;: 1,
+            &quot;origem&quot;: &quot;LAB&quot;,
+            &quot;local_servico_id&quot;: 2,
+            &quot;local_servico&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-08-31 14:23:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-09-30 16:45:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Jos&eacute;&quot;,
+            &quot;almoxarife_email&quot;: &quot;jose@jose.com.br&quot;,
+            &quot;especificacao&quot;: &quot;Especifica&ccedil;&atilde;o\n\nTeste de quebra de linha&quot;,
+            &quot;profissional&quot;: &quot;Maria&quot;,
+            &quot;horas_execucao&quot;: 200,
+            &quot;observacoes&quot;: &quot;Observa&ccedil;&otilde;es\n\nTeste\nde\nquebra\nde\nlinha&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 4,
+            &quot;departamento_id&quot;: 4,
+            &quot;departamento&quot;: &quot;CGPABI/DAU&quot;,
+            &quot;origem_id&quot;: 1,
+            &quot;origem&quot;: &quot;LAB&quot;,
+            &quot;local_servico_id&quot;: 2,
+            &quot;local_servico&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-08-31 10:35:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-08-31 12:45:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Fulano&quot;,
+            &quot;almoxarife_email&quot;: &quot;fulano@fulano.com&quot;,
+            &quot;especificacao&quot;: &quot;Especifica&ccedil;&atilde;o teste&quot;,
+            &quot;profissional&quot;: &quot;Maria&quot;,
+            &quot;horas_execucao&quot;: 2,
+            &quot;observacoes&quot;: &quot;servi&ccedil;os extras\n\nobserva&ccedil;&otilde;es&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 8,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;origem_id&quot;: 1,
+            &quot;origem&quot;: &quot;LAB&quot;,
+            &quot;local_servico_id&quot;: 2,
+            &quot;local_servico&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-09-22 14:32:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-09-30 14:32:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Fulano&quot;,
+            &quot;almoxarife_email&quot;: &quot;fulano@fulano.com&quot;,
+            &quot;especificacao&quot;: &quot;(≖ ͜ʖ≖)&quot;,
+            &quot;profissional&quot;: &quot;Fulano&quot;,
+            &quot;horas_execucao&quot;: 100,
+            &quot;observacoes&quot;: &quot;(≖ ͜ʖ≖)&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;origem_id&quot;: 2,
+            &quot;origem&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_servico_id&quot;: 1,
+            &quot;local_servico&quot;: &quot;LAB&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-05-12 09:32:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-05-12 19:36:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
+            &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
+            &quot;especificacao&quot;: &quot;reforma&quot;,
+            &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
+            &quot;horas_execucao&quot;: 10,
+            &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 9,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;origem_id&quot;: 4,
+            &quot;origem&quot;: &quot;Almoxarifado&quot;,
+            &quot;local_servico_id&quot;: 1,
+            &quot;local_servico&quot;: &quot;LAB&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-06-07 09:27:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-06-07 12:27:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Sicrano&quot;,
+            &quot;almoxarife_email&quot;: &quot;sicrano@email.com&quot;,
+            &quot;especificacao&quot;: &quot;especifica&ccedil;&atilde;o teste de edi&ccedil;&atilde;o&quot;,
+            &quot;profissional&quot;: &quot;Sicrano&quot;,
+            &quot;horas_execucao&quot;: 4,
+            &quot;observacoes&quot;: &quot;observacoes&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 10,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;origem_id&quot;: 4,
+            &quot;origem&quot;: &quot;Almoxarifado&quot;,
+            &quot;local_servico_id&quot;: 1,
+            &quot;local_servico&quot;: &quot;LAB&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-06-08 19:08:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-06-08 22:31:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Maria&quot;,
+            &quot;almoxarife_email&quot;: &quot;maria@email.com&quot;,
+            &quot;especificacao&quot;: &quot;___〆(・&forall;・)&quot;,
+            &quot;profissional&quot;: &quot;Sicrano&quot;,
+            &quot;horas_execucao&quot;: 3,
+            &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 5,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;origem_id&quot;: 3,
+            &quot;origem&quot;: &quot;Parque Leopoldina - Orlando Villas-B&ocirc;as&quot;,
+            &quot;local_servico_id&quot;: 4,
+            &quot;local_servico&quot;: &quot;Almoxarifado&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-08-02 13:45:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-08-02 15:45:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Almoxariferson&quot;,
+            &quot;almoxarife_email&quot;: &quot;almoxariferson@almoxarife.com&quot;,
+            &quot;especificacao&quot;: &quot;Especifica&ccedil;&atilde;o&quot;,
+            &quot;profissional&quot;: &quot;Beltrano&quot;,
+            &quot;horas_execucao&quot;: 2,
+            &quot;observacoes&quot;: &quot;Observa&ccedil;&otilde;es&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 6,
+            &quot;departamento_id&quot;: 1,
+            &quot;departamento&quot;: &quot;GABINETE/CG&quot;,
+            &quot;origem_id&quot;: 3,
+            &quot;origem&quot;: &quot;Parque Leopoldina - Orlando Villas-B&ocirc;as&quot;,
+            &quot;local_servico_id&quot;: 4,
+            &quot;local_servico&quot;: &quot;Almoxarifado&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-09-02 13:42:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-09-02 17:42:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;Jos&eacute;&quot;,
+            &quot;almoxarife_email&quot;: &quot;jose@jose.com.br&quot;,
+            &quot;especificacao&quot;: &quot;teste&quot;,
+            &quot;profissional&quot;: &quot;Beltrano&quot;,
+            &quot;horas_execucao&quot;: 4,
+            &quot;observacoes&quot;: &quot;teste&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        },
+        {
+            &quot;id&quot;: 7,
+            &quot;departamento_id&quot;: 2,
+            &quot;departamento&quot;: &quot;GABINETE/NDTIC&quot;,
+            &quot;origem_id&quot;: 1,
+            &quot;origem&quot;: &quot;LAB&quot;,
+            &quot;local_servico_id&quot;: 4,
+            &quot;local_servico&quot;: &quot;Almoxarifado&quot;,
+            &quot;data_inicio_servico&quot;: &quot;2022-08-29 14:32:00&quot;,
+            &quot;data_fim_servico&quot;: &quot;2022-08-29 15:32:00&quot;,
+            &quot;almoxarife_nome&quot;: &quot;maria&quot;,
+            &quot;almoxarife_email&quot;: &quot;maria@email.com&quot;,
+            &quot;especificacao&quot;: &quot;teste\r\n\r\nteste&quot;,
+            &quot;profissional&quot;: &quot;Fulano&quot;,
+            &quot;horas_execucao&quot;: 1,
+            &quot;observacoes&quot;: &quot;teste\r\n\r\nteste&quot;,
+            &quot;user_id&quot;: 1,
+            &quot;user&quot;: &quot;Admin NDTIC&quot;
+        }
+    ],
+    &quot;links&quot;: {
+        &quot;first&quot;: &quot;http://localhost/api/ordem_servicos?page=1&quot;,
+        &quot;last&quot;: &quot;http://localhost/api/ordem_servicos?page=1&quot;,
+        &quot;prev&quot;: null,
+        &quot;next&quot;: null
+    },
+    &quot;meta&quot;: {
+        &quot;current_page&quot;: 1,
+        &quot;from&quot;: 1,
+        &quot;last_page&quot;: 1,
+        &quot;links&quot;: [
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;&amp;laquo; Previous&quot;,
+                &quot;active&quot;: false
+            },
+            {
+                &quot;url&quot;: &quot;http://localhost/api/ordem_servicos?page=1&quot;,
+                &quot;label&quot;: &quot;1&quot;,
+                &quot;active&quot;: true
+            },
+            {
+                &quot;url&quot;: null,
+                &quot;label&quot;: &quot;Next &amp;raquo;&quot;,
+                &quot;active&quot;: false
+            }
+        ],
+        &quot;path&quot;: &quot;http://localhost/api/ordem_servicos&quot;,
+        &quot;per_page&quot;: 15,
+        &quot;to&quot;: 10,
+        &quot;total&quot;: 10
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ordem_servicos" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ordem_servicos"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ordem_servicos"></code></pre>
+</span>
+<span id="execution-error-GETapi-ordem_servicos" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ordem_servicos"></code></pre>
+</span>
+<form id="form-GETapi-ordem_servicos" data-method="GET"
+      data-path="api/ordem_servicos"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servicos', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ordem_servicos"
+                    onclick="tryItOut('GETapi-ordem_servicos');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ordem_servicos"
+                    onclick="cancelTryOut('GETapi-ordem_servicos');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ordem_servicos" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ordem_servicos</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ordem_servicos" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ordem_servicos"
+                                                                data-component="header"></label>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[origem]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[origem]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="Leopoldina"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de Local (base) do item.</p>
+            </p>
+                    <p>
+                <b><code>filter[local_servico]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[local_servico]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="Ibirapuera"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de nome do local de destino dos materiais.</p>
+            </p>
+                    <p>
+                <b><code>filter[almoxarife_nome]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[almoxarife_nome]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="Fulano"
+               data-component="query" hidden>
+    <br>
+<p>Filtro do Nome do almoxarife responsável.</p>
+            </p>
+                    <p>
+                <b><code>filter[almoxarife_email]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[almoxarife_email]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="fulano@mail.com"
+               data-component="query" hidden>
+    <br>
+<p>Filtro do e-mail do almoxarife responsável.</p>
+            </p>
+                    <p>
+                <b><code>filter[servico_depois_de]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[servico_depois_de]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="2023-01-01"
+               data-component="query" hidden>
+    <br>
+<p>Filtro inicial de período da data de serviço.</p>
+            </p>
+                    <p>
+                <b><code>filter[servico_antes_de]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[servico_antes_de]"
+               data-endpoint="GETapi-ordem_servicos"
+               value="2023-12-31"
+               data-component="query" hidden>
+    <br>
+<p>Filtro final de período da data de serviço.</p>
+            </p>
+                    <p>
+                <b><code>sort</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="sort"
+               data-endpoint="GETapi-ordem_servicos"
+               value="-locais.nome"
+               data-component="query" hidden>
+    <br>
+<p>Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'</p>
+            </p>
+                </form>
 
     
 

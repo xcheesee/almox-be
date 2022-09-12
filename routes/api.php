@@ -49,14 +49,14 @@ Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'upd
 Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
 Route::get('entrada/{id}/items', [App\Http\Controllers\EntradaItemController::class, 'items_entrada']);
 
-Route::get('inventario', [App\Http\Controllers\InventarioController::class, 'index']);
+Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
 Route::post('inventario', [App\Http\Controllers\InventarioController::class, 'store']);
 Route::get('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'show']);
 Route::put('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'update']);
 Route::delete('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'destroy']);
 
-Route::get('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'index']);
+Route::get('ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index']);
 Route::post('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'store']);
 Route::get('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'show']);
-Route::put('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'update']);
+Route::post('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'update']);
 Route::delete('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'destroy']);

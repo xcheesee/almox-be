@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
 use App\Http\Resources\Inventario as InventarioResource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 /**
  * @group Inventário
@@ -19,11 +21,33 @@ class InventarioController extends Controller
      * Lista as entradas de inventário
      * @authenticated
      *
+     * @queryParam filter[base] Filtro de Local (base) do item. Example: Leopoldina
+     * @queryParam filter[item] Filtro de Nome do Item Example: Adaptador Pvc
+     * @queryParam filter[tipo_item] Filtro de Tipo de item. Example: alvenaria
+     * @queryParam filter[tipo_medida] Filtro do Tipo de medida do item. Example: Pç
+     * @queryParam filter[quantidade_maior_que] Filtro inicial de quantidade. Example: 200
+     * @queryParam filter[quantidade_menor_que] Filtro final de quantidade. Example: 800
+     * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade' Example: -locais.nome
+     *
      */
     public function index()
     {
-        $inventarios = Inventario::paginate(15);
-            return InventarioResource::collection($inventarios);
+
+        $inventarios = QueryBuilder::for(Inventario::class)
+        ->select('locais.nome', 'tipo_items.nome', 'medidas.tipo', 'items.nome', 'inventarios.*')
+        ->leftJoin('locais', 'locais.id', 'inventarios.local_id')
+        ->leftJoin('items', 'items.id', 'inventarios.item_id')
+        ->leftJoin('tipo_items', 'tipo_items.id', 'items.tipo_item_id')
+        ->leftJoin('medidas', 'medidas.id', 'items.medida_id')
+        ->allowedFilters([
+                AllowedFilter::partial('base','locais.nome'), AllowedFilter::partial('item','items.nome'),
+                AllowedFilter::partial('tipo_item','tipo_items.nome'), AllowedFilter::partial('tipo_medida','medidas.tipo'),
+                AllowedFilter::scope('quantidade_maior_que'),
+                AllowedFilter::scope('quantidade_menor_que'),
+            ])
+        ->allowedSorts('id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade')
+        ->paginate(15);
+        return InventarioResource::collection($inventarios);
     }
 
     /**
@@ -46,7 +70,7 @@ class InventarioController extends Controller
      * @bodyParam local_id integer ID do local. Example: 2
      * @bodyParam quantidade float required Quantidade. Example: 10
      * @bodyParam qtd_alerta float required Quantidade. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -119,7 +143,7 @@ class InventarioController extends Controller
      * @bodyParam local_id integer ID do local. Example: 2
      * @bodyParam quantidade float required Quantidade. Example: 10
      * @bodyParam qtd_alerta float required Quantidade. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {

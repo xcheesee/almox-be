@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -30,5 +31,15 @@ class Inventario extends Model
     public function item()
     {
         return $this->belongsTo(Item::class);
+    }
+
+    public function scopeQuantidadeMaiorQue(Builder $query, $val): Builder
+    {
+        return $query->where('quantidade', '>=', $val);
+    }
+
+    public function scopeQuantidadeMenorQue(Builder $query, $val): Builder
+    {
+        return $query->where('quantidade', '<=', $val);
     }
 }
