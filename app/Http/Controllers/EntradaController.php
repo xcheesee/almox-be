@@ -91,7 +91,7 @@ class EntradaController extends Controller
         if ($request->filename){
             $tabela=DB::select("SHOW TABLE STATUS LIKE 'visitantes'");
             $next_id=$tabela[0]->Auto_increment;
-            $$file = $request->file('arquivo_nota_fiscal');
+            $file = $request->file('arquivo_nota_fiscal');
             $extension = $file->extension();
 
             $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$next_id.'-'.date('Ymdhis').'.'.$extension);

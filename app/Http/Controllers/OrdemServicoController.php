@@ -6,6 +6,8 @@ use App\Helpers\HtmlHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\OrdemServicoFormRequest;
 use App\Models\OrdemServico;
+use App\Models\Inventario;
+use App\Models\OrdemServicoItem;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
 
 /**
@@ -91,6 +93,20 @@ class OrdemServicoController extends Controller
         $ordem_servico->user_id = $request->input('user_id');
 
         if ($ordem_servico->save()) {
+
+            $materiais_utilizados = OrdemServicoItem::query()->where('ordem_servico_id','=',$ordem_servico->id)->get();
+
+            foreach ($materiais_utilizados as $material_utilizado) {           
+                $saida_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
+                                                    ->where('departamento_id','=',$ordem_servico->departamento_id)
+                                                    ->where('item_id','=',$material_utilizado->item_id)->first();
+
+                if ($saida_inventario) {
+                    $saida_inventario->quantidade -= $material_utilizado->quantidade;
+                    $saida_inventario->save();
+                }
+            }
+
             return new OrdemServicoResource($ordem_servico);
         }
     }
