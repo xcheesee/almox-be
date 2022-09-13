@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradaFormRequest;
+use App\Http\Requests\EntradaUpdateFormRequest;
 use App\Models\Entrada;
 use App\Models\EntradaItem;
 use App\Models\Inventario;
@@ -120,33 +121,35 @@ class EntradaController extends Controller
         }
 
         if ($entrada->save()) {
+            // Lidando com os itens adicionados
             $entradaItens = $request->input('entrada_items');
+            if ($entradaItens){
+                foreach ($entradaItens as $entrada_items){
+                    //Salvando item na tabela entrada_items
+                    $entrada_item = new EntradaItem();
+                    $entrada_item->entrada_id = $entrada->id;
+                    $entrada_item->item_id = $entrada_items["id"];
+                    $entrada_item->quantidade = $entrada_items["quantidade"];
+                    $entrada_item->save();
 
-            foreach ($entradaItens as $entrada_items){
-                //Salvando item na tabela entrada_items
-                $entrada_item = new EntradaItem();
-                $entrada_item->entrada_id = $entrada->id;
-                $entrada_item->item_id = $entrada_items["id"];
-                $entrada_item->quantidade = $entrada_items["quantidade"];
-                $entrada_item->save();
+                    //lógica para adicionar a quantidade dos itens de entrada no inventario
+                    $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
+                                            ->where('local_id','=',$entrada->local_id)
+                                            ->where('item_id','=',$entrada_items["id"])
+                                            ->first();
 
-                //lógica para adicionar a quantidade dos itens de entrada no inventario
-                $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
-                                        ->where('local_id','=',$entrada->local_id)
-                                        ->where('item_id','=',$entrada_items["id"])
-                                        ->first();
-
-                if ($inventario) {
-                    $inventario->quantidade += $entrada_items["quantidade"];
-                    $inventario->save();
-                } else {
-                    $inventario = new Inventario();
-                    $inventario->departamento_id = $entrada->departamento_id;
-                    $inventario->item_id = $entrada_items["id"];
-                    $inventario->local_id = $entrada->local_id;
-                    $inventario->quantidade = $entrada_items["quantidade"];
-                    $inventario->qtd_alerta = 0;
-                    $inventario->save();
+                    if ($inventario) {
+                        $inventario->quantidade += $entrada_items["quantidade"];
+                        $inventario->save();
+                    } else {
+                        $inventario = new Inventario();
+                        $inventario->departamento_id = $entrada->departamento_id;
+                        $inventario->item_id = $entrada_items["id"];
+                        $inventario->local_id = $entrada->local_id;
+                        $inventario->quantidade = $entrada_items["quantidade"];
+                        $inventario->qtd_alerta = 0;
+                        $inventario->save();
+                    }
                 }
             }
 
@@ -219,7 +222,7 @@ class EntradaController extends Controller
      *     }
      * }
      */
-    public function update(EntradaFormRequest $request, $id)
+    public function update(EntradaUpdateFormRequest $request, $id)
     {
         //dd($request);
         $entrada = Entrada::findOrFail($id);
@@ -244,6 +247,9 @@ class EntradaController extends Controller
         }
 
         if ($entrada->save()) {
+            // Lidando com os itens adicionados
+
+
             return new EntradaResource($entrada);
         }
     }

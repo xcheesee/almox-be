@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EntradaFormRequest extends FormRequest
+class EntradaUpdateFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,6 @@ class EntradaFormRequest extends FormRequest
             'numero_contrato' => 'required',
             'numero_nota_fiscal' => 'required',
             //'arquivo_nota_fiscal' => 'required|mimes:png,jpg,jpeg,gif,pdf|max:2048',
-            //'entrada_items' => 'required',
         ];
     }
 
