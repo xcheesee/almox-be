@@ -124,20 +124,27 @@ class OrdemServicoController extends Controller
         $ordem_servico->user_id = $request->input('user_id');
 
         if ($ordem_servico->save()) {
+            // Lidando com os itens adicionados
+            $ordemServicoItens = $request->input('ordem_servico_items');
+            if ($ordemServicoItens){
+                foreach ($ordemServicoItens as $ordem_servico_items);
+                //Salvando itens na tabela ordem_servico_items
+                $ordem_servico_item = new OrdemServicoItem();
+                $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
+                $ordem_servico_item->item_id = $ordem_servico_items["item_id"];
+                $ordem_servico_item->quantidade = $ordem_servico_items["quantidade"];
+                $ordem_servico_item->save();
 
-            $ordem_servico_items = OrdemServicoItem::query()->where('ordem_servico_id','=',$ordem_servico->id)->get();
-
-            foreach ($ordem_servico_items as $ordem_servico_item) {
+                //lógica para retirar a quantidade dos itens no inventario
                 $saida_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
                                                     ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                    ->where('item_id','=',$ordem_servico_item->item_id)->first();
+                                                    ->where('item_id','=',$ordem_servico_items["item_id"])->first();
 
                 if ($saida_inventario) {
-                    $saida_inventario->quantidade -= $ordem_servico_item->quantidade;
+                    $saida_inventario->quantidade -= $ordem_servico_items["quantidade"];
                     $saida_inventario->save();
                 }
             }
-
             return new OrdemServicoResource($ordem_servico);
         }
     }
