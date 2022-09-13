@@ -94,15 +94,15 @@ class OrdemServicoController extends Controller
 
         if ($ordem_servico->save()) {
 
-            $materiais_utilizados = OrdemServicoItem::query()->where('ordem_servico_id','=',$ordem_servico->id)->get();
+            $ordem_servico_items = OrdemServicoItem::query()->where('ordem_servico_id','=',$ordem_servico->id)->get();
 
-            foreach ($materiais_utilizados as $material_utilizado) {           
+            foreach ($ordem_servico_items as $ordem_servico_item) {           
                 $saida_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
                                                     ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                    ->where('item_id','=',$material_utilizado->item_id)->first();
+                                                    ->where('item_id','=',$ordem_servico_item->item_id)->first();
 
                 if ($saida_inventario) {
-                    $saida_inventario->quantidade -= $material_utilizado->quantidade;
+                    $saida_inventario->quantidade -= $ordem_servico_item->quantidade;
                     $saida_inventario->save();
                 }
             }
