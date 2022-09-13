@@ -94,7 +94,7 @@ class OrdemServicoController extends Controller
      *         "horas_execucao": 10,
      *         "observacoes": "observações referente ao serviço",
      *         "user_id": 1,
-     *         "entrada_items": [
+     *         "ordem_servico_items": [
      *             {
      *                 "id": 1,
      *                 "quantidade": 500
