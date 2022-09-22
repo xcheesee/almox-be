@@ -136,13 +136,19 @@ class OrdemServicoController extends Controller
                 $ordem_servico_item->save();
 
                 //lógica para retirar a quantidade dos itens no inventario
-                $saida_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
+                $inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
                                                     ->where('departamento_id','=',$ordem_servico->departamento_id)
                                                     ->where('item_id','=',$ordem_servico_items["item_id"])->first();
 
-                if ($saida_inventario) {
-                    $saida_inventario->quantidade -= $ordem_servico_items["quantidade"];
-                    $saida_inventario->save();
+                if ($inventario) {
+                    $inventario->quantidade -= $ordem_servico_items["quantidade"];
+                    $resultado = $inventario->quantidade;
+                        if ($resultado - 0) {
+                            $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
+                            return $erroQtd;
+                        } else {
+                            $inventario->save();
+                        }
                 }
             }
             return new OrdemServicoResource($ordem_servico);
@@ -246,7 +252,46 @@ class OrdemServicoController extends Controller
         $ordem_servico->user_id = $request->input('user_id');
 
         if ($ordem_servico->save()) {
+            // Lidando com os itens adicionados
+            $ordemServicoItens = $request->input('ordem_servico_items');
+            if ($ordemServicoItens){
+                foreach ($ordemServicoItens as $ordem_servico_items);       
+                    // Atualizando item na tabela ordem_servico_items
+                    $ordem_servico_item = OrdemServicoItem::query()->where('item_id','=',$ordem_servico_items["item_id"])->first();
+
+                    if ($ordem_servico_item) {
+                        $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
+                        $ordem_servico_item->item_id = $ordem_servico_items["item_id"];
+                        $ordem_servico_item->quantidade = $ordem_servico_items["quantidade"];
+                        $ordem_servico_item->save();
+                    } else {
+                        // Criando item na tabela ordem_servico_items
+                        $ordem_servico_item = new EntradaItem();
+                        $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
+                        $ordem_servico_item->item_id = $ordem_servico_items["item_id"];
+                        $ordem_servico_item->quantidade = $ordem_servico_items["quantidade"];
+                        $ordem_servico_item->save();
+                    }               
+
+            // lógica para retirar a quantidade dos itens no inventario
+            $inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
+                                                   ->where('departamento_id','=',$ordem_servico->departamento_id)
+                                                   ->where('item_id','=',$ordem_servico_items["item_id"])
+                                                   ->first();
+
+            if ($inventario) {
+                $inventario->quantidade -= $ordem_servico_items["quantidade"];
+                $resultado = $inventario->quantidade;
+                if ($resultado - 0) {
+                    $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
+                    return $erroQtd;
+                } else {
+                    $inventario->save();
+                }
+            }
+
             return new OrdemServicoResource($ordem_servico);
+            }
         }
     }
 
