@@ -274,7 +274,7 @@ class EntradaController extends Controller
                                             ->first();
 
                     if ($inventario) {
-                        $inventario->quantidade += $entrada_items["quantidade"];
+                        $inventario->quantidade = $entrada_items["quantidade"];
                         $inventario->save();
                     } else {
                         $inventario = new Inventario();

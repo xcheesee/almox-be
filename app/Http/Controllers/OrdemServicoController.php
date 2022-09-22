@@ -280,7 +280,7 @@ class OrdemServicoController extends Controller
                                                    ->first();
 
             if ($inventario) {
-                $inventario->quantidade -= $ordem_servico_items["quantidade"];
+                $inventario->quantidade = $ordem_servico_items["quantidade"];
                 $resultado = $inventario->quantidade;
                 if ($resultado - 0) {
                     $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
