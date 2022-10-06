@@ -161,7 +161,6 @@ class EntradaController extends Controller
                     }
                 }
             }
-
             return new EntradaResource($entrada);
         }
     }
@@ -258,7 +257,46 @@ class EntradaController extends Controller
 
         if ($entrada->save()) {
             // Lidando com os itens adicionados
+            $entradaItens = $request->input('entrada_items');
+            if ($entradaItens){
+                foreach ($entradaItens as $entrada_items){
+                    // Atualizando item na tabela entrada_items
+                    $entrada_item = EntradaItem::query()->where('item_id','=',$entrada_items["item_id"])->first();
 
+                    if ($entrada_item) {
+                        $entrada_item->entrada_id = $entrada->id;
+                        $entrada_item->item_id = $entrada_items["item_id"];
+                        $entrada_item->quantidade = $entrada_items["quantidade"];
+                        $entrada_item->save();
+                    } else {
+                        // Criando item na tabela entrada_items
+                        $entrada_item = new EntradaItem();
+                        $entrada_item->entrada_id = $entrada->id;
+                        $entrada_item->item_id = $entrada_items["item_id"];
+                        $entrada_item->quantidade = $entrada_items["quantidade"];
+                        $entrada_item->save();
+                    }
+
+                    // lógica para atualizar ou adicionar a quantidade dos itens no inventario
+                    $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
+                                            ->where('local_id','=',$entrada->local_id)
+                                            ->where('item_id','=',$entrada_items["item_id"])
+                                            ->first();
+
+                    if ($inventario) {
+                        $inventario->quantidade = $entrada_items["quantidade"];
+                        $inventario->save();
+                    } else {
+                        $inventario = new Inventario();
+                        $inventario->departamento_id = $entrada->departamento_id;
+                        $inventario->item_id = $entrada_items["item_id"];
+                        $inventario->local_id = $entrada->local_id;
+                        $inventario->quantidade = $entrada_items["quantidade"];
+                        $inventario->qtd_alerta = 0;
+                        $inventario->save();
+                    }
+                }
+            }
 
             return new EntradaResource($entrada);
         }
