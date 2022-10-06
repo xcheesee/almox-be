@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class Entrada extends Model
 {
@@ -13,12 +14,14 @@ class Entrada extends Model
 
     protected $fillable = [
         'departamento_id',
+        'tipo_item_id',
         'local_id',
         'data_entrada',
         'processo_sei',
         'numero_contrato',
         'numero_nota_fiscal',
         'arquivo_nota_fiscal',
+        'ativo',
     ];
 
     public function departamento()
@@ -39,5 +42,12 @@ class Entrada extends Model
     public function scopeEntradaAntesDe(Builder $query, $date): Builder
     {
         return $query->where('data_entrada', '<=', Carbon::parse($date));
+    }
+
+    public function getArquivoNotaFiscalUrlAttribute(){
+        if ($this->arquivo_nota_fiscal){
+            return Storage::url($this->arquivo_nota_fiscal);
+        }
+        return null;
     }
 }

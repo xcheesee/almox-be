@@ -1,14 +1,14 @@
-name: Departamento
+name: Local
 description: |-
 
-  APIs para listar, cadastrar, editar e remover dados de departamento
+  APIs para listar, cadastrar, editar e remover dados de locais
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/departamentos
+    uri: api/locais
     metadata:
-      title: 'Lista os departamentos'
+      title: 'Lista os locais'
       description: ''
       authenticated: true
       custom: []

@@ -20,6 +20,7 @@ class Inventario extends JsonResource
             'departamento' => $this->departamento ? $this->departamento->nome : null,
             'item_id' => $this->item_id,
             'item' => $this->item ? $this->item->nome : null,
+            'tipo_item' => $this->item && $this->item->tipo_item_id ? $this->item->tipo_item->nome : null,
             'medida' => $this->item ? $this->item->medida->tipo : null,
             'local_id' => $this->local_id,
             'local' => $this->local ? $this->local->nome : null,

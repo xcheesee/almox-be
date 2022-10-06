@@ -30,6 +30,7 @@ class OrdemServico extends JsonResource
             'profissional' => $this->profissional,
             'horas_execucao' => $this->horas_execucao,
             'observacoes' => $this->observacoes,
+            'flg_baixa' => $this->flg_baixa,
             'user_id' => $this->user_id,
             'user' => $this->user->name,
         ];

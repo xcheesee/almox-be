@@ -1,0 +1,45 @@
+name: TipoItem
+description: |-
+
+  APIs para listar, cadastrar, editar e remover dados de tipo_items
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/tipo_items
+    metadata:
+      title: 'Lista os tipos de itens'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "nome": "alvenaria",
+                      "descricao": null
+                  },
+                  {
+                      "id": 2,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "nome": "carpintaria",
+                      "descricao": null
+                  }
+               ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []

@@ -49,6 +49,19 @@
     border-color: #60C300 !important;
 }
 
+#spinner-div {
+    position: fixed;
+    display: none;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    text-align: center;
+    line-height: 50;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+}
+
 th > a {
     color: #bcb8f7;
     text-decoration: underline;

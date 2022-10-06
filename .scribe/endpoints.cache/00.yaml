@@ -24,7 +24,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: vgbhmgkdswazjbyskjfxrqubcbjmcgepelwntxquxorahtwylsdbzqffuopazbpwoj
+        example: kznoyzqyvigrjmpmlzbojnypgpbzjkbnoiyp
         type: string
         custom: []
       email:
@@ -111,6 +111,68 @@ endpoints:
         content: |-
           {
               "message": "E-mail ou senha está incorreto"
+          }
+        headers: []
+        description: '401'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/alterar_senha
+    metadata:
+      title: 'Altera a senha do usuário'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer 5|02KLXZaRYzgJybyy2rMTRKXKIOuuE3EylnT7JQVv'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'E-mail corporativo do usuário.'
+        required: true
+        example: tisvma@prefeitura.sp.gov.br
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'Senha atual do usuário.'
+        required: true
+        example: Teste!123
+        type: string
+        custom: []
+      newpassword:
+        name: newpassword
+        description: 'Senha nova do usuário.'
+        required: true
+        example: Teste!456
+        type: string
+        custom: []
+      password_confirmation:
+        name: password_confirmation
+        description: 'Confirmação de nova senha do usuário.'
+        required: true
+        example: Teste!456
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Senha alterada com sucesso!"
+          }
+        headers: []
+        description: '200'
+      -
+        status: 401
+        content: |-
+          {
+              "message":"Unauthenticated."
           }
         headers: []
         description: '401'

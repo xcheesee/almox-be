@@ -15,8 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 Route::post('cadastrar', [App\Http\Controllers\Auth\AuthController::class, 'cadastrar']);
 Route::post('login', [App\Http\Controllers\Auth\AuthController::class, 'login']);
+Route::post('alterar_senha', [App\Http\Controllers\Auth\AuthController::class, 'alterar_senha']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::group(['middleware' => ['auth:sanctum']], function() {
     /**
      * Exibe dados do usuário logado de acordo com o Token enviado
      * @authenticated
@@ -40,23 +41,40 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     Route::get('perfil', function(Request $request) {
         return auth()->user();
     });//return $request->user();
+
+
+    //listagens para criar combos/filtros (dependem de departamento/autorização)
+    Route::get('tipo_items', [App\Http\Controllers\TipoItemController::class, 'index']);
+    Route::get('locais', [App\Http\Controllers\LocalController::class, 'index']);
+    Route::get('departamentos', [App\Http\Controllers\DepartamentoController::class, 'index']);
+
+    //CRUDs
+    Route::get('entradas', [App\Http\Controllers\EntradaController::class, 'index']);
+    Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
+
+    Route::get('ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index']);
+    Route::post('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'store']);
+    Route::get('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'show']);
+    Route::post('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'update']);
+    Route::delete('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'destroy']);
+    Route::get('ordem_servico/{id}/items', [App\Http\Controllers\OrdemServicoItemController::class, 'items_ordem']);
+    Route::post('ordem_servico/{id}/baixa', [App\Http\Controllers\OrdemServicoController::class, 'baixa']);
+
 });
 
-Route::get('entradas', [App\Http\Controllers\EntradaController::class, 'index']);
 Route::post('entrada', [App\Http\Controllers\EntradaController::class, 'store']);
 Route::get('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'show']);
 Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'update']);
 Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
 Route::get('entrada/{id}/items', [App\Http\Controllers\EntradaItemController::class, 'items_entrada']);
 
-Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
 Route::post('inventario', [App\Http\Controllers\InventarioController::class, 'store']);
 Route::get('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'show']);
 Route::put('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'update']);
 Route::delete('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'destroy']);
 
-Route::get('ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index']);
-Route::post('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'store']);
-Route::get('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'show']);
-Route::post('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'update']);
-Route::delete('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'destroy']);
+Route::get('ordem_servico/{id}/baixa_pdf', [App\Http\Controllers\OrdemServicoController::class, 'baixa_pdf']);
+
+//listagens para criar combos/filtros
+Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item_por_tipo']);
+Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);

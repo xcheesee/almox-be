@@ -20,7 +20,7 @@ class MedidaController extends Controller
      * @authenticated
      *
      */
-    public function index(MedidaFormRequest $request)
+    public function index(Request $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){

@@ -44,7 +44,7 @@ class OrdemServicoItemController extends Controller
      * @bodyParam ordem_servico_id integer ID da Ordem de serviço. Example: 2
      * @bodyParam item_id integer ID do Item. Example: 1
      * @bodyParam quantidade float required. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -89,6 +89,33 @@ class OrdemServicoItemController extends Controller
     }
 
     /**
+     * Mostra os itens de uma ordem de serviço
+     * @authenticated
+     *
+     * @urlParam id integer required ID da ordem de serviço. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "ordem_servico_id": 2,
+     *             "item_id": 1,
+     *             "quantidade": 10
+     *         },{
+     *             "id": 2,
+     *             "ordem_servico_id": 2,
+     *             "item_id": 3,
+     *             "quantidade": 800
+     *         }
+     *     ]
+     * }
+     */
+    public function items_ordem($id){
+        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$id)->get();
+        return OrdemServicoItemResource::collection($ordem_servico_itens);
+    }
+
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -109,7 +136,7 @@ class OrdemServicoItemController extends Controller
      * @bodyParam ordem_servico_id integer ID da Ordem de serviço. Example: 2
      * @bodyParam item_id integer ID do Item. Example: 1
      * @bodyParam quantidade float required. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -159,5 +186,5 @@ class OrdemServicoItemController extends Controller
                 'data' => new OrdemServicoItemResource($ordem_servico_item)
             ]);
         }
-    }  
+    }
 }

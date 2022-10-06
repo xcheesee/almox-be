@@ -62,6 +62,11 @@
     </nav>
     </header>
 
+    <div id="spinner-div" class="pt-5">
+        <div class="spinner-border text-success align-middle" role="status">
+        </div>
+    </div>
+
     <div class="d-flex flex-column bgMainColor" style="min-height: 100vh;">
         <div class="container mt-5 p-5" style="flex: 1 0 auto;">
             <h2 class="mb-4">@yield('cabecalho')</h2>

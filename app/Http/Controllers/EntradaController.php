@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradaFormRequest;
 use App\Http\Requests\EntradaUpdateFormRequest;
@@ -38,17 +39,25 @@ class EntradaController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
+
         $entradas = QueryBuilder::for(Entrada::class)
         ->select('locais.nome', 'tipo_items.nome', 'entradas.*')
         ->leftJoin('locais', 'locais.id', 'entradas.local_id')
         ->leftJoin('tipo_items', 'tipo_items.id', 'entradas.tipo_item_id')
+        ->where('entradas.ativo','=',1)
+        ->whereIn('entradas.departamento_id',$userDeptos)
         ->allowedFilters([
-                'processo_sei', 'numero_contrato', 'numero_nota_fiscal', AllowedFilter::partial('local','locais.nome'),
+                'processo_sei', 'numero_contrato', 'numero_nota_fiscal',
+                AllowedFilter::partial('local','locais.nome'),
+                AllowedFilter::partial('tipo','tipo_items.nome'),
                 AllowedFilter::scope('entrada_depois_de'),
                 AllowedFilter::scope('entrada_antes_de'),
             ])
         ->allowedSorts('numero_nota_fiscal', 'processo_sei', 'data_entrada', 'numero_contrato', 'numero_contrato')
         ->paginate(15);
+
         return EntradaResource::collection($entradas);
     }
 
@@ -173,7 +182,8 @@ class EntradaController extends Controller
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?"
+     *         "arquivo_nota_fiscal": "files/entrada_294-20220909055100.pdf",
+     *         "arquivo_nota_fiscal_url": "http://localhost:8000/storage/files/entrada_294-20220909055100.pdf"
      *     }
      * }
      */
@@ -271,19 +281,60 @@ class EntradaController extends Controller
      *         "processo_sei": "0123000134569000",
      *         "numero_contrato": "2343rbte67b63",
      *         "numero_nota_fiscal": "1234",
-     *         "arquivo_nota_fiscal": "DANFE?"
+     *         "arquivo_nota_fiscal": "files/entrada_294-20220909055100.pdf",
+     *         "arquivo_nota_fiscal_url": "http://localhost:8000/storage/files/entrada_294-20220909055100.pdf"
      *     }
      * }
      */
     public function destroy($id)
     {
         $entrada = Entrada::findOrFail($id);
-
-        if ($entrada->delete()) {
+        /**
+         * O seguinte código é para remoção "lógica", apenas setamos o ativo=0 e reduzimos a quantidade do item no inventário
+         */
+        if ($entrada->ativo == 0){
             return response()->json([
-                'message' => 'Entrada deletada com sucesso!',
-                'data' => new EntradaResource($entrada)
-            ]);
+                'message' => 'Entrada inativa na base de dados do sistema; a mesma foi removida anteriormente.'
+            ], 410);
         }
+        $entrada->ativo = 0;
+        $entrada->save();
+
+        $entrada_items = EntradaItem::where('entrada_id','=',$id)->get();
+        //dd($entrada_items);
+        foreach($entrada_items as $item){
+            //lógica para retirar a quantidade dos itens no inventario
+            $saida_inventario = Inventario::query()->where('local_id','=',$entrada->local_id)
+                ->where('departamento_id','=',$entrada->departamento_id)
+                ->where('item_id','=',$item->item_id)->first();
+
+            if ($saida_inventario) {
+                $saida_inventario->quantidade -= $item->quantidade;
+                $saida_inventario->save();
+            }
+        }
+
+        return response()->json([
+            'message' => 'Entrada deletada com sucesso! Items referentes à entrada foram removidos do inventário',
+            'data' => new EntradaResource($entrada)
+        ]);
+
+        /**
+         * O código abaixo é para remoção "física", ou seja, os registros referentes a entrada serão apagados da base.
+         * Por hora usaremos apenas o delete lógico, mas de qualquer forma é preciso remover os itens do inventário
+         */
+        // $entrada_items = EntradaItem::where('entrada_id','=',$id)->get();
+        // foreach($entrada_items as $item){
+        //     $item->delete();
+        //
+        // }
+        // Storage::delete($entrada->arquivo_nota_fiscal);
+
+        // if ($entrada->delete()) {
+        //     return response()->json([
+        //         'message' => 'Entrada deletada com sucesso!',
+        //         'data' => new EntradaResource($entrada)
+        //     ]);
+        // }
     }
 }

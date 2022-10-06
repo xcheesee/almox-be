@@ -20,12 +20,32 @@ class TipoItemController extends Controller
      * Lista os tipos de itens
      * @authenticated
      *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "nome": "alvenaria",
+     *             "descricao": null
+     *         },
+     *         {
+     *             "id": 2,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "nome": "carpintaria",
+     *             "descricao": null
+     *         }
+     *      ]
+     * }
      */
-    public function index(TipoItemFormRequest $request)
+    public function index(Request $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
-            $tipo_items = TipoItem::get();
+            $user = auth()->user();
+            $userDeptos = DepartamentoHelper::ids_deptos($user);
+            $tipo_items = TipoItem::whereIn('departamento_id',$userDeptos)->get();
             return TipoItemResource::collection($tipo_items);
         }
 

@@ -20,6 +20,7 @@
         @can('relatorio-show')
         @endcan
     </div>
+    @hasrole('admin')
     <div class="row d-flex justify-content-center m-3" style="height: 200px;">
         <div class="col d-grid gap-2">
             @can('user-list')
@@ -37,5 +38,6 @@
             @endcan
         </div>
     </div>
+    @endhasrole
 </div>
 @endsection

@@ -1,0 +1,60 @@
+name: Item
+description: |-
+
+  APIs para listar, cadastrar, editar e remover dados de itens
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: 'api/items/tipo/{id}'
+    metadata:
+      title: 'Lista os itens de acordo com o tipo de item'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID do tipo de item.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "medida_id": 4,
+                      "medida": "SC",
+                      "tipo_item_id": 1,
+                      "tipo_item": "alvenaria",
+                      "nome": "Argamassa, Na Cor Cinza ",
+                      "descricao": "Argamassa; Composto de Agregados Minerais Classificados, Aditivo Especial Nao Toxico;"
+                  },
+                  {
+                      "id": 2,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "medida_id": 4,
+                      "medida": "SC",
+                      "tipo_item_id": 1,
+                      "tipo_item": "alvenaria",
+                      "nome": "Cimento Portland Composto(cpii-f-32mpa) ",
+                      "descricao": "Cimento Portland Composto (cp Ii-f); Composto Com Filer; Com Resistencia de 32 Mpa; Faixa de Porcent."
+                  }
+               ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []

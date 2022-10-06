@@ -28,7 +28,7 @@ class ItemController extends Controller
 
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
-            $itens = Item::paginate(15);
+            $itens = Item::get();
             return ItemResource::collection($itens);
         }
 
@@ -59,6 +59,49 @@ class ItemController extends Controller
 
         $mensagem = $request->session()->get('mensagem');
         return view('cadaux.items.index', compact('data','mensagem','filtros'));
+    }
+
+    /**
+     * Lista os itens de acordo com o tipo de item
+     * @authenticated
+     *
+     * @urlParam id integer required ID do tipo de item. Example: 1
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "medida_id": 4,
+     *             "medida": "SC",
+     *             "tipo_item_id": 1,
+     *             "tipo_item": "alvenaria",
+     *             "nome": "Argamassa, Na Cor Cinza ",
+     *             "descricao": "Argamassa; Composto de Agregados Minerais Classificados, Aditivo Especial Nao Toxico;"
+     *         },
+     *         {
+     *             "id": 2,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "medida_id": 4,
+     *             "medida": "SC",
+     *             "tipo_item_id": 1,
+     *             "tipo_item": "alvenaria",
+     *             "nome": "Cimento Portland Composto(cpii-f-32mpa) ",
+     *             "descricao": "Cimento Portland Composto (cp Ii-f); Composto Com Filer; Com Resistencia de 32 Mpa; Faixa de Porcent."
+     *         }
+     *      ]
+     * }
+     *
+     */
+    public function item_por_tipo(int $tipo)
+    {
+        $itens = Item::query()
+            ->where('tipo_item_id','=',$tipo)
+            ->get();
+
+        return ItemResource::collection($itens);;
     }
 
     /**

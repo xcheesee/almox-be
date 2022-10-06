@@ -112,6 +112,42 @@ class AuthController extends Controller
     }
 
     /**
+     * Altera a senha do usuário
+     * @authenticated
+     *
+     * @header Authorization Bearer 5|02KLXZaRYzgJybyy2rMTRKXKIOuuE3EylnT7JQVv
+     *
+     * @bodyParam email string required E-mail corporativo do usuário. Example: tisvma@prefeitura.sp.gov.br
+     * @bodyParam password string required Senha atual do usuário. Example: Teste!123
+     * @bodyParam newpassword string required Senha nova do usuário. Example: Teste!456
+     * @bodyParam password_confirmation string required Confirmação de nova senha do usuário. Example: Teste!456
+     *
+     * @response 200 {
+     *     "message": "Senha alterada com sucesso!"
+     * }
+     *
+     * @response 401 {
+     *     "message":"Unauthenticated."
+     * }
+     */
+    public function alterar_senha(Request $request)
+    {
+        //dd($request); exit();
+        if (!Auth::attempt($request->only(['email','password']))){
+            return response()->json(['message' => 'Senha Atual incorreta'], 401);
+        }
+
+        if($request->newpassword !== $request->password_confirmation){
+            return response()->json(['message' => 'A confirmação da nova senha não confere'], 401);
+        }
+
+        $user = User::where('email', $request['email'])->firstOrFail();
+        $user->password = Hash::make($request->newpassword);
+        $user->save();
+        return response()->json(['message' => 'Senha alterada com sucesso'], 200);
+    }
+
+    /**
      * Efetua logout no sistema e remove os tokens associados ao usuário
      * @authenticated
      *

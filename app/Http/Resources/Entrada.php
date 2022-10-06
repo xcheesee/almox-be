@@ -25,6 +25,7 @@ class Entrada extends JsonResource
             'numero_contrato' => $this->numero_contrato,
             'numero_nota_fiscal' => $this->numero_nota_fiscal,
             'arquivo_nota_fiscal' => $this->arquivo_nota_fiscal,
+            'arquivo_nota_fiscal_url' => $this->arquivo_nota_fiscal_url,
         ];
     }
 }

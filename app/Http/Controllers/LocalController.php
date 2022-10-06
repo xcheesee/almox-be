@@ -21,11 +21,13 @@ class LocalController extends Controller
      * @authenticated
      *
      */
-    public function index(LocalFormRequest $request)
+    public function index(Request $request)
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
-            $locais = Local::paginate(15);
+            $user = auth()->user();
+            $userDeptos = DepartamentoHelper::ids_deptos($user);
+            $locais = Local::whereIn('departamento_id',$userDeptos)->get();
             return LocalResource::collection($locais);
         }
 

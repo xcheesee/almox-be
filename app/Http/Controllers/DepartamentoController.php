@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Models\Departamento;
 use App\Http\Resources\Departamento as DepartamentoResource;
@@ -23,7 +24,9 @@ class DepartamentoController extends Controller
     {
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         if ($is_api_request){
-            $departamentos = Departamento::get();
+            $user = auth()->user();
+            $userDeptos = DepartamentoHelper::ids_deptos($user);
+            $departamentos = Departamento::whereIn('id',$userDeptos)->get();
             return DepartamentoResource::collection($departamentos);
         }
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -32,5 +33,14 @@ class Saida extends Model
     public function baixa_user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getBaixaDatahoraFormatadaAttribute(){
+        if ($this->baixa_datahora){
+            $date = Carbon::parse($this->baixa_datahora);
+            return $date->format("d/m/Y H:i:s");
+        }
+
+        return null;
     }
 }

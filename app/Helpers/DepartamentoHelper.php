@@ -37,4 +37,21 @@ class DepartamentoHelper
 
         return $arrSelect;
     }
+
+    public static function ids_deptos($user){
+        $arrSelect = array();
+        if ($user->hasRole('admin')){
+            $departamentos = Departamento::query()->orderBy('id')->get(); //->where('ativo','=',1)
+            foreach($departamentos as $v){
+                $arrSelect[] = $v->id;
+            }
+        }else{
+            $departamentos = DepartamentoUsuario::query()->where('user_id','=',$user->id)->orderBy('departamento_id')->get(); //->where('ativo','=',1)
+            foreach($departamentos as $v){
+                $arrSelect[] = $v->departamento_id;
+            }
+        }
+
+        return $arrSelect;
+    }
 }

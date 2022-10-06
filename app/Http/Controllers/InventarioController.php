@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
@@ -32,6 +33,8 @@ class InventarioController extends Controller
      */
     public function index()
     {
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
 
         $inventarios = QueryBuilder::for(Inventario::class)
         ->select('locais.nome', 'tipo_items.nome', 'medidas.tipo', 'items.nome', 'inventarios.*')
@@ -39,6 +42,7 @@ class InventarioController extends Controller
         ->leftJoin('items', 'items.id', 'inventarios.item_id')
         ->leftJoin('tipo_items', 'tipo_items.id', 'items.tipo_item_id')
         ->leftJoin('medidas', 'medidas.id', 'items.medida_id')
+        ->whereIn('inventarios.departamento_id',$userDeptos)
         ->allowedFilters([
                 AllowedFilter::partial('base','locais.nome'), AllowedFilter::partial('item','items.nome'),
                 AllowedFilter::partial('tipo_item','tipo_items.nome'), AllowedFilter::partial('tipo_medida','medidas.tipo'),
@@ -47,6 +51,7 @@ class InventarioController extends Controller
             ])
         ->allowedSorts('id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade')
         ->paginate(15);
+
         return InventarioResource::collection($inventarios);
     }
 

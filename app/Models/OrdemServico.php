@@ -14,16 +14,17 @@ class OrdemServico extends Model
     protected $fillable = [
         'departamento_id',
         'origem_id',
-        'destino_id',
         'local_servico_id',
+        'data_inicio_servico',
+        'data_fim_servico',
         'almoxarife_nome',
         'almoxarife_email',
-        'almoxarife_cargo',
-        'data_servico',
         'especificacao',
         'profissional',
         'horas_execucao',
         'observacoes',
+        'flg_baixa',
+        'ativo',
         'user_id',
     ];
 
@@ -50,6 +51,24 @@ class OrdemServico extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function getDataInicioFormatadaAttribute(){
+        if ($this->data_inicio_servico){
+            $date = Carbon::parse($this->data_inicio_servico);
+            return $date->format("d/m/Y H:i:s");
+        }
+
+        return null;
+    }
+
+    public function getDataFimFormatadaAttribute(){
+        if ($this->data_fim_servico){
+            $date = Carbon::parse($this->data_fim_servico);
+            return $date->format("d/m/Y H:i:s");
+        }
+
+        return null;
     }
 
     public function scopeServicoDepoisDe(Builder $query, $date): Builder
