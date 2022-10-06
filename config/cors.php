@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [env('API_FOLDER','').'api/*', 'sanctum/csrf-cookie'],
 
     'allowed_methods' => ['*'],
 
