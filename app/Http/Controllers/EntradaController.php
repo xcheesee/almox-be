@@ -129,6 +129,7 @@ class EntradaController extends Controller
             $entrada->arquivo_nota_fiscal = $upload;
         }
 
+        DB::beginTransaction();
         if ($entrada->save()) {
             // Lidando com os itens adicionados
             $entradaItens = $request->input('entrada_items');
@@ -161,6 +162,7 @@ class EntradaController extends Controller
                     }
                 }
             }
+            DB::commit();
             return new EntradaResource($entrada);
         }
     }
@@ -255,6 +257,7 @@ class EntradaController extends Controller
             $entrada->arquivo_nota_fiscal = $upload;
         }
 
+        DB::beginTransaction();
         if ($entrada->save()) {
             // Lidando com os itens adicionados
             $entradaItens = $request->input('entrada_items');
@@ -297,7 +300,7 @@ class EntradaController extends Controller
                     }
                 }
             }
-
+            DB::commit();
             return new EntradaResource($entrada);
         }
     }

@@ -136,6 +136,7 @@ class OrdemServicoController extends Controller
         $ordem_servico->observacoes = $request->input('observacoes');
         $ordem_servico->user_id = Auth::user()->id;
 
+        DB::beginTransaction();
         if ($ordem_servico->save()) {
             // Lidando com os itens adicionados
             $ordemServicoItens = $request->input('ordem_servico_items');
@@ -156,16 +157,22 @@ class OrdemServicoController extends Controller
                     if ($inventario) {
                         $inventario->quantidade -= $ordem_servico_items["quantidade"];
                         $resultado = $inventario->quantidade;
-                            if ($resultado - 0) {
-                                $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
-                                return $erroQtd;
-                            } else {
-                                $inventario->save();
-                            }
+                        if ($resultado <= 0) {
+                            DB::rollBack();
+                            $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
+                            return $erroQtd;
+                        } else {
+                            $inventario->save();
+                        }
+                    }else{
+                        DB::rollBack();
+                        $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
+                        return $erroQtd;
                     }
                 }
             }
 
+            DB::commit();
             return new OrdemServicoResource($ordem_servico);
         }
     }
@@ -268,6 +275,7 @@ class OrdemServicoController extends Controller
         $ordem_servico->observacoes = $request->input('observacoes');
         $ordem_servico->user_id = Auth::user()->id;
 
+        DB::beginTransaction();
         if ($ordem_servico->save()) {
             // Lidando com os itens adicionados
             $ordemServicoItens = $request->input('ordem_servico_items');
@@ -299,7 +307,8 @@ class OrdemServicoController extends Controller
                     if ($inventario) {
                         $inventario->quantidade = $ordem_servico_items["quantidade"];
                         $resultado = $inventario->quantidade;
-                        if ($resultado - 0) {
+                        if ($resultado <= 0) {
+                            DB::rollBack();
                             $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
                             return $erroQtd;
                         } else {
@@ -309,6 +318,7 @@ class OrdemServicoController extends Controller
                 }
             }
 
+            DB::commit();
             return new OrdemServicoResource($ordem_servico);
         }
     }
