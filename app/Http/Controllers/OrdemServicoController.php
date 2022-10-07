@@ -151,7 +151,7 @@ class OrdemServicoController extends Controller
                     //lógica para retirar a quantidade dos itens no inventario
                     $inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
                                                         ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                        ->where('item_id','=',$ordem_servico_items["item_id"])->first();
+                                                        ->where('item_id','=',$ordem_servico_items["id"])->first();
 
                     if ($inventario) {
                         $inventario->quantidade -= $ordem_servico_items["quantidade"];
