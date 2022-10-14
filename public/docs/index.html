@@ -160,6 +160,12 @@
                                     <li class="tocify-item level-2" data-unique="inventario-GETapi-inventarios">
                         <a href="#inventario-GETapi-inventarios">Lista as entradas de inventário</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="inventario-GETapi-base-items">
+                        <a href="#inventario-GETapi-base-items">Lista os itens de inventário do local e departamento especificados</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="inventario-GETapi-items_acabando">
+                        <a href="#inventario-GETapi-items_acabando">lista os itens que estão acabando, de acordo com a quantidade definida no alerta, ou se já acabaram</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-8" class="tocify-header">
@@ -250,7 +256,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 4 2022</li>
+        <li>Last updated: October 11 2022</li>
     </ul>
 </div>
 
@@ -297,7 +303,7 @@ const headers = {
 };
 
 let body = {
-    "name": "kznoyzqyvigrjmpmlzbojnypgpbzjkbnoiyp",
+    "name": "ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -315,7 +321,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/cadastrar'
 payload = {
-    "name": "kznoyzqyvigrjmpmlzbojnypgpbzjkbnoiyp",
+    "name": "ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -338,7 +344,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'kznoyzqyvigrjmpmlzbojnypgpbzjkbnoiyp',
+            'name' =&gt; 'ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -421,7 +427,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="kznoyzqyvigrjmpmlzbojnypgpbzjkbnoiyp"
+               value="ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1361,7 +1367,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php5EB7.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php7830.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -1434,7 +1440,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php5EB7.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php7830.tmp', 'r')
             ],
         ],
     ]
@@ -2184,7 +2190,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 53
+x-ratelimit-remaining: 59
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -3176,6 +3182,364 @@ access-control-allow-origin: *
             </p>
                 </form>
 
+            <h2 id="inventario-GETapi-base-items">Lista os itens de inventário do local e departamento especificados</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-base-items">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://10.30.17.8:8000/api/base/items"
+);
+
+const params = {
+    "base": "2",
+    "depto": "3",
+    "tipo": "2",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://10.30.17.8:8000/api/base/items'
+params = {
+  'base': '2',
+  'depto': '3',
+  'tipo': '2',
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers, params=params)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://10.30.17.8:8000/api/base/items',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'base'=&gt; '2',
+            'depto'=&gt; '3',
+            'tipo'=&gt; '2',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-base-items">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 56
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 17,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;medida_id&quot;: 3,
+            &quot;medida&quot;: &quot;MT&quot;,
+            &quot;tipo_item_id&quot;: 2,
+            &quot;tipo_item&quot;: &quot;carpintaria&quot;,
+            &quot;nome&quot;: &quot;T&aacute;bua \&quot;2,5  X 30\&quot; cm em  Pinus; mista ou equivalente da regi&atilde;o - Bruta&quot;,
+            &quot;descricao&quot;: &quot;&quot;
+        },
+        {
+            &quot;id&quot;: 18,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;medida_id&quot;: 3,
+            &quot;medida&quot;: &quot;MT&quot;,
+            &quot;tipo_item_id&quot;: 2,
+            &quot;tipo_item&quot;: &quot;carpintaria&quot;,
+            &quot;nome&quot;: &quot;Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi&uacute;ba)&quot;,
+            &quot;descricao&quot;: &quot;&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-base-items" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-base-items"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-base-items"></code></pre>
+</span>
+<span id="execution-error-GETapi-base-items" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-base-items"></code></pre>
+</span>
+<form id="form-GETapi-base-items" data-method="GET"
+      data-path="api/base/items"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-base-items', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-base-items"
+                    onclick="tryItOut('GETapi-base-items');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-base-items"
+                    onclick="cancelTryOut('GETapi-base-items');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-base-items" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/base/items</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-base-items" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-base-items"
+                                                                data-component="header"></label>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>base</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="base"
+               data-endpoint="GETapi-base-items"
+               value="2"
+               data-component="query" hidden>
+    <br>
+<p>ID do local.</p>
+            </p>
+                    <p>
+                <b><code>depto</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="depto"
+               data-endpoint="GETapi-base-items"
+               value="3"
+               data-component="query" hidden>
+    <br>
+<p>ID do departamento.</p>
+            </p>
+                    <p>
+                <b><code>tipo</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="tipo"
+               data-endpoint="GETapi-base-items"
+               value="2"
+               data-component="query" hidden>
+    <br>
+<p>ID do tipo de item.</p>
+            </p>
+                </form>
+
+            <h2 id="inventario-GETapi-items_acabando">lista os itens que estão acabando, de acordo com a quantidade definida no alerta, ou se já acabaram</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-items_acabando">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://10.30.17.8:8000/api/items_acabando"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://10.30.17.8:8000/api/items_acabando'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://10.30.17.8:8000/api/items_acabando',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-items_acabando">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 93,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;tipo_item&quot;: &quot;alvenaria&quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;local_id&quot;: 1,
+            &quot;local&quot;: &quot;LAB&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 100,
+            &quot;qtd_alerta&quot;: 101
+        },
+        {
+            &quot;id&quot;: 106,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;item_id&quot;: 18,
+            &quot;item&quot;: &quot;Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi&uacute;ba)&quot;,
+            &quot;tipo_item&quot;: &quot;carpintaria&quot;,
+            &quot;medida&quot;: &quot;MT&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;quantidade&quot;: 5,
+            &quot;qtd_alerta&quot;: 6
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-items_acabando" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-items_acabando"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-items_acabando"></code></pre>
+</span>
+<span id="execution-error-GETapi-items_acabando" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-items_acabando"></code></pre>
+</span>
+<form id="form-GETapi-items_acabando" data-method="GET"
+      data-path="api/items_acabando"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-items_acabando', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-items_acabando"
+                    onclick="tryItOut('GETapi-items_acabando');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-items_acabando"
+                    onclick="cancelTryOut('GETapi-items_acabando');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-items_acabando" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/items_acabando</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-items_acabando" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-items_acabando"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-items_acabando"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID do inventário que deseja deletar.</p>
+            </p>
+                    </form>
+
         <h1 id="item">Item</h1>
 
     <p>APIs para listar, cadastrar, editar e remover dados de itens</p>
@@ -3535,7 +3899,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 51
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -5109,10 +5473,10 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/pdf
-content-disposition: inline; filename=&quot;baixa_1_20221004-130401.pdf&quot;
+content-disposition: inline; filename=&quot;baixa_1_20221011-174839.pdf&quot;
 cache-control: no-cache, private
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 52
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>

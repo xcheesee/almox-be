@@ -10,11 +10,13 @@ use App\Models\OrdemServico;
 use App\Models\Inventario;
 use App\Models\OrdemServicoItem;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
+use App\Mail\ItemAcabando;
 use App\Models\Saida;
 use App\Models\SaidaItem;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -36,7 +38,7 @@ class OrdemServicoController extends Controller
      * @queryParam filter[almoxarife_email] Filtro do e-mail do almoxarife responsável. Example: fulano@mail.com
      * @queryParam filter[servico_depois_de] Filtro inicial de período da data de serviço. Example: 2023-01-01
      * @queryParam filter[servico_antes_de] Filtro final de período da data de serviço. Example: 2023-12-31
-     * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade' Example: -locais.nome
+     * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome' Example: -locais.nome
      *
      */
     public function index()
@@ -56,7 +58,7 @@ class OrdemServicoController extends Controller
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
-        ->allowedSorts('id', 'data_servico', 'origem.nome', 'locais.nome')
+        ->allowedSorts('id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome')
         ->paginate(15);
 
         return OrdemServicoResource::collection($ordem_servicos);
@@ -141,6 +143,7 @@ class OrdemServicoController extends Controller
             // Lidando com os itens adicionados
             $ordemServicoItens = $request->input('ordem_servico_items');
             if ($ordemServicoItens){
+                $items_acabando = array();
                 foreach ($ordemServicoItens as $ordem_servico_items){
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_item = new OrdemServicoItem();
@@ -163,12 +166,19 @@ class OrdemServicoController extends Controller
                             return $erroQtd;
                         } else {
                             $inventario->save();
+                            if ($inventario->quantidade <= $inventario->qtd_alerta) {
+                                $items_acabando[]=$inventario;
+                            }
                         }
                     }else{
                         DB::rollBack();
                         $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
                         return $erroQtd;
                     }
+                }
+                if (count($items_acabando) > 0){
+                    //Enviar e-mail aos responsáveis
+                    Mail::to('abalves@prefeitura.sp.gov.br')->send(new ItemAcabando($items_acabando));
                 }
             }
 

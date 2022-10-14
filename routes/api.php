@@ -51,6 +51,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     //CRUDs
     Route::get('entradas', [App\Http\Controllers\EntradaController::class, 'index']);
     Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
+    Route::get('items_acabando', [App\Http\Controllers\InventarioController::class, 'items_acabando']);
 
     Route::get('ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index']);
     Route::post('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'store']);
@@ -78,3 +79,4 @@ Route::get('ordem_servico/{id}/baixa_pdf', [App\Http\Controllers\OrdemServicoCon
 //listagens para criar combos/filtros
 Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item_por_tipo']);
 Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);
+Route::get('base/items', [App\Http\Controllers\InventarioController::class, 'items_local']);

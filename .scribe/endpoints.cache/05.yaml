@@ -299,3 +299,112 @@ endpoints:
           access-control-allow-origin: '*'
         description: null
     responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/base/items
+    metadata:
+      title: 'Lista os itens de inventário do local e departamento especificados'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      base:
+        name: base
+        description: 'ID do local.'
+        required: true
+        example: '2'
+        type: string
+        custom: []
+      depto:
+        name: depto
+        description: 'ID do departamento.'
+        required: true
+        example: '3'
+        type: string
+        custom: []
+      tipo:
+        name: tipo
+        description: 'ID do tipo de item.'
+        required: true
+        example: '2'
+        type: string
+        custom: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: '{"data":[{"id":17,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"T\u00e1bua \"2,5  X 30\" cm em  Pinus; mista ou equivalente da regi\u00e3o - Bruta","descricao":""},{"id":18,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi\u00faba)","descricao":""}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '56'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/items_acabando
+    metadata:
+      title: 'lista os itens que estão acabando, de acordo com a quantidade definida no alerta, ou se já acabaram'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID do inventário que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 93,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "item_id": 1,
+                      "item": "Argamassa, Na Cor Cinza ",
+                      "tipo_item": "alvenaria",
+                      "medida": "SC",
+                      "local_id": 1,
+                      "local": "LAB",
+                      "local_tipo": "base",
+                      "quantidade": 100,
+                      "qtd_alerta": 101
+                  },
+                  {
+                      "id": 106,
+                      "departamento_id": 3,
+                      "departamento": "CGPABI/DGPU",
+                      "item_id": 18,
+                      "item": "Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupiúba)",
+                      "tipo_item": "carpintaria",
+                      "medida": "MT",
+                      "local_id": 2,
+                      "local": "UEM Base Leopoldina",
+                      "local_tipo": "base",
+                      "quantidade": 5,
+                      "qtd_alerta": 6
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []

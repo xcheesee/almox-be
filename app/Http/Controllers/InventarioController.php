@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
 use App\Http\Resources\Inventario as InventarioResource;
+use App\Http\Resources\Item as ItemResource;
+use App\Models\Item;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -53,6 +55,40 @@ class InventarioController extends Controller
         ->paginate(15);
 
         return InventarioResource::collection($inventarios);
+    }
+
+    /**
+     * Lista os itens de inventário do local e departamento especificados
+     * @authenticated
+     *
+     * @queryParam base required ID do local. Example: 2
+     * @queryParam depto required ID do departamento. Example: 3
+     * @queryParam tipo required ID do tipo de item. Example: 2
+     *
+     */
+    public function items_local(Request $request)
+    {
+        // $user = auth()->user();
+        // $userDeptos = DepartamentoHelper::ids_deptos($user);
+        $local_id = $request->query('base') ? $request->query('base') : null;
+        $departamento_id = $request->query('depto') ? $request->query('depto') : null;
+        $tipo_item_id = $request->query('tipo') ? $request->query('tipo') : null;
+
+        $inventarios = Item::query()
+            ->select('inventarios.*','items.*')
+            ->leftJoin('inventarios', 'inventarios.item_id', '=', 'items.id')
+            ->when($local_id, function ($query, $val) {
+                return $query->where('inventarios.local_id','=',$val);
+            })
+            ->when($departamento_id, function ($query, $val) {
+                return $query->where('inventarios.departamento_id','=',$val);
+            })
+            ->when($tipo_item_id, function ($query, $val) {
+                return $query->where('items.tipo_item_id','=',$val);
+            })
+            ->get();
+
+        return ItemResource::collection($inventarios);
     }
 
     /**
@@ -204,5 +240,59 @@ class InventarioController extends Controller
                 'data' => new InventarioResource($inventario)
             ]);
         }
+    }
+
+    /**
+     * lista os itens que estão acabando, de acordo com a quantidade definida no alerta, ou se já acabaram
+     * @authenticated
+     *
+     *
+     * @urlParam id integer required ID do inventário que deseja deletar. Example: 1
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 93,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "item_id": 1,
+     *             "item": "Argamassa, Na Cor Cinza ",
+     *             "tipo_item": "alvenaria",
+     *             "medida": "SC",
+     *             "local_id": 1,
+     *             "local": "LAB",
+     *             "local_tipo": "base",
+     *             "quantidade": 100,
+     *             "qtd_alerta": 101
+     *         },
+     *         {
+     *             "id": 106,
+     *             "departamento_id": 3,
+     *             "departamento": "CGPABI/DGPU",
+     *             "item_id": 18,
+     *             "item": "Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupiúba)",
+     *             "tipo_item": "carpintaria",
+     *             "medida": "MT",
+     *             "local_id": 2,
+     *             "local": "UEM Base Leopoldina",
+     *             "local_tipo": "base",
+     *             "quantidade": 5,
+     *             "qtd_alerta": 6
+     *         }
+     *     ]
+     * }
+     */
+    public function items_acabando(){
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
+
+        $inventarios = Inventario::query()
+            //->whereIn('departamento_id',$userDeptos)
+            //->whereIn('id',[93,106])
+            ->whereRaw('quantidade <= qtd_alerta')
+            ->get();
+
+
+        return InventarioResource::collection($inventarios);
     }
 }

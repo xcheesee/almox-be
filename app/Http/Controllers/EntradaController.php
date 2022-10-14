@@ -55,7 +55,7 @@ class EntradaController extends Controller
                 AllowedFilter::scope('entrada_depois_de'),
                 AllowedFilter::scope('entrada_antes_de'),
             ])
-        ->allowedSorts('numero_nota_fiscal', 'processo_sei', 'data_entrada', 'numero_contrato', 'numero_contrato')
+        ->allowedSorts('numero_nota_fiscal', 'processo_sei', 'data_entrada', 'tipo_items.nome', 'locais.nome', 'numero_contrato')
         ->paginate(15);
 
         return EntradaResource::collection($entradas);
