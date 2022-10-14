@@ -31,7 +31,7 @@
             </div>
             <div class="form-group mb-3">
                 <strong>Perfis de Usuário:</strong>
-                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+                {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
             </div>
             <button type="submit" class="btn btn-dark">Salvar</button>
         {!! Form::close() !!}

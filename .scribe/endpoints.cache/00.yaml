@@ -24,7 +24,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi
+        example: tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc
         type: string
         custom: []
       email:

@@ -256,7 +256,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 11 2022</li>
+        <li>Last updated: October 14 2022</li>
     </ul>
 </div>
 
@@ -303,7 +303,7 @@ const headers = {
 };
 
 let body = {
-    "name": "ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi",
+    "name": "tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -321,7 +321,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/cadastrar'
 payload = {
-    "name": "ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi",
+    "name": "tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -344,7 +344,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi',
+            'name' =&gt; 'tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -427,7 +427,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="ajlseswtpwvzpbbmbodaxghostfofnjeatmrmi"
+               value="tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1367,7 +1367,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php7830.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php685F.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -1440,7 +1440,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php7830.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php685F.tmp', 'r')
             ],
         ],
     ]
@@ -4041,6 +4041,7 @@ let body = {
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
     "user_id": 1,
+    "status": "Iniciada",
     "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
@@ -4068,6 +4069,7 @@ payload = {
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
     "user_id": 1,
+    "status": "Iniciada",
     "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
@@ -4100,6 +4102,7 @@ $response = $client-&gt;post(
             'almoxarife_nome' =&gt; 'João',
             'almoxarife_email' =&gt; 'joao@teste.com.br',
             'user_id' =&gt; 1,
+            'status' =&gt; 'Iniciada',
             'data_fim_servico' =&gt; '2022-08-31T17:50',
             'especificacao' =&gt; 'reforma',
             'profissional' =&gt; 'José',
@@ -4125,6 +4128,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;departamento_id&quot;: 2,
         &quot;origem_id&quot;: 1,
         &quot;local_servico_id&quot;: 2,
+        &quot;status&quot;: &quot;Iniciada&quot;,
         &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
         &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
         &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
@@ -4268,6 +4272,16 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>ID do usuário.</p>
         </p>
                 <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="POSTapi-ordem_servico"
+               value="Iniciada"
+               data-component="body" hidden>
+    <br>
+<p>('A iniciar','Iniciada','Finalizada') Tipo.</p>
+        </p>
+                <p>
             <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
                 <input type="text"
                name="data_fim_servico"
@@ -4389,6 +4403,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;departamento_id&quot;: 2,
         &quot;origem_id&quot;: 1,
         &quot;local_servico_id&quot;: 2,
+        &quot;status&quot;: &quot;Iniciada&quot;,
         &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
         &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
         &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
@@ -4534,6 +4549,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;departamento_id&quot;: 2,
         &quot;origem_id&quot;: 1,
         &quot;local_servico_id&quot;: 2,
+        &quot;status&quot;: &quot;Iniciada&quot;,
         &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
         &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
         &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
@@ -4637,6 +4653,7 @@ let body = {
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
     "user_id": 1,
+    "status": "Iniciada",
     "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
@@ -4664,6 +4681,7 @@ payload = {
     "almoxarife_nome": "João",
     "almoxarife_email": "joao@teste.com.br",
     "user_id": 1,
+    "status": "Iniciada",
     "data_fim_servico": "2022-08-31T17:50",
     "especificacao": "reforma",
     "profissional": "José",
@@ -4696,6 +4714,7 @@ $response = $client-&gt;post(
             'almoxarife_nome' =&gt; 'João',
             'almoxarife_email' =&gt; 'joao@teste.com.br',
             'user_id' =&gt; 1,
+            'status' =&gt; 'Iniciada',
             'data_fim_servico' =&gt; '2022-08-31T17:50',
             'especificacao' =&gt; 'reforma',
             'profissional' =&gt; 'José',
@@ -4721,6 +4740,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;departamento_id&quot;: 2,
         &quot;origem_id&quot;: 1,
         &quot;local_servico_id&quot;: 2,
+        &quot;status&quot;: &quot;Iniciada&quot;,
         &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
         &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
         &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
@@ -4863,6 +4883,16 @@ print_r(json_decode((string) $body));</code></pre></div>
                data-component="body" hidden>
     <br>
 <p>ID do usuário.</p>
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="POSTapi-ordem_servico--id-"
+               value="Iniciada"
+               data-component="body" hidden>
+    <br>
+<p>('A iniciar','Iniciada','Finalizada') Tipo.</p>
         </p>
                 <p>
             <b><code>data_fim_servico</code></b>&nbsp;&nbsp;<small>datetime</small>  &nbsp;
@@ -5139,7 +5169,7 @@ access-control-allow-origin: *
                value="-locais.nome"
                data-component="query" hidden>
     <br>
-<p>Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'</p>
+<p>Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome'</p>
             </p>
                 </form>
 
@@ -5282,6 +5312,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;departamento_id&quot;: 2,
         &quot;origem_id&quot;: 1,
         &quot;local_servico_id&quot;: 2,
+        &quot;status&quot;: &quot;Iniciada&quot;,
         &quot;data_inicio_servico&quot;: &quot;2022-08-30T14:48&quot;,
         &quot;data_fim_servico&quot;: &quot;2022-08-31T17:50&quot;,
         &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
@@ -5473,7 +5504,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/pdf
-content-disposition: inline; filename=&quot;baixa_1_20221011-174839.pdf&quot;
+content-disposition: inline; filename=&quot;baixa_1_20221014-210540.pdf&quot;
 cache-control: no-cache, private
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 58

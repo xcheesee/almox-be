@@ -22,6 +22,7 @@ class OrdemServico extends JsonResource
             'origem' => $this->origem ? $this->origem->nome : null,
             'local_servico_id' => $this->local_servico_id,
             'local_servico' => $this->local_servico ? $this->local_servico->nome : null,
+            'status' => $this->status,
             'data_inicio_servico' => $this->data_inicio_servico,
             'data_fim_servico' => $this->data_fim_servico,
             'almoxarife_nome' => $this->almoxarife_nome,

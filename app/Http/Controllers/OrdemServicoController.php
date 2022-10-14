@@ -82,6 +82,7 @@ class OrdemServicoController extends Controller
      * @bodyParam departamento_id integer ID do Departamento. Example: 2
      * @bodyParam origem_id integer ID do Origem. Example: 1
      * @bodyParam local_servico_id integer ID do Local do serviço. Example: 2
+     * @bodyParam status enum required ('A iniciar','Iniciada','Finalizada') Tipo. Example: Iniciada
      * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
      * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
      * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
@@ -99,6 +100,7 @@ class OrdemServicoController extends Controller
      *         "departamento_id": 2,
      *         "origem_id": 1,
      *         "local_servico_id": 2,
+     *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
@@ -128,6 +130,7 @@ class OrdemServicoController extends Controller
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
+        $ordem_servico->status = $request->input('status');
         $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
         $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
@@ -199,6 +202,7 @@ class OrdemServicoController extends Controller
      *         "departamento_id": 2,
      *         "origem_id": 1,
      *         "local_servico_id": 2,
+     *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
@@ -239,6 +243,7 @@ class OrdemServicoController extends Controller
      * @bodyParam departamento_id integer ID do Departamento. Example: 2
      * @bodyParam origem_id integer ID do Origem. Example: 1
      * @bodyParam local_servico_id integer ID do Local do serviço. Example: 2
+     * @bodyParam status enum required ('A iniciar','Iniciada','Finalizada') Tipo. Example: Iniciada
      * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
      * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
      * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
@@ -256,6 +261,7 @@ class OrdemServicoController extends Controller
      *         "departamento_id": 2,
      *         "origem_id": 1,
      *         "local_servico_id": 2,
+     *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
@@ -275,6 +281,7 @@ class OrdemServicoController extends Controller
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
+        $ordem_servico->status = $request->input('status');
         $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
         $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
@@ -354,6 +361,7 @@ class OrdemServicoController extends Controller
      *         "departamento_id": 2,
      *         "origem_id": 1,
      *         "local_servico_id": 2,
+     *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",
@@ -439,6 +447,7 @@ class OrdemServicoController extends Controller
      *         "departamento_id": 2,
      *         "origem_id": 1,
      *         "local_servico_id": 2,
+     *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
      *         "almoxarife_nome": "João",

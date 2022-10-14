@@ -96,10 +96,9 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request['email'])->firstOrFail();
-
         $token = $user->createToken('auth_token')->plainTextToken;
-
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
+        $userRole = $user->roles->pluck('name')->all();
 
         return response()->json([
             'message' => 'Oi '.$user->name.', bem-vindo!',
@@ -108,6 +107,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'departamentos' => $userDeptos,
+            'perfil' => $userRole[0],
         ]);
     }
 
