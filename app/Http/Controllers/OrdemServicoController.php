@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
+use App\Models\Historico;
 
 /**
  * @group OrdemServico
@@ -186,6 +187,15 @@ class OrdemServicoController extends Controller
             }
 
             DB::commit();
+
+            // Salva na banco de dados historicos
+            $historico = new Historico();
+            $historico->nome_tabela = 'Ordem_Servico';
+            $historico->data_acao = date("Y-m-d");
+            $historico->tipo_acao = 'criar';
+            $historico->user_id = Auth::user()->id;
+            $historico->save();
+
             return new OrdemServicoResource($ordem_servico);
         }
     }
@@ -336,6 +346,15 @@ class OrdemServicoController extends Controller
             }
 
             DB::commit();
+
+            // Salva na banco de dados historicos
+            $historico = new Historico();
+            $historico->nome_tabela = 'Ordem_Servico';
+            $historico->data_acao = date("Y-m-d");
+            $historico->tipo_acao = 'atualizar';
+            $historico->user_id = Auth::user()->id;
+            $historico->save();
+
             return new OrdemServicoResource($ordem_servico);
         }
     }
@@ -487,6 +506,14 @@ class OrdemServicoController extends Controller
                 $entrada_inventario->save();
             }
         }
+
+        // Salva na banco de dados historicos
+        $historico = new Historico();
+        $historico->nome_tabela = 'Ordem_Servico';
+        $historico->data_acao = date("Y-m-d");
+        $historico->tipo_acao = 'deletar';
+        $historico->user_id = Auth::user()->id;
+        $historico->save();
 
         return response()->json([
             'message' => 'Ordem de serviço deletada com sucesso! Items referentes à ordem de serviço foram removidos do inventário',

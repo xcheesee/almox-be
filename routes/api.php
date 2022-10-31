@@ -50,6 +50,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
     //CRUDs
     Route::get('entradas', [App\Http\Controllers\EntradaController::class, 'index']);
+    Route::post('entrada', [App\Http\Controllers\EntradaController::class, 'store']);
+    Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'update']);
+    Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
+
+    
     Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
     Route::get('items_acabando', [App\Http\Controllers\InventarioController::class, 'items_acabando']);
 
@@ -63,10 +68,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 });
 
-Route::post('entrada', [App\Http\Controllers\EntradaController::class, 'store']);
 Route::get('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'show']);
-Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'update']);
-Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
 Route::get('entrada/{id}/items', [App\Http\Controllers\EntradaItemController::class, 'items_entrada']);
 
 Route::post('inventario', [App\Http\Controllers\InventarioController::class, 'store']);

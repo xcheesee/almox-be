@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use App\Models\Historico;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * @group Entrada
@@ -163,6 +165,15 @@ class EntradaController extends Controller
                 }
             }
             DB::commit();
+
+            // Salva na banco de dados historicos
+            $historico = new Historico();
+            $historico->nome_tabela = 'Entrada';
+            $historico->data_acao = date("Y-m-d");
+            $historico->tipo_acao = 'criar';
+            $historico->user_id = Auth::user()->id;
+            $historico->save();
+
             return new EntradaResource($entrada);
         }
     }
@@ -301,6 +312,15 @@ class EntradaController extends Controller
                 }
             }
             DB::commit();
+
+            // Salva na banco de dados historicos
+            $historico = new Historico();
+            $historico->nome_tabela = 'Entrada';
+            $historico->data_acao = date("Y-m-d");
+            $historico->tipo_acao = 'atualizar';
+            $historico->user_id = Auth::user()->id;
+            $historico->save();
+
             return new EntradaResource($entrada);
         }
     }
@@ -354,6 +374,14 @@ class EntradaController extends Controller
                 $saida_inventario->save();
             }
         }
+
+        // Salva na banco de dados historicos
+        $historico = new Historico();
+        $historico->nome_tabela = 'Entrada';
+        $historico->data_acao = date("Y-m-d");
+        $historico->tipo_acao = 'deletar';
+        $historico->user_id = Auth::user()->id;
+        $historico->save();
 
         return response()->json([
             'message' => 'Entrada deletada com sucesso! Items referentes à entrada foram removidos do inventário',
