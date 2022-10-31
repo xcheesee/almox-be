@@ -166,12 +166,13 @@ class EntradaController extends Controller
             }
             DB::commit();
 
-            // Salva na banco de dados historicos
+            // Salva na tabela historicos
             $historico = new Historico();
             $historico->nome_tabela = 'Entrada';
             $historico->data_acao = date("Y-m-d");
-            $historico->tipo_acao = 'criar';
+            $historico->tipo_acao = 'criacao';
             $historico->user_id = Auth::user()->id;
+            $historico->registro = json_encode(new EntradaResource($entrada));
             $historico->save();
 
             return new EntradaResource($entrada);
@@ -313,12 +314,13 @@ class EntradaController extends Controller
             }
             DB::commit();
 
-            // Salva na banco de dados historicos
+            // Salva na tabela historicos
             $historico = new Historico();
             $historico->nome_tabela = 'Entrada';
             $historico->data_acao = date("Y-m-d");
-            $historico->tipo_acao = 'atualizar';
+            $historico->tipo_acao = 'atualizacao';
             $historico->user_id = Auth::user()->id;
+            $historico->registro = json_encode(new EntradaResource($entrada));
             $historico->save();
 
             return new EntradaResource($entrada);
@@ -375,12 +377,13 @@ class EntradaController extends Controller
             }
         }
 
-        // Salva na banco de dados historicos
+        // Salva na tabela historicos
         $historico = new Historico();
         $historico->nome_tabela = 'Entrada';
         $historico->data_acao = date("Y-m-d");
-        $historico->tipo_acao = 'deletar';
+        $historico->tipo_acao = 'exclusao';
         $historico->user_id = Auth::user()->id;
+        $historico->registro = json_encode(new EntradaResource($entrada));
         $historico->save();
 
         return response()->json([

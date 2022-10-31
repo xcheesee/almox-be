@@ -14,6 +14,7 @@ class Historico extends Model
         'data_acao',
         'tipo_acao',
         'user_id',
+        'registro'
     ];
 
     protected $table = 'historicos';

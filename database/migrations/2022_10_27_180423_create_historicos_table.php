@@ -16,8 +16,8 @@ class CreateHistoricosTable extends Migration
         Schema::create('historicos', function (Blueprint $table) {
             $table->id();
             $table->string('nome_tabela');
-            $table->dateTime('data_acao');
-            $table->enum('tipo_acao', ['criar', 'atualizar', 'deletar']);
+            $table->date('data_acao');
+            $table->enum('tipo_acao', ['criacao', 'atualizacao', 'exclusao']);
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

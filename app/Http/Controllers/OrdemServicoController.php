@@ -188,12 +188,13 @@ class OrdemServicoController extends Controller
 
             DB::commit();
 
-            // Salva na banco de dados historicos
+            // Salva na tabela historicos
             $historico = new Historico();
             $historico->nome_tabela = 'Ordem_Servico';
             $historico->data_acao = date("Y-m-d");
-            $historico->tipo_acao = 'criar';
+            $historico->tipo_acao = 'criacao';
             $historico->user_id = Auth::user()->id;
+            $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
             $historico->save();
 
             return new OrdemServicoResource($ordem_servico);
@@ -347,12 +348,13 @@ class OrdemServicoController extends Controller
 
             DB::commit();
 
-            // Salva na banco de dados historicos
+            // Salva na tabela historicos
             $historico = new Historico();
             $historico->nome_tabela = 'Ordem_Servico';
             $historico->data_acao = date("Y-m-d");
-            $historico->tipo_acao = 'atualizar';
+            $historico->tipo_acao = 'atualizacao';
             $historico->user_id = Auth::user()->id;
+            $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
             $historico->save();
 
             return new OrdemServicoResource($ordem_servico);
@@ -507,12 +509,13 @@ class OrdemServicoController extends Controller
             }
         }
 
-        // Salva na banco de dados historicos
+        // Salva na tabela historicos
         $historico = new Historico();
         $historico->nome_tabela = 'Ordem_Servico';
         $historico->data_acao = date("Y-m-d");
-        $historico->tipo_acao = 'deletar';
+        $historico->tipo_acao = 'exclusao';
         $historico->user_id = Auth::user()->id;
+        $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
         $historico->save();
 
         return response()->json([
