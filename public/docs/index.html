@@ -206,8 +206,14 @@
                                                     <li class="tocify-item level-2" data-unique="ordemservico-POSTapi-ordem_servico">
                         <a href="#ordemservico-POSTapi-ordem_servico">Cadastra uma ordem de serviço</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id--items">
+                        <a href="#ordemservico-GETapi-ordem_servico--id--items">Mostra os itens de uma ordem de serviço</a>
+                    </li>
                                     <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id-">
                         <a href="#ordemservico-GETapi-ordem_servico--id-">Mostra uma ordem de serviço</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id--profissionais">
+                        <a href="#ordemservico-GETapi-ordem_servico--id--profissionais">Mostra os profissionais de uma ordem de serviço</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="ordemservico-DELETEapi-ordem_servico--id-">
                         <a href="#ordemservico-DELETEapi-ordem_servico--id-">Deleta uma ordem de serviço</a>
@@ -224,15 +230,18 @@
                                     <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id--baixa_pdf">
                         <a href="#ordemservico-GETapi-ordem_servico--id--baixa_pdf">Gera um arquivo PDF da baixa efetuada na ordem de serviço</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="ordemservico-GETapi-ordem_servico--id--baixa_json">
+                        <a href="#ordemservico-GETapi-ordem_servico--id--baixa_json">Gera um json da baixa efetuada na ordem de serviço</a>
+                    </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-12" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="ordemservicoitem">
-                    <a href="#ordemservicoitem">OrdemServicoItem</a>
+                <li class="tocify-item level-1" data-unique="profissional">
+                    <a href="#profissional">Profissional</a>
                 </li>
-                                    <ul id="tocify-subheader-ordemservicoitem" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="ordemservicoitem-GETapi-ordem_servico--id--items">
-                        <a href="#ordemservicoitem-GETapi-ordem_servico--id--items">Mostra os itens de uma ordem de serviço</a>
+                                    <ul id="tocify-subheader-profissional" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="profissional-GETapi-profissionais">
+                        <a href="#profissional-GETapi-profissionais">Lista os profissionais de acordo com o local e departamento especificados</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -256,7 +265,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: October 14 2022</li>
+        <li>Last updated: November 7 2022</li>
     </ul>
 </div>
 
@@ -303,7 +312,7 @@ const headers = {
 };
 
 let body = {
-    "name": "tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc",
+    "name": "utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -321,7 +330,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/cadastrar'
 payload = {
-    "name": "tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc",
+    "name": "utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -344,7 +353,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc',
+            'name' =&gt; 'utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -427,7 +436,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="tytaxrvrpodxaxufswmthoxtvfhupoiclauphafrpzjdhcdcvdzwhrconvsucdwxyrxngxsuhndbaqdfftcxwkvmqsrnobdgzoytuiglsfblxaosxbzjwnywdjsnnixouvzwryjhknntbpcasxfdspurtbttc"
+               value="utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1367,7 +1376,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php685F.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php3808.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -1440,7 +1449,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php685F.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php3808.tmp', 'r')
             ],
         ],
     ]
@@ -3269,7 +3278,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 56
+x-ratelimit-remaining: 54
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -3899,7 +3908,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 57
+x-ratelimit-remaining: 56
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -4139,6 +4148,18 @@ print_r(json_decode((string) $body));</code></pre></div>
         &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,,
         &quot;flg_baixa&quot;: 0,
         &quot;user_id&quot;: 1,
+        &quot;ordem_servico_profissionais&quot;: [
+            {
+                &quot;id&quot;: 1,
+                &quot;data_inicio&quot;: &quot;2022-08-30&quot;,
+                &quot;horas_empregadas&quot;: 6
+            },
+            {
+                &quot;id&quot;: 2,
+                &quot;data_inicio&quot;: &quot;2022-08-31&quot;,
+                &quot;horas_empregadas&quot;: 4
+            }
+        ],
         &quot;ordem_servico_items&quot;: [
             {
                 &quot;id&quot;: 1,
@@ -4333,6 +4354,148 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
         </form>
 
+            <h2 id="ordemservico-GETapi-ordem_servico--id--items">Mostra os itens de uma ordem de serviço</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ordem_servico--id--items">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://10.30.17.8:8000/api/ordem_servico/2/items"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://10.30.17.8:8000/api/ordem_servico/2/items'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://10.30.17.8:8000/api/ordem_servico/2/items',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ordem_servico--id--items">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;ordem_servico_id&quot;: 2,
+            &quot;item_id&quot;: 1,
+            &quot;quantidade&quot;: 10
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;ordem_servico_id&quot;: 2,
+            &quot;item_id&quot;: 3,
+            &quot;quantidade&quot;: 800
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ordem_servico--id--items" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ordem_servico--id--items"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ordem_servico--id--items"></code></pre>
+</span>
+<span id="execution-error-GETapi-ordem_servico--id--items" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ordem_servico--id--items"></code></pre>
+</span>
+<form id="form-GETapi-ordem_servico--id--items" data-method="GET"
+      data-path="api/ordem_servico/{id}/items"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servico--id--items', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ordem_servico--id--items"
+                    onclick="tryItOut('GETapi-ordem_servico--id--items');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ordem_servico--id--items"
+                    onclick="cancelTryOut('GETapi-ordem_servico--id--items');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ordem_servico--id--items" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ordem_servico/{id}/items</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ordem_servico--id--items" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ordem_servico--id--items"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-ordem_servico--id--items"
+               value="2"
+               data-component="url" hidden>
+    <br>
+<p>ID da ordem de serviço.</p>
+            </p>
+                    </form>
+
             <h2 id="ordemservico-GETapi-ordem_servico--id-">Mostra uma ordem de serviço</h2>
 
 <p>
@@ -4472,6 +4635,149 @@ print_r(json_decode((string) $body));</code></pre></div>
                name="id"
                data-endpoint="GETapi-ordem_servico--id-"
                value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID da ordem de serviço.</p>
+            </p>
+                    </form>
+
+            <h2 id="ordemservico-GETapi-ordem_servico--id--profissionais">Mostra os profissionais de uma ordem de serviço</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ordem_servico--id--profissionais">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://10.30.17.8:8000/api/ordem_servico/2/profissionais"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://10.30.17.8:8000/api/ordem_servico/2/profissionais'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://10.30.17.8:8000/api/ordem_servico/2/profissionais',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ordem_servico--id--profissionais">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;ordem_servico_id&quot;: 2,
+            &quot;profissional_id&quot;: 1,
+            &quot;data_inicio&quot;: '2022-11-07',
+            &quot;horas_empregadas&quot;: 10
+        },{
+            &quot;id&quot;: 2,
+            &quot;ordem_servico_id&quot;: 2,
+            &quot;profissional_id&quot;: 2,
+            &quot;data_inicio&quot;: '2022-11-07',
+            &quot;horas_empregadas&quot;: 6
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ordem_servico--id--profissionais" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ordem_servico--id--profissionais"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ordem_servico--id--profissionais"></code></pre>
+</span>
+<span id="execution-error-GETapi-ordem_servico--id--profissionais" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ordem_servico--id--profissionais"></code></pre>
+</span>
+<form id="form-GETapi-ordem_servico--id--profissionais" data-method="GET"
+      data-path="api/ordem_servico/{id}/profissionais"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servico--id--profissionais', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ordem_servico--id--profissionais"
+                    onclick="tryItOut('GETapi-ordem_servico--id--profissionais');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ordem_servico--id--profissionais"
+                    onclick="cancelTryOut('GETapi-ordem_servico--id--profissionais');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ordem_servico--id--profissionais" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ordem_servico/{id}/profissionais</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ordem_servico--id--profissionais" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ordem_servico--id--profissionais"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-ordem_servico--id--profissionais"
+               value="2"
                data-component="url" hidden>
     <br>
 <p>ID da ordem de serviço.</p>
@@ -5504,10 +5810,10 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/pdf
-content-disposition: inline; filename=&quot;baixa_1_20221014-210540.pdf&quot;
+content-disposition: inline; filename=&quot;baixa_1_20221107-153923.pdf&quot;
 cache-control: no-cache, private
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -5575,11 +5881,7 @@ access-control-allow-origin: *
             </p>
                     </form>
 
-        <h1 id="ordemservicoitem">OrdemServicoItem</h1>
-
-    <p>APIs para listar, cadastrar, editar e remover dados de ordens de serviços itens</p>
-
-            <h2 id="ordemservicoitem-GETapi-ordem_servico--id--items">Mostra os itens de uma ordem de serviço</h2>
+            <h2 id="ordemservico-GETapi-ordem_servico--id--baixa_json">Gera um json da baixa efetuada na ordem de serviço</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5587,14 +5889,218 @@ access-control-allow-origin: *
 
 
 
-<span id="example-requests-GETapi-ordem_servico--id--items">
+<span id="example-requests-GETapi-ordem_servico--id--baixa_json">
 <blockquote>Example request:</blockquote>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/2/items"
+    "http://10.30.17.8:8000/api/ordem_servico/1/baixa_json"
 );
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/pdf",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://10.30.17.8:8000/api/ordem_servico/1/baixa_json'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/pdf'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://10.30.17.8:8000/api/ordem_servico/1/baixa_json',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/pdf',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ordem_servico--id--baixa_json">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Dados da baixa da Ordem de Servi&ccedil;o #1&quot;,
+    &quot;ordem_servico&quot;: {
+        &quot;id&quot;: 1,
+        &quot;departamento_id&quot;: 3,
+        &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+        &quot;origem_id&quot;: 4,
+        &quot;origem&quot;: &quot;Almoxarifado&quot;,
+        &quot;local_servico_id&quot;: 1,
+        &quot;local_servico&quot;: &quot;LAB&quot;,
+        &quot;status&quot;: &quot;Finalizada&quot;,
+        &quot;data_inicio_servico&quot;: &quot;2022-05-12 09:32:00&quot;,
+        &quot;data_fim_servico&quot;: &quot;2022-05-12 19:36:00&quot;,
+        &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
+        &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
+        &quot;especificacao&quot;: &quot;reforma&quot;,
+        &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
+        &quot;horas_execucao&quot;: 10,
+        &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
+        &quot;flg_baixa&quot;: 1,
+        &quot;user_id&quot;: 1,
+        &quot;user&quot;: &quot;Admin NDTIC&quot;
+    },
+    &quot;baixa&quot;: {
+        &quot;id&quot;: 24,
+        &quot;departamento_id&quot;: 3,
+        &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+        &quot;ordem_servico_id&quot;: 1,
+        &quot;almoxarife_nome&quot;: null,
+        &quot;almoxarife_email&quot;: null,
+        &quot;baixa_user_id&quot;: 1,
+        &quot;baixa_user&quot;: &quot;Admin NDTIC&quot;,
+        &quot;baixa_datahora&quot;: &quot;2022-10-04 12:50:47&quot;
+    },
+    &quot;baixa_items&quot;: [
+        {
+            &quot;id&quot;: 1,
+            &quot;saida_id&quot;: 24,
+            &quot;item_id&quot;: 1,
+            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;enviado&quot;: 10,
+            &quot;usado&quot;: 8,
+            &quot;retorno&quot;: 2
+        },
+        {
+            &quot;id&quot;: 2,
+            &quot;saida_id&quot;: 24,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;medida&quot;: &quot;SC&quot;,
+            &quot;enviado&quot;: 6,
+            &quot;usado&quot;: 5,
+            &quot;retorno&quot;: 1
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ordem_servico--id--baixa_json" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ordem_servico--id--baixa_json"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ordem_servico--id--baixa_json"></code></pre>
+</span>
+<span id="execution-error-GETapi-ordem_servico--id--baixa_json" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ordem_servico--id--baixa_json"></code></pre>
+</span>
+<form id="form-GETapi-ordem_servico--id--baixa_json" data-method="GET"
+      data-path="api/ordem_servico/{id}/baixa_json"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/pdf"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servico--id--baixa_json', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ordem_servico--id--baixa_json"
+                    onclick="tryItOut('GETapi-ordem_servico--id--baixa_json');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ordem_servico--id--baixa_json"
+                    onclick="cancelTryOut('GETapi-ordem_servico--id--baixa_json');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ordem_servico--id--baixa_json" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ordem_servico/{id}/baixa_json</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ordem_servico--id--baixa_json" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ordem_servico--id--baixa_json"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-ordem_servico--id--baixa_json"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>ID da ordem de serviço que deseja deletar.</p>
+            </p>
+                    </form>
+
+        <h1 id="profissional">Profissional</h1>
+
+    <p>APIs para listar, cadastrar, editar e remover dados de profissionais</p>
+
+            <h2 id="profissional-GETapi-profissionais">Lista os profissionais de acordo com o local e departamento especificados</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-profissionais">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://10.30.17.8:8000/api/profissionais"
+);
+
+const params = {
+    "local": "2",
+    "depto": "3",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
 
 const headers = {
     "Content-Type": "application/json",
@@ -5611,24 +6117,32 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/2/items'
+url = 'http://10.30.17.8:8000/api/profissionais'
+params = {
+  'local': '2',
+  'depto': '3',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre></div>
 
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/2/items',
+    'http://10.30.17.8:8000/api/profissionais',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'local'=&gt; '2',
+            'depto'=&gt; '3',
         ],
     ]
 );
@@ -5637,89 +6151,130 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
-<span id="example-responses-GETapi-ordem_servico--id--items">
+<span id="example-responses-GETapi-profissionais">
             <blockquote>
             <p>Example response (200):</p>
         </blockquote>
-                <pre>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 55
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
 
 <code class="language-json">{
     &quot;data&quot;: [
         {
             &quot;id&quot;: 1,
-            &quot;ordem_servico_id&quot;: 2,
-            &quot;item_id&quot;: 1,
-            &quot;quantidade&quot;: 10
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;nome&quot;: &quot;Jo&atilde;o Pedro Silva&quot;,
+            &quot;profissao&quot;: &quot;Arquiteto&quot;,
+            &quot;completo&quot;: &quot;Jo&atilde;o Pedro Silva (Arquiteto)&quot;
         },
         {
             &quot;id&quot;: 2,
-            &quot;ordem_servico_id&quot;: 2,
-            &quot;item_id&quot;: 3,
-            &quot;quantidade&quot;: 800
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;nome&quot;: &quot;F&aacute;bio Perez Nunes&quot;,
+            &quot;profissao&quot;: &quot;Chefe de Obras&quot;,
+            &quot;completo&quot;: &quot;F&aacute;bio Perez Nunes (Chefe de Obras)&quot;
+        },
+        {
+            &quot;id&quot;: 3,
+            &quot;departamento_id&quot;: 3,
+            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
+            &quot;local_id&quot;: 2,
+            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
+            &quot;local_tipo&quot;: &quot;base&quot;,
+            &quot;nome&quot;: &quot;Balthazar Silva&quot;,
+            &quot;profissao&quot;: &quot;Carpinteiro&quot;,
+            &quot;completo&quot;: &quot;Balthazar Silva (Carpinteiro)&quot;
         }
     ]
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-ordem_servico--id--items" hidden>
+<span id="execution-results-GETapi-profissionais" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-ordem_servico--id--items"></span>:
+                id="execution-response-status-GETapi-profissionais"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-ordem_servico--id--items"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-profissionais"></code></pre>
 </span>
-<span id="execution-error-GETapi-ordem_servico--id--items" hidden>
+<span id="execution-error-GETapi-profissionais" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-ordem_servico--id--items"></code></pre>
+    <pre><code id="execution-error-message-GETapi-profissionais"></code></pre>
 </span>
-<form id="form-GETapi-ordem_servico--id--items" data-method="GET"
-      data-path="api/ordem_servico/{id}/items"
+<form id="form-GETapi-profissionais" data-method="GET"
+      data-path="api/profissionais"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-ordem_servico--id--items', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-profissionais', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-ordem_servico--id--items"
-                    onclick="tryItOut('GETapi-ordem_servico--id--items');">Try it out ⚡
+                    id="btn-tryout-GETapi-profissionais"
+                    onclick="tryItOut('GETapi-profissionais');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-ordem_servico--id--items"
-                    onclick="cancelTryOut('GETapi-ordem_servico--id--items');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-profissionais"
+                    onclick="cancelTryOut('GETapi-profissionais');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-ordem_servico--id--items" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-profissionais" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/ordem_servico/{id}/items</code></b>
+            <b><code>api/profissionais</code></b>
         </p>
                 <p>
-            <label id="auth-GETapi-ordem_servico--id--items" hidden>Authorization header:
+            <label id="auth-GETapi-profissionais" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="GETapi-ordem_servico--id--items"
+                                                                data-endpoint="GETapi-profissionais"
                                                                 data-component="header"></label>
         </p>
-                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
                     <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="GETapi-ordem_servico--id--items"
+                <b><code>local</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="local"
+               data-endpoint="GETapi-profissionais"
                value="2"
-               data-component="url" hidden>
+               data-component="query" hidden>
     <br>
-<p>ID da ordem de serviço.</p>
+<p>ID do local.</p>
             </p>
-                    </form>
+                    <p>
+                <b><code>depto</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="depto"
+               data-endpoint="GETapi-profissionais"
+               value="3"
+               data-component="query" hidden>
+    <br>
+<p>ID do departamento.</p>
+            </p>
+                </form>
 
         <h1 id="tipoitem">TipoItem</h1>
 

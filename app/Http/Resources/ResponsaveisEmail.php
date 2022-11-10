@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class SaidaItem extends JsonResource
+class ResponsaveisEmail extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,13 +16,11 @@ class SaidaItem extends JsonResource
     {
         return [
             'id' => $this->id,
-            'saida_id' => $this->saida_id,
-            'item_id' => $this->item_id,
-            'item' => $this->item ? $this->item->nome : null,
-            'medida' => $this->item ? $this->item->medida->tipo : null,
-            'enviado' => $this->enviado,
-            'usado' => $this->usado,
-            'retorno' => $this->retorno,
+            'departamento_id' => $this->departamento_id,
+            'departamento' => $this->departamento ? $this->departamento->nome : null,
+            'nome' => $this->nome,
+            'email' => $this->email,
+            'ativo' => $this->ativo,
         ];
     }
 }

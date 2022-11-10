@@ -1,49 +1,46 @@
-name: OrdemServicoItem
+name: Profissional
 description: |-
 
-  APIs para listar, cadastrar, editar e remover dados de ordens de serviços itens
+  APIs para listar, cadastrar, editar e remover dados de profissionais
 endpoints:
   -
     httpMethods:
       - GET
-    uri: 'api/ordem_servico/{id}/items'
+    uri: api/profissionais
     metadata:
-      title: 'Mostra os itens de uma ordem de serviço'
+      title: 'Lista os profissionais de acordo com o local e departamento especificados'
       description: ''
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'ID da ordem de serviço.'
-        required: true
-        example: 2
-        type: integer
+    urlParameters: []
+    queryParameters:
+      local:
+        name: local
+        description: 'ID do local.'
+        required: false
+        example: '2'
+        type: string
         custom: []
-    queryParameters: []
+      depto:
+        name: depto
+        description: 'ID do departamento.'
+        required: false
+        example: '3'
+        type: string
+        custom: []
     bodyParameters: []
     responses:
       -
         status: 200
-        content: |-
-          {
-              "data": [
-                  {
-                      "id": 1,
-                      "ordem_servico_id": 2,
-                      "item_id": 1,
-                      "quantidade": 10
-                  },{
-                      "id": 2,
-                      "ordem_servico_id": 2,
-                      "item_id": 3,
-                      "quantidade": 800
-                  }
-              ]
-          }
-        headers: []
-        description: '200'
+        content: '{"data":[{"id":1,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Jo\u00e3o Pedro Silva","profissao":"Arquiteto","completo":"Jo\u00e3o Pedro Silva (Arquiteto)"},{"id":2,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"F\u00e1bio Perez Nunes","profissao":"Chefe de Obras","completo":"F\u00e1bio Perez Nunes (Chefe de Obras)"},{"id":3,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Balthazar Silva","profissao":"Carpinteiro","completo":"Balthazar Silva (Carpinteiro)"}]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '55'
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []

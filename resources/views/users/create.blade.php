@@ -8,7 +8,7 @@
 @include('layouts.erros', ['errors' => $errors])
 <div class="container containerTabela justify-content-center">
     <div class="container">
-        {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
+        {!! Form::open(array('route' => 'users.store','method'=>'POST', 'autocomplete'=>"off")) !!}
             <div class="form-group mb-3">
                 <strong>Nome:</strong>
                 {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}

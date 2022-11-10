@@ -63,7 +63,7 @@ class LocalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(LocalFormRequest $request)
+    public function create(Request $request)
     {
         $user = auth()->user();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
@@ -150,7 +150,7 @@ class LocalController extends Controller
      *     }
      * }
      */
-    public function show(LocalFormRequest $request, $id)
+    public function show(Request $request, $id)
     {
         $local= Local::findOrFail($id);
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
@@ -166,7 +166,7 @@ class LocalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(LocalFormRequest $request, $id)
+    public function edit(Request $request, $id)
     {
         $local = Local::findOrFail($id);
         $user = auth()->user();
@@ -268,5 +268,15 @@ class LocalController extends Controller
                 'data' => new LocalResource($local)
             ]);
         }
+    }
+
+    public function filtrar_dpt(int $id)
+    {
+        if (empty($id)){
+            return response()->json(['mensagem' => 'Departamento é obrigatório'], 400);
+        }
+
+        $locais = Local::query()->where('departamento_id', $id)->orderBy('nome')->get();
+        return response()->json(['locais' => $locais], 200);
     }
 }

@@ -23,7 +23,7 @@ class SaidaItemController extends Controller
     public function index()
     {
         $saida_itens = SaidaItem::paginate(15);
-            return SaidaItemResource::collection($saida_itens);
+        return SaidaItemResource::collection($saida_itens);
     }
 
     /**
@@ -44,7 +44,7 @@ class SaidaItemController extends Controller
      * @bodyParam saida_id integer ID da Ordem de serviço. Example: 2
      * @bodyParam item_id integer ID do Item. Example: 1
      * @bodyParam quantidade float required. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {
@@ -109,7 +109,7 @@ class SaidaItemController extends Controller
      * @bodyParam saida_id integer ID da Ordem de serviço. Example: 2
      * @bodyParam item_id integer ID do Item. Example: 1
      * @bodyParam quantidade float required. Example: 10
-     *  
+     *
      *
      * @response 200 {
      *     "data": {

@@ -53,6 +53,15 @@ class OrdemServico extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getCreatedAtFormatadoAttribute(){
+        if ($this->created_at){
+            $date = Carbon::parse($this->created_at);
+            return $date->format("d/m/Y");
+        }
+
+        return null;
+    }
+
     public function getDataInicioFormatadaAttribute(){
         if ($this->data_inicio_servico){
             $date = Carbon::parse($this->data_inicio_servico);
@@ -62,10 +71,28 @@ class OrdemServico extends Model
         return null;
     }
 
+    public function getDataInicioFormatadaSemhoraAttribute(){
+        if ($this->data_inicio_servico){
+            $date = Carbon::parse($this->data_inicio_servico);
+            return $date->format("d/m/Y");
+        }
+
+        return null;
+    }
+
     public function getDataFimFormatadaAttribute(){
         if ($this->data_fim_servico){
             $date = Carbon::parse($this->data_fim_servico);
             return $date->format("d/m/Y H:i:s");
+        }
+
+        return null;
+    }
+
+    public function getDataFimFormatadaSemhoraAttribute(){
+        if ($this->data_fim_servico){
+            $date = Carbon::parse($this->data_fim_servico);
+            return $date->format("d/m/Y");
         }
 
         return null;

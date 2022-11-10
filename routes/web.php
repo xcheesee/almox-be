@@ -60,6 +60,18 @@ Route::prefix(env('APP_FOLDER', ''))->group(function () { //considerando que o p
         Route::get('/locais/{id}/ver', [App\Http\Controllers\LocalController::class, 'show'])->name('cadaux-locais-show');
         Route::get('/locais/{id}/editar', [App\Http\Controllers\LocalController::class, 'edit'])->name('cadaux-locais-edit');
         Route::post('/locais/{id}/editar', [App\Http\Controllers\LocalController::class, 'update'])->name('cadaux-locais-update');
+        Route::get('/locais/{id}/filtrar', [App\Http\Controllers\LocalController::class, 'filtrar_dpt'])->name('cadaux-locais-filtrar_dpt');
+        Route::get('/profissionais', [App\Http\Controllers\ProfissionalController::class, 'index'])->name('cadaux-profissionais');
+        Route::get('/profissionais/criar', [App\Http\Controllers\ProfissionalController::class, 'create'])->name('cadaux-profissionais-create');
+        Route::post('/profissionais/criar', [App\Http\Controllers\ProfissionalController::class, 'store'])->name('cadaux-profissionais-store');
+        Route::get('/profissionais/{id}/ver', [App\Http\Controllers\ProfissionalController::class, 'show'])->name('cadaux-profissionais-show');
+        Route::get('/profissionais/{id}/editar', [App\Http\Controllers\ProfissionalController::class, 'edit'])->name('cadaux-profissionais-edit');
+        Route::post('/profissionais/{id}/editar', [App\Http\Controllers\ProfissionalController::class, 'update'])->name('cadaux-profissionais-update');
+        Route::get('/responsaveis_emails', [App\Http\Controllers\ResponsaveisEmailController::class, 'index'])->name('cadaux-responsaveis_emails');
+        Route::get('/responsaveis_emails/criar', [App\Http\Controllers\ResponsaveisEmailController::class, 'create'])->name('cadaux-responsaveis_emails-create');
+        Route::post('/responsaveis_emails/criar', [App\Http\Controllers\ResponsaveisEmailController::class, 'store'])->name('cadaux-responsaveis_emails-store');
+        Route::get('/responsaveis_emails/{id}/editar', [App\Http\Controllers\ResponsaveisEmailController::class, 'edit'])->name('cadaux-responsaveis_emails-edit');
+        Route::post('/responsaveis_emails/{id}/editar', [App\Http\Controllers\ResponsaveisEmailController::class, 'update'])->name('cadaux-responsaveis_emails-update');
 
         //Gestão de Usuários e Permissões
         Route::resource('users', App\Http\Controllers\UserController::class)->middleware('permission:user-list');

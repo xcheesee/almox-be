@@ -10,6 +10,10 @@ use App\Models\OrdemServico;
 use App\Models\Inventario;
 use App\Models\OrdemServicoItem;
 use App\Http\Resources\OrdemServico as OrdemServicoResource;
+use App\Http\Resources\Saida as SaidaResource;
+use App\Http\Resources\SaidaItem as SaidaItemResource;
+use App\Http\Resources\OrdemServicoItem as OrdemServicoItemResource;
+use App\Http\Resources\OrdemServicoProfissional as OrdemServicoProfissionalResource;
 use App\Mail\ItemAcabando;
 use App\Models\Saida;
 use App\Models\SaidaItem;
@@ -20,6 +24,8 @@ use Illuminate\Support\Facades\Mail;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Historico;
+use App\Models\OrdemServicoProfissional;
+use App\Models\ResponsaveisEmail;
 
 /**
  * @group OrdemServico
@@ -112,6 +118,18 @@ class OrdemServicoController extends Controller
      *         "observacoes": "observações referente ao serviço",,
      *         "flg_baixa": 0,
      *         "user_id": 1,
+     *         "ordem_servico_profissionais": [
+     *             {
+     *                 "id": 1,
+     *                 "data_inicio": "2022-08-30",
+     *                 "horas_empregadas": 6
+     *             },
+     *             {
+     *                 "id": 2,
+     *                 "data_inicio": "2022-08-31",
+     *                 "horas_empregadas": 4
+     *             }
+     *         ],
      *         "ordem_servico_items": [
      *             {
      *                 "id": 1,
@@ -182,11 +200,26 @@ class OrdemServicoController extends Controller
                 }
                 if (count($items_acabando) > 0){
                     //Enviar e-mail aos responsáveis
-                    Mail::to('abalves@prefeitura.sp.gov.br')->send(new ItemAcabando($items_acabando));
+                    $responsaveis = ResponsaveisEmail::query()->where('departamento_id','=',$ordem_servico->departamento_id)->get();
+                    foreach($responsaveis as $responsavel){
+                        Mail::to($responsavel->email)->send(new ItemAcabando($items_acabando));
+                    }
                 }
             }
 
-            DB::commit();
+            //Lidando com a lista de profissionais da ordem de serviço
+            $ordemServicoProfissionais = $request->input('ordem_servico_profissionais');
+            if ($ordemServicoProfissionais){
+                foreach ($ordemServicoProfissionais as $ordem_servico_profissionais){
+                    //Salvando itens na tabela ordem_servico_items
+                    $ordem_servico_profissional = new OrdemServicoProfissional();
+                    $ordem_servico_profissional->ordem_servico_id = $ordem_servico->id;
+                    $ordem_servico_profissional->profissional_id = $ordem_servico_profissionais["id"];
+                    $ordem_servico_profissional->data_inicio = $ordem_servico_profissionais["data_inicio"];
+                    $ordem_servico_profissional->horas_empregadas = $ordem_servico_profissionais["horas_empregadas"];
+                    $ordem_servico_profissional->save();
+                }
+            }
 
             // Salva na tabela historicos
             $historico = new Historico();
@@ -196,6 +229,8 @@ class OrdemServicoController extends Controller
             $historico->user_id = Auth::user()->id;
             $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
             $historico->save();
+
+            DB::commit();
 
             return new OrdemServicoResource($ordem_servico);
         }
@@ -532,6 +567,28 @@ class OrdemServicoController extends Controller
     }
 
     /**
+     * Gera um json da baixa efetuada na ordem de serviço
+     * @authenticated
+     *
+     * @header Accept application/pdf
+     *
+     * @urlParam id integer required ID da ordem de serviço que deseja deletar. Example: 1
+     *
+     */
+    public function baixa_json($id){
+        $ordem = OrdemServico::findOrFail($id);
+        $saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
+        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+        //dd($saida_items);
+        return response()->json([
+            'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+            'ordem_servico' => new OrdemServicoResource($ordem),
+            'baixa' => new SaidaResource($saida),
+            'baixa_items' => SaidaItemResource::collection($saida_items)
+        ]);
+    }
+
+    /**
      * Gera um arquivo PDF da baixa efetuada na ordem de serviço
      * @authenticated
      *
@@ -543,12 +600,84 @@ class OrdemServicoController extends Controller
     public function baixa_pdf($id){
         $pdf = App::make('dompdf.wrapper');
         $ordem = OrdemServico::findOrFail($id);
+        $ordem_servico_items = OrdemServicoItem::query()->where('ordem_servico_id','=',$id)->get();
         $saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
-        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+        $saida_items = array();
+        if ($saida){
+            $dados = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+            foreach($dados as $saida_item){
+                $saida_items[$saida_item->item_id] = [
+                    $saida_item->enviado,
+                    $saida_item->usado,
+                    $saida_item->retorno,
+                ];
+            }
+        }
+        $profissionais = OrdemServicoProfissional::query()->where('ordem_servico_id','=',$id)->get();
         view()->share('ordem',$ordem);
+        view()->share('ordem_servico_items',$ordem_servico_items);
         view()->share('saida',$saida);
-        view()->share('dados',$saida_items);
+        view()->share('saida_items',$saida_items);
+        view()->share('profissionais',$profissionais);
         $pdf->loadView('saidas.pdf');
         return $pdf->stream('baixa_'.$ordem->id.'_'.date('Ymd-His').'.pdf');
+
+        // return view ('saidas.pdf', compact('ordem','saida','saida_items'));
+    }
+
+    /**
+     * Mostra os itens de uma ordem de serviço
+     * @authenticated
+     *
+     * @urlParam id integer required ID da ordem de serviço. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "ordem_servico_id": 2,
+     *             "item_id": 1,
+     *             "quantidade": 10
+     *         },{
+     *             "id": 2,
+     *             "ordem_servico_id": 2,
+     *             "item_id": 3,
+     *             "quantidade": 800
+     *         }
+     *     ]
+     * }
+     */
+    public function items_ordem($id){
+        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$id)->get();
+        return OrdemServicoItemResource::collection($ordem_servico_itens);
+    }
+
+    /**
+     * Mostra os profissionais de uma ordem de serviço
+     * @authenticated
+     *
+     * @urlParam id integer required ID da ordem de serviço. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "ordem_servico_id": 2,
+     *             "profissional_id": 1,
+     *             "data_inicio": '2022-11-07',
+     *             "horas_empregadas": 10
+     *         },{
+     *             "id": 2,
+     *             "ordem_servico_id": 2,
+     *             "profissional_id": 2,
+     *             "data_inicio": '2022-11-07',
+     *             "horas_empregadas": 6
+     *         }
+     *     ]
+     * }
+     */
+    public function profissionais_ordem($id){
+        $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$id)->get();
+        return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
     }
 }

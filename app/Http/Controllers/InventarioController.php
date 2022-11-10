@@ -8,6 +8,7 @@ use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
 use App\Http\Resources\Inventario as InventarioResource;
 use App\Http\Resources\Item as ItemResource;
+use App\Http\Resources\Itemventario;
 use App\Models\Item;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -88,7 +89,7 @@ class InventarioController extends Controller
             })
             ->get();
 
-        return ItemResource::collection($inventarios);
+        return Itemventario::collection($inventarios);
     }
 
     /**

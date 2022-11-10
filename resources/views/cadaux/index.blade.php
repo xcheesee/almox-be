@@ -15,6 +15,8 @@
                     <a href="{{ route('cadaux-departamentos') }}" class="list-group-item list-group-item-action">Departamentos</a>
                     <a href="{{ route('cadaux-medidas') }}" class="list-group-item list-group-item-action">Medidas</a>
                     <a href="{{ route('cadaux-locais') }}" class="list-group-item list-group-item-action">Locais</a>
+                    <a href="{{ route('cadaux-profissionais') }}" class="list-group-item list-group-item-action">Profissionais</a>
+                    <a href="{{ route('cadaux-responsaveis_emails') }}" class="list-group-item list-group-item-action">Responsáveis Estoque</a>
                 </div>
             </li>
         </ul>

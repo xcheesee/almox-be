@@ -109,7 +109,7 @@ class ItemController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(ItemFormRequest $request)
+    public function create(Request $request)
     {
         $user = auth()->user();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
@@ -179,7 +179,7 @@ class ItemController extends Controller
      *     }
      * }
      */
-    public function show(ItemFormRequest $request, $id)
+    public function show(Request $request, $id)
     {
         $item = Item::findOrFail($id);
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
@@ -195,7 +195,7 @@ class ItemController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ItemFormRequest $request, $id)
+    public function edit(Request $request, $id)
     {
         $item = Item::findOrFail($id);
         $user = auth()->user();

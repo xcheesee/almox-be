@@ -65,27 +65,53 @@
       }
     };
 
-function consultaCEP(cep,id_endereco,id_bairro,id_cidade){
-    numcep = parseInt(cep.replace('-',''));
+    function consultaCEP(cep,id_endereco,id_bairro,id_cidade){
+        numcep = parseInt(cep.replace('-',''));
 
-    $('#spinner-div').show(); //Exibe spinner de loading (template base)
-    jQuery.ajax({
-        url : "https://viacep.com.br/ws/"+cep+"/json/",
-        type : "GET",
-        dataType : "json",
-        success:function(data)
+        $('#spinner-div').show(); //Exibe spinner de loading (template base)
+        jQuery.ajax({
+            url : "https://viacep.com.br/ws/"+cep+"/json/",
+            type : "GET",
+            dataType : "json",
+            success:function(data)
+            {
+                console.log(data);
+                $('#'+id_endereco).val(data.logradouro);
+                $('#'+id_bairro).val(data.bairro);
+                //$('#'+id_uf).val(data.uf);
+                $('#'+id_cidade).val(data.localidade);
+            },
+            complete: function () {
+                $('#spinner-div').hide(); //Oculta o spinner ao completar a request
+            }
+        });
+    }
+
+    function carregaLocais(dptcampo, divid){
+        var val = jQuery(dptcampo).val();
+        jQuery('select[name="'+divid+'"]').empty();
+        if(divid)
         {
-            console.log(data);
-            $('#'+id_endereco).val(data.logradouro);
-            $('#'+id_bairro).val(data.bairro);
-            //$('#'+id_uf).val(data.uf);
-            $('#'+id_cidade).val(data.localidade);
-        },
-        complete: function () {
-            $('#spinner-div').hide(); //Oculta o spinner ao completar a request
+            $('#spinner-div').show();
+            jQuery.ajax({
+                url : '/locais/' +val+'/filtrar',
+                type : "GET",
+                dataType : "json",
+                success:function(data)
+                {
+                    //console.log(data);
+                    jQuery('select[name="'+divid+'"]').prop('disabled', false);
+                    $('select[name="'+divid+'"]').append('<option value="">--Selecione--</option>');
+                    jQuery.each(data.locais, function(key,value){
+                        $('select[name="'+divid+'"]').append('<option value="'+ value.id +'">'+ value.nome +'</option>');
+                    });
+                },
+                complete: function () {
+                    $('#spinner-div').hide(); //Oculta o spinner ao completar a request
+                }
+            });
         }
-    });
-}
+    }
 
     //$("select").bsMultiSelect();
   </script>

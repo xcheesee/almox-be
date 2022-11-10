@@ -54,7 +54,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'update']);
     Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
 
-    
+
     Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
     Route::get('items_acabando', [App\Http\Controllers\InventarioController::class, 'items_acabando']);
 
@@ -63,7 +63,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'show']);
     Route::post('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'update']);
     Route::delete('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'destroy']);
-    Route::get('ordem_servico/{id}/items', [App\Http\Controllers\OrdemServicoItemController::class, 'items_ordem']);
+    Route::get('ordem_servico/{id}/items', [App\Http\Controllers\OrdemServicoController::class, 'items_ordem']);
+    Route::get('ordem_servico/{id}/profissionais', [App\Http\Controllers\OrdemServicoController::class, 'profissionais_ordem']);
     Route::post('ordem_servico/{id}/baixa', [App\Http\Controllers\OrdemServicoController::class, 'baixa']);
 
 });
@@ -76,9 +77,11 @@ Route::get('inventario/{id}', [App\Http\Controllers\InventarioController::class,
 Route::put('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'update']);
 Route::delete('inventario/{id}', [App\Http\Controllers\InventarioController::class, 'destroy']);
 
+Route::get('ordem_servico/{id}/baixa_json', [App\Http\Controllers\OrdemServicoController::class, 'baixa_json']);
 Route::get('ordem_servico/{id}/baixa_pdf', [App\Http\Controllers\OrdemServicoController::class, 'baixa_pdf']);
 
 //listagens para criar combos/filtros
 Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item_por_tipo']);
 Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);
+Route::get('profissionais', [App\Http\Controllers\ProfissionalController::class, 'profissionais_local']);
 Route::get('base/items', [App\Http\Controllers\InventarioController::class, 'items_local']);
