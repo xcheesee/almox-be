@@ -148,7 +148,9 @@ class ResponsaveisEmailController extends Controller
                 return new ResponsaveisEmailResource($responsaveis_email);
             }
 
-            return response()->json(['mensagem' => "ResponsaveisEmail '{$responsaveis_email->nome}' - ID {$responsaveis_email->id} editado(a) com sucesso!"], 200);
+            //return response()->json(['mensagem' => "ResponsaveisEmail '{$responsaveis_email->nome}' - ID {$responsaveis_email->id} editado(a) com sucesso!"], 200);
+            $request->session()->flash('mensagem',"Responsável '{$responsaveis_email->nome}' - '{$responsaveis_email->email}' editado(a) com sucesso, ID {$responsaveis_email->id}.");
+            return redirect()->route('cadaux-responsaveis_emails');
         }
     }
 
