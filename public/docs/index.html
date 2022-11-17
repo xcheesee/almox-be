@@ -265,7 +265,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 7 2022</li>
+        <li>Last updated: November 16 2022</li>
     </ul>
 </div>
 
@@ -312,7 +312,7 @@ const headers = {
 };
 
 let body = {
-    "name": "utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth",
+    "name": "gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -330,7 +330,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/cadastrar'
 payload = {
-    "name": "utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth",
+    "name": "gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -353,7 +353,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth',
+            'name' =&gt; 'gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -436,7 +436,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="utfkfrcceoyvqzixladtfdszzjrqdibvbnznlwbsmdxunjezbjuohsdehjdgghsespepxzdexzjbjcugisvxdebjmimygyocwwgodnjwnfgcxnnvjunxtbkazcrcmapspdghilcxbhtjptpwsvth"
+               value="gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1376,7 +1376,7 @@ import json
 
 url = 'http://10.30.17.8:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\php3808.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\phpD8CA.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -1449,7 +1449,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\php3808.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\phpD8CA.tmp', 'r')
             ],
         ],
     ]
@@ -3294,7 +3294,8 @@ access-control-allow-origin: *
             &quot;tipo_item_id&quot;: 2,
             &quot;tipo_item&quot;: &quot;carpintaria&quot;,
             &quot;nome&quot;: &quot;T&aacute;bua \&quot;2,5  X 30\&quot; cm em  Pinus; mista ou equivalente da regi&atilde;o - Bruta&quot;,
-            &quot;descricao&quot;: &quot;&quot;
+            &quot;descricao&quot;: &quot;&quot;,
+            &quot;quantidade&quot;: 3
         },
         {
             &quot;id&quot;: 18,
@@ -3305,7 +3306,8 @@ access-control-allow-origin: *
             &quot;tipo_item_id&quot;: 2,
             &quot;tipo_item&quot;: &quot;carpintaria&quot;,
             &quot;nome&quot;: &quot;Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi&uacute;ba)&quot;,
-            &quot;descricao&quot;: &quot;&quot;
+            &quot;descricao&quot;: &quot;&quot;,
+            &quot;quantidade&quot;: 4
         }
     ]
 }</code>
@@ -3726,6 +3728,15 @@ print_r(json_decode((string) $body));</code></pre></div>
     "http://10.30.17.8:8000/api/locais"
 );
 
+const params = {
+    "filter[tipo]": "base",
+    "filter[nome]": "Base Leopoldina",
+    "filter[cep]": "04103-000",
+    "filter[departamento_id]": "1234567",
+};
+Object.keys(params)
+    .forEach(key =&gt; url.searchParams.append(key, params[key]));
+
 const headers = {
     "Content-Type": "application/json",
     "Accept": "application/json",
@@ -3742,12 +3753,18 @@ fetch(url, {
 import json
 
 url = 'http://10.30.17.8:8000/api/locais'
+params = {
+  'filter[tipo]': 'base',
+  'filter[nome]': 'Base Leopoldina',
+  'filter[cep]': '04103-000',
+  'filter[departamento_id]': '1234567',
+}
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
 }
 
-response = requests.request('GET', url, headers=headers)
+response = requests.request('GET', url, headers=headers, params=params)
 response.json()</code></pre></div>
 
 
@@ -3759,6 +3776,12 @@ $response = $client-&gt;get(
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
+        ],
+        'query' =&gt; [
+            'filter[tipo]'=&gt; 'base',
+            'filter[nome]'=&gt; 'Base Leopoldina',
+            'filter[cep]'=&gt; '04103-000',
+            'filter[departamento_id]'=&gt; '1234567',
         ],
     ]
 );
@@ -3833,6 +3856,47 @@ access-control-allow-origin: *
                                                                 data-endpoint="GETapi-locais"
                                                                 data-component="header"></label>
         </p>
+                    <h4 class="fancy-heading-panel"><b>Query Parameters</b></h4>
+                    <p>
+                <b><code>filter[tipo]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[tipo]"
+               data-endpoint="GETapi-locais"
+               value="base"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de tipo de local (base, parque, autarquia, secretaria, subprefeitura).</p>
+            </p>
+                    <p>
+                <b><code>filter[nome]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[nome]"
+               data-endpoint="GETapi-locais"
+               value="Base Leopoldina"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de nome do local</p>
+            </p>
+                    <p>
+                <b><code>filter[cep]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[cep]"
+               data-endpoint="GETapi-locais"
+               value="04103-000"
+               data-component="query" hidden>
+    <br>
+<p>Filtro de CEP do local, separado por hífen.</p>
+            </p>
+                    <p>
+                <b><code>filter[departamento_id]</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="filter[departamento_id]"
+               data-endpoint="GETapi-locais"
+               value="1234567"
+               data-component="query" hidden>
+    <br>
+<p>Filtro do ID do departamento ao qual pertence o local.</p>
+            </p>
                 </form>
 
         <h1 id="medida">Medida</h1>
@@ -5810,7 +5874,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">content-type: application/pdf
-content-disposition: inline; filename=&quot;baixa_1_20221107-153923.pdf&quot;
+content-disposition: inline; filename=&quot;baixa_1_20221116-125616.pdf&quot;
 cache-control: no-cache, private
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 57
@@ -5993,8 +6057,8 @@ access-control-allow-origin: *
         {
             &quot;id&quot;: 1,
             &quot;saida_id&quot;: 24,
-            &quot;item_id&quot;: 1,
-            &quot;item&quot;: &quot;Argamassa, Na Cor Cinza &quot;,
+            &quot;item_id&quot;: 2,
+            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
             &quot;medida&quot;: &quot;SC&quot;,
             &quot;enviado&quot;: 10,
             &quot;usado&quot;: 8,
@@ -6003,8 +6067,8 @@ access-control-allow-origin: *
         {
             &quot;id&quot;: 2,
             &quot;saida_id&quot;: 24,
-            &quot;item_id&quot;: 2,
-            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
+            &quot;item_id&quot;: 3,
+            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
             &quot;medida&quot;: &quot;SC&quot;,
             &quot;enviado&quot;: 6,
             &quot;usado&quot;: 5,

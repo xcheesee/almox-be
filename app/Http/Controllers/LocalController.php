@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\LocalFormRequest;
 use App\Models\Local;
 use App\Http\Resources\Local as LocalResource;
+use Spatie\QueryBuilder\QueryBuilder;
+use Spatie\QueryBuilder\AllowedFilter;
 
 /**
  * @group Local
@@ -20,6 +22,11 @@ class LocalController extends Controller
      * Lista os locais
      * @authenticated
      *
+     * @queryParam filter[tipo] Filtro de tipo de local (base, parque, autarquia, secretaria, subprefeitura). Example: base
+     * @queryParam filter[nome] Filtro de nome do local Example: Base Leopoldina
+     * @queryParam filter[cep] Filtro de CEP do local, separado por hífen. Example: 04103-000
+     * @queryParam filter[departamento_id] Filtro do ID do departamento ao qual pertence o local. Example: 1234567
+     *
      */
     public function index(Request $request)
     {
@@ -27,7 +34,14 @@ class LocalController extends Controller
         if ($is_api_request){
             $user = auth()->user();
             $userDeptos = DepartamentoHelper::ids_deptos($user);
-            $locais = Local::whereIn('departamento_id',$userDeptos)->get();
+            $locais = QueryBuilder::for(Local::class)
+                //->whereIn('locais.departamento_id',$userDeptos)
+                ->allowedFilters(['departamento_id',
+                    AllowedFilter::partial('nome'),
+                    AllowedFilter::partial('tipo'),
+                    AllowedFilter::partial('cep'),
+                ])
+                ->get();
             return LocalResource::collection($locais);
         }
 

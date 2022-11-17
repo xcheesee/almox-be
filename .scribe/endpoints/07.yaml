@@ -16,7 +16,35 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
-    queryParameters: []
+    queryParameters:
+      'filter[tipo]':
+        name: 'filter[tipo]'
+        description: 'Filtro de tipo de local (base, parque, autarquia, secretaria, subprefeitura).'
+        required: false
+        example: base
+        type: string
+        custom: []
+      'filter[nome]':
+        name: 'filter[nome]'
+        description: 'Filtro de nome do local'
+        required: false
+        example: 'Base Leopoldina'
+        type: string
+        custom: []
+      'filter[cep]':
+        name: 'filter[cep]'
+        description: 'Filtro de CEP do local, separado por hífen.'
+        required: false
+        example: 04103-000
+        type: string
+        custom: []
+      'filter[departamento_id]':
+        name: 'filter[departamento_id]'
+        description: 'Filtro do ID do departamento ao qual pertence o local.'
+        required: false
+        example: '1234567'
+        type: string
+        custom: []
     bodyParameters: []
     responses:
       -

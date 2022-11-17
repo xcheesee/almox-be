@@ -52,7 +52,7 @@ class InventarioController extends Controller
                 AllowedFilter::scope('quantidade_maior_que'),
                 AllowedFilter::scope('quantidade_menor_que'),
             ])
-        ->allowedSorts('id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade')
+        ->allowedSorts('id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade', 'qtd_alerta')
         ->paginate(15);
 
         return InventarioResource::collection($inventarios);
