@@ -138,8 +138,9 @@ class ResponsaveisEmailController extends Controller
     public function update(ResponsaveisEmailFormRequest $request, $id)
     {
         $responsaveis_email = ResponsaveisEmail::findOrFail($id);
+        $responsaveis_email->departamento_id = $request->input('departamento_id');
         $responsaveis_email->nome = $request->input('nome');
-        $responsaveis_email->profissao = $request->input('profissao');
+        $responsaveis_email->email = $request->input('email');
 
         if ($responsaveis_email->save()) {
             $is_api_request = in_array('api',$request->route()->getAction('middleware'));
