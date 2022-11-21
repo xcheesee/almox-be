@@ -9,15 +9,15 @@
 @include('layouts.mensagem', ['mensagem' => $mensagem])
 <div class="row d-flex justify-content-center mt-3 containerTabela">
     <div class="row d-flex justify-content-center m-3" style="height: 200px;">
+        @can('cadaux-list')
         <div class="col d-grid gap-2">
             <button onclick="location.href='{{ route('cadaux') }}'" class="btn btn-success"><i class="fas fa-database fa-7x"></i><br>Cadastros auxiliares</button>
         </div>
-        @can('cadaux-list')
         @endcan
+        @can('relatorio-show')
         <div class="col d-grid gap-2">
             <button onclick="location.href='{{ route('chart') }}'" class="btn btn-success"><i class="fa-solid fa-chart-pie fa-7x"></i><br>Dashboard</button>
         </div>
-        @can('relatorio-show')
         @endcan
     </div>
     @hasrole('admin')
