@@ -54,10 +54,10 @@
             <thead class="thead-dark">
                 <tr>
                     <th class="col-md-1">@sortablelink('id', 'ID')</th>
-                    <th class="col-md-3">@sortablelink('departamentos.nome', 'Departamento')</th>
+                    <th class="col-md-3">@sortablelink('departamento.nome', 'Departamento')</th>
                     <th class="col-md-3">@sortablelink('nome', 'Nome')</th>
-                    <th class="col-md-2">@sortablelink('tipo_items.nome', 'Andar')</th>
-                    <th class="col-md-1">@sortablelink('medidas.tipo', 'Medida')</th>
+                    <th class="col-md-2">@sortablelink('tipo_item.nome', 'Tipo')</th>
+                    <th class="col-md-1">@sortablelink('medida.tipo', 'Medida')</th>
                     <th class="col-md-2 text-end">Ação</th>
                 </tr>
             </thead>

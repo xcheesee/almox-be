@@ -54,8 +54,8 @@
             <thead class="thead-dark">
                 <tr>
                     <th class="col-md-1">@sortablelink('id', 'ID')</th>
-                    <th class="col-md-2">@sortablelink('departamentos.nome', 'Departamento')</th>
-                    <th class="col-md-2">@sortablelink('locais.nome', 'Local')</th>
+                    <th class="col-md-2">@sortablelink('departamento.nome', 'Departamento')</th>
+                    <th class="col-md-2">@sortablelink('local.nome', 'Local')</th>
                     <th class="col-md-3">@sortablelink('nome', 'Nome')</th>
                     <th class="col-md-2">@sortablelink('profissao', 'Profissão')</th>
                     <th class="col-md-2 text-end">Ação</th>
