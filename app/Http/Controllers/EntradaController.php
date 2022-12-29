@@ -164,7 +164,6 @@ class EntradaController extends Controller
                     }
                 }
             }
-            DB::commit();
 
             // Salva na tabela historicos
             $historico = new Historico();
@@ -175,6 +174,7 @@ class EntradaController extends Controller
             $historico->registro = json_encode(new EntradaResource($entrada));
             $historico->save();
 
+            DB::commit();
             return new EntradaResource($entrada);
         }
     }
@@ -312,7 +312,6 @@ class EntradaController extends Controller
                     }
                 }
             }
-            DB::commit();
 
             // Salva na tabela historicos
             $historico = new Historico();
@@ -323,6 +322,7 @@ class EntradaController extends Controller
             $historico->registro = json_encode(new EntradaResource($entrada));
             $historico->save();
 
+            DB::commit();
             return new EntradaResource($entrada);
         }
     }

@@ -381,8 +381,6 @@ class OrdemServicoController extends Controller
                 }
             }
 
-            DB::commit();
-
             // Salva na tabela historicos
             $historico = new Historico();
             $historico->nome_tabela = 'Ordem_Servico';
@@ -392,6 +390,7 @@ class OrdemServicoController extends Controller
             $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
             $historico->save();
 
+            DB::commit();
             return new OrdemServicoResource($ordem_servico);
         }
     }
@@ -469,6 +468,15 @@ class OrdemServicoController extends Controller
 
                 $ordem_servico->flg_baixa = true;
                 $ordem_servico->save();
+
+                // Salva na tabela historicos
+                $historico = new Historico();
+                $historico->nome_tabela = 'Ordem_Servico e Saida_Inventario';
+                $historico->data_acao = date("Y-m-d");
+                $historico->tipo_acao = 'atualizacao';
+                $historico->user_id = Auth::user()->id;
+                $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
+                $historico->save();
 
                 DB::commit();
             }else{
