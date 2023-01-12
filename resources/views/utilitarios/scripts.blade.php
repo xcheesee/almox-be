@@ -94,7 +94,7 @@
         {
             $('#spinner-div').show();
             jQuery.ajax({
-                url : '{{ env("API_FOLDER","/almoxarifado") }}/locais/' +val+'/filtrar',
+                url : '{{ env("APP_URL") }}/locais/' +val+'/filtrar',
                 type : "GET",
                 dataType : "json",
                 success:function(data)
