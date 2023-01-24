@@ -167,6 +167,9 @@ class OrdemServicoController extends Controller
             if ($ordemServicoItens){
                 $items_acabando = array();
                 foreach ($ordemServicoItens as $ordem_servico_items){
+                    //verifica se o frontend enviou lista vazia de materiais
+                    if (!$ordem_servico_items["id"]) continue;
+
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_item = new OrdemServicoItem();
                     $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
@@ -344,6 +347,9 @@ class OrdemServicoController extends Controller
             $ordemServicoItens = $request->input('ordem_servico_items');
             if ($ordemServicoItens){
                 foreach ($ordemServicoItens as $ordem_servico_items){
+                    //verifica se o frontend enviou lista vazia de materiais
+                    if (!$ordem_servico_items["id"]) continue;
+
                     // Atualizando item na tabela ordem_servico_items
                     $ordem_servico_item = OrdemServicoItem::query()->where('item_id','=',$ordem_servico_items["item_id"])->first();
 
