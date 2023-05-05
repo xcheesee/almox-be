@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\OcorrenciasController;
+use App\Http\Controllers\TransferenciaItensController;
+use App\Http\Controllers\TransferenciaMateriaisController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -53,11 +56,11 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('entrada', [App\Http\Controllers\EntradaController::class, 'store']);
     Route::post('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'update']);
     Route::delete('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'destroy']);
-
-
+    
+    
     Route::get('inventarios', [App\Http\Controllers\InventarioController::class, 'index']);
     Route::get('items_acabando', [App\Http\Controllers\InventarioController::class, 'items_acabando']);
-
+    
     Route::get('ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index']);
     Route::post('ordem_servico', [App\Http\Controllers\OrdemServicoController::class, 'store']);
     Route::get('ordem_servico/{id}', [App\Http\Controllers\OrdemServicoController::class, 'show']);
@@ -66,8 +69,26 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('ordem_servico/{id}/items', [App\Http\Controllers\OrdemServicoController::class, 'items_ordem']);
     Route::get('ordem_servico/{id}/profissionais', [App\Http\Controllers\OrdemServicoController::class, 'profissionais_ordem']);
     Route::post('ordem_servico/{id}/baixa', [App\Http\Controllers\OrdemServicoController::class, 'baixa']);
-
+    
+    Route::get('/transferencia', [TransferenciaMateriaisController::class, 'index']);
+    Route::get('/transferencia/{id}', [TransferenciaMateriaisController::class, 'show']);
+    Route::post('/transferencia', [TransferenciaMateriaisController::class, 'store']);
+    Route::put('/transferencia/{id}', [TransferenciaMateriaisController::class, 'update']);
+    Route::delete('/transferencia/{id}', [TransferenciaMateriaisController::class, 'destroy']);
+    
+    Route::get('/transferencia_itens', [TransferenciaItensController::class, 'index']);
+    Route::get('/transferencia_itens/{id}', [TransferenciaItensController::class, 'show']);
+    Route::post('/transferencia_itens', [TransferenciaItensController::class, 'store']);
+    Route::put('/transferencia_itens/{id}', [TransferenciaItensController::class, 'update']);
+    Route::delete('/transferencia_itens/{id}', [TransferenciaItensController::class, 'destroy']);
+    
+    Route::get('/ocorrencia', [OcorrenciasController::class, 'index']);
+    Route::get('/ocorrencia/{id}', [OcorrenciasController::class, 'show']);
+    Route::post('/ocorrencia', [OcorrenciasController::class, 'store']);
+    Route::put('/ocorrencia/{id}', [OcorrenciasController::class, 'update']);
+    Route::delete('/ocorrencia/{id}', [OcorrenciasController::class, 'destroy']);
 });
+
 
 Route::get('entrada/{id}', [App\Http\Controllers\EntradaController::class, 'show']);
 Route::get('entrada/{id}/items', [App\Http\Controllers\EntradaItemController::class, 'items_entrada']);
