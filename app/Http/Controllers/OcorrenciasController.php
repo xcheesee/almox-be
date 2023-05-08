@@ -15,7 +15,7 @@ class OcorrenciasController extends Controller
         return response()->json([
             'mensagem' => 'Todas ocorrencias cadastradas',
             'ocorrencia' => $ocorrencia
-        ]);
+        ], 200);
     }
 
     public function store(Request $request)
@@ -47,11 +47,11 @@ class OcorrenciasController extends Controller
             return response()->json([
                 'mensagem' => 'Ocorrencia encontrada com sucesso!',
                 'ocorrencia' => $ocorrencia
-            ]);
+            ], 200);
         } else {
             return response()->json([
-                'mensagem' => 'Item de transferencia não encontrada!',
-            ]);
+                'mensagem' => 'Ocorrencia não encontrada!',
+            ], 404);
         }
     }
 
@@ -68,9 +68,9 @@ class OcorrenciasController extends Controller
         $ocorrencia->update();
         
         return response()->json([
-            'mensagem' => 'Item de transferencia atualizado com sucesso!',
+            'mensagem' => 'Ocorrencia atualizada com sucesso!',
             'ocorrencia' => $ocorrencia
-        ]);
+        ], 200);
     }
 
     public function destroy($id)
@@ -83,13 +83,13 @@ class OcorrenciasController extends Controller
             $ocorrencia->delete();
 
             return response()->json([
-                'mensagem' => 'Item de transferencia deletado com sucesso!',
+                'mensagem' => 'Ocorrencia deletada com sucesso!',
                 'ocorrencia' => $ocorrencia
-            ]);
+            ], 200);
         } else {
             return response()->json([
-                'mensagem' => 'Item de transferencia não encontrado para deletar.',
-            ]);
+                'mensagem' => 'Ocorrencia não encontrada para deletar.',
+            ], 404);
         }
     }
 }

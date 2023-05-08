@@ -16,7 +16,7 @@ class TransferenciaMateriaisController extends Controller
         return response()->json([
             'mensagem' => 'Todas transferencias cadastradas',
             'transferencias' => $transferencia
-        ]);
+        ], 200);
     }
 
     public function store(Request $request)
@@ -37,7 +37,7 @@ class TransferenciaMateriaisController extends Controller
         return response()->json([
             'mensagem' => 'Transferencia cadastrada com sucesso!',
             'transferencia' => $transferencia
-        ]);
+        ], 200);
     }
 
     public function show($id)
@@ -49,11 +49,11 @@ class TransferenciaMateriaisController extends Controller
             return response()->json([
                 'mensagem' => 'Transferencia encontrada com sucesso!',
                 'transferencia' => $transferencia
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'mensagem' => 'Transferencia naõ encontrada!',
-            ]);
+            ], 404);
         }
     }
 
@@ -75,7 +75,7 @@ class TransferenciaMateriaisController extends Controller
         return response()->json([
             'mensagem' => 'Transferencia atualizada com sucesso!',
             'transferencia' => $transferencia
-        ]);
+        ], 200);
     }
 
     public function destroy($id)
@@ -90,11 +90,11 @@ class TransferenciaMateriaisController extends Controller
             return response()->json([
                 'mensagem' => 'Transferencia deletada com sucesso!',
                 'transferencia' => $transferencia
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'mensagem' => 'Transferencia não encontrada para deletar!',
-            ]);
+            ], 404);
         }
     }
 }

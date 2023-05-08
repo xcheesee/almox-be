@@ -48,6 +48,7 @@ class NewTables extends Migration
             $table->string('boletim_ocorrencia');
             $table->text('justificativa');
             $table->unsignedBigInteger('user_id');
+            $table->timestamps();
 
             $table->foreign('local_id')->references('id')->on('locais');
             $table->foreign('user_id')->references('id')->on('users');
@@ -58,6 +59,7 @@ class NewTables extends Migration
             $table->bigInteger('ocorrencia_id');
             $table->bigInteger('item_id');
             $table->bigInteger('quantidade');
+            $table->timestamps();
         });
 
         Schema::table('ordem_servicos', function (Blueprint $table) {
@@ -65,6 +67,7 @@ class NewTables extends Migration
             $table->dropColumn('almoxarife_email');
             $table->dropColumn('profissional');
             $table->dropColumn('horas_execucao');
+            
         });
     }
 

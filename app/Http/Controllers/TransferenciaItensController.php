@@ -14,7 +14,7 @@ class TransferenciaItensController extends Controller
         return response()->json([
             'mensagem' => 'Todos itens de transfrerencia cadastrados',
             'itens' => $itens
-        ]);
+        ], 200);
     }
 
     public function store(Request $request)
@@ -30,7 +30,7 @@ class TransferenciaItensController extends Controller
         return response()->json([
             'mensagem' => 'Item de transferencia cadastrado com sucesso!',
             'itens' => $itens
-        ]);
+        ], 200);
         }
     
 
@@ -43,11 +43,11 @@ class TransferenciaItensController extends Controller
             return response()->json([
                 'mensagem' => 'Item de transferencia encontrado com sucesso!',
                 'itens' => $itens
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'mensagem' => 'Item de transferencia não encontrada!',
-            ]);
+            ], 404);
         }
     }
 
@@ -65,7 +65,7 @@ class TransferenciaItensController extends Controller
         return response()->json([
             'mensagem' => 'Item de transferencia atualizado com sucesso!',
             'itens' => $itens
-        ]);
+        ], 200);
     }
 
     public function destroy($id)
@@ -80,11 +80,11 @@ class TransferenciaItensController extends Controller
             return response()->json([
                 'mensagem' => 'Item de transferencia deletado com sucesso!',
                 'itens' => $itens
-            ]);
+            ], 200);
         } else {
             return response()->json([
                 'mensagem' => 'Item de transferencia não encontrado para deletar.',
-            ]);
+            ], 404);
         }
     }
 }
