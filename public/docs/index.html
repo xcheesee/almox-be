@@ -27,7 +27,7 @@
             </style>
 
     <script>
-        var baseUrl = "http://10.30.17.8:8000";
+        var baseUrl = "http://localhost:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -105,6 +105,36 @@
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-perfil">
                         <a href="#endpoints-GETapi-perfil">Exibe dados do usuário logado de acordo com o Token enviado</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-transferencia_itens">
+                        <a href="#endpoints-GETapi-transferencia_itens">Lista Todos os itens de Transferencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-transferencia_itens--id-">
+                        <a href="#endpoints-GETapi-transferencia_itens--id-">Mostra um Item de Transferencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-transferencia_itens">
+                        <a href="#endpoints-POSTapi-transferencia_itens">Cadastra um item de transferencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-transferencia_itens--id-">
+                        <a href="#endpoints-PUTapi-transferencia_itens--id-">Atualiza um Item de Transferencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-transferencia_itens--id-">
+                        <a href="#endpoints-DELETEapi-transferencia_itens--id-">Deleta um Item de Transferencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-ocorrencia_itens">
+                        <a href="#endpoints-GETapi-ocorrencia_itens">Lista todos os itens de uma Ocorrencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-ocorrencia_itens--id-">
+                        <a href="#endpoints-GETapi-ocorrencia_itens--id-">Mostra um item de Ocorrencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-ocorrencia_itens">
+                        <a href="#endpoints-POSTapi-ocorrencia_itens">Cadastra um Item de Ocorrencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-ocorrencia_itens--id-">
+                        <a href="#endpoints-PUTapi-ocorrencia_itens--id-">Edita um Item de Ocorrencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-ocorrencia_itens--id-">
+                        <a href="#endpoints-DELETEapi-ocorrencia_itens--id-">Deleta um item de Ocorrencia</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -199,6 +229,28 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-11" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="ocorrencias">
+                    <a href="#ocorrencias">Ocorrencias</a>
+                </li>
+                                    <ul id="tocify-subheader-ocorrencias" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="ocorrencias-GETapi-ocorrencia">
+                        <a href="#ocorrencias-GETapi-ocorrencia">Lista todas as Ocorrencias</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ocorrencias-GETapi-ocorrencia--id-">
+                        <a href="#ocorrencias-GETapi-ocorrencia--id-">Mostrar uma Ocorrencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ocorrencias-POSTapi-ocorrencia">
+                        <a href="#ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Transferencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ocorrencias-PUTapi-ocorrencia--id-">
+                        <a href="#ocorrencias-PUTapi-ocorrencia--id-">Edita uma Ocorrencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="ocorrencias-DELETEapi-ocorrencia--id-">
+                        <a href="#ocorrencias-DELETEapi-ocorrencia--id-">Deletar uma Ocorrencia</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-12" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="ordemservico">
                     <a href="#ordemservico">OrdemServico</a>
                 </li>
@@ -235,7 +287,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-12" class="tocify-header">
+                    <ul id="tocify-header-13" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="profissional">
                     <a href="#profissional">Profissional</a>
                 </li>
@@ -245,13 +297,35 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-13" class="tocify-header">
+                    <ul id="tocify-header-14" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="tipoitem">
                     <a href="#tipoitem">TipoItem</a>
                 </li>
                                     <ul id="tocify-subheader-tipoitem" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="tipoitem-GETapi-tipo_items">
                         <a href="#tipoitem-GETapi-tipo_items">Lista os tipos de itens</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-15" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="tranferencia-de-materiais">
+                    <a href="#tranferencia-de-materiais">Tranferencia de Materiais</a>
+                </li>
+                                    <ul id="tocify-subheader-tranferencia-de-materiais" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="tranferencia-de-materiais-GETapi-transferencia">
+                        <a href="#tranferencia-de-materiais-GETapi-transferencia">Lista Todas as Transferencias</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="tranferencia-de-materiais-GETapi-transferencia--id-">
+                        <a href="#tranferencia-de-materiais-GETapi-transferencia--id-">Mostrar uma transferencia</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="tranferencia-de-materiais-POSTapi-transferencia">
+                        <a href="#tranferencia-de-materiais-POSTapi-transferencia">Cadastra uma nova Transferencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="tranferencia-de-materiais-PUTapi-transferencia--id-">
+                        <a href="#tranferencia-de-materiais-PUTapi-transferencia--id-">Edita uma Transferencia.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="tranferencia-de-materiais-DELETEapi-transferencia--id-">
+                        <a href="#tranferencia-de-materiais-DELETEapi-transferencia--id-">Deleta uma Transferencia</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -265,7 +339,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: November 16 2022</li>
+        <li>Last updated: May 10 2023</li>
     </ul>
 </div>
 
@@ -303,7 +377,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/cadastrar"
+    "http://localhost:8000/api/cadastrar"
 );
 
 const headers = {
@@ -312,7 +386,7 @@ const headers = {
 };
 
 let body = {
-    "name": "gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp",
+    "name": "cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -328,9 +402,9 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/cadastrar'
+url = 'http://localhost:8000/api/cadastrar'
 payload = {
-    "name": "gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp",
+    "name": "cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -346,14 +420,14 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/cadastrar',
+    'http://localhost:8000/api/cadastrar',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp',
+            'name' =&gt; 'cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -436,7 +510,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="gzqylxmbiqgcspeibidpszubnohbjhcgspwhigswtqscfpiyhsdedvrwnwapurevgutphvgeawisrbmbjaxvczyrrwhyqumurbfgp"
+               value="cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -476,7 +550,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/login"
+    "http://localhost:8000/api/login"
 );
 
 const headers = {
@@ -500,7 +574,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/login'
+url = 'http://localhost:8000/api/login'
 payload = {
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
@@ -517,7 +591,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/login',
+    'http://localhost:8000/api/login',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -639,7 +713,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/alterar_senha"
+    "http://localhost:8000/api/alterar_senha"
 );
 
 const headers = {
@@ -666,7 +740,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/alterar_senha'
+url = 'http://localhost:8000/api/alterar_senha'
 payload = {
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123",
@@ -686,7 +760,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/alterar_senha',
+    'http://localhost:8000/api/alterar_senha',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -834,7 +908,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/departamentos"
+    "http://localhost:8000/api/departamentos"
 );
 
 const headers = {
@@ -852,7 +926,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/departamentos'
+url = 'http://localhost:8000/api/departamentos'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -865,7 +939,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/departamentos',
+    'http://localhost:8000/api/departamentos',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -964,7 +1038,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/perfil"
+    "http://localhost:8000/api/perfil"
 );
 
 const headers = {
@@ -983,7 +1057,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/perfil'
+url = 'http://localhost:8000/api/perfil'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
@@ -997,7 +1071,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/perfil',
+    'http://localhost:8000/api/perfil',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1086,6 +1160,1602 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
+            <h2 id="endpoints-GETapi-transferencia_itens">Lista Todos os itens de Transferencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-transferencia_itens">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia_itens"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia_itens'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/transferencia_itens',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-transferencia_itens">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-transferencia_itens" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-transferencia_itens"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-transferencia_itens"></code></pre>
+</span>
+<span id="execution-error-GETapi-transferencia_itens" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-transferencia_itens"></code></pre>
+</span>
+<form id="form-GETapi-transferencia_itens" data-method="GET"
+      data-path="api/transferencia_itens"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-transferencia_itens', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-transferencia_itens"
+                    onclick="tryItOut('GETapi-transferencia_itens');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-transferencia_itens"
+                    onclick="cancelTryOut('GETapi-transferencia_itens');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-transferencia_itens" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/transferencia_itens</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-transferencia_itens" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-transferencia_itens"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="endpoints-GETapi-transferencia_itens--id-">Mostra um Item de Transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-transferencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia_itens/ullam"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia_itens/ullam'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/transferencia_itens/ullam',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-transferencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia encontrado com sucesso!&quot;,
+    &quot;itens&quot;: {
+        &quot;id&quot;: 2,
+        &quot;entrada_id&quot;: 244,
+        &quot;item_id&quot;: 9,
+        &quot;quantidade&quot;: 4,
+        &quot;created_at&quot;: &quot;2023-05-05T15:20:08.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-05T15:22:01.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia n&atilde;o encontrada!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-transferencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-transferencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-transferencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-transferencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-transferencia_itens--id-"></code></pre>
+</span>
+<form id="form-GETapi-transferencia_itens--id-" data-method="GET"
+      data-path="api/transferencia_itens/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-transferencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-transferencia_itens--id-"
+                    onclick="tryItOut('GETapi-transferencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-transferencia_itens--id-"
+                    onclick="cancelTryOut('GETapi-transferencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-transferencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/transferencia_itens/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-transferencia_itens--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-transferencia_itens--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-transferencia_itens--id-"
+               value="ullam"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the transferencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="GETapi-transferencia_itens--id-"
+               value="blanditiis"
+               data-component="url" hidden>
+    <br>
+<p>ID do item.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-transferencia_itens">Cadastra um item de transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-transferencia_itens">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia_itens"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "entrada_id": 1,
+    "item_id": 5,
+    "quantidade": 1
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia_itens'
+payload = {
+    "entrada_id": 1,
+    "item_id": 5,
+    "quantidade": 1
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/transferencia_itens',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'entrada_id' =&gt; 1,
+            'item_id' =&gt; 5,
+            'quantidade' =&gt; 1,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-transferencia_itens">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia cadastrado com sucesso!&quot;,
+    &quot;itens&quot;: {
+        &quot;entrada_id&quot;: 1,
+        &quot;item_id&quot;: 5,
+        &quot;quantidade&quot;: 1,
+        &quot;updated_at&quot;: &quot;2023-05-10T14:37:52.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2023-05-10T14:37:52.000000Z&quot;,
+        &quot;id&quot;: 4
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-transferencia_itens" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-transferencia_itens"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-transferencia_itens"></code></pre>
+</span>
+<span id="execution-error-POSTapi-transferencia_itens" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-transferencia_itens"></code></pre>
+</span>
+<form id="form-POSTapi-transferencia_itens" data-method="POST"
+      data-path="api/transferencia_itens"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-transferencia_itens', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-transferencia_itens"
+                    onclick="tryItOut('POSTapi-transferencia_itens');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-transferencia_itens"
+                    onclick="cancelTryOut('POSTapi-transferencia_itens');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-transferencia_itens" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/transferencia_itens</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-transferencia_itens" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-transferencia_itens"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>entrada_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="entrada_id"
+               data-endpoint="POSTapi-transferencia_itens"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID da entrada.</p>
+        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-transferencia_itens"
+               value="5"
+               data-component="body" hidden>
+    <br>
+<p>ID do item transferencia.</p>
+        </p>
+                <p>
+            <b><code>quantidade</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="quantidade"
+               data-endpoint="POSTapi-transferencia_itens"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>Quantidade de itens.</p>
+        </p>
+        </form>
+
+            <h2 id="endpoints-PUTapi-transferencia_itens--id-">Atualiza um Item de Transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-transferencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia_itens/iste"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "entrada_id": 244,
+    "item_id": 9,
+    "quantidade": 4
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia_itens/iste'
+payload = {
+    "entrada_id": 244,
+    "item_id": 9,
+    "quantidade": 4
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost:8000/api/transferencia_itens/iste',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'entrada_id' =&gt; 244,
+            'item_id' =&gt; 9,
+            'quantidade' =&gt; 4,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-transferencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia atualizado com sucesso!&quot;,
+    &quot;itens&quot;: {
+        &quot;id&quot;: 5,
+        &quot;entrada_id&quot;: 244,
+        &quot;item_id&quot;: 9,
+        &quot;quantidade&quot;: 4,
+        &quot;created_at&quot;: &quot;2023-05-10T14:41:11.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-10T14:41:22.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-transferencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-transferencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-transferencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-transferencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-transferencia_itens--id-"></code></pre>
+</span>
+<form id="form-PUTapi-transferencia_itens--id-" data-method="PUT"
+      data-path="api/transferencia_itens/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-transferencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-transferencia_itens--id-"
+                    onclick="tryItOut('PUTapi-transferencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-transferencia_itens--id-"
+                    onclick="cancelTryOut('PUTapi-transferencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-transferencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/transferencia_itens/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-transferencia_itens--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-transferencia_itens--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTapi-transferencia_itens--id-"
+               value="iste"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the transferencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="PUTapi-transferencia_itens--id-"
+               value="modi"
+               data-component="url" hidden>
+    <br>
+<p>ID do item que deseja atualizar. Example 5</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>entrada_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="entrada_id"
+               data-endpoint="PUTapi-transferencia_itens--id-"
+               value="244"
+               data-component="body" hidden>
+    <br>
+<p>ID da entrada.</p>
+        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="PUTapi-transferencia_itens--id-"
+               value="9"
+               data-component="body" hidden>
+    <br>
+<p>ID do item transferencia.</p>
+        </p>
+                <p>
+            <b><code>quantidade</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="quantidade"
+               data-endpoint="PUTapi-transferencia_itens--id-"
+               value="4"
+               data-component="body" hidden>
+    <br>
+<p>Quantidade de itens.</p>
+        </p>
+        </form>
+
+            <h2 id="endpoints-DELETEapi-transferencia_itens--id-">Deleta um Item de Transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-transferencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia_itens/non"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia_itens/non'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost:8000/api/transferencia_itens/non',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-transferencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia deletado com sucesso!&quot;,
+    &quot;itens&quot;: {
+        &quot;id&quot;: 6,
+        &quot;entrada_id&quot;: 5,
+        &quot;item_id&quot;: 19,
+        &quot;quantidade&quot;: 2,
+        &quot;created_at&quot;: &quot;2023-05-10T14:43:16.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-10T14:43:16.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de transferencia n&atilde;o encontrado para deletar.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-transferencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-transferencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-transferencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-transferencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-transferencia_itens--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-transferencia_itens--id-" data-method="DELETE"
+      data-path="api/transferencia_itens/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-transferencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-transferencia_itens--id-"
+                    onclick="tryItOut('DELETEapi-transferencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-transferencia_itens--id-"
+                    onclick="cancelTryOut('DELETEapi-transferencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-transferencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/transferencia_itens/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-transferencia_itens--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-transferencia_itens--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEapi-transferencia_itens--id-"
+               value="non"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the transferencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="DELETEapi-transferencia_itens--id-"
+               value="6"
+               data-component="url" hidden>
+    <br>
+<p>ID do item.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-ocorrencia_itens">Lista todos os itens de uma Ocorrencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ocorrencia_itens">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia_itens"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia_itens'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/ocorrencia_itens',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ocorrencia_itens">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ocorrencia_itens" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ocorrencia_itens"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ocorrencia_itens"></code></pre>
+</span>
+<span id="execution-error-GETapi-ocorrencia_itens" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ocorrencia_itens"></code></pre>
+</span>
+<form id="form-GETapi-ocorrencia_itens" data-method="GET"
+      data-path="api/ocorrencia_itens"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ocorrencia_itens', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ocorrencia_itens"
+                    onclick="tryItOut('GETapi-ocorrencia_itens');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ocorrencia_itens"
+                    onclick="cancelTryOut('GETapi-ocorrencia_itens');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ocorrencia_itens" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ocorrencia_itens</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ocorrencia_itens" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ocorrencia_itens"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="endpoints-GETapi-ocorrencia_itens--id-">Mostra um item de Ocorrencia</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-ocorrencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia_itens/aut"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia_itens/aut'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/ocorrencia_itens/aut',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ocorrencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de ocorrencia encontrado com sucesso!&quot;,
+    &quot;item&quot;: {
+        &quot;id&quot;: 1,
+        &quot;ocorrencia_id&quot;: 1,
+        &quot;item_id&quot;: 2,
+        &quot;quantidade&quot;: 1,
+        &quot;created_at&quot;: &quot;2023-05-08T14:30:10.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-08T14:30:10.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de ocorrencia n&atilde;o encontrada!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ocorrencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<form id="form-GETapi-ocorrencia_itens--id-" data-method="GET"
+      data-path="api/ocorrencia_itens/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ocorrencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ocorrencia_itens--id-"
+                    onclick="tryItOut('GETapi-ocorrencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ocorrencia_itens--id-"
+                    onclick="cancelTryOut('GETapi-ocorrencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ocorrencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ocorrencia_itens/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-ocorrencia_itens--id-"
+               value="aut"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the ocorrencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="GETapi-ocorrencia_itens--id-"
+               value="error"
+               data-component="url" hidden>
+    <br>
+<p>ID do item que deseja mostrar.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-ocorrencia_itens">Cadastra um Item de Ocorrencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-ocorrencia_itens">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia_itens"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "ocorrencia_id": 5,
+    "item_id": 6,
+    "quantidade": 36
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia_itens'
+payload = {
+    "ocorrencia_id": 5,
+    "item_id": 6,
+    "quantidade": 36
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/ocorrencia_itens',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'ocorrencia_id' =&gt; 5,
+            'item_id' =&gt; 6,
+            'quantidade' =&gt; 36,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-ocorrencia_itens">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de ocorrencia cadastrado com sucesso!&quot;,
+    &quot;item&quot;: {
+        &quot;ocorrencia_id&quot;: 5,
+        &quot;item_id&quot;: 6,
+        &quot;quantidade&quot;: 36,
+        &quot;updated_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;,
+        &quot;id&quot;: 6
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-ocorrencia_itens" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-ocorrencia_itens"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-ocorrencia_itens"></code></pre>
+</span>
+<span id="execution-error-POSTapi-ocorrencia_itens" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-ocorrencia_itens"></code></pre>
+</span>
+<form id="form-POSTapi-ocorrencia_itens" data-method="POST"
+      data-path="api/ocorrencia_itens"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-ocorrencia_itens', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-ocorrencia_itens"
+                    onclick="tryItOut('POSTapi-ocorrencia_itens');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-ocorrencia_itens"
+                    onclick="cancelTryOut('POSTapi-ocorrencia_itens');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-ocorrencia_itens" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/ocorrencia_itens</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-ocorrencia_itens" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-ocorrencia_itens"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>ocorrencia_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="ocorrencia_id"
+               data-endpoint="POSTapi-ocorrencia_itens"
+               value="5"
+               data-component="body" hidden>
+    <br>
+<p>ID da Ocorrencia.</p>
+        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="POSTapi-ocorrencia_itens"
+               value="6"
+               data-component="body" hidden>
+    <br>
+<p>ID do item.</p>
+        </p>
+                <p>
+            <b><code>quantidade</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="quantidade"
+               data-endpoint="POSTapi-ocorrencia_itens"
+               value="36"
+               data-component="body" hidden>
+    <br>
+<p>Quantidade de itens.</p>
+        </p>
+        </form>
+
+            <h2 id="endpoints-PUTapi-ocorrencia_itens--id-">Edita um Item de Ocorrencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-ocorrencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia_itens/sint"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "ocorrencia_id": 5,
+    "item_id": 6,
+    "quantidade": 36
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia_itens/sint'
+payload = {
+    "ocorrencia_id": 5,
+    "item_id": 6,
+    "quantidade": 36
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost:8000/api/ocorrencia_itens/sint',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'ocorrencia_id' =&gt; 5,
+            'item_id' =&gt; 6,
+            'quantidade' =&gt; 36,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-ocorrencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Item de ocorrencia editado com sucesso!&quot;,
+    &quot;item&quot;: {
+        &quot;id&quot;: 6,
+        &quot;ocorrencia_id&quot;: 5,
+        &quot;item_id&quot;: 6,
+        &quot;quantidade&quot;: 36,
+        &quot;created_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-ocorrencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<form id="form-PUTapi-ocorrencia_itens--id-" data-method="PUT"
+      data-path="api/ocorrencia_itens/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-ocorrencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-ocorrencia_itens--id-"
+                    onclick="tryItOut('PUTapi-ocorrencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-ocorrencia_itens--id-"
+                    onclick="cancelTryOut('PUTapi-ocorrencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-ocorrencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/ocorrencia_itens/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-ocorrencia_itens--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-ocorrencia_itens--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="PUTapi-ocorrencia_itens--id-"
+               value="sint"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the ocorrencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="PUTapi-ocorrencia_itens--id-"
+               value="dolores"
+               data-component="url" hidden>
+    <br>
+<p>ID do item que deseja editar. Example 6</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>ocorrencia_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="ocorrencia_id"
+               data-endpoint="PUTapi-ocorrencia_itens--id-"
+               value="5"
+               data-component="body" hidden>
+    <br>
+<p>ID da Ocorrencia.</p>
+        </p>
+                <p>
+            <b><code>item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="item_id"
+               data-endpoint="PUTapi-ocorrencia_itens--id-"
+               value="6"
+               data-component="body" hidden>
+    <br>
+<p>ID do item.</p>
+        </p>
+                <p>
+            <b><code>quantidade</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="quantidade"
+               data-endpoint="PUTapi-ocorrencia_itens--id-"
+               value="36"
+               data-component="body" hidden>
+    <br>
+<p>Quantidade de itens.</p>
+        </p>
+        </form>
+
+            <h2 id="endpoints-DELETEapi-ocorrencia_itens--id-">Deleta um item de Ocorrencia</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-ocorrencia_itens--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia_itens/tenetur"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia_itens/tenetur'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost:8000/api/ocorrencia_itens/tenetur',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-ocorrencia_itens--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia deletada com sucesso!&quot;,
+    &quot;ocorrencia&quot;: {
+        &quot;id&quot;: 2,
+        &quot;ocorrencia_id&quot;: 0,
+        &quot;item_id&quot;: 3,
+        &quot;quantidade&quot;: 1,
+        &quot;created_at&quot;: &quot;2023-05-08T14:31:20.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-08T14:32:24.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia n&atilde;o encontrada para deletar.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-ocorrencia_itens--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-ocorrencia_itens--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-ocorrencia_itens--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-ocorrencia_itens--id-" data-method="DELETE"
+      data-path="api/ocorrencia_itens/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-ocorrencia_itens--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-ocorrencia_itens--id-"
+                    onclick="tryItOut('DELETEapi-ocorrencia_itens--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-ocorrencia_itens--id-"
+                    onclick="cancelTryOut('DELETEapi-ocorrencia_itens--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-ocorrencia_itens--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/ocorrencia_itens/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="DELETEapi-ocorrencia_itens--id-"
+               value="tenetur"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the ocorrencia iten.</p>
+            </p>
+                    <p>
+                <b><code>integer</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="integer"
+               data-endpoint="DELETEapi-ocorrencia_itens--id-"
+               value="architecto"
+               data-component="url" hidden>
+    <br>
+<p>ID do item que deseja deletar.</p>
+            </p>
+                    </form>
+
         <h1 id="entrada">Entrada</h1>
 
     <p>APIs para listar, cadastrar, editar e remover dados de entrada</p>
@@ -1104,7 +2774,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entradas"
+    "http://localhost:8000/api/entradas"
 );
 
 const params = {
@@ -1135,7 +2805,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entradas'
+url = 'http://localhost:8000/api/entradas'
 params = {
   'filter[processo_sei]': '6000.2022/0000123-4',
   'filter[numero_contrato]': '001/SVMA/2022',
@@ -1158,7 +2828,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/entradas',
+    'http://localhost:8000/api/entradas',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1344,7 +3014,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entrada"
+    "http://localhost:8000/api/entrada"
 );
 
 const headers = {
@@ -1374,9 +3044,9 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entrada'
+url = 'http://localhost:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\d856954.REDE\AppData\Local\Temp\phpD8CA.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\x385830\AppData\Local\Temp\phpD353.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -1408,7 +3078,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/entrada',
+    'http://localhost:8000/api/entrada',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'multipart/form-data',
@@ -1449,7 +3119,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\d856954.REDE\AppData\Local\Temp\phpD8CA.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\phpD353.tmp', 'r')
             ],
         ],
     ]
@@ -1624,7 +3294,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entrada/1"
+    "http://localhost:8000/api/entrada/1"
 );
 
 const headers = {
@@ -1642,7 +3312,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entrada/1'
+url = 'http://localhost:8000/api/entrada/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -1655,7 +3325,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/entrada/1',
+    'http://localhost:8000/api/entrada/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1763,7 +3433,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entrada/1"
+    "http://localhost:8000/api/entrada/1"
 );
 
 const headers = {
@@ -1781,7 +3451,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entrada/1'
+url = 'http://localhost:8000/api/entrada/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -1794,7 +3464,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://10.30.17.8:8000/api/entrada/1',
+    'http://localhost:8000/api/entrada/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1903,7 +3573,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entrada/1"
+    "http://localhost:8000/api/entrada/1"
 );
 
 const headers = {
@@ -1932,7 +3602,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entrada/1'
+url = 'http://localhost:8000/api/entrada/1'
 payload = {
     "departamento_id": 2,
     "local_id": 2,
@@ -1954,7 +3624,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/entrada/1',
+    'http://localhost:8000/api/entrada/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2144,7 +3814,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/entrada/33/items"
+    "http://localhost:8000/api/entrada/6/items"
 );
 
 const headers = {
@@ -2162,7 +3832,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/entrada/33/items'
+url = 'http://localhost:8000/api/entrada/6/items'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2175,7 +3845,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/entrada/33/items',
+    'http://localhost:8000/api/entrada/6/items',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2205,24 +3875,7 @@ access-control-allow-origin: *
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 34,
-            &quot;entrada_id&quot;: 33,
-            &quot;item_id&quot;: 2,
-            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;quantidade&quot;: 20
-        },
-        {
-            &quot;id&quot;: 103,
-            &quot;entrada_id&quot;: 33,
-            &quot;item_id&quot;: 3,
-            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;quantidade&quot;: 100
-        }
-    ]
+    &quot;data&quot;: []
 }</code>
  </pre>
     </span>
@@ -2271,7 +3924,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-entrada--id--items"
-               value="33"
+               value="6"
                data-component="url" hidden>
     <br>
 <p>The ID of the entrada.</p>
@@ -2296,7 +3949,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/inventario"
+    "http://localhost:8000/api/inventario"
 );
 
 const headers = {
@@ -2323,7 +3976,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/inventario'
+url = 'http://localhost:8000/api/inventario'
 payload = {
     "item_id": 2,
     "local_id": 2,
@@ -2343,7 +3996,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/inventario',
+    'http://localhost:8000/api/inventario',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2495,7 +4148,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/inventario/1"
+    "http://localhost:8000/api/inventario/1"
 );
 
 const headers = {
@@ -2513,7 +4166,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/inventario/1'
+url = 'http://localhost:8000/api/inventario/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2526,7 +4179,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/inventario/1',
+    'http://localhost:8000/api/inventario/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2631,7 +4284,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/inventario/1"
+    "http://localhost:8000/api/inventario/1"
 );
 
 const headers = {
@@ -2658,7 +4311,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/inventario/1'
+url = 'http://localhost:8000/api/inventario/1'
 payload = {
     "item_id": 2,
     "local_id": 2,
@@ -2678,7 +4331,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://10.30.17.8:8000/api/inventario/1',
+    'http://localhost:8000/api/inventario/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2841,7 +4494,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/inventario/1"
+    "http://localhost:8000/api/inventario/1"
 );
 
 const headers = {
@@ -2859,7 +4512,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/inventario/1'
+url = 'http://localhost:8000/api/inventario/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2872,7 +4525,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://10.30.17.8:8000/api/inventario/1',
+    'http://localhost:8000/api/inventario/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2978,7 +4631,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/inventarios"
+    "http://localhost:8000/api/inventarios"
 );
 
 const params = {
@@ -3008,7 +4661,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/inventarios'
+url = 'http://localhost:8000/api/inventarios'
 params = {
   'filter[base]': 'Leopoldina',
   'filter[item]': 'Adaptador Pvc',
@@ -3030,7 +4683,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/inventarios',
+    'http://localhost:8000/api/inventarios',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3205,7 +4858,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/base/items"
+    "http://localhost:8000/api/base/items"
 );
 
 const params = {
@@ -3231,7 +4884,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/base/items'
+url = 'http://localhost:8000/api/base/items'
 params = {
   'base': '2',
   'depto': '3',
@@ -3249,7 +4902,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/base/items',
+    'http://localhost:8000/api/base/items',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3284,32 +4937,7 @@ access-control-allow-origin: *
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 17,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;medida_id&quot;: 3,
-            &quot;medida&quot;: &quot;MT&quot;,
-            &quot;tipo_item_id&quot;: 2,
-            &quot;tipo_item&quot;: &quot;carpintaria&quot;,
-            &quot;nome&quot;: &quot;T&aacute;bua \&quot;2,5  X 30\&quot; cm em  Pinus; mista ou equivalente da regi&atilde;o - Bruta&quot;,
-            &quot;descricao&quot;: &quot;&quot;,
-            &quot;quantidade&quot;: 3
-        },
-        {
-            &quot;id&quot;: 18,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;medida_id&quot;: 3,
-            &quot;medida&quot;: &quot;MT&quot;,
-            &quot;tipo_item_id&quot;: 2,
-            &quot;tipo_item&quot;: &quot;carpintaria&quot;,
-            &quot;nome&quot;: &quot;Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi&uacute;ba)&quot;,
-            &quot;descricao&quot;: &quot;&quot;,
-            &quot;quantidade&quot;: 4
-        }
-    ]
+    &quot;data&quot;: []
 }</code>
  </pre>
     </span>
@@ -3407,7 +5035,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/items_acabando"
+    "http://localhost:8000/api/items_acabando"
 );
 
 const headers = {
@@ -3425,7 +5053,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/items_acabando'
+url = 'http://localhost:8000/api/items_acabando'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3438,7 +5066,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/items_acabando',
+    'http://localhost:8000/api/items_acabando',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3569,7 +5197,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/items/tipo/1"
+    "http://localhost:8000/api/items/tipo/1"
 );
 
 const headers = {
@@ -3587,7 +5215,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/items/tipo/1'
+url = 'http://localhost:8000/api/items/tipo/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3600,7 +5228,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/items/tipo/1',
+    'http://localhost:8000/api/items/tipo/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3725,7 +5353,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/locais"
+    "http://localhost:8000/api/locais"
 );
 
 const params = {
@@ -3752,7 +5380,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/locais'
+url = 'http://localhost:8000/api/locais'
 params = {
   'filter[tipo]': 'base',
   'filter[nome]': 'Base Leopoldina',
@@ -3771,7 +5399,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/locais',
+    'http://localhost:8000/api/locais',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3917,7 +5545,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/medidas"
+    "http://localhost:8000/api/medidas"
 );
 
 const headers = {
@@ -3935,7 +5563,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/medidas'
+url = 'http://localhost:8000/api/medidas'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3948,7 +5576,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/medidas',
+    'http://localhost:8000/api/medidas',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3978,56 +5606,7 @@ access-control-allow-origin: *
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;tipo&quot;: &quot;CX&quot;
-        },
-        {
-            &quot;id&quot;: 2,
-            &quot;tipo&quot;: &quot;M&sup3;&quot;
-        },
-        {
-            &quot;id&quot;: 3,
-            &quot;tipo&quot;: &quot;MT&quot;
-        },
-        {
-            &quot;id&quot;: 4,
-            &quot;tipo&quot;: &quot;SC&quot;
-        },
-        {
-            &quot;id&quot;: 5,
-            &quot;tipo&quot;: &quot;Unidade&quot;
-        },
-        {
-            &quot;id&quot;: 6,
-            &quot;tipo&quot;: &quot;P&Ccedil;&quot;
-        },
-        {
-            &quot;id&quot;: 7,
-            &quot;tipo&quot;: &quot;GL&quot;
-        },
-        {
-            &quot;id&quot;: 8,
-            &quot;tipo&quot;: &quot;LT&quot;
-        },
-        {
-            &quot;id&quot;: 9,
-            &quot;tipo&quot;: &quot;PT&quot;
-        },
-        {
-            &quot;id&quot;: 10,
-            &quot;tipo&quot;: &quot;SC (8Kg)&quot;
-        },
-        {
-            &quot;id&quot;: 11,
-            &quot;tipo&quot;: &quot;Unidade (250g)&quot;
-        },
-        {
-            &quot;id&quot;: 12,
-            &quot;tipo&quot;: &quot;Unidade (280g)&quot;
-        }
-    ]
+    &quot;data&quot;: []
 }</code>
  </pre>
     </span>
@@ -4080,6 +5659,883 @@ access-control-allow-origin: *
         </p>
                 </form>
 
+        <h1 id="ocorrencias">Ocorrencias</h1>
+
+    <p>APIs para listar, cadastrar, editar e remover dados de Ocorrencias.</p>
+
+            <h2 id="ocorrencias-GETapi-ocorrencia">Lista todas as Ocorrencias</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ocorrencia">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/ocorrencia',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ocorrencia">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ocorrencia" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ocorrencia"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ocorrencia"></code></pre>
+</span>
+<span id="execution-error-GETapi-ocorrencia" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ocorrencia"></code></pre>
+</span>
+<form id="form-GETapi-ocorrencia" data-method="GET"
+      data-path="api/ocorrencia"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ocorrencia', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ocorrencia"
+                    onclick="tryItOut('GETapi-ocorrencia');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ocorrencia"
+                    onclick="cancelTryOut('GETapi-ocorrencia');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ocorrencia" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ocorrencia</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ocorrencia" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ocorrencia"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="ocorrencias-GETapi-ocorrencia--id-">Mostrar uma Ocorrencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-ocorrencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia/2"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia/2'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/ocorrencia/2',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-ocorrencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia encontrada com sucesso!&quot;,
+    &quot;ocorrencia&quot;: {
+        &quot;id&quot;: 2,
+        &quot;local_id&quot;: 1,
+        &quot;data_ocorrencia&quot;: &quot;2023-05-04 00:00:00&quot;,
+        &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
+        &quot;boletim_ocorrencia&quot;: &quot;path_teste&quot;,
+        &quot;justificativa&quot;: &quot;foda kk&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;created_at&quot;: &quot;2023-05-05T15:47:04.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-05T15:47:04.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia n&atilde;o encontrada!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-ocorrencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-ocorrencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-ocorrencia--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-ocorrencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-ocorrencia--id-"></code></pre>
+</span>
+<form id="form-GETapi-ocorrencia--id-" data-method="GET"
+      data-path="api/ocorrencia/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-ocorrencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-ocorrencia--id-"
+                    onclick="tryItOut('GETapi-ocorrencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-ocorrencia--id-"
+                    onclick="cancelTryOut('GETapi-ocorrencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-ocorrencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/ocorrencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-ocorrencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-ocorrencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-ocorrencia--id-"
+               value="2"
+               data-component="url" hidden>
+    <br>
+<p>ID da Ocorrencia.</p>
+            </p>
+                    </form>
+
+            <h2 id="ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Transferencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-ocorrencia">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('local_id', '1');
+body.append('data_ocorrencia', '2023/05/06');
+body.append('tipo_ocorrencia', 'furto');
+body.append('justificativa', 'quidem');
+body.append('boletim_ocorrencia', document.querySelector('input[name="boletim_ocorrencia"]').files[0]);
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia'
+files = {
+  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\phpD3D1.tmp', 'rb')
+}
+payload = {
+    "local_id": 1,
+    "data_ocorrencia": "2023\/05\/06",
+    "tipo_ocorrencia": "furto",
+    "justificativa": "quidem"
+}
+headers = {
+  'Content-Type': 'multipart/form-data',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, files=files, data=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/ocorrencia',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'multipart/form-data',
+            'Accept' =&gt; 'application/json',
+        ],
+        'multipart' =&gt; [
+            [
+                'name' =&gt; 'local_id',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'data_ocorrencia',
+                'contents' =&gt; '2023/05/06'
+            ],
+            [
+                'name' =&gt; 'tipo_ocorrencia',
+                'contents' =&gt; 'furto'
+            ],
+            [
+                'name' =&gt; 'justificativa',
+                'contents' =&gt; 'quidem'
+            ],
+            [
+                'name' =&gt; 'boletim_ocorrencia',
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\phpD3D1.tmp', 'r')
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-ocorrencia">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia cadastrada com sucesso!&quot;,
+    &quot;ocorrencia&quot;: {
+        &quot;local_id&quot;: 1,
+        &quot;data_ocorrencia&quot;: &quot;2023-05-04&quot;,
+        &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
+        &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
+        &quot;justificativa&quot;: &quot;teste kk&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;updated_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+        &quot;id&quot;: 5
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-ocorrencia" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-ocorrencia"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-ocorrencia"></code></pre>
+</span>
+<span id="execution-error-POSTapi-ocorrencia" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-ocorrencia"></code></pre>
+</span>
+<form id="form-POSTapi-ocorrencia" data-method="POST"
+      data-path="api/ocorrencia"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-ocorrencia', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-ocorrencia"
+                    onclick="tryItOut('POSTapi-ocorrencia');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-ocorrencia"
+                    onclick="cancelTryOut('POSTapi-ocorrencia');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-ocorrencia" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/ocorrencia</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-ocorrencia" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-ocorrencia"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>local_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="local_id"
+               data-endpoint="POSTapi-ocorrencia"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do local.</p>
+        </p>
+                <p>
+            <b><code>data_ocorrencia</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_ocorrencia"
+               data-endpoint="POSTapi-ocorrencia"
+               value="2023/05/06"
+               data-component="body" hidden>
+    <br>
+<p>Data da Ocorrencia.</p>
+        </p>
+                <p>
+            <b><code>tipo_ocorrencia</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="tipo_ocorrencia"
+               data-endpoint="POSTapi-ocorrencia"
+               value="furto"
+               data-component="body" hidden>
+    <br>
+<p>Tipo da Ocorrencia. (avaria, furto, extravio)</p>
+        </p>
+                <p>
+            <b><code>boletim_ocorrencia</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="boletim_ocorrencia"
+               data-endpoint="POSTapi-ocorrencia"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Arquivo do boletim de Ocorrencia</p>
+        </p>
+                <p>
+            <b><code>justificativa</code></b>&nbsp;&nbsp;<small>text</small>  &nbsp;
+                <input type="text"
+               name="justificativa"
+               data-endpoint="POSTapi-ocorrencia"
+               value="quidem"
+               data-component="body" hidden>
+    <br>
+<p>Campo para justificativa da Ocorrencia</p>
+        </p>
+        </form>
+
+            <h2 id="ocorrencias-PUTapi-ocorrencia--id-">Edita uma Ocorrencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-ocorrencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia/6"
+);
+
+const headers = {
+    "Content-Type": "multipart/form-data",
+    "Accept": "application/json",
+};
+
+const body = new FormData();
+body.append('local_id', '1');
+body.append('data_ocorrencia', '2023/05/06');
+body.append('tipo_ocorrencia', 'furto');
+body.append('justificativa', '"Teste"');
+body.append('boletim_ocorrencia', document.querySelector('input[name="boletim_ocorrencia"]').files[0]);
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia/6'
+files = {
+  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\phpD3E2.tmp', 'rb')
+}
+payload = {
+    "local_id": 1,
+    "data_ocorrencia": "2023\/05\/06",
+    "tipo_ocorrencia": "furto",
+    "justificativa": "\"Teste\""
+}
+headers = {
+  'Content-Type': 'multipart/form-data',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, files=files, data=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost:8000/api/ocorrencia/6',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'multipart/form-data',
+            'Accept' =&gt; 'application/json',
+        ],
+        'multipart' =&gt; [
+            [
+                'name' =&gt; 'local_id',
+                'contents' =&gt; '1'
+            ],
+            [
+                'name' =&gt; 'data_ocorrencia',
+                'contents' =&gt; '2023/05/06'
+            ],
+            [
+                'name' =&gt; 'tipo_ocorrencia',
+                'contents' =&gt; 'furto'
+            ],
+            [
+                'name' =&gt; 'justificativa',
+                'contents' =&gt; '"Teste"'
+            ],
+            [
+                'name' =&gt; 'boletim_ocorrencia',
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\phpD3E2.tmp', 'r')
+            ],
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-ocorrencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia atualizada com sucesso!&quot;,
+    &quot;ocorrencia&quot;: {
+        &quot;local_id&quot;: 1,
+        &quot;data_ocorrencia&quot;: &quot;2023-05-04&quot;,
+        &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
+        &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
+        &quot;justificativa&quot;: &quot;teste kk&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;updated_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+        &quot;created_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+        &quot;id&quot;: 5
+    }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-ocorrencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-ocorrencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-ocorrencia--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-ocorrencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-ocorrencia--id-"></code></pre>
+</span>
+<form id="form-PUTapi-ocorrencia--id-" data-method="PUT"
+      data-path="api/ocorrencia/{id}"
+      data-authed="1"
+      data-hasfiles="1"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"multipart\/form-data","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-ocorrencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-ocorrencia--id-"
+                    onclick="tryItOut('PUTapi-ocorrencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-ocorrencia--id-"
+                    onclick="cancelTryOut('PUTapi-ocorrencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-ocorrencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/ocorrencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-ocorrencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-ocorrencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value="6"
+               data-component="url" hidden>
+    <br>
+<p>ID da Ocorrencia.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>local_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="local_id"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do local.</p>
+        </p>
+                <p>
+            <b><code>data_ocorrencia</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_ocorrencia"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value="2023/05/06"
+               data-component="body" hidden>
+    <br>
+<p>Data da Ocorrencia.</p>
+        </p>
+                <p>
+            <b><code>tipo_ocorrencia</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="tipo_ocorrencia"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value="furto"
+               data-component="body" hidden>
+    <br>
+<p>Tipo da Ocorrencia. (avaria, furto, extravio)</p>
+        </p>
+                <p>
+            <b><code>boletim_ocorrencia</code></b>&nbsp;&nbsp;<small>file</small>  &nbsp;
+                <input type="file"
+               name="boletim_ocorrencia"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value=""
+               data-component="body" hidden>
+    <br>
+<p>Arquivo do boletim de Ocorrencia</p>
+        </p>
+                <p>
+            <b><code>justificativa</code></b>&nbsp;&nbsp;<small>text</small>  &nbsp;
+                <input type="text"
+               name="justificativa"
+               data-endpoint="PUTapi-ocorrencia--id-"
+               value=""Teste""
+               data-component="body" hidden>
+    <br>
+<p>Campo para justificativa da Ocorrencia.</p>
+        </p>
+        </form>
+
+            <h2 id="ocorrencias-DELETEapi-ocorrencia--id-">Deletar uma Ocorrencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-ocorrencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/ocorrencia/5"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/ocorrencia/5'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost:8000/api/ocorrencia/5',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-ocorrencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Ocorrencia deletada com sucesso!&quot;,
+    &quot;ocorrencia&quot;: {
+        &quot;id&quot;: 6,
+        &quot;local_id&quot;: 1,
+        &quot;data_ocorrencia&quot;: &quot;2023-05-04 00:00:00&quot;,
+        &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
+        &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
+        &quot;justificativa&quot;: &quot;teste kk&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;created_at&quot;: &quot;2023-05-10T15:28:10.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-10T15:28:10.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Transferencia n&atilde;o encontrada para deletar!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-ocorrencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-ocorrencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-ocorrencia--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-ocorrencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-ocorrencia--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-ocorrencia--id-" data-method="DELETE"
+      data-path="api/ocorrencia/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-ocorrencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-ocorrencia--id-"
+                    onclick="tryItOut('DELETEapi-ocorrencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-ocorrencia--id-"
+                    onclick="cancelTryOut('DELETEapi-ocorrencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-ocorrencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/ocorrencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-ocorrencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-ocorrencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-ocorrencia--id-"
+               value="5"
+               data-component="url" hidden>
+    <br>
+<p>ID da Ocorrencia que deseja deletar.</p>
+            </p>
+                    </form>
+
         <h1 id="ordemservico">OrdemServico</h1>
 
     <p>APIs para listar, cadastrar, editar e remover dados de ordens de serviços</p>
@@ -4098,7 +6554,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico"
+    "http://localhost:8000/api/ordem_servico"
 );
 
 const headers = {
@@ -4133,7 +6589,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico'
+url = 'http://localhost:8000/api/ordem_servico'
 payload = {
     "departamento_id": 2,
     "origem_id": 1,
@@ -4161,7 +6617,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/ordem_servico',
+    'http://localhost:8000/api/ordem_servico',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4432,7 +6888,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/2/items"
+    "http://localhost:8000/api/ordem_servico/2/items"
 );
 
 const headers = {
@@ -4450,7 +6906,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/2/items'
+url = 'http://localhost:8000/api/ordem_servico/2/items'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4463,7 +6919,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/2/items',
+    'http://localhost:8000/api/ordem_servico/2/items',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4574,7 +7030,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1"
+    "http://localhost:8000/api/ordem_servico/1"
 );
 
 const headers = {
@@ -4592,7 +7048,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1'
+url = 'http://localhost:8000/api/ordem_servico/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4605,7 +7061,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/1',
+    'http://localhost:8000/api/ordem_servico/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4719,7 +7175,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/2/profissionais"
+    "http://localhost:8000/api/ordem_servico/2/profissionais"
 );
 
 const headers = {
@@ -4737,7 +7193,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/2/profissionais'
+url = 'http://localhost:8000/api/ordem_servico/2/profissionais'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4750,7 +7206,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/2/profissionais',
+    'http://localhost:8000/api/ordem_servico/2/profissionais',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4775,13 +7231,13 @@ print_r(json_decode((string) $body));</code></pre></div>
             &quot;id&quot;: 1,
             &quot;ordem_servico_id&quot;: 2,
             &quot;profissional_id&quot;: 1,
-            &quot;data_inicio&quot;: '2022-11-07',
+            &quot;data_inicio&quot;: &#039;2022-11-07&#039;,
             &quot;horas_empregadas&quot;: 10
         },{
             &quot;id&quot;: 2,
             &quot;ordem_servico_id&quot;: 2,
             &quot;profissional_id&quot;: 2,
-            &quot;data_inicio&quot;: '2022-11-07',
+            &quot;data_inicio&quot;: &#039;2022-11-07&#039;,
             &quot;horas_empregadas&quot;: 6
         }
     ]
@@ -4862,7 +7318,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1"
+    "http://localhost:8000/api/ordem_servico/1"
 );
 
 const headers = {
@@ -4880,7 +7336,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1'
+url = 'http://localhost:8000/api/ordem_servico/1'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -4893,7 +7349,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://10.30.17.8:8000/api/ordem_servico/1',
+    'http://localhost:8000/api/ordem_servico/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -5007,7 +7463,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1"
+    "http://localhost:8000/api/ordem_servico/1"
 );
 
 const headers = {
@@ -5042,7 +7498,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1'
+url = 'http://localhost:8000/api/ordem_servico/1'
 payload = {
     "departamento_id": 2,
     "origem_id": 1,
@@ -5070,7 +7526,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/ordem_servico/1',
+    'http://localhost:8000/api/ordem_servico/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -5330,7 +7786,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servicos"
+    "http://localhost:8000/api/ordem_servicos"
 );
 
 const params = {
@@ -5360,7 +7816,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servicos'
+url = 'http://localhost:8000/api/ordem_servicos'
 params = {
   'filter[origem]': 'Leopoldina',
   'filter[local_servico]': 'Ibirapuera',
@@ -5382,7 +7838,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servicos',
+    'http://localhost:8000/api/ordem_servicos',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -5557,7 +8013,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1/baixa"
+    "http://localhost:8000/api/ordem_servico/1/baixa"
 );
 
 const headers = {
@@ -5593,7 +8049,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1/baixa'
+url = 'http://localhost:8000/api/ordem_servico/1/baixa'
 payload = {
     "ordem_servico_items": [
         {
@@ -5622,7 +8078,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://10.30.17.8:8000/api/ordem_servico/1/baixa',
+    'http://localhost:8000/api/ordem_servico/1/baixa',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -5821,7 +8277,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1/baixa_pdf"
+    "http://localhost:8000/api/ordem_servico/1/baixa_pdf"
 );
 
 const headers = {
@@ -5839,7 +8295,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1/baixa_pdf'
+url = 'http://localhost:8000/api/ordem_servico/1/baixa_pdf'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/pdf'
@@ -5852,7 +8308,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/1/baixa_pdf',
+    'http://localhost:8000/api/ordem_servico/1/baixa_pdf',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -5867,22 +8323,57 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-ordem_servico--id--baixa_pdf">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: application/pdf
-content-disposition: inline; filename=&quot;baixa_1_20221116-125616.pdf&quot;
-cache-control: no-cache, private
+            <pre><code class="language-http">cache-control: no-cache, private
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 57
+content-type: text/html; charset=UTF-8
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json"></code>
+<code class="language-json">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+        &lt;title&gt;Not Found&lt;/title&gt;
+
+        &lt;!-- Fonts --&gt;
+        &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot;&gt;
+        &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Nunito&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+        &lt;style&gt;
+            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}code{font-family:monospace,monospace;font-size:1em}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}code{font-family:Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-gray-400{--border-opacity:1;border-color:#cbd5e0;border-color:rgba(203,213,224,var(--border-opacity))}.border-t{border-top-width:1px}.border-r{border-right-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-xl{max-width:36rem}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.uppercase{text-transform:uppercase}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.tracking-wider{letter-spacing:.05em}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@-webkit-keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes  spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@-webkit-keyframes ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@keyframes  ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@-webkit-keyframes pulse{0%,to{opacity:1}50%{opacity:.5}}@keyframes  pulse{0%,to{opacity:1}50%{opacity:.5}}@-webkit-keyframes bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@keyframes  bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
+        &lt;/style&gt;
+
+        &lt;style&gt;
+            body {
+                font-family: &#039;Nunito&#039;, sans-serif;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;antialiased&quot;&gt;
+        &lt;div class=&quot;relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0&quot;&gt;
+            &lt;div class=&quot;max-w-xl mx-auto sm:px-6 lg:px-8&quot;&gt;
+                &lt;div class=&quot;flex items-center pt-8 sm:justify-start sm:pt-0&quot;&gt;
+                    &lt;div class=&quot;px-4 text-lg text-gray-500 border-r border-gray-400 tracking-wider&quot;&gt;
+                        404                    &lt;/div&gt;
+
+                    &lt;div class=&quot;ml-4 text-lg text-gray-500 uppercase tracking-wider&quot;&gt;
+                        Not Found                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-ordem_servico--id--baixa_pdf" hidden>
@@ -5959,7 +8450,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/ordem_servico/1/baixa_json"
+    "http://localhost:8000/api/ordem_servico/1/baixa_json"
 );
 
 const headers = {
@@ -5977,7 +8468,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/ordem_servico/1/baixa_json'
+url = 'http://localhost:8000/api/ordem_servico/1/baixa_json'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/pdf'
@@ -5990,7 +8481,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/ordem_servico/1/baixa_json',
+    'http://localhost:8000/api/ordem_servico/1/baixa_json',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -6005,77 +8496,57 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-ordem_servico--id--baixa_json">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (404):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
 x-ratelimit-limit: 60
 x-ratelimit-remaining: 58
+content-type: text/html; charset=UTF-8
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">{
-    &quot;message&quot;: &quot;Dados da baixa da Ordem de Servi&ccedil;o #1&quot;,
-    &quot;ordem_servico&quot;: {
-        &quot;id&quot;: 1,
-        &quot;departamento_id&quot;: 3,
-        &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-        &quot;origem_id&quot;: 4,
-        &quot;origem&quot;: &quot;Almoxarifado&quot;,
-        &quot;local_servico_id&quot;: 1,
-        &quot;local_servico&quot;: &quot;LAB&quot;,
-        &quot;status&quot;: &quot;Finalizada&quot;,
-        &quot;data_inicio_servico&quot;: &quot;2022-05-12 09:32:00&quot;,
-        &quot;data_fim_servico&quot;: &quot;2022-05-12 19:36:00&quot;,
-        &quot;almoxarife_nome&quot;: &quot;Jo&atilde;o&quot;,
-        &quot;almoxarife_email&quot;: &quot;joao@teste.com.br&quot;,
-        &quot;especificacao&quot;: &quot;reforma&quot;,
-        &quot;profissional&quot;: &quot;Jos&eacute;&quot;,
-        &quot;horas_execucao&quot;: 10,
-        &quot;observacoes&quot;: &quot;observa&ccedil;&otilde;es referente ao servi&ccedil;o&quot;,
-        &quot;flg_baixa&quot;: 1,
-        &quot;user_id&quot;: 1,
-        &quot;user&quot;: &quot;Admin NDTIC&quot;
-    },
-    &quot;baixa&quot;: {
-        &quot;id&quot;: 24,
-        &quot;departamento_id&quot;: 3,
-        &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-        &quot;ordem_servico_id&quot;: 1,
-        &quot;almoxarife_nome&quot;: null,
-        &quot;almoxarife_email&quot;: null,
-        &quot;baixa_user_id&quot;: 1,
-        &quot;baixa_user&quot;: &quot;Admin NDTIC&quot;,
-        &quot;baixa_datahora&quot;: &quot;2022-10-04 12:50:47&quot;
-    },
-    &quot;baixa_items&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;saida_id&quot;: 24,
-            &quot;item_id&quot;: 2,
-            &quot;item&quot;: &quot;Cimento Portland Composto(cpii-f-32mpa) &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;enviado&quot;: 10,
-            &quot;usado&quot;: 8,
-            &quot;retorno&quot;: 2
-        },
-        {
-            &quot;id&quot;: 2,
-            &quot;saida_id&quot;: 24,
-            &quot;item_id&quot;: 3,
-            &quot;item&quot;: &quot;Cal Hidratada Tipo Ch-iii, Plasticidade Maior Ou Igual a 110, C/ Fispq &quot;,
-            &quot;medida&quot;: &quot;SC&quot;,
-            &quot;enviado&quot;: 6,
-            &quot;usado&quot;: 5,
-            &quot;retorno&quot;: 1
-        }
-    ]
-}</code>
+<code class="language-json">&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+
+        &lt;title&gt;Not Found&lt;/title&gt;
+
+        &lt;!-- Fonts --&gt;
+        &lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot;&gt;
+        &lt;link href=&quot;https://fonts.googleapis.com/css2?family=Nunito&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+
+        &lt;style&gt;
+            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}code{font-family:monospace,monospace;font-size:1em}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}code{font-family:Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-gray-400{--border-opacity:1;border-color:#cbd5e0;border-color:rgba(203,213,224,var(--border-opacity))}.border-t{border-top-width:1px}.border-r{border-right-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-xl{max-width:36rem}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.uppercase{text-transform:uppercase}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.tracking-wider{letter-spacing:.05em}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@-webkit-keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes  spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@-webkit-keyframes ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@keyframes  ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@-webkit-keyframes pulse{0%,to{opacity:1}50%{opacity:.5}}@keyframes  pulse{0%,to{opacity:1}50%{opacity:.5}}@-webkit-keyframes bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@keyframes  bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@media (min-width:640px){.sm\:rounded-lg{border-radius:.5rem}.sm\:block{display:block}.sm\:items-center{align-items:center}.sm\:justify-start{justify-content:flex-start}.sm\:justify-between{justify-content:space-between}.sm\:h-20{height:5rem}.sm\:ml-0{margin-left:0}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:pt-0{padding-top:0}.sm\:text-left{text-align:left}.sm\:text-right{text-align:right}}@media (min-width:768px){.md\:border-t-0{border-top-width:0}.md\:border-l{border-left-width:1px}.md\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}
+        &lt;/style&gt;
+
+        &lt;style&gt;
+            body {
+                font-family: &#039;Nunito&#039;, sans-serif;
+            }
+        &lt;/style&gt;
+    &lt;/head&gt;
+    &lt;body class=&quot;antialiased&quot;&gt;
+        &lt;div class=&quot;relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0&quot;&gt;
+            &lt;div class=&quot;max-w-xl mx-auto sm:px-6 lg:px-8&quot;&gt;
+                &lt;div class=&quot;flex items-center pt-8 sm:justify-start sm:pt-0&quot;&gt;
+                    &lt;div class=&quot;px-4 text-lg text-gray-500 border-r border-gray-400 tracking-wider&quot;&gt;
+                        404                    &lt;/div&gt;
+
+                    &lt;div class=&quot;ml-4 text-lg text-gray-500 uppercase tracking-wider&quot;&gt;
+                        Not Found                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-ordem_servico--id--baixa_json" hidden>
@@ -6156,7 +8627,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/profissionais"
+    "http://localhost:8000/api/profissionais"
 );
 
 const params = {
@@ -6181,7 +8652,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/profissionais'
+url = 'http://localhost:8000/api/profissionais'
 params = {
   'local': '2',
   'depto': '3',
@@ -6198,7 +8669,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/profissionais',
+    'http://localhost:8000/api/profissionais',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -6232,41 +8703,7 @@ access-control-allow-origin: *
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 2,
-            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;nome&quot;: &quot;Jo&atilde;o Pedro Silva&quot;,
-            &quot;profissao&quot;: &quot;Arquiteto&quot;,
-            &quot;completo&quot;: &quot;Jo&atilde;o Pedro Silva (Arquiteto)&quot;
-        },
-        {
-            &quot;id&quot;: 2,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 2,
-            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;nome&quot;: &quot;F&aacute;bio Perez Nunes&quot;,
-            &quot;profissao&quot;: &quot;Chefe de Obras&quot;,
-            &quot;completo&quot;: &quot;F&aacute;bio Perez Nunes (Chefe de Obras)&quot;
-        },
-        {
-            &quot;id&quot;: 3,
-            &quot;departamento_id&quot;: 3,
-            &quot;departamento&quot;: &quot;CGPABI/DGPU&quot;,
-            &quot;local_id&quot;: 2,
-            &quot;local&quot;: &quot;UEM Base Leopoldina&quot;,
-            &quot;local_tipo&quot;: &quot;base&quot;,
-            &quot;nome&quot;: &quot;Balthazar Silva&quot;,
-            &quot;profissao&quot;: &quot;Carpinteiro&quot;,
-            &quot;completo&quot;: &quot;Balthazar Silva (Carpinteiro)&quot;
-        }
-    ]
+    &quot;data&quot;: []
 }</code>
  </pre>
     </span>
@@ -6358,7 +8795,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://10.30.17.8:8000/api/tipo_items"
+    "http://localhost:8000/api/tipo_items"
 );
 
 const headers = {
@@ -6376,7 +8813,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://10.30.17.8:8000/api/tipo_items'
+url = 'http://localhost:8000/api/tipo_items'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -6389,7 +8826,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://10.30.17.8:8000/api/tipo_items',
+    'http://localhost:8000/api/tipo_items',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -6476,6 +8913,887 @@ print_r(json_decode((string) $body));</code></pre></div>
                                                                 data-component="header"></label>
         </p>
                 </form>
+
+        <h1 id="tranferencia-de-materiais">Tranferencia de Materiais</h1>
+
+    <p>APIs para listar, cadastrar, editar e remover dados das Transferencias.</p>
+
+            <h2 id="tranferencia-de-materiais-GETapi-transferencia">Lista Todas as Transferencias</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-transferencia">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/transferencia',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-transferencia">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-transferencia" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-transferencia"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-transferencia"></code></pre>
+</span>
+<span id="execution-error-GETapi-transferencia" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-transferencia"></code></pre>
+</span>
+<form id="form-GETapi-transferencia" data-method="GET"
+      data-path="api/transferencia"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-transferencia', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-transferencia"
+                    onclick="tryItOut('GETapi-transferencia');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-transferencia"
+                    onclick="cancelTryOut('GETapi-transferencia');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-transferencia" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/transferencia</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-transferencia" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-transferencia"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="tranferencia-de-materiais-GETapi-transferencia--id-">Mostrar uma transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-transferencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia/5"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia/5'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('GET', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/transferencia/5',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-transferencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Transferencia encontrada com sucesso!&quot;,
+    &quot;transferencia&quot;: {
+        &quot;id&quot;: 5,
+        &quot;base_origem_id&quot;: 2,
+        &quot;base_destino_id&quot;: 1,
+        &quot;data_transferencia&quot;: &quot;2023-05-07 00:00:00&quot;,
+        &quot;status&quot;: &quot;recebido&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;observacao&quot;: &quot;Teste Observa&ccedil;&atilde;o testado&quot;,
+        &quot;observacao_motivo&quot;: &quot;extravio&quot;,
+        &quot;observacao_user_id&quot;: 1,
+        &quot;created_at&quot;: &quot;2023-05-05T12:54:06.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-05T12:57:59.000000Z&quot;
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Transferencia na&otilde; encontrada!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-transferencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-transferencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-transferencia--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-transferencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-transferencia--id-"></code></pre>
+</span>
+<form id="form-GETapi-transferencia--id-" data-method="GET"
+      data-path="api/transferencia/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-transferencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-transferencia--id-"
+                    onclick="tryItOut('GETapi-transferencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-transferencia--id-"
+                    onclick="cancelTryOut('GETapi-transferencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-transferencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/transferencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-transferencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-transferencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-transferencia--id-"
+               value="5"
+               data-component="url" hidden>
+    <br>
+<p>ID da transferencia.</p>
+            </p>
+                    </form>
+
+            <h2 id="tranferencia-de-materiais-POSTapi-transferencia">Cadastra uma nova Transferencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-transferencia">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "base_origem_id": 2,
+    "base_destino_id": 1,
+    "data_transferencia": "2023\/05\/05",
+    "status": "enviado",
+    "observacao": "Está faltando um parafuso",
+    "observacao_motivo": "itens_faltando"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia'
+payload = {
+    "base_origem_id": 2,
+    "base_destino_id": 1,
+    "data_transferencia": "2023\/05\/05",
+    "status": "enviado",
+    "observacao": "Está faltando um parafuso",
+    "observacao_motivo": "itens_faltando"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('POST', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/transferencia',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'base_origem_id' =&gt; 2,
+            'base_destino_id' =&gt; 1,
+            'data_transferencia' =&gt; '2023/05/05',
+            'status' =&gt; 'enviado',
+            'observacao' =&gt; 'Está faltando um parafuso',
+            'observacao_motivo' =&gt; 'itens_faltando',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-transferencia">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+     {
+   &quot;mensagem&quot;: &quot;Transferencia cadastrada com sucesso!&quot;,
+   &quot;transferencia&quot;: {
+         &quot;base_origem_id&quot;: 1,
+         &quot;base_destino_id&quot;: 2,
+         &quot;data_transferencia&quot;: &quot;2023/05/05&quot;,
+         &quot;status&quot;: enviado,
+         &quot;user_id&quot;: 1,
+         &quot;observacao&quot;: &quot;Teste Observa&ccedil;&atilde;o&quot;,
+         &quot;observacao_motivo&quot;: &quot;itens_faltando&quot;,
+         &quot;observacao_user_id&quot;: 1,
+         &quot;updated_at&quot;: &quot;2023-05-09T15:23:32.000000Z&quot;,
+         &quot;created_at&quot;: &quot;2023-05-09T15:23:32.000000Z&quot;,
+         &quot;id&quot;: 9
+     }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-transferencia" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-transferencia"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-transferencia"></code></pre>
+</span>
+<span id="execution-error-POSTapi-transferencia" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-transferencia"></code></pre>
+</span>
+<form id="form-POSTapi-transferencia" data-method="POST"
+      data-path="api/transferencia"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-transferencia', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-transferencia"
+                    onclick="tryItOut('POSTapi-transferencia');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-transferencia"
+                    onclick="cancelTryOut('POSTapi-transferencia');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-transferencia" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/transferencia</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-transferencia" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-transferencia"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>base_origem_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="base_origem_id"
+               data-endpoint="POSTapi-transferencia"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do Local que sairá.</p>
+        </p>
+                <p>
+            <b><code>base_destino_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="base_destino_id"
+               data-endpoint="POSTapi-transferencia"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do Local destino.</p>
+        </p>
+                <p>
+            <b><code>data_transferencia</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_transferencia"
+               data-endpoint="POSTapi-transferencia"
+               value="2023/05/05"
+               data-component="body" hidden>
+    <br>
+<p>Data da Transferencia.</p>
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="POSTapi-transferencia"
+               value="enviado"
+               data-component="body" hidden>
+    <br>
+<p>Status da transferencia (enviado, recebido, recusado).</p>
+        </p>
+                <p>
+            <b><code>observacao</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="observacao"
+               data-endpoint="POSTapi-transferencia"
+               value="Está faltando um parafuso"
+               data-component="body" hidden>
+    <br>
+<p>Observação.</p>
+        </p>
+                <p>
+            <b><code>observacao_motivo</code></b>&nbsp;&nbsp;<small>enum</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="observacao_motivo"
+               data-endpoint="POSTapi-transferencia"
+               value="itens_faltando"
+               data-component="body" hidden>
+    <br>
+<p>Observação Motivo (nao_enviado, itens_faltando, extravio, furto, avaria).</p>
+        </p>
+        </form>
+
+            <h2 id="tranferencia-de-materiais-PUTapi-transferencia--id-">Edita uma Transferencia.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-transferencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia/4"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "base_origem_id": 1,
+    "base_destino_id": 2,
+    "data_transferencia": "2023\/05\/05",
+    "status": "recebido",
+    "observacao": "Está faltando um parafuso",
+    "observacao_motivo": "avaria"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia/4'
+payload = {
+    "base_origem_id": 1,
+    "base_destino_id": 2,
+    "data_transferencia": "2023\/05\/05",
+    "status": "recebido",
+    "observacao": "Está faltando um parafuso",
+    "observacao_motivo": "avaria"
+}
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('PUT', url, headers=headers, json=payload)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost:8000/api/transferencia/4',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'base_origem_id' =&gt; 1,
+            'base_destino_id' =&gt; 2,
+            'data_transferencia' =&gt; '2023/05/05',
+            'status' =&gt; 'recebido',
+            'observacao' =&gt; 'Está faltando um parafuso',
+            'observacao_motivo' =&gt; 'avaria',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-transferencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+     {
+   &quot;mensagem&quot;: &quot;Transferencia atualizada com sucesso!&quot;,
+   &quot;transferencia&quot;: {
+       &quot;id&quot;: 12,
+       &quot;base_origem_id&quot;: 1,
+       &quot;base_destino_id&quot;: 2,
+       &quot;data_transferencia&quot;: &quot;2023/05/05&quot;,
+       &quot;status&quot;: &quot;recebido&quot;,
+       &quot;user_id&quot;: 1,
+       &quot;observacao&quot;: &quot;Est&aacute; faltando um parafuso&quot;,
+       &quot;observacao_motivo&quot;: &quot;avaria&quot;,
+       &quot;observacao_user_id&quot;: 1,
+       &quot;created_at&quot;: &quot;2023-05-10T12:56:18.000000Z&quot;,
+       &quot;updated_at&quot;: &quot;2023-05-10T12:57:33.000000Z&quot;
+     }
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-PUTapi-transferencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-transferencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-transferencia--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-transferencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-transferencia--id-"></code></pre>
+</span>
+<form id="form-PUTapi-transferencia--id-" data-method="PUT"
+      data-path="api/transferencia/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-transferencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-transferencia--id-"
+                    onclick="tryItOut('PUTapi-transferencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-transferencia--id-"
+                    onclick="cancelTryOut('PUTapi-transferencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-transferencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/transferencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-transferencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-transferencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="4"
+               data-component="url" hidden>
+    <br>
+<p>ID da transferencia.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>base_origem_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="base_origem_id"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="1"
+               data-component="body" hidden>
+    <br>
+<p>ID do Local que sairá.</p>
+        </p>
+                <p>
+            <b><code>base_destino_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="base_destino_id"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="2"
+               data-component="body" hidden>
+    <br>
+<p>ID do Local destino.</p>
+        </p>
+                <p>
+            <b><code>data_transferencia</code></b>&nbsp;&nbsp;<small>date</small>  &nbsp;
+                <input type="text"
+               name="data_transferencia"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="2023/05/05"
+               data-component="body" hidden>
+    <br>
+<p>Data da Transferencia.</p>
+        </p>
+                <p>
+            <b><code>status</code></b>&nbsp;&nbsp;<small>enum</small>  &nbsp;
+                <input type="text"
+               name="status"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="recebido"
+               data-component="body" hidden>
+    <br>
+<p>Status da transferencia (enviado, recebido, recusado).</p>
+        </p>
+                <p>
+            <b><code>observacao</code></b>&nbsp;&nbsp;<small>text</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="observacao"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="Está faltando um parafuso"
+               data-component="body" hidden>
+    <br>
+<p>Observação.</p>
+        </p>
+                <p>
+            <b><code>observacao_motivo</code></b>&nbsp;&nbsp;<small>enum</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="observacao_motivo"
+               data-endpoint="PUTapi-transferencia--id-"
+               value="avaria"
+               data-component="body" hidden>
+    <br>
+<p>Observação Motivo (nao_enviado, itens_faltando, extravio, furto, avaria).</p>
+        </p>
+        </form>
+
+            <h2 id="tranferencia-de-materiais-DELETEapi-transferencia--id-">Deleta uma Transferencia</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-transferencia--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/transferencia/4"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="python-example">
+    <pre><code class="language-python">import requests
+import json
+
+url = 'http://localhost:8000/api/transferencia/4'
+headers = {
+  'Content-Type': 'application/json',
+  'Accept': 'application/json'
+}
+
+response = requests.request('DELETE', url, headers=headers)
+response.json()</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost:8000/api/transferencia/4',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-transferencia--id-">
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Transferencia deletada com sucesso!&quot;,
+    &quot;transferencia&quot;: {
+        &quot;id&quot;: 3,
+        &quot;base_origem_id&quot;: 1,
+        &quot;base_destino_id&quot;: 2,
+        &quot;data_transferencia&quot;: &quot;2023-05-04 11:54:26&quot;,
+        &quot;status&quot;: &quot;enviado&quot;,
+        &quot;user_id&quot;: 1,
+        &quot;observacao&quot;: null,
+        &quot;observacao_motivo&quot;: null,
+        &quot;observacao_user_id&quot;: null,
+        &quot;created_at&quot;: null,
+        &quot;updated_at&quot;: null
+    }
+}</code>
+ </pre>
+            <blockquote>
+            <p>Example response (404):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+    &quot;mensagem&quot;: &quot;Transferencia n&atilde;o encontrada para deletar!&quot;
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-DELETEapi-transferencia--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-transferencia--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-transferencia--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-transferencia--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-transferencia--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-transferencia--id-" data-method="DELETE"
+      data-path="api/transferencia/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-transferencia--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-transferencia--id-"
+                    onclick="tryItOut('DELETEapi-transferencia--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-transferencia--id-"
+                    onclick="cancelTryOut('DELETEapi-transferencia--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-transferencia--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/transferencia/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-transferencia--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-transferencia--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-transferencia--id-"
+               value="4"
+               data-component="url" hidden>
+    <br>
+<p>ID da Transferencia que deseja deletar.</p>
+            </p>
+                    </form>
 
     
 

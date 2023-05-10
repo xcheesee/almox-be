@@ -21,7 +21,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":1,"tipo":"CX"},{"id":2,"tipo":"M\u00b3"},{"id":3,"tipo":"MT"},{"id":4,"tipo":"SC"},{"id":5,"tipo":"Unidade"},{"id":6,"tipo":"P\u00c7"},{"id":7,"tipo":"GL"},{"id":8,"tipo":"LT"},{"id":9,"tipo":"PT"},{"id":10,"tipo":"SC (8Kg)"},{"id":11,"tipo":"Unidade (250g)"},{"id":12,"tipo":"Unidade (280g)"}]}'
+        content: '{"data":[]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

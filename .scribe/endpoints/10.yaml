@@ -1,14 +1,493 @@
-name: Profissional
+name: OrdemServico
 description: |-
 
-  APIs para listar, cadastrar, editar e remover dados de profissionais
+  APIs para listar, cadastrar, editar e remover dados de ordens de serviços
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/profissionais
+      - POST
+    uri: api/ordem_servico
     metadata:
-      title: 'Lista os profissionais de acordo com o local e departamento especificados'
+      title: 'Cadastra uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      departamento_id:
+        name: departamento_id
+        description: 'ID do Departamento.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      origem_id:
+        name: origem_id
+        description: 'ID do Origem.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      local_servico_id:
+        name: local_servico_id
+        description: 'ID do Local do serviço.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      data_inicio_servico:
+        name: data_inicio_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-30T14:48'
+        type: datetime
+        custom: []
+      almoxarife_nome:
+        name: almoxarife_nome
+        description: 'Nome do Almoxarife.'
+        required: true
+        example: João
+        type: string
+        custom: []
+      almoxarife_email:
+        name: almoxarife_email
+        description: 'E-mail do Almoxarife.'
+        required: true
+        example: joao@teste.com.br
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: 'ID do usuário.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: "('A iniciar','Iniciada','Finalizada') Tipo."
+        required: true
+        example: Iniciada
+        type: enum
+        custom: []
+      data_fim_servico:
+        name: data_fim_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-31T17:50'
+        type: datetime
+        custom: []
+      especificacao:
+        name: especificacao
+        description: 'nullable Especificação.'
+        required: false
+        example: reforma
+        type: text
+        custom: []
+      profissional:
+        name: profissional
+        description: 'nullable Profissional.'
+        required: false
+        example: José
+        type: string
+        custom: []
+      horas_execucao:
+        name: horas_execucao
+        description: 'nullable Horas de execução.'
+        required: false
+        example: 10
+        type: integer
+        custom: []
+      observacoes:
+        name: observacoes
+        description: 'nullable Observações.'
+        required: false
+        example: 'observações referente ao serviço'
+        type: text
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "status": "Iniciada",
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",,
+                  "flg_baixa": 0,
+                  "user_id": 1,
+                  "ordem_servico_profissionais": [
+                      {
+                          "id": 1,
+                          "data_inicio": "2022-08-30",
+                          "horas_empregadas": 6
+                      },
+                      {
+                          "id": 2,
+                          "data_inicio": "2022-08-31",
+                          "horas_empregadas": 4
+                      }
+                  ],
+                  "ordem_servico_items": [
+                      {
+                          "id": 1,
+                          "quantidade": 500
+                      },
+                      {
+                          "id": 2,
+                          "quantidade": 480
+                      }
+                  ]
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ordem_servico/{id}/items'
+    metadata:
+      title: 'Mostra os itens de uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "ordem_servico_id": 2,
+                      "item_id": 1,
+                      "quantidade": 10
+                  },{
+                      "id": 2,
+                      "ordem_servico_id": 2,
+                      "item_id": 3,
+                      "quantidade": 800
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ordem_servico/{id}'
+    metadata:
+      title: 'Mostra uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "status": "Iniciada",
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",
+                  "flg_baixa": 0,
+                  "user_id": 1
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ordem_servico/{id}/profissionais'
+    metadata:
+      title: 'Mostra os profissionais de uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "ordem_servico_id": 2,
+                      "profissional_id": 1,
+                      "data_inicio": '2022-11-07',
+                      "horas_empregadas": 10
+                  },{
+                      "id": 2,
+                      "ordem_servico_id": 2,
+                      "profissional_id": 2,
+                      "data_inicio": '2022-11-07',
+                      "horas_empregadas": 6
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/ordem_servico/{id}'
+    metadata:
+      title: 'Deleta uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Ordem de serviço deletada com sucesso!",
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "status": "Iniciada",
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",
+                  "user_id": 1
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/ordem_servico/{id}'
+    metadata:
+      title: 'Edita uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja editar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      departamento_id:
+        name: departamento_id
+        description: 'ID do Departamento.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      origem_id:
+        name: origem_id
+        description: 'ID do Origem.'
+        required: false
+        example: 1
+        type: integer
+        custom: []
+      local_servico_id:
+        name: local_servico_id
+        description: 'ID do Local do serviço.'
+        required: false
+        example: 2
+        type: integer
+        custom: []
+      data_inicio_servico:
+        name: data_inicio_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-30T14:48'
+        type: datetime
+        custom: []
+      almoxarife_nome:
+        name: almoxarife_nome
+        description: 'Nome do Almoxarife.'
+        required: true
+        example: João
+        type: string
+        custom: []
+      almoxarife_email:
+        name: almoxarife_email
+        description: 'E-mail do Almoxarife.'
+        required: true
+        example: joao@teste.com.br
+        type: string
+        custom: []
+      user_id:
+        name: user_id
+        description: 'ID do usuário.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+      status:
+        name: status
+        description: "('A iniciar','Iniciada','Finalizada') Tipo."
+        required: true
+        example: Iniciada
+        type: enum
+        custom: []
+      data_fim_servico:
+        name: data_fim_servico
+        description: 'Data do serviço.'
+        required: true
+        example: '2022-08-31T17:50'
+        type: datetime
+        custom: []
+      especificacao:
+        name: especificacao
+        description: 'nullable Especificação.'
+        required: false
+        example: reforma
+        type: text
+        custom: []
+      profissional:
+        name: profissional
+        description: 'nullable Profissional.'
+        required: false
+        example: José
+        type: string
+        custom: []
+      horas_execucao:
+        name: horas_execucao
+        description: 'nullable Horas de execução.'
+        required: false
+        example: 10
+        type: integer
+        custom: []
+      observacoes:
+        name: observacoes
+        description: 'nullable Observações.'
+        required: false
+        example: 'observações referente ao serviço'
+        type: text
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "status": "Iniciada",
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",
+                  "flg_baixa": 0,
+                  "user_id": 1
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/ordem_servicos
+    metadata:
+      title: 'Lista as ordens de serviços'
       description: ''
       authenticated: true
       custom: []
@@ -17,30 +496,225 @@ endpoints:
       Accept: application/json
     urlParameters: []
     queryParameters:
-      local:
-        name: local
-        description: 'ID do local.'
+      'filter[origem]':
+        name: 'filter[origem]'
+        description: 'Filtro de Local (base) do item.'
         required: false
-        example: '2'
+        example: Leopoldina
         type: string
         custom: []
-      depto:
-        name: depto
-        description: 'ID do departamento.'
+      'filter[local_servico]':
+        name: 'filter[local_servico]'
+        description: 'Filtro de nome do local de destino dos materiais.'
         required: false
-        example: '3'
+        example: Ibirapuera
+        type: string
+        custom: []
+      'filter[almoxarife_nome]':
+        name: 'filter[almoxarife_nome]'
+        description: 'Filtro do Nome do almoxarife responsável.'
+        required: false
+        example: Fulano
+        type: string
+        custom: []
+      'filter[almoxarife_email]':
+        name: 'filter[almoxarife_email]'
+        description: 'Filtro do e-mail do almoxarife responsável.'
+        required: false
+        example: fulano@mail.com
+        type: string
+        custom: []
+      'filter[servico_depois_de]':
+        name: 'filter[servico_depois_de]'
+        description: 'Filtro inicial de período da data de serviço.'
+        required: false
+        example: '2023-01-01'
+        type: string
+        custom: []
+      'filter[servico_antes_de]':
+        name: 'filter[servico_antes_de]'
+        description: 'Filtro final de período da data de serviço.'
+        required: false
+        example: '2023-12-31'
+        type: string
+        custom: []
+      sort:
+        name: sort
+        description: "Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome'"
+        required: false
+        example: '-locais.nome'
         type: string
         custom: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: '{"data":[{"id":1,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Jo\u00e3o Pedro Silva","profissao":"Arquiteto","completo":"Jo\u00e3o Pedro Silva (Arquiteto)"},{"id":2,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"F\u00e1bio Perez Nunes","profissao":"Chefe de Obras","completo":"F\u00e1bio Perez Nunes (Chefe de Obras)"},{"id":3,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Balthazar Silva","profissao":"Carpinteiro","completo":"Balthazar Silva (Carpinteiro)"}]}'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/ordem_servico/{id}/baixa'
+    metadata:
+      title: 'Emite a Baixa de uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja editar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      ordem_servico_items:
+        name: ordem_servico_items
+        description: 'Itens da ordem de serviço.'
+        required: true
+        example:
+          -
+            id: 2
+            enviado: 60
+            usado: 50
+            retorno: 10
+          -
+            id: 3
+            enviado: 5
+            usado: 3
+            retorno: 2
+        type: 'object[]'
+        custom: []
+      ordem_servico_items.id:
+        name: ordem_servico_items.id
+        description: 'ID do item.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+      ordem_servico_items.enviado:
+        name: ordem_servico_items.enviado
+        description: 'Quantidade enviada do item para o local de serviço.'
+        required: true
+        example: 60
+        type: integer
+        custom: []
+      ordem_servico_items.usado:
+        name: ordem_servico_items.usado
+        description: 'Quantidade usada do item para o serviço.'
+        required: true
+        example: 50
+        type: integer
+        custom: []
+      ordem_servico_items.retorno:
+        name: ordem_servico_items.retorno
+        description: 'Quantidade a ser devolvida do item para a base de origem.'
+        required: true
+        example: 10
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "message": "Baixa da Ordem de serviço efetuada com sucesso!",
+              "data": {
+                  "id": 1,
+                  "departamento_id": 2,
+                  "origem_id": 1,
+                  "local_servico_id": 2,
+                  "status": "Iniciada",
+                  "data_inicio_servico": "2022-08-30T14:48",
+                  "data_fim_servico": "2022-08-31T17:50",
+                  "almoxarife_nome": "João",
+                  "almoxarife_email": "joao@teste.com.br",
+                  "especificacao": "reforma",
+                  "profissional": "José",
+                  "horas_execucao": 10,
+                  "observacoes": "observações referente ao serviço",
+                  "flg_baixa": 1,
+                  "user_id": 1
+              }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ordem_servico/{id}/baixa_pdf'
+    metadata:
+      title: 'Gera um arquivo PDF da baixa efetuada na ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/pdf
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 404
+        content: "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n    <head>\r\n        <meta charset=\"utf-8\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\r\n        <title>Not Found</title>\r\n\r\n        <!-- Fonts -->\r\n        <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\r\n        <link href=\"https://fonts.googleapis.com/css2?family=Nunito&display=swap\" rel=\"stylesheet\">\r\n\r\n        <style>\r\n            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}code{font-family:monospace,monospace;font-size:1em}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}code{font-family:Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-gray-400{--border-opacity:1;border-color:#cbd5e0;border-color:rgba(203,213,224,var(--border-opacity))}.border-t{border-top-width:1px}.border-r{border-right-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-xl{max-width:36rem}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.uppercase{text-transform:uppercase}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.tracking-wider{letter-spacing:.05em}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@-webkit-keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes  spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@-webkit-keyframes ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@keyframes  ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@-webkit-keyframes pulse{0%,to{opacity:1}50%{opacity:.5}}@keyframes  pulse{0%,to{opacity:1}50%{opacity:.5}}@-webkit-keyframes bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@keyframes  bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@media (min-width:640px){.sm\\:rounded-lg{border-radius:.5rem}.sm\\:block{display:block}.sm\\:items-center{align-items:center}.sm\\:justify-start{justify-content:flex-start}.sm\\:justify-between{justify-content:space-between}.sm\\:h-20{height:5rem}.sm\\:ml-0{margin-left:0}.sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\\:pt-0{padding-top:0}.sm\\:text-left{text-align:left}.sm\\:text-right{text-align:right}}@media (min-width:768px){.md\\:border-t-0{border-top-width:0}.md\\:border-l{border-left-width:1px}.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}\r\n        </style>\r\n\r\n        <style>\r\n            body {\r\n                font-family: 'Nunito', sans-serif;\r\n            }\r\n        </style>\r\n    </head>\r\n    <body class=\"antialiased\">\r\n        <div class=\"relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0\">\r\n            <div class=\"max-w-xl mx-auto sm:px-6 lg:px-8\">\r\n                <div class=\"flex items-center pt-8 sm:justify-start sm:pt-0\">\r\n                    <div class=\"px-4 text-lg text-gray-500 border-r border-gray-400 tracking-wider\">\r\n                        404                    </div>\r\n\r\n                    <div class=\"ml-4 text-lg text-gray-500 uppercase tracking-wider\">\r\n                        Not Found                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>\r\n"
+        headers:
+          cache-control: 'no-cache, private'
           x-ratelimit-limit: '60'
-          x-ratelimit-remaining: '55'
+          x-ratelimit-remaining: '57'
+          content-type: 'text/html; charset=UTF-8'
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/ordem_servico/{id}/baixa_json'
+    metadata:
+      title: 'Gera um json da baixa efetuada na ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/pdf
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço que deseja deletar.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 404
+        content: "<!DOCTYPE html>\r\n<html lang=\"en\">\r\n    <head>\r\n        <meta charset=\"utf-8\">\r\n        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n\r\n        <title>Not Found</title>\r\n\r\n        <!-- Fonts -->\r\n        <link rel=\"preconnect\" href=\"https://fonts.gstatic.com\">\r\n        <link href=\"https://fonts.googleapis.com/css2?family=Nunito&display=swap\" rel=\"stylesheet\">\r\n\r\n        <style>\r\n            /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}a{background-color:transparent}code{font-family:monospace,monospace;font-size:1em}[hidden]{display:none}html{font-family:system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;line-height:1.5}*,:after,:before{box-sizing:border-box;border:0 solid #e2e8f0}a{color:inherit;text-decoration:inherit}code{font-family:Menlo,Monaco,Consolas,Liberation Mono,Courier New,monospace}svg,video{display:block;vertical-align:middle}video{max-width:100%;height:auto}.bg-white{--bg-opacity:1;background-color:#fff;background-color:rgba(255,255,255,var(--bg-opacity))}.bg-gray-100{--bg-opacity:1;background-color:#f7fafc;background-color:rgba(247,250,252,var(--bg-opacity))}.border-gray-200{--border-opacity:1;border-color:#edf2f7;border-color:rgba(237,242,247,var(--border-opacity))}.border-gray-400{--border-opacity:1;border-color:#cbd5e0;border-color:rgba(203,213,224,var(--border-opacity))}.border-t{border-top-width:1px}.border-r{border-right-width:1px}.flex{display:flex}.grid{display:grid}.hidden{display:none}.items-center{align-items:center}.justify-center{justify-content:center}.font-semibold{font-weight:600}.h-5{height:1.25rem}.h-8{height:2rem}.h-16{height:4rem}.text-sm{font-size:.875rem}.text-lg{font-size:1.125rem}.leading-7{line-height:1.75rem}.mx-auto{margin-left:auto;margin-right:auto}.ml-1{margin-left:.25rem}.mt-2{margin-top:.5rem}.mr-2{margin-right:.5rem}.ml-2{margin-left:.5rem}.mt-4{margin-top:1rem}.ml-4{margin-left:1rem}.mt-8{margin-top:2rem}.ml-12{margin-left:3rem}.-mt-px{margin-top:-1px}.max-w-xl{max-width:36rem}.max-w-6xl{max-width:72rem}.min-h-screen{min-height:100vh}.overflow-hidden{overflow:hidden}.p-6{padding:1.5rem}.py-4{padding-top:1rem;padding-bottom:1rem}.px-4{padding-left:1rem;padding-right:1rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.pt-8{padding-top:2rem}.fixed{position:fixed}.relative{position:relative}.top-0{top:0}.right-0{right:0}.shadow{box-shadow:0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px 0 rgba(0,0,0,.06)}.text-center{text-align:center}.text-gray-200{--text-opacity:1;color:#edf2f7;color:rgba(237,242,247,var(--text-opacity))}.text-gray-300{--text-opacity:1;color:#e2e8f0;color:rgba(226,232,240,var(--text-opacity))}.text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}.text-gray-500{--text-opacity:1;color:#a0aec0;color:rgba(160,174,192,var(--text-opacity))}.text-gray-600{--text-opacity:1;color:#718096;color:rgba(113,128,150,var(--text-opacity))}.text-gray-700{--text-opacity:1;color:#4a5568;color:rgba(74,85,104,var(--text-opacity))}.text-gray-900{--text-opacity:1;color:#1a202c;color:rgba(26,32,44,var(--text-opacity))}.uppercase{text-transform:uppercase}.underline{text-decoration:underline}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.tracking-wider{letter-spacing:.05em}.w-5{width:1.25rem}.w-8{width:2rem}.w-auto{width:auto}.grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}@-webkit-keyframes spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@keyframes  spin{0%{transform:rotate(0deg)}to{transform:rotate(1turn)}}@-webkit-keyframes ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@keyframes  ping{0%{transform:scale(1);opacity:1}75%,to{transform:scale(2);opacity:0}}@-webkit-keyframes pulse{0%,to{opacity:1}50%{opacity:.5}}@keyframes  pulse{0%,to{opacity:1}50%{opacity:.5}}@-webkit-keyframes bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@keyframes  bounce{0%,to{transform:translateY(-25%);-webkit-animation-timing-function:cubic-bezier(.8,0,1,1);animation-timing-function:cubic-bezier(.8,0,1,1)}50%{transform:translateY(0);-webkit-animation-timing-function:cubic-bezier(0,0,.2,1);animation-timing-function:cubic-bezier(0,0,.2,1)}}@media (min-width:640px){.sm\\:rounded-lg{border-radius:.5rem}.sm\\:block{display:block}.sm\\:items-center{align-items:center}.sm\\:justify-start{justify-content:flex-start}.sm\\:justify-between{justify-content:space-between}.sm\\:h-20{height:5rem}.sm\\:ml-0{margin-left:0}.sm\\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\\:pt-0{padding-top:0}.sm\\:text-left{text-align:left}.sm\\:text-right{text-align:right}}@media (min-width:768px){.md\\:border-t-0{border-top-width:0}.md\\:border-l{border-left-width:1px}.md\\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (min-width:1024px){.lg\\:px-8{padding-left:2rem;padding-right:2rem}}@media (prefers-color-scheme:dark){.dark\\:bg-gray-800{--bg-opacity:1;background-color:#2d3748;background-color:rgba(45,55,72,var(--bg-opacity))}.dark\\:bg-gray-900{--bg-opacity:1;background-color:#1a202c;background-color:rgba(26,32,44,var(--bg-opacity))}.dark\\:border-gray-700{--border-opacity:1;border-color:#4a5568;border-color:rgba(74,85,104,var(--border-opacity))}.dark\\:text-white{--text-opacity:1;color:#fff;color:rgba(255,255,255,var(--text-opacity))}.dark\\:text-gray-400{--text-opacity:1;color:#cbd5e0;color:rgba(203,213,224,var(--text-opacity))}}\r\n        </style>\r\n\r\n        <style>\r\n            body {\r\n                font-family: 'Nunito', sans-serif;\r\n            }\r\n        </style>\r\n    </head>\r\n    <body class=\"antialiased\">\r\n        <div class=\"relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0\">\r\n            <div class=\"max-w-xl mx-auto sm:px-6 lg:px-8\">\r\n                <div class=\"flex items-center pt-8 sm:justify-start sm:pt-0\">\r\n                    <div class=\"px-4 text-lg text-gray-500 border-r border-gray-400 tracking-wider\">\r\n                        404                    </div>\r\n\r\n                    <div class=\"ml-4 text-lg text-gray-500 uppercase tracking-wider\">\r\n                        Not Found                    </div>\r\n                </div>\r\n            </div>\r\n        </div>\r\n    </body>\r\n</html>\r\n"
+        headers:
+          cache-control: 'no-cache, private'
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          content-type: 'text/html; charset=UTF-8'
           access-control-allow-origin: '*'
         description: null
     responseFields: []
