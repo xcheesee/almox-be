@@ -69,7 +69,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz
+                  example: ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj
                 email:
                   type: string
                   description: 'E-mail corporativo do usuário.'
@@ -640,7 +640,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the transferencia iten.'
-        example: ullam
+        example: ut
         required: true
         schema:
           type: string
@@ -657,7 +657,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: blanditiis
+            value: autem
   /api/ocorrencia_itens:
     get:
       summary: 'Lista todos os itens de uma Ocorrencia.'
@@ -966,7 +966,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the ocorrencia iten.'
-        example: aut
+        example: est
         required: true
         schema:
           type: string
@@ -974,7 +974,7 @@ paths:
         in: path
         name: integer
         description: 'ID do item que deseja mostrar.'
-        example: error
+        example: et
         required: true
         schema:
           type: string
@@ -1419,7 +1419,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the entrada.'
-        example: 6
+        example: 8
         required: true
         schema:
           type: integer
@@ -2156,18 +2156,66 @@ paths:
           schema:
             type: string
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  mensagem: 'Todos itens de ocorrencias cadastrados'
+                  itens:
+                    -
+                      id: 1
+                      ocorrencia_id: 1
+                      item_id: 2
+                      quantidade: 1
+                      created_at: '2023-05-08T14:30:10.000000Z'
+                      updated_at: '2023-05-08T14:30:10.000000Z'
+                    -
+                      id: 5
+                      ocorrencia_id: 1
+                      item_id: 4
+                      quantidade: 2
+                      created_at: '2023-05-10T15:46:38.000000Z'
+                      updated_at: '2023-05-10T15:46:38.000000Z'
+                    -
+                      id: 6
+                      ocorrencia_id: 5
+                      item_id: 6
+                      quantidade: 36
+                      created_at: '2023-05-10T15:46:54.000000Z'
+                      updated_at: '2023-05-10T15:46:54.000000Z'
                 properties:
-                  message:
+                  mensagem:
                     type: string
-                    example: Unauthenticated.
+                    example: 'Todos itens de ocorrencias cadastrados'
+                  itens:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        ocorrencia_id: 1
+                        item_id: 2
+                        quantidade: 1
+                        created_at: '2023-05-08T14:30:10.000000Z'
+                        updated_at: '2023-05-08T14:30:10.000000Z'
+                      -
+                        id: 5
+                        ocorrencia_id: 1
+                        item_id: 4
+                        quantidade: 2
+                        created_at: '2023-05-10T15:46:38.000000Z'
+                        updated_at: '2023-05-10T15:46:38.000000Z'
+                      -
+                        id: 6
+                        ocorrencia_id: 5
+                        item_id: 6
+                        quantidade: 36
+                        created_at: '2023-05-10T15:46:54.000000Z'
+                        updated_at: '2023-05-10T15:46:54.000000Z'
+                    items:
+                      type: object
       tags:
         - Ocorrencias
     post:
@@ -2202,7 +2250,7 @@ paths:
                     data_ocorrencia: '2023-05-04'
                     tipo_ocorrencia: furto
                     boletim_ocorrencia: teste
-                    justificativa: 'teste kk'
+                    justificativa: justificativa_teste
                     user_id: 1
                     updated_at: '2023-05-10T15:20:14.000000Z'
                     created_at: '2023-05-10T15:20:14.000000Z'
@@ -2218,7 +2266,7 @@ paths:
                       data_ocorrencia: '2023-05-04'
                       tipo_ocorrencia: furto
                       boletim_ocorrencia: teste
-                      justificativa: 'teste kk'
+                      justificativa: justificativa_teste
                       user_id: 1
                       updated_at: '2023-05-10T15:20:14.000000Z'
                       created_at: '2023-05-10T15:20:14.000000Z'
@@ -2251,7 +2299,7 @@ paths:
                 justificativa:
                   type: text
                   description: 'Campo para justificativa da Ocorrencia'
-                  example: quidem
+                  example: repudiandae
               required:
                 - local_id
                 - data_ocorrencia
@@ -2292,7 +2340,7 @@ paths:
                     data_ocorrencia: '2023-05-04 00:00:00'
                     tipo_ocorrencia: furto
                     boletim_ocorrencia: path_teste
-                    justificativa: 'foda kk'
+                    justificativa: justificativa_teste
                     user_id: 1
                     created_at: '2023-05-05T15:47:04.000000Z'
                     updated_at: '2023-05-05T15:47:04.000000Z'
@@ -2308,7 +2356,7 @@ paths:
                       data_ocorrencia: '2023-05-04 00:00:00'
                       tipo_ocorrencia: furto
                       boletim_ocorrencia: path_teste
-                      justificativa: 'foda kk'
+                      justificativa: justificativa_teste
                       user_id: 1
                       created_at: '2023-05-05T15:47:04.000000Z'
                       updated_at: '2023-05-05T15:47:04.000000Z'
@@ -3393,18 +3441,13 @@ paths:
           schema:
             type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  message: Unauthenticated.
-                properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                type: string
+                example: "{\n     \"mensagem\": \"Todas transferencias cadastradas\",\n     \"transferencias\": [\n         {\n             \"id\": 4,\n             \"base_origem_id\": {\n                 \"id\": 1,\n                 \"departamento_id\": 1,\n                 \"nome\": \"Lugar 01\",\n                 \"tipo\": \"parque\",\n                 \"cep\": \"93472898\",\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             },\n             \"base_destino_id\": {\n                 \"id\": 2,\n                 \"departamento_id\": 2,\n                 \"nome\": \"Lugar 02\",\n                 \"tipo\": \"base\",\n                 \"cep\": null,\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             },\n             \"data_transferencia\": \"2023-05-05 00:00:00\",\n             \"status\": \"recebido\",\n             \"user_id\": 1,\n             \"observacao\": \"Está faltando um parafuso\",\n             \"observacao_motivo\": \"avaria\",\n             \"observacao_user_id\": 1,\n             \"created_at\": \"2023-05-04T15:02:33.000000Z\",\n             \"updated_at\": \"2023-05-10T13:02:27.000000Z\"\n   }\n}"
       tags:
         - 'Tranferencia de Materiais'
     post:
@@ -3429,10 +3472,63 @@ paths:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "{\n     {\n   \"mensagem\": \"Transferencia cadastrada com sucesso!\",\n   \"transferencia\": {\n         \"base_origem_id\": 1,\n         \"base_destino_id\": 2,\n         \"data_transferencia\": \"2023/05/05\",\n         \"status\": enviado,\n         \"user_id\": 1,\n         \"observacao\": \"Teste Observação\",\n         \"observacao_motivo\": \"itens_faltando\",\n         \"observacao_user_id\": 1,\n         \"updated_at\": \"2023-05-09T15:23:32.000000Z\",\n         \"created_at\": \"2023-05-09T15:23:32.000000Z\",\n         \"id\": 9\n     }\n}"
+                type: object
+                example:
+                  mensagem: 'Transferencia criada com sucesso'
+                  transferencia:
+                    base_origem_id: 1
+                    base_destino_id: 2
+                    data_transferencia: 2023/05/05
+                    status: recebido
+                    user_id: 1
+                    observacao: 'Uma Observação'
+                    observacao_motivo: avaria
+                    observacao_user_id: 1
+                    updated_at: '2023-05-11T13:18:55.000000Z'
+                    created_at: '2023-05-11T13:18:55.000000Z'
+                    id: 18
+                  itens:
+                    -
+                      entrada_id: 1
+                      item_id: 4
+                      quantidade: 1
+                    -
+                      entrada_id: 1
+                      item_id: 45
+                      quantidade: 3
+                properties:
+                  mensagem:
+                    type: string
+                    example: 'Transferencia criada com sucesso'
+                  transferencia:
+                    type: object
+                    example:
+                      base_origem_id: 1
+                      base_destino_id: 2
+                      data_transferencia: 2023/05/05
+                      status: recebido
+                      user_id: 1
+                      observacao: 'Uma Observação'
+                      observacao_motivo: avaria
+                      observacao_user_id: 1
+                      updated_at: '2023-05-11T13:18:55.000000Z'
+                      created_at: '2023-05-11T13:18:55.000000Z'
+                      id: 18
+                  itens:
+                    type: array
+                    example:
+                      -
+                        entrada_id: 1
+                        item_id: 4
+                        quantidade: 1
+                      -
+                        entrada_id: 1
+                        item_id: 45
+                        quantidade: 3
+                    items:
+                      type: object
       tags:
         - 'Tranferencia de Materiais'
       requestBody:
@@ -3466,11 +3562,29 @@ paths:
                   type: enum
                   description: 'Observação Motivo (nao_enviado, itens_faltando, extravio, furto, avaria).'
                   example: itens_faltando
+                itens:
+                  type: object
+                  description: 'Lista de itens.'
+                  example: []
+                  properties:
+                    entrada_id:
+                      type: integer
+                      description: 'ID da entrada.'
+                      example: 3
+                    item_id:
+                      type: integer
+                      description: 'ID do item.'
+                      example: 5
+                    quantidade:
+                      type: integer
+                      description: 'Quantidade de itens.'
+                      example: 355
               required:
                 - base_origem_id
                 - base_destino_id
                 - data_transferencia
                 - status
+                - itens
   '/api/transferencia/{id}':
     get:
       summary: 'Mostrar uma transferencia'
@@ -3500,17 +3614,39 @@ paths:
                 example:
                   mensagem: 'Transferencia encontrada com sucesso!'
                   transferencia:
-                    id: 5
-                    base_origem_id: 2
-                    base_destino_id: 1
-                    data_transferencia: '2023-05-07 00:00:00'
+                    id: 4
+                    base_origem_id:
+                      id: 1
+                      departamento_id: 1
+                      nome: 'Lugar 01'
+                      tipo: parque
+                      cep: '93472898'
+                      logradouro: null
+                      numero: null
+                      bairro: null
+                      cidade: null
+                      created_at: null
+                      updated_at: null
+                    base_destino_id:
+                      id: 2
+                      departamento_id: 2
+                      nome: 'Lugar 02'
+                      tipo: base
+                      cep: null
+                      logradouro: null
+                      numero: null
+                      bairro: null
+                      cidade: null
+                      created_at: null
+                      updated_at: null
+                    data_transferencia: '2023-05-05 00:00:00'
                     status: recebido
                     user_id: 1
-                    observacao: 'Teste Observação testado'
-                    observacao_motivo: extravio
+                    observacao: 'Está faltando um parafuso'
+                    observacao_motivo: avaria
                     observacao_user_id: 1
-                    created_at: '2023-05-05T12:54:06.000000Z'
-                    updated_at: '2023-05-05T12:57:59.000000Z'
+                    created_at: '2023-05-04T15:02:33.000000Z'
+                    updated_at: '2023-05-10T13:02:27.000000Z'
                 properties:
                   mensagem:
                     type: string
@@ -3518,17 +3654,39 @@ paths:
                   transferencia:
                     type: object
                     example:
-                      id: 5
-                      base_origem_id: 2
-                      base_destino_id: 1
-                      data_transferencia: '2023-05-07 00:00:00'
+                      id: 4
+                      base_origem_id:
+                        id: 1
+                        departamento_id: 1
+                        nome: 'Lugar 01'
+                        tipo: parque
+                        cep: '93472898'
+                        logradouro: null
+                        numero: null
+                        bairro: null
+                        cidade: null
+                        created_at: null
+                        updated_at: null
+                      base_destino_id:
+                        id: 2
+                        departamento_id: 2
+                        nome: 'Lugar 02'
+                        tipo: base
+                        cep: null
+                        logradouro: null
+                        numero: null
+                        bairro: null
+                        cidade: null
+                        created_at: null
+                        updated_at: null
+                      data_transferencia: '2023-05-05 00:00:00'
                       status: recebido
                       user_id: 1
-                      observacao: 'Teste Observação testado'
-                      observacao_motivo: extravio
+                      observacao: 'Está faltando um parafuso'
+                      observacao_motivo: avaria
                       observacao_user_id: 1
-                      created_at: '2023-05-05T12:54:06.000000Z'
-                      updated_at: '2023-05-05T12:57:59.000000Z'
+                      created_at: '2023-05-04T15:02:33.000000Z'
+                      updated_at: '2023-05-10T13:02:27.000000Z'
         404:
           description: ''
           content:

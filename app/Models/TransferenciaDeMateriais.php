@@ -19,4 +19,14 @@ class TransferenciaDeMateriais extends Model
         'observacao_motivo',
         'observacao_user_id',
     ];
+
+    public function base_origem_id()
+    {
+        return $this->belongsTo(Local::class, 'base_origem_id');
+    }
+
+    public function base_destino_id()
+    {
+        return $this->belongsTo(Local::class, 'base_destino_id');
+    }
 }

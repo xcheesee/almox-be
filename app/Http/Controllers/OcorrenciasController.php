@@ -17,6 +17,35 @@ class OcorrenciasController extends Controller
      * Lista todas as Ocorrencias
      * @authenticated
      * 
+     * @response 200 {
+     *      "mensagem": "Todos itens de ocorrencias cadastrados",
+     *      "itens": [
+     *          {
+     *              "id": 1,
+     *              "ocorrencia_id": 1,
+     *              "item_id": 2,
+     *              "quantidade": 1,
+     *              "created_at": "2023-05-08T14:30:10.000000Z",
+     *              "updated_at": "2023-05-08T14:30:10.000000Z"
+     *          },
+     *          {
+     *              "id": 5,
+     *              "ocorrencia_id": 1,
+     *              "item_id": 4,
+     *              "quantidade": 2,
+     *              "created_at": "2023-05-10T15:46:38.000000Z",
+     *              "updated_at": "2023-05-10T15:46:38.000000Z"
+     *          },
+     *          {
+     *              "id": 6,
+     *              "ocorrencia_id": 5,
+     *              "item_id": 6,
+     *              "quantidade": 36,
+     *              "created_at": "2023-05-10T15:46:54.000000Z",
+     *              "updated_at": "2023-05-10T15:46:54.000000Z"
+     *          }
+     *      ]  
+     *}    
      */
     public function index()
     {
@@ -45,7 +74,7 @@ class OcorrenciasController extends Controller
      *          "data_ocorrencia": "2023-05-04",
      *          "tipo_ocorrencia": "furto",
      *          "boletim_ocorrencia": "teste",
-     *          "justificativa": "teste kk",
+     *          "justificativa": "justificativa_teste",
      *          "user_id": 1,
      *          "updated_at": "2023-05-10T15:20:14.000000Z",
      *          "created_at": "2023-05-10T15:20:14.000000Z",
@@ -87,7 +116,7 @@ class OcorrenciasController extends Controller
      *          "data_ocorrencia": "2023-05-04 00:00:00",
      *          "tipo_ocorrencia": "furto",
      *          "boletim_ocorrencia": "path_teste",
-     *          "justificativa": "foda kk",
+     *          "justificativa": "justificativa_teste",
      *          "user_id": 1,
      *          "created_at": "2023-05-05T15:47:04.000000Z",
      *          "updated_at": "2023-05-05T15:47:04.000000Z"

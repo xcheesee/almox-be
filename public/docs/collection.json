@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Almoxarifado",
-        "_postman_id": "3c8b7b86-43a1-4f83-8a50-d3e4793fbcdd",
+        "_postman_id": "e0b052b4-3008-4358-8f6e-053f9438496d",
         "description": "API do sistema de Almoxarifado",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"cfrjxmfikqbnucgikpcnzupihbzqlmbtyvmyuunpctxcsdugltiroxwbzezyutfhtdsnpzetehuntkjz\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                            "raw": "{\"name\":\"ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
                         },
                         "description": ""
                     },
@@ -299,13 +299,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ullam",
+                                    "value": "ut",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "blanditiis",
+                                    "value": "autem",
                                     "description": "ID do item."
                                 }
                             ]
@@ -386,13 +386,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "iste",
+                                    "value": "itaque",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "modi",
+                                    "value": "saepe",
                                     "description": "ID do item que deseja atualizar. Example 5"
                                 }
                             ]
@@ -435,7 +435,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "non",
+                                    "value": "quaerat",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
@@ -532,13 +532,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "aut",
+                                    "value": "est",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "error",
+                                    "value": "et",
                                     "description": "ID do item que deseja mostrar."
                                 }
                             ]
@@ -622,13 +622,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "sint",
+                                    "value": "dolores",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "dolores",
+                                    "value": "porro",
                                     "description": "ID do item que deseja editar. Example 6"
                                 }
                             ]
@@ -671,13 +671,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "tenetur",
+                                    "value": "ut",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "architecto",
+                                    "value": "sit",
                                     "description": "ID do item que deseja deletar."
                                 }
                             ]
@@ -1049,7 +1049,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "6",
+                                    "value": "8",
                                     "description": "The ID of the entrada."
                                 }
                             ]
@@ -1677,22 +1677,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"mensagem\": \"Todos itens de ocorrencias cadastrados\",\n     \"itens\": [\n         {\n             \"id\": 1,\n             \"ocorrencia_id\": 1,\n             \"item_id\": 2,\n             \"quantidade\": 1,\n             \"created_at\": \"2023-05-08T14:30:10.000000Z\",\n             \"updated_at\": \"2023-05-08T14:30:10.000000Z\"\n         },\n         {\n             \"id\": 5,\n             \"ocorrencia_id\": 1,\n             \"item_id\": 4,\n             \"quantidade\": 2,\n             \"created_at\": \"2023-05-10T15:46:38.000000Z\",\n             \"updated_at\": \"2023-05-10T15:46:38.000000Z\"\n         },\n         {\n             \"id\": 6,\n             \"ocorrencia_id\": 5,\n             \"item_id\": 6,\n             \"quantidade\": 36,\n             \"created_at\": \"2023-05-10T15:46:54.000000Z\",\n             \"updated_at\": \"2023-05-10T15:46:54.000000Z\"\n         }\n     ]\n}",
                             "name": ""
                         }
                     ]
@@ -1732,7 +1719,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Ocorrencia encontrada com sucesso!\",\n     \"ocorrencia\": {\n         \"id\": 2,\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04 00:00:00\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"path_teste\",\n         \"justificativa\": \"foda kk\",\n         \"user_id\": 1,\n         \"created_at\": \"2023-05-05T15:47:04.000000Z\",\n         \"updated_at\": \"2023-05-05T15:47:04.000000Z\"\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Ocorrencia encontrada com sucesso!\",\n     \"ocorrencia\": {\n         \"id\": 2,\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04 00:00:00\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"path_teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"created_at\": \"2023-05-05T15:47:04.000000Z\",\n         \"updated_at\": \"2023-05-05T15:47:04.000000Z\"\n     }\n}",
                             "name": ""
                         },
                         {
@@ -1786,7 +1773,7 @@
                                 },
                                 {
                                     "key": "justificativa",
-                                    "value": "quidem",
+                                    "value": "repudiandae",
                                     "type": "text",
                                     "description": "Campo para justificativa da Ocorrencia"
                                 },
@@ -1803,7 +1790,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Ocorrencia cadastrada com sucesso!\",\n     \"ocorrencia\": {\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"teste kk\",\n         \"user_id\": 1,\n         \"updated_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"created_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"id\": 5\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Ocorrencia cadastrada com sucesso!\",\n     \"ocorrencia\": {\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"updated_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"created_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"id\": 5\n     }\n}",
                             "name": ""
                         }
                     ]
@@ -2570,22 +2557,9 @@
                     },
                     "response": [
                         {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n     \"mensagem\": \"Todas transferencias cadastradas\",\n     \"transferencias\": [\n         {\n             \"id\": 4,\n             \"base_origem_id\": {\n                 \"id\": 1,\n                 \"departamento_id\": 1,\n                 \"nome\": \"Lugar 01\",\n                 \"tipo\": \"parque\",\n                 \"cep\": \"93472898\",\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             },\n             \"base_destino_id\": {\n                 \"id\": 2,\n                 \"departamento_id\": 2,\n                 \"nome\": \"Lugar 02\",\n                 \"tipo\": \"base\",\n                 \"cep\": null,\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             },\n             \"data_transferencia\": \"2023-05-05 00:00:00\",\n             \"status\": \"recebido\",\n             \"user_id\": 1,\n             \"observacao\": \"Est\u00e1 faltando um parafuso\",\n             \"observacao_motivo\": \"avaria\",\n             \"observacao_user_id\": 1,\n             \"created_at\": \"2023-05-04T15:02:33.000000Z\",\n             \"updated_at\": \"2023-05-10T13:02:27.000000Z\"\n   }\n}",
                             "name": ""
                         }
                     ]
@@ -2625,7 +2599,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Transferencia encontrada com sucesso!\",\n     \"transferencia\": {\n         \"id\": 5,\n         \"base_origem_id\": 2,\n         \"base_destino_id\": 1,\n         \"data_transferencia\": \"2023-05-07 00:00:00\",\n         \"status\": \"recebido\",\n         \"user_id\": 1,\n         \"observacao\": \"Teste Observa\u00e7\u00e3o testado\",\n         \"observacao_motivo\": \"extravio\",\n         \"observacao_user_id\": 1,\n         \"created_at\": \"2023-05-05T12:54:06.000000Z\",\n         \"updated_at\": \"2023-05-05T12:57:59.000000Z\"\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Transferencia encontrada com sucesso!\",\n     \"transferencia\": {\n         \"id\": 4,\n         \"base_origem_id\": {\n             \"id\": 1,\n             \"departamento_id\": 1,\n             \"nome\": \"Lugar 01\",\n             \"tipo\": \"parque\",\n             \"cep\": \"93472898\",\n             \"logradouro\": null,\n             \"numero\": null,\n             \"bairro\": null,\n             \"cidade\": null,\n             \"created_at\": null,\n             \"updated_at\": null\n         },\n         \"base_destino_id\": {\n             \"id\": 2,\n             \"departamento_id\": 2,\n             \"nome\": \"Lugar 02\",\n             \"tipo\": \"base\",\n             \"cep\": null,\n             \"logradouro\": null,\n             \"numero\": null,\n             \"bairro\": null,\n             \"cidade\": null,\n             \"created_at\": null,\n             \"updated_at\": null\n         },\n         \"data_transferencia\": \"2023-05-05 00:00:00\",\n         \"status\": \"recebido\",\n         \"user_id\": 1,\n         \"observacao\": \"Est\u00e1 faltando um parafuso\",\n         \"observacao_motivo\": \"avaria\",\n         \"observacao_user_id\": 1,\n         \"created_at\": \"2023-05-04T15:02:33.000000Z\",\n         \"updated_at\": \"2023-05-10T13:02:27.000000Z\"\n     }\n}",
                             "name": ""
                         },
                         {
@@ -2658,7 +2632,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"base_origem_id\":2,\"base_destino_id\":1,\"data_transferencia\":\"2023\\\/05\\\/05\",\"status\":\"enviado\",\"observacao\":\"Est\u00e1 faltando um parafuso\",\"observacao_motivo\":\"itens_faltando\"}"
+                            "raw": "{\"base_origem_id\":2,\"base_destino_id\":1,\"data_transferencia\":\"2023\\\/05\\\/05\",\"status\":\"enviado\",\"observacao\":\"Est\u00e1 faltando um parafuso\",\"observacao_motivo\":\"itens_faltando\",\"itens\":[{\"entrada_id\":3,\"item_id\":5,\"quantidade\":355}]}"
                         },
                         "description": ""
                     },
@@ -2666,7 +2640,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     {\n   \"mensagem\": \"Transferencia cadastrada com sucesso!\",\n   \"transferencia\": {\n         \"base_origem_id\": 1,\n         \"base_destino_id\": 2,\n         \"data_transferencia\": \"2023\/05\/05\",\n         \"status\": enviado,\n         \"user_id\": 1,\n         \"observacao\": \"Teste Observa\u00e7\u00e3o\",\n         \"observacao_motivo\": \"itens_faltando\",\n         \"observacao_user_id\": 1,\n         \"updated_at\": \"2023-05-09T15:23:32.000000Z\",\n         \"created_at\": \"2023-05-09T15:23:32.000000Z\",\n         \"id\": 9\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Transferencia criada com sucesso\",\n     \"transferencia\": {\n         \"base_origem_id\": 1,\n         \"base_destino_id\": 2,\n         \"data_transferencia\": \"2023\/05\/05\",\n         \"status\": \"recebido\",\n         \"user_id\": 1,\n         \"observacao\": \"Uma Observa\u00e7\u00e3o\",\n         \"observacao_motivo\": \"avaria\",\n         \"observacao_user_id\": 1,\n         \"updated_at\": \"2023-05-11T13:18:55.000000Z\",\n         \"created_at\": \"2023-05-11T13:18:55.000000Z\",\n         \"id\": 18\n     },\n     \"itens\": [\n         {\n             \"entrada_id\": 1,\n             \"item_id\": 4,\n             \"quantidade\": 1\n         },\n         {\n             \"entrada_id\": 1,\n             \"item_id\": 45,\n             \"quantidade\": 3\n         }\n     ]\n }",
                             "name": ""
                         }
                     ]

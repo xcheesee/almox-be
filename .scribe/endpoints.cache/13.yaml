@@ -22,13 +22,51 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"message":"Unauthenticated."}'
-        headers:
-          cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
-        description: null
+        status: 200
+        content: |-
+          {
+               "mensagem": "Todas transferencias cadastradas",
+               "transferencias": [
+                   {
+                       "id": 4,
+                       "base_origem_id": {
+                           "id": 1,
+                           "departamento_id": 1,
+                           "nome": "Lugar 01",
+                           "tipo": "parque",
+                           "cep": "93472898",
+                           "logradouro": null,
+                           "numero": null,
+                           "bairro": null,
+                           "cidade": null,
+                           "created_at": null,
+                           "updated_at": null
+                       },
+                       "base_destino_id": {
+                           "id": 2,
+                           "departamento_id": 2,
+                           "nome": "Lugar 02",
+                           "tipo": "base",
+                           "cep": null,
+                           "logradouro": null,
+                           "numero": null,
+                           "bairro": null,
+                           "cidade": null,
+                           "created_at": null,
+                           "updated_at": null
+                       },
+                       "data_transferencia": "2023-05-05 00:00:00",
+                       "status": "recebido",
+                       "user_id": 1,
+                       "observacao": "Está faltando um parafuso",
+                       "observacao_motivo": "avaria",
+                       "observacao_user_id": 1,
+                       "created_at": "2023-05-04T15:02:33.000000Z",
+                       "updated_at": "2023-05-10T13:02:27.000000Z"
+             }
+          }
+        headers: []
+        description: '200'
     responseFields: []
   -
     httpMethods:
@@ -59,17 +97,41 @@ endpoints:
           {
                "mensagem": "Transferencia encontrada com sucesso!",
                "transferencia": {
-                   "id": 5,
-                   "base_origem_id": 2,
-                   "base_destino_id": 1,
-                   "data_transferencia": "2023-05-07 00:00:00",
+                   "id": 4,
+                   "base_origem_id": {
+                       "id": 1,
+                       "departamento_id": 1,
+                       "nome": "Lugar 01",
+                       "tipo": "parque",
+                       "cep": "93472898",
+                       "logradouro": null,
+                       "numero": null,
+                       "bairro": null,
+                       "cidade": null,
+                       "created_at": null,
+                       "updated_at": null
+                   },
+                   "base_destino_id": {
+                       "id": 2,
+                       "departamento_id": 2,
+                       "nome": "Lugar 02",
+                       "tipo": "base",
+                       "cep": null,
+                       "logradouro": null,
+                       "numero": null,
+                       "bairro": null,
+                       "cidade": null,
+                       "created_at": null,
+                       "updated_at": null
+                   },
+                   "data_transferencia": "2023-05-05 00:00:00",
                    "status": "recebido",
                    "user_id": 1,
-                   "observacao": "Teste Observação testado",
-                   "observacao_motivo": "extravio",
+                   "observacao": "Está faltando um parafuso",
+                   "observacao_motivo": "avaria",
                    "observacao_user_id": 1,
-                   "created_at": "2023-05-05T12:54:06.000000Z",
-                   "updated_at": "2023-05-05T12:57:59.000000Z"
+                   "created_at": "2023-05-04T15:02:33.000000Z",
+                   "updated_at": "2023-05-10T13:02:27.000000Z"
                }
           }
         headers: []
@@ -140,27 +202,66 @@ endpoints:
         example: itens_faltando
         type: enum
         custom: []
+      itens:
+        name: itens
+        description: 'Lista de itens.'
+        required: true
+        example: []
+        type: object
+        custom: []
+      'itens[].entrada_id':
+        name: 'itens[].entrada_id'
+        description: 'ID da entrada.'
+        required: true
+        example: 3
+        type: integer
+        custom: []
+      'itens[].item_id':
+        name: 'itens[].item_id'
+        description: 'ID do item.'
+        required: true
+        example: 5
+        type: integer
+        custom: []
+      'itens[].quantidade':
+        name: 'itens[].quantidade'
+        description: 'Quantidade de itens.'
+        required: true
+        example: 355
+        type: integer
+        custom: []
     responses:
       -
         status: 200
         content: |-
           {
-               {
-             "mensagem": "Transferencia cadastrada com sucesso!",
-             "transferencia": {
+               "mensagem": "Transferencia criada com sucesso",
+               "transferencia": {
                    "base_origem_id": 1,
                    "base_destino_id": 2,
                    "data_transferencia": "2023/05/05",
-                   "status": enviado,
+                   "status": "recebido",
                    "user_id": 1,
-                   "observacao": "Teste Observação",
-                   "observacao_motivo": "itens_faltando",
+                   "observacao": "Uma Observação",
+                   "observacao_motivo": "avaria",
                    "observacao_user_id": 1,
-                   "updated_at": "2023-05-09T15:23:32.000000Z",
-                   "created_at": "2023-05-09T15:23:32.000000Z",
-                   "id": 9
-               }
-          }
+                   "updated_at": "2023-05-11T13:18:55.000000Z",
+                   "created_at": "2023-05-11T13:18:55.000000Z",
+                   "id": 18
+               },
+               "itens": [
+                   {
+                       "entrada_id": 1,
+                       "item_id": 4,
+                       "quantidade": 1
+                   },
+                   {
+                       "entrada_id": 1,
+                       "item_id": 45,
+                       "quantidade": 3
+                   }
+               ]
+           }
         headers: []
         description: '200'
     responseFields: []
