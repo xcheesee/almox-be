@@ -17,4 +17,9 @@ class Ocorrencias extends Model
         'justificativa',
         'user_id'
     ];
+
+    public function local()
+    {
+        return $this->belongsTo(Local::class);
+    }
 }

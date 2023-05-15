@@ -240,7 +240,7 @@
                         <a href="#ocorrencias-GETapi-ocorrencia--id-">Mostrar uma Ocorrencia</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="ocorrencias-POSTapi-ocorrencia">
-                        <a href="#ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Transferencia.</a>
+                        <a href="#ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Ocorrencia.</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="ocorrencias-PUTapi-ocorrencia--id-">
                         <a href="#ocorrencias-PUTapi-ocorrencia--id-">Edita uma Ocorrencia.</a>
@@ -339,7 +339,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 11 2023</li>
+        <li>Last updated: May 15 2023</li>
     </ul>
 </div>
 
@@ -386,7 +386,7 @@ const headers = {
 };
 
 let body = {
-    "name": "ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj",
+    "name": "zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 };
@@ -404,7 +404,7 @@ import json
 
 url = 'http://localhost:8000/api/cadastrar'
 payload = {
-    "name": "ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj",
+    "name": "zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte",
     "email": "tisvma@prefeitura.sp.gov.br",
     "password": "Teste!123"
 }
@@ -427,7 +427,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj',
+            'name' =&gt; 'zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte',
             'email' =&gt; 'tisvma@prefeitura.sp.gov.br',
             'password' =&gt; 'Teste!123',
         ],
@@ -510,7 +510,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-cadastrar"
-               value="ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj"
+               value="zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1300,7 +1300,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/transferencia_itens/ut"
+    "http://localhost:8000/api/transferencia_itens/animi"
 );
 
 const headers = {
@@ -1318,7 +1318,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/transferencia_itens/ut'
+url = 'http://localhost:8000/api/transferencia_itens/animi'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -1331,7 +1331,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/transferencia_itens/ut',
+    'http://localhost:8000/api/transferencia_itens/animi',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1425,7 +1425,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="GETapi-transferencia_itens--id-"
-               value="ut"
+               value="animi"
                data-component="url" hidden>
     <br>
 <p>The ID of the transferencia iten.</p>
@@ -1435,7 +1435,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="integer"
                data-endpoint="GETapi-transferencia_itens--id-"
-               value="autem"
+               value="occaecati"
                data-component="url" hidden>
     <br>
 <p>ID do item.</p>
@@ -1630,7 +1630,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/transferencia_itens/itaque"
+    "http://localhost:8000/api/transferencia_itens/aspernatur"
 );
 
 const headers = {
@@ -1655,7 +1655,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/transferencia_itens/itaque'
+url = 'http://localhost:8000/api/transferencia_itens/aspernatur'
 payload = {
     "entrada_id": 244,
     "item_id": 9,
@@ -1673,7 +1673,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost:8000/api/transferencia_itens/itaque',
+    'http://localhost:8000/api/transferencia_itens/aspernatur',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1763,7 +1763,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="PUTapi-transferencia_itens--id-"
-               value="itaque"
+               value="aspernatur"
                data-component="url" hidden>
     <br>
 <p>The ID of the transferencia iten.</p>
@@ -1773,7 +1773,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="integer"
                data-endpoint="PUTapi-transferencia_itens--id-"
-               value="saepe"
+               value="consectetur"
                data-component="url" hidden>
     <br>
 <p>ID do item que deseja atualizar. Example 5</p>
@@ -1825,7 +1825,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/transferencia_itens/quaerat"
+    "http://localhost:8000/api/transferencia_itens/alias"
 );
 
 const headers = {
@@ -1843,7 +1843,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/transferencia_itens/quaerat'
+url = 'http://localhost:8000/api/transferencia_itens/alias'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -1856,7 +1856,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost:8000/api/transferencia_itens/quaerat',
+    'http://localhost:8000/api/transferencia_itens/alias',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1950,7 +1950,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="DELETEapi-transferencia_itens--id-"
-               value="quaerat"
+               value="alias"
                data-component="url" hidden>
     <br>
 <p>The ID of the transferencia iten.</p>
@@ -2106,7 +2106,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/ocorrencia_itens/est"
+    "http://localhost:8000/api/ocorrencia_itens/laboriosam"
 );
 
 const headers = {
@@ -2124,7 +2124,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/ocorrencia_itens/est'
+url = 'http://localhost:8000/api/ocorrencia_itens/laboriosam'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2137,7 +2137,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/ocorrencia_itens/est',
+    'http://localhost:8000/api/ocorrencia_itens/laboriosam',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2223,7 +2223,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="GETapi-ocorrencia_itens--id-"
-               value="est"
+               value="laboriosam"
                data-component="url" hidden>
     <br>
 <p>The ID of the ocorrencia iten.</p>
@@ -2233,7 +2233,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="integer"
                data-endpoint="GETapi-ocorrencia_itens--id-"
-               value="et"
+               value="molestias"
                data-component="url" hidden>
     <br>
 <p>ID do item que deseja mostrar.</p>
@@ -2428,7 +2428,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/ocorrencia_itens/dolores"
+    "http://localhost:8000/api/ocorrencia_itens/voluptates"
 );
 
 const headers = {
@@ -2453,7 +2453,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/ocorrencia_itens/dolores'
+url = 'http://localhost:8000/api/ocorrencia_itens/voluptates'
 payload = {
     "ocorrencia_id": 5,
     "item_id": 6,
@@ -2471,7 +2471,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost:8000/api/ocorrencia_itens/dolores',
+    'http://localhost:8000/api/ocorrencia_itens/voluptates',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2561,7 +2561,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="PUTapi-ocorrencia_itens--id-"
-               value="dolores"
+               value="voluptates"
                data-component="url" hidden>
     <br>
 <p>The ID of the ocorrencia iten.</p>
@@ -2571,7 +2571,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="integer"
                data-endpoint="PUTapi-ocorrencia_itens--id-"
-               value="porro"
+               value="voluptatem"
                data-component="url" hidden>
     <br>
 <p>ID do item que deseja editar. Example 6</p>
@@ -2622,7 +2622,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/ocorrencia_itens/ut"
+    "http://localhost:8000/api/ocorrencia_itens/alias"
 );
 
 const headers = {
@@ -2640,7 +2640,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/ocorrencia_itens/ut'
+url = 'http://localhost:8000/api/ocorrencia_itens/alias'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -2653,7 +2653,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost:8000/api/ocorrencia_itens/ut',
+    'http://localhost:8000/api/ocorrencia_itens/alias',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2739,7 +2739,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="id"
                data-endpoint="DELETEapi-ocorrencia_itens--id-"
-               value="ut"
+               value="alias"
                data-component="url" hidden>
     <br>
 <p>The ID of the ocorrencia iten.</p>
@@ -2749,7 +2749,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="integer"
                data-endpoint="DELETEapi-ocorrencia_itens--id-"
-               value="sit"
+               value="enim"
                data-component="url" hidden>
     <br>
 <p>ID do item que deseja deletar.</p>
@@ -3046,7 +3046,7 @@ import json
 
 url = 'http://localhost:8000/api/entrada'
 files = {
-  'arquivo_nota_fiscal': open('C:\Users\x385830\AppData\Local\Temp\php2036.tmp', 'rb')
+  'arquivo_nota_fiscal': open('C:\Users\x385830\AppData\Local\Temp\php61F9.tmp', 'rb')
 }
 payload = {
     "departamento_id": 2,
@@ -3119,7 +3119,7 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'arquivo_nota_fiscal',
-                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php2036.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php61F9.tmp', 'r')
             ],
         ],
     ]
@@ -3814,7 +3814,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/entrada/8/items"
+    "http://localhost:8000/api/entrada/20/items"
 );
 
 const headers = {
@@ -3832,7 +3832,7 @@ fetch(url, {
     <pre><code class="language-python">import requests
 import json
 
-url = 'http://localhost:8000/api/entrada/8/items'
+url = 'http://localhost:8000/api/entrada/20/items'
 headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json'
@@ -3845,7 +3845,7 @@ response.json()</code></pre></div>
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/entrada/8/items',
+    'http://localhost:8000/api/entrada/20/items',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3924,7 +3924,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-entrada--id--items"
-               value="8"
+               value="20"
                data-component="url" hidden>
     <br>
 <p>The ID of the entrada.</p>
@@ -5728,34 +5728,32 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <pre>
 
 <code class="language-json">{
-    &quot;mensagem&quot;: &quot;Todos itens de ocorrencias cadastrados&quot;,
-    &quot;itens&quot;: [
-        {
-            &quot;id&quot;: 1,
-            &quot;ocorrencia_id&quot;: 1,
-            &quot;item_id&quot;: 2,
-            &quot;quantidade&quot;: 1,
-            &quot;created_at&quot;: &quot;2023-05-08T14:30:10.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2023-05-08T14:30:10.000000Z&quot;
-        },
-        {
-            &quot;id&quot;: 5,
-            &quot;ocorrencia_id&quot;: 1,
-            &quot;item_id&quot;: 4,
-            &quot;quantidade&quot;: 2,
-            &quot;created_at&quot;: &quot;2023-05-10T15:46:38.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2023-05-10T15:46:38.000000Z&quot;
-        },
-        {
-            &quot;id&quot;: 6,
-            &quot;ocorrencia_id&quot;: 5,
-            &quot;item_id&quot;: 6,
-            &quot;quantidade&quot;: 36,
-            &quot;created_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;,
-            &quot;updated_at&quot;: &quot;2023-05-10T15:46:54.000000Z&quot;
-        }
-    ]
-}</code>
+     &quot;mensagem&quot;: &quot;Todas ocorrencias cadastradas&quot;,
+     &quot;ocorrencia&quot;: [
+         {
+             &quot;id&quot;: 1,
+             &quot;local_id&quot;: 1,
+             &quot;data_ocorrencia&quot;: &quot;2023-05-07 00:00:00&quot;,
+             &quot;tipo_ocorrencia&quot;: &quot;extravio&quot;,
+             &quot;boletim_ocorrencia&quot;: &quot;path&quot;,
+             &quot;justificativa&quot;: &quot;justificativa_teste&quot;,
+             &quot;user_id&quot;: 1,
+             &quot;created_at&quot;: null,
+             &quot;updated_at&quot;: &quot;2023-05-05T15:44:30.000000Z&quot;,
+             &quot;local&quot;: {
+                 &quot;id&quot;: 1,
+                 &quot;departamento_id&quot;: 1,
+                 &quot;nome&quot;: &quot;Lugar 01&quot;,
+                 &quot;tipo&quot;: &quot;parque&quot;,
+                 &quot;cep&quot;: &quot;93472898&quot;,
+                 &quot;logradouro&quot;: null,
+                 &quot;numero&quot;: null,
+                 &quot;bairro&quot;: null,
+                 &quot;cidade&quot;: null,
+                 &quot;created_at&quot;: null,
+                 &quot;updated_at&quot;: null
+             }
+       }</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-ocorrencia" hidden>
@@ -5874,15 +5872,28 @@ print_r(json_decode((string) $body));</code></pre></div>
 <code class="language-json">{
     &quot;mensagem&quot;: &quot;Ocorrencia encontrada com sucesso!&quot;,
     &quot;ocorrencia&quot;: {
-        &quot;id&quot;: 2,
+        &quot;id&quot;: 20,
         &quot;local_id&quot;: 1,
         &quot;data_ocorrencia&quot;: &quot;2023-05-04 00:00:00&quot;,
         &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
-        &quot;boletim_ocorrencia&quot;: &quot;path_teste&quot;,
-        &quot;justificativa&quot;: &quot;justificativa_teste&quot;,
+        &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
+        &quot;justificativa&quot;: &quot;teste kk&quot;,
         &quot;user_id&quot;: 1,
-        &quot;created_at&quot;: &quot;2023-05-05T15:47:04.000000Z&quot;,
-        &quot;updated_at&quot;: &quot;2023-05-05T15:47:04.000000Z&quot;
+        &quot;created_at&quot;: &quot;2023-05-12T12:34:44.000000Z&quot;,
+        &quot;updated_at&quot;: &quot;2023-05-12T12:34:44.000000Z&quot;,
+        &quot;local&quot;: {
+            &quot;id&quot;: 1,
+            &quot;departamento_id&quot;: 1,
+            &quot;nome&quot;: &quot;Lugar 01&quot;,
+            &quot;tipo&quot;: &quot;parque&quot;,
+            &quot;cep&quot;: &quot;93472898&quot;,
+            &quot;logradouro&quot;: null,
+            &quot;numero&quot;: null,
+            &quot;bairro&quot;: null,
+            &quot;cidade&quot;: null,
+            &quot;created_at&quot;: null,
+            &quot;updated_at&quot;: null
+        }
     }
 }</code>
  </pre>
@@ -5956,7 +5967,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
-            <h2 id="ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Transferencia.</h2>
+            <h2 id="ocorrencias-POSTapi-ocorrencia">Cadastra uma nova Ocorrencia.</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -5982,7 +5993,7 @@ const body = new FormData();
 body.append('local_id', '1');
 body.append('data_ocorrencia', '2023/05/06');
 body.append('tipo_ocorrencia', 'furto');
-body.append('justificativa', 'repudiandae');
+body.append('justificativa', 'illo');
 body.append('boletim_ocorrencia', document.querySelector('input[name="boletim_ocorrencia"]').files[0]);
 
 fetch(url, {
@@ -5998,13 +6009,13 @@ import json
 
 url = 'http://localhost:8000/api/ocorrencia'
 files = {
-  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\php20C3.tmp', 'rb')
+  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\php6287.tmp', 'rb')
 }
 payload = {
     "local_id": 1,
     "data_ocorrencia": "2023\/05\/06",
     "tipo_ocorrencia": "furto",
-    "justificativa": "repudiandae"
+    "justificativa": "illo"
 }
 headers = {
   'Content-Type': 'multipart/form-data',
@@ -6039,11 +6050,11 @@ $response = $client-&gt;post(
             ],
             [
                 'name' =&gt; 'justificativa',
-                'contents' =&gt; 'repudiandae'
+                'contents' =&gt; 'illo'
             ],
             [
                 'name' =&gt; 'boletim_ocorrencia',
-                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php20C3.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php6287.tmp', 'r')
             ],
         ],
     ]
@@ -6060,18 +6071,25 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <pre>
 
 <code class="language-json">{
-    &quot;mensagem&quot;: &quot;Ocorrencia cadastrada com sucesso!&quot;,
-    &quot;ocorrencia&quot;: {
-        &quot;local_id&quot;: 1,
-        &quot;data_ocorrencia&quot;: &quot;2023-05-04&quot;,
-        &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
-        &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
-        &quot;justificativa&quot;: &quot;justificativa_teste&quot;,
-        &quot;user_id&quot;: 1,
-        &quot;updated_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
-        &quot;created_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
-        &quot;id&quot;: 5
-    }
+     &quot;mensagem&quot;: &quot;Ocorrencia cadastrada com sucesso!&quot;,
+     &quot;ocorrencia&quot;: {
+         &quot;local_id&quot;: 1,
+         &quot;data_ocorrencia&quot;: &quot;2023-05-04&quot;,
+         &quot;tipo_ocorrencia&quot;: &quot;furto&quot;,
+         &quot;boletim_ocorrencia&quot;: &quot;teste&quot;,
+         &quot;justificativa&quot;: &quot;justificativa_teste&quot;,
+         &quot;user_id&quot;: 1,
+         &quot;updated_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+         &quot;created_at&quot;: &quot;2023-05-10T15:20:14.000000Z&quot;,
+         &quot;id&quot;: 5
+     },
+     &quot;itens&quot;: [
+         {
+             &quot;ocorrencia_id&quot;: 3,
+             &quot;item_id&quot;: 5,
+             &quot;quantidade&quot;: 255
+         },
+     ]
 }</code>
  </pre>
     </span>
@@ -6168,10 +6186,49 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="justificativa"
                data-endpoint="POSTapi-ocorrencia"
-               value="repudiandae"
+               value="illo"
                data-component="body" hidden>
     <br>
 <p>Campo para justificativa da Ocorrencia</p>
+        </p>
+                <p>
+        <details>
+            <summary style="padding-bottom: 10px;">
+                <b><code>itens</code></b>&nbsp;&nbsp;<small>object</small>  &nbsp;
+<br>
+
+            </summary>
+                                                <p>
+                        <b><code>itens[].ocorrencia_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="itens.0.ocorrencia_id"
+               data-endpoint="POSTapi-ocorrencia"
+               value="3"
+               data-component="body" hidden>
+    <br>
+<p>ID da entrada.</p>
+                    </p>
+                                                                <p>
+                        <b><code>itens[].item_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="itens.0.item_id"
+               data-endpoint="POSTapi-ocorrencia"
+               value="5"
+               data-component="body" hidden>
+    <br>
+<p>ID do item.</p>
+                    </p>
+                                                                <p>
+                        <b><code>itens[].quantidade</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="itens.0.quantidade"
+               data-endpoint="POSTapi-ocorrencia"
+               value="401"
+               data-component="body" hidden>
+    <br>
+<p>Quantidade de itens.</p>
+                    </p>
+                                    </details>
         </p>
         </form>
 
@@ -6217,7 +6274,7 @@ import json
 
 url = 'http://localhost:8000/api/ocorrencia/6'
 files = {
-  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\php20C5.tmp', 'rb')
+  'boletim_ocorrencia': open('C:\Users\x385830\AppData\Local\Temp\php6299.tmp', 'rb')
 }
 payload = {
     "local_id": 1,
@@ -6262,7 +6319,7 @@ $response = $client-&gt;put(
             ],
             [
                 'name' =&gt; 'boletim_ocorrencia',
-                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php20C5.tmp', 'r')
+                'contents' =&gt; fopen('C:\Users\x385830\AppData\Local\Temp\php6299.tmp', 'r')
             ],
         ],
     ]

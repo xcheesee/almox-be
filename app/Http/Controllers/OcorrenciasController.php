@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OcorrenciaFormRequest;
+use App\Models\OcorrenciaItens;
 use App\Models\Ocorrencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,38 +20,36 @@ class OcorrenciasController extends Controller
      * @authenticated
      * 
      * @response 200 {
-     *      "mensagem": "Todos itens de ocorrencias cadastrados",
-     *      "itens": [
+     *      "mensagem": "Todas ocorrencias cadastradas",
+     *      "ocorrencia": [
      *          {
      *              "id": 1,
-     *              "ocorrencia_id": 1,
-     *              "item_id": 2,
-     *              "quantidade": 1,
-     *              "created_at": "2023-05-08T14:30:10.000000Z",
-     *              "updated_at": "2023-05-08T14:30:10.000000Z"
-     *          },
-     *          {
-     *              "id": 5,
-     *              "ocorrencia_id": 1,
-     *              "item_id": 4,
-     *              "quantidade": 2,
-     *              "created_at": "2023-05-10T15:46:38.000000Z",
-     *              "updated_at": "2023-05-10T15:46:38.000000Z"
-     *          },
-     *          {
-     *              "id": 6,
-     *              "ocorrencia_id": 5,
-     *              "item_id": 6,
-     *              "quantidade": 36,
-     *              "created_at": "2023-05-10T15:46:54.000000Z",
-     *              "updated_at": "2023-05-10T15:46:54.000000Z"
-     *          }
-     *      ]  
-     *}    
+     *              "local_id": 1,
+     *              "data_ocorrencia": "2023-05-07 00:00:00",
+     *              "tipo_ocorrencia": "extravio",
+     *              "boletim_ocorrencia": "path",
+     *              "justificativa": "justificativa_teste",
+     *              "user_id": 1,
+     *              "created_at": null,
+     *              "updated_at": "2023-05-05T15:44:30.000000Z",
+     *              "local": {
+     *                  "id": 1,
+     *                  "departamento_id": 1,
+     *                  "nome": "Lugar 01",
+     *                  "tipo": "parque",
+     *                  "cep": "93472898",
+     *                  "logradouro": null,
+     *                  "numero": null,
+     *                  "bairro": null,
+     *                  "cidade": null,
+     *                  "created_at": null,
+     *                  "updated_at": null
+     *              }
+     *        }    
      */
     public function index()
     {
-        $ocorrencia = Ocorrencias::all();
+        $ocorrencia = Ocorrencias::with('local')->get();
 
         return response()->json([
             'mensagem' => 'Todas ocorrencias cadastradas',
@@ -58,7 +58,7 @@ class OcorrenciasController extends Controller
     }
 
     /**
-     * Cadastra uma nova Transferencia.
+     * Cadastra uma nova Ocorrencia.
      * @authenticated
      * 
      * @bodyParam local_id integer required ID do local. Example: 1
@@ -66,6 +66,9 @@ class OcorrenciasController extends Controller
      * @bodyParam tipo_ocorrencia enum required Tipo da Ocorrencia. (avaria, furto, extravio) Example: furto
      * @bodyParam boletim_ocorrencia file required Arquivo do boletim de Ocorrencia
      * @bodyParam justificativa text required Campo para justificativa da Ocorrencia
+     * @bodyParam itens[].ocorrencia_id integer required ID da entrada. Example: 3
+     * @bodyParam itens[].item_id integer required ID do item. Example: 5
+     * @bodyParam itens[].quantidade integer required Quantidade de itens. Example: 401
      * 
      * @response 200 {
      *      "mensagem": "Ocorrencia cadastrada com sucesso!",
@@ -79,25 +82,43 @@ class OcorrenciasController extends Controller
      *          "updated_at": "2023-05-10T15:20:14.000000Z",
      *          "created_at": "2023-05-10T15:20:14.000000Z",
      *          "id": 5
-     *      }
+     *      },
+     *      "itens": [
+     *          {
+     *              "ocorrencia_id": 3,
+     *              "item_id": 5,
+     *              "quantidade": 255
+     *          },
+     *      ]
      * }
      */
     public function store(Request $request)
     {
         $ocorrencia = new Ocorrencias();
 
-        $ocorrencia->local_id = $request->local_id;
-        $ocorrencia->data_ocorrencia = $request->data_ocorrencia;
-        $ocorrencia->tipo_ocorrencia = $request->tipo_ocorrencia;
-        $ocorrencia->boletim_ocorrencia = $request->boletim_ocorrencia;
-        $ocorrencia->justificativa = $request->justificativa;
+        $ocorrencia->local_id = $request->input('local_id');
+        $ocorrencia->data_ocorrencia = $request->input('data_ocorrencia');
+        $ocorrencia->tipo_ocorrencia = $request->input('tipo_ocorrencia');
+        $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
+        $ocorrencia->justificativa = $request->input('justificativa');
         $ocorrencia->user_id = Auth::user()->id;
 
         $ocorrencia->save();
 
+        $itens = $request->input('itens');
+
+        foreach($itens as $item) {
+            OcorrenciaItens::create([ 
+                'ocorrencia_id' => $ocorrencia['id'],
+                'item_id' => $item['item_id'],
+                'quantidade' => $item['quantidade'],
+            ]);
+        }
+
         return response()->json([
             'mensagem' => 'Ocorrencia cadastrada com sucesso!',
-            'ocorrencia' => $ocorrencia
+            'ocorrencia' => $ocorrencia,
+            'itens' => $itens
         ], 200);
         }
     
@@ -111,17 +132,30 @@ class OcorrenciasController extends Controller
      * @response 200 {
      *      "mensagem": "Ocorrencia encontrada com sucesso!",
      *      "ocorrencia": {
-     *          "id": 2,
+     *          "id": 20,
      *          "local_id": 1,
      *          "data_ocorrencia": "2023-05-04 00:00:00",
      *          "tipo_ocorrencia": "furto",
-     *          "boletim_ocorrencia": "path_teste",
-     *          "justificativa": "justificativa_teste",
+     *          "boletim_ocorrencia": "teste",
+     *          "justificativa": "teste kk",
      *          "user_id": 1,
-     *          "created_at": "2023-05-05T15:47:04.000000Z",
-     *          "updated_at": "2023-05-05T15:47:04.000000Z"
+     *          "created_at": "2023-05-12T12:34:44.000000Z",
+     *          "updated_at": "2023-05-12T12:34:44.000000Z",
+     *          "local": {
+     *              "id": 1,
+     *              "departamento_id": 1,
+     *              "nome": "Lugar 01",
+     *              "tipo": "parque",
+     *              "cep": "93472898",
+     *              "logradouro": null,
+     *              "numero": null,
+     *              "bairro": null,
+     *              "cidade": null,
+     *              "created_at": null,
+     *              "updated_at": null
+     *          }
      *      }
-     * }
+     *  }
      * 
      * @response 404 {
      *      "mensagem": "Ocorrencia não encontrada!"
@@ -129,7 +163,7 @@ class OcorrenciasController extends Controller
      */
     public function show($id)
     {
-        $ocorrencia = Ocorrencias::where('id', $id)->first();
+        $ocorrencia = Ocorrencias::with('local')->where('id', $id)->first();
 
         if($ocorrencia)
         {

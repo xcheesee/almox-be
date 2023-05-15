@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Almoxarifado",
-        "_postman_id": "e0b052b4-3008-4358-8f6e-053f9438496d",
+        "_postman_id": "b9e4635f-f930-4cef-9635-6431ef18c23c",
         "description": "API do sistema de Almoxarifado",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
+                            "raw": "{\"name\":\"zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte\",\"email\":\"tisvma@prefeitura.sp.gov.br\",\"password\":\"Teste!123\"}"
                         },
                         "description": ""
                     },
@@ -299,13 +299,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "animi",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "autem",
+                                    "value": "occaecati",
                                     "description": "ID do item."
                                 }
                             ]
@@ -386,13 +386,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "itaque",
+                                    "value": "aspernatur",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "saepe",
+                                    "value": "consectetur",
                                     "description": "ID do item que deseja atualizar. Example 5"
                                 }
                             ]
@@ -435,7 +435,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "quaerat",
+                                    "value": "alias",
                                     "description": "The ID of the transferencia iten."
                                 },
                                 {
@@ -532,13 +532,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "est",
+                                    "value": "laboriosam",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "et",
+                                    "value": "molestias",
                                     "description": "ID do item que deseja mostrar."
                                 }
                             ]
@@ -622,13 +622,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "dolores",
+                                    "value": "voluptates",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "porro",
+                                    "value": "voluptatem",
                                     "description": "ID do item que deseja editar. Example 6"
                                 }
                             ]
@@ -671,13 +671,13 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "ut",
+                                    "value": "alias",
                                     "description": "The ID of the ocorrencia iten."
                                 },
                                 {
                                     "id": "integer",
                                     "key": "integer",
-                                    "value": "sit",
+                                    "value": "enim",
                                     "description": "ID do item que deseja deletar."
                                 }
                             ]
@@ -1049,7 +1049,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "8",
+                                    "value": "20",
                                     "description": "The ID of the entrada."
                                 }
                             ]
@@ -1679,7 +1679,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Todos itens de ocorrencias cadastrados\",\n     \"itens\": [\n         {\n             \"id\": 1,\n             \"ocorrencia_id\": 1,\n             \"item_id\": 2,\n             \"quantidade\": 1,\n             \"created_at\": \"2023-05-08T14:30:10.000000Z\",\n             \"updated_at\": \"2023-05-08T14:30:10.000000Z\"\n         },\n         {\n             \"id\": 5,\n             \"ocorrencia_id\": 1,\n             \"item_id\": 4,\n             \"quantidade\": 2,\n             \"created_at\": \"2023-05-10T15:46:38.000000Z\",\n             \"updated_at\": \"2023-05-10T15:46:38.000000Z\"\n         },\n         {\n             \"id\": 6,\n             \"ocorrencia_id\": 5,\n             \"item_id\": 6,\n             \"quantidade\": 36,\n             \"created_at\": \"2023-05-10T15:46:54.000000Z\",\n             \"updated_at\": \"2023-05-10T15:46:54.000000Z\"\n         }\n     ]\n}",
+                            "body": "{\n     \"mensagem\": \"Todas ocorrencias cadastradas\",\n     \"ocorrencia\": [\n         {\n             \"id\": 1,\n             \"local_id\": 1,\n             \"data_ocorrencia\": \"2023-05-07 00:00:00\",\n             \"tipo_ocorrencia\": \"extravio\",\n             \"boletim_ocorrencia\": \"path\",\n             \"justificativa\": \"justificativa_teste\",\n             \"user_id\": 1,\n             \"created_at\": null,\n             \"updated_at\": \"2023-05-05T15:44:30.000000Z\",\n             \"local\": {\n                 \"id\": 1,\n                 \"departamento_id\": 1,\n                 \"nome\": \"Lugar 01\",\n                 \"tipo\": \"parque\",\n                 \"cep\": \"93472898\",\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             }\n       }",
                             "name": ""
                         }
                     ]
@@ -1719,7 +1719,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Ocorrencia encontrada com sucesso!\",\n     \"ocorrencia\": {\n         \"id\": 2,\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04 00:00:00\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"path_teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"created_at\": \"2023-05-05T15:47:04.000000Z\",\n         \"updated_at\": \"2023-05-05T15:47:04.000000Z\"\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Ocorrencia encontrada com sucesso!\",\n     \"ocorrencia\": {\n         \"id\": 20,\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04 00:00:00\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"teste kk\",\n         \"user_id\": 1,\n         \"created_at\": \"2023-05-12T12:34:44.000000Z\",\n         \"updated_at\": \"2023-05-12T12:34:44.000000Z\",\n         \"local\": {\n             \"id\": 1,\n             \"departamento_id\": 1,\n             \"nome\": \"Lugar 01\",\n             \"tipo\": \"parque\",\n             \"cep\": \"93472898\",\n             \"logradouro\": null,\n             \"numero\": null,\n             \"bairro\": null,\n             \"cidade\": null,\n             \"created_at\": null,\n             \"updated_at\": null\n         }\n     }\n }",
                             "name": ""
                         },
                         {
@@ -1731,7 +1731,7 @@
                     ]
                 },
                 {
-                    "name": "Cadastra uma nova Transferencia.",
+                    "name": "Cadastra uma nova Ocorrencia.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1773,7 +1773,7 @@
                                 },
                                 {
                                     "key": "justificativa",
-                                    "value": "repudiandae",
+                                    "value": "illo",
                                     "type": "text",
                                     "description": "Campo para justificativa da Ocorrencia"
                                 },
@@ -1790,7 +1790,7 @@
                         {
                             "header": [],
                             "code": 200,
-                            "body": "{\n     \"mensagem\": \"Ocorrencia cadastrada com sucesso!\",\n     \"ocorrencia\": {\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"updated_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"created_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"id\": 5\n     }\n}",
+                            "body": "{\n     \"mensagem\": \"Ocorrencia cadastrada com sucesso!\",\n     \"ocorrencia\": {\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"updated_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"created_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"id\": 5\n     },\n     \"itens\": [\n         {\n             \"ocorrencia_id\": 3,\n             \"item_id\": 5,\n             \"quantidade\": 255\n         },\n     ]\n}",
                             "name": ""
                         }
                     ]

@@ -10,7 +10,7 @@ class OcorrenciaItens extends Model
     use HasFactory;
     protected $table = 'ocorrencia_item';
     
-    protected $fillalble = [
+    protected $fillable = [
         'ocorrencia_id',
         'item_id',
         'quantidade'

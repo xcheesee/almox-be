@@ -69,7 +69,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ehtpomtnuhqpcqhqrbhfrskzuwtqskifsudkmptglahdcvafyuszcziegegzemorhpxvgaqxzbkaauoqxdavwdikthuhaveiwaorwbmqlitqzgecpftlqcdowgqsfwvfgtqcgtomqqbuotj
+                  example: zjpcsucdekdagixrgqkczaduvzgkrhjzbgwbulcmdznbyetyjxthyeitmordghvqtamazvangbhmlyeyvoluunztisbgrnjfyeejwckedrpklgumhitukrkscijjxrwnxbivkgafwxwgaveyeosidbqwavesgkmdhdtnmsmdaagbtayfynseisqmvgxeczuvszcndtrryinranzovnnhfgjsiljdimmeskpibsejsztwektowszzdmsthte
                 email:
                   type: string
                   description: 'E-mail corporativo do usuário.'
@@ -640,7 +640,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the transferencia iten.'
-        example: ut
+        example: animi
         required: true
         schema:
           type: string
@@ -657,7 +657,7 @@ paths:
             value: ''
           present:
             summary: 'When the value is present'
-            value: autem
+            value: occaecati
   /api/ocorrencia_itens:
     get:
       summary: 'Lista todos os itens de uma Ocorrencia.'
@@ -966,7 +966,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the ocorrencia iten.'
-        example: est
+        example: laboriosam
         required: true
         schema:
           type: string
@@ -974,7 +974,7 @@ paths:
         in: path
         name: integer
         description: 'ID do item que deseja mostrar.'
-        example: et
+        example: molestias
         required: true
         schema:
           type: string
@@ -1419,7 +1419,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the entrada.'
-        example: 8
+        example: 20
         required: true
         schema:
           type: integer
@@ -2159,67 +2159,14 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  mensagem: 'Todos itens de ocorrencias cadastrados'
-                  itens:
-                    -
-                      id: 1
-                      ocorrencia_id: 1
-                      item_id: 2
-                      quantidade: 1
-                      created_at: '2023-05-08T14:30:10.000000Z'
-                      updated_at: '2023-05-08T14:30:10.000000Z'
-                    -
-                      id: 5
-                      ocorrencia_id: 1
-                      item_id: 4
-                      quantidade: 2
-                      created_at: '2023-05-10T15:46:38.000000Z'
-                      updated_at: '2023-05-10T15:46:38.000000Z'
-                    -
-                      id: 6
-                      ocorrencia_id: 5
-                      item_id: 6
-                      quantidade: 36
-                      created_at: '2023-05-10T15:46:54.000000Z'
-                      updated_at: '2023-05-10T15:46:54.000000Z'
-                properties:
-                  mensagem:
-                    type: string
-                    example: 'Todos itens de ocorrencias cadastrados'
-                  itens:
-                    type: array
-                    example:
-                      -
-                        id: 1
-                        ocorrencia_id: 1
-                        item_id: 2
-                        quantidade: 1
-                        created_at: '2023-05-08T14:30:10.000000Z'
-                        updated_at: '2023-05-08T14:30:10.000000Z'
-                      -
-                        id: 5
-                        ocorrencia_id: 1
-                        item_id: 4
-                        quantidade: 2
-                        created_at: '2023-05-10T15:46:38.000000Z'
-                        updated_at: '2023-05-10T15:46:38.000000Z'
-                      -
-                        id: 6
-                        ocorrencia_id: 5
-                        item_id: 6
-                        quantidade: 36
-                        created_at: '2023-05-10T15:46:54.000000Z'
-                        updated_at: '2023-05-10T15:46:54.000000Z'
-                    items:
-                      type: object
+                type: string
+                example: "{\n     \"mensagem\": \"Todas ocorrencias cadastradas\",\n     \"ocorrencia\": [\n         {\n             \"id\": 1,\n             \"local_id\": 1,\n             \"data_ocorrencia\": \"2023-05-07 00:00:00\",\n             \"tipo_ocorrencia\": \"extravio\",\n             \"boletim_ocorrencia\": \"path\",\n             \"justificativa\": \"justificativa_teste\",\n             \"user_id\": 1,\n             \"created_at\": null,\n             \"updated_at\": \"2023-05-05T15:44:30.000000Z\",\n             \"local\": {\n                 \"id\": 1,\n                 \"departamento_id\": 1,\n                 \"nome\": \"Lugar 01\",\n                 \"tipo\": \"parque\",\n                 \"cep\": \"93472898\",\n                 \"logradouro\": null,\n                 \"numero\": null,\n                 \"bairro\": null,\n                 \"cidade\": null,\n                 \"created_at\": null,\n                 \"updated_at\": null\n             }\n       }"
       tags:
         - Ocorrencias
     post:
-      summary: 'Cadastra uma nova Transferencia.'
+      summary: 'Cadastra uma nova Ocorrencia.'
       description: ''
       parameters:
         -
@@ -2240,37 +2187,10 @@ paths:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  mensagem: 'Ocorrencia cadastrada com sucesso!'
-                  ocorrencia:
-                    local_id: 1
-                    data_ocorrencia: '2023-05-04'
-                    tipo_ocorrencia: furto
-                    boletim_ocorrencia: teste
-                    justificativa: justificativa_teste
-                    user_id: 1
-                    updated_at: '2023-05-10T15:20:14.000000Z'
-                    created_at: '2023-05-10T15:20:14.000000Z'
-                    id: 5
-                properties:
-                  mensagem:
-                    type: string
-                    example: 'Ocorrencia cadastrada com sucesso!'
-                  ocorrencia:
-                    type: object
-                    example:
-                      local_id: 1
-                      data_ocorrencia: '2023-05-04'
-                      tipo_ocorrencia: furto
-                      boletim_ocorrencia: teste
-                      justificativa: justificativa_teste
-                      user_id: 1
-                      updated_at: '2023-05-10T15:20:14.000000Z'
-                      created_at: '2023-05-10T15:20:14.000000Z'
-                      id: 5
+                type: string
+                example: "{\n     \"mensagem\": \"Ocorrencia cadastrada com sucesso!\",\n     \"ocorrencia\": {\n         \"local_id\": 1,\n         \"data_ocorrencia\": \"2023-05-04\",\n         \"tipo_ocorrencia\": \"furto\",\n         \"boletim_ocorrencia\": \"teste\",\n         \"justificativa\": \"justificativa_teste\",\n         \"user_id\": 1,\n         \"updated_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"created_at\": \"2023-05-10T15:20:14.000000Z\",\n         \"id\": 5\n     },\n     \"itens\": [\n         {\n             \"ocorrencia_id\": 3,\n             \"item_id\": 5,\n             \"quantidade\": 255\n         },\n     ]\n}"
       tags:
         - Ocorrencias
       requestBody:
@@ -2299,13 +2219,32 @@ paths:
                 justificativa:
                   type: text
                   description: 'Campo para justificativa da Ocorrencia'
-                  example: repudiandae
+                  example: illo
+                itens:
+                  type: object
+                  description: ''
+                  example:
+                    ocorrencia_id: 3
+                  properties:
+                    ocorrencia_id:
+                      type: integer
+                      description: 'ID da entrada.'
+                      example: 3
+                    item_id:
+                      type: integer
+                      description: 'ID do item.'
+                      example: 5
+                    quantidade:
+                      type: integer
+                      description: 'Quantidade de itens.'
+                      example: 401
               required:
                 - local_id
                 - data_ocorrencia
                 - tipo_ocorrencia
                 - boletim_ocorrencia
                 - justificativa
+                - itens
   '/api/ocorrencia/{id}':
     get:
       summary: 'Mostrar uma Ocorrencia'
@@ -2335,15 +2274,27 @@ paths:
                 example:
                   mensagem: 'Ocorrencia encontrada com sucesso!'
                   ocorrencia:
-                    id: 2
+                    id: 20
                     local_id: 1
                     data_ocorrencia: '2023-05-04 00:00:00'
                     tipo_ocorrencia: furto
-                    boletim_ocorrencia: path_teste
-                    justificativa: justificativa_teste
+                    boletim_ocorrencia: teste
+                    justificativa: 'teste kk'
                     user_id: 1
-                    created_at: '2023-05-05T15:47:04.000000Z'
-                    updated_at: '2023-05-05T15:47:04.000000Z'
+                    created_at: '2023-05-12T12:34:44.000000Z'
+                    updated_at: '2023-05-12T12:34:44.000000Z'
+                    local:
+                      id: 1
+                      departamento_id: 1
+                      nome: 'Lugar 01'
+                      tipo: parque
+                      cep: '93472898'
+                      logradouro: null
+                      numero: null
+                      bairro: null
+                      cidade: null
+                      created_at: null
+                      updated_at: null
                 properties:
                   mensagem:
                     type: string
@@ -2351,15 +2302,27 @@ paths:
                   ocorrencia:
                     type: object
                     example:
-                      id: 2
+                      id: 20
                       local_id: 1
                       data_ocorrencia: '2023-05-04 00:00:00'
                       tipo_ocorrencia: furto
-                      boletim_ocorrencia: path_teste
-                      justificativa: justificativa_teste
+                      boletim_ocorrencia: teste
+                      justificativa: 'teste kk'
                       user_id: 1
-                      created_at: '2023-05-05T15:47:04.000000Z'
-                      updated_at: '2023-05-05T15:47:04.000000Z'
+                      created_at: '2023-05-12T12:34:44.000000Z'
+                      updated_at: '2023-05-12T12:34:44.000000Z'
+                      local:
+                        id: 1
+                        departamento_id: 1
+                        nome: 'Lugar 01'
+                        tipo: parque
+                        cep: '93472898'
+                        logradouro: null
+                        numero: null
+                        bairro: null
+                        cidade: null
+                        created_at: null
+                        updated_at: null
         404:
           description: ''
           content:

@@ -23,34 +23,32 @@ endpoints:
         status: 200
         content: |-
           {
-               "mensagem": "Todos itens de ocorrencias cadastrados",
-               "itens": [
+               "mensagem": "Todas ocorrencias cadastradas",
+               "ocorrencia": [
                    {
                        "id": 1,
-                       "ocorrencia_id": 1,
-                       "item_id": 2,
-                       "quantidade": 1,
-                       "created_at": "2023-05-08T14:30:10.000000Z",
-                       "updated_at": "2023-05-08T14:30:10.000000Z"
-                   },
-                   {
-                       "id": 5,
-                       "ocorrencia_id": 1,
-                       "item_id": 4,
-                       "quantidade": 2,
-                       "created_at": "2023-05-10T15:46:38.000000Z",
-                       "updated_at": "2023-05-10T15:46:38.000000Z"
-                   },
-                   {
-                       "id": 6,
-                       "ocorrencia_id": 5,
-                       "item_id": 6,
-                       "quantidade": 36,
-                       "created_at": "2023-05-10T15:46:54.000000Z",
-                       "updated_at": "2023-05-10T15:46:54.000000Z"
-                   }
-               ]
-          }
+                       "local_id": 1,
+                       "data_ocorrencia": "2023-05-07 00:00:00",
+                       "tipo_ocorrencia": "extravio",
+                       "boletim_ocorrencia": "path",
+                       "justificativa": "justificativa_teste",
+                       "user_id": 1,
+                       "created_at": null,
+                       "updated_at": "2023-05-05T15:44:30.000000Z",
+                       "local": {
+                           "id": 1,
+                           "departamento_id": 1,
+                           "nome": "Lugar 01",
+                           "tipo": "parque",
+                           "cep": "93472898",
+                           "logradouro": null,
+                           "numero": null,
+                           "bairro": null,
+                           "cidade": null,
+                           "created_at": null,
+                           "updated_at": null
+                       }
+                 }
         headers: []
         description: '200'
     responseFields: []
@@ -83,17 +81,30 @@ endpoints:
           {
                "mensagem": "Ocorrencia encontrada com sucesso!",
                "ocorrencia": {
-                   "id": 2,
+                   "id": 20,
                    "local_id": 1,
                    "data_ocorrencia": "2023-05-04 00:00:00",
                    "tipo_ocorrencia": "furto",
-                   "boletim_ocorrencia": "path_teste",
-                   "justificativa": "justificativa_teste",
+                   "boletim_ocorrencia": "teste",
+                   "justificativa": "teste kk",
                    "user_id": 1,
-                   "created_at": "2023-05-05T15:47:04.000000Z",
-                   "updated_at": "2023-05-05T15:47:04.000000Z"
+                   "created_at": "2023-05-12T12:34:44.000000Z",
+                   "updated_at": "2023-05-12T12:34:44.000000Z",
+                   "local": {
+                       "id": 1,
+                       "departamento_id": 1,
+                       "nome": "Lugar 01",
+                       "tipo": "parque",
+                       "cep": "93472898",
+                       "logradouro": null,
+                       "numero": null,
+                       "bairro": null,
+                       "cidade": null,
+                       "created_at": null,
+                       "updated_at": null
+                   }
                }
-          }
+           }
         headers: []
         description: '200'
       -
@@ -110,7 +121,7 @@ endpoints:
       - POST
     uri: api/ocorrencia
     metadata:
-      title: 'Cadastra uma nova Transferencia.'
+      title: 'Cadastra uma nova Ocorrencia.'
       description: ''
       authenticated: true
       custom: []
@@ -152,8 +163,29 @@ endpoints:
         name: justificativa
         description: 'Campo para justificativa da Ocorrencia'
         required: true
-        example: repudiandae
+        example: illo
         type: text
+        custom: []
+      'itens[].ocorrencia_id':
+        name: 'itens[].ocorrencia_id'
+        description: 'ID da entrada.'
+        required: true
+        example: 3
+        type: integer
+        custom: []
+      'itens[].item_id':
+        name: 'itens[].item_id'
+        description: 'ID do item.'
+        required: true
+        example: 5
+        type: integer
+        custom: []
+      'itens[].quantidade':
+        name: 'itens[].quantidade'
+        description: 'Quantidade de itens.'
+        required: true
+        example: 401
+        type: integer
         custom: []
     responses:
       -
@@ -171,7 +203,14 @@ endpoints:
                    "updated_at": "2023-05-10T15:20:14.000000Z",
                    "created_at": "2023-05-10T15:20:14.000000Z",
                    "id": 5
-               }
+               },
+               "itens": [
+                   {
+                       "ocorrencia_id": 3,
+                       "item_id": 5,
+                       "quantidade": 255
+                   },
+               ]
           }
         headers: []
         description: '200'
