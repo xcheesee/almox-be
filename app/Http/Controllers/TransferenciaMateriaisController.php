@@ -136,7 +136,7 @@ class TransferenciaMateriaisController extends Controller
         foreach($itens as $item) {
             TransferenciaItens::create([ 
                 'entrada_id' => $transferencia['id'],
-                'item_id' => $item['item_id'],
+                'item_id' => $item['id'],
                 'quantidade' => $item['quantidade'],
             ]);
         }

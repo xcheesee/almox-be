@@ -110,7 +110,7 @@ class OcorrenciasController extends Controller
         foreach($itens as $item) {
             OcorrenciaItens::create([ 
                 'ocorrencia_id' => $ocorrencia['id'],
-                'item_id' => $item['item_id'],
+                'item_id' => $item['id'],
                 'quantidade' => $item['quantidade'],
             ]);
         }
