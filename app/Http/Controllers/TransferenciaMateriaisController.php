@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TransferenciaFormRequest;
 use App\Models\TransferenciaDeMateriais;
 use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group Tranferencia de Materiais
@@ -82,7 +84,6 @@ class TransferenciaMateriaisController extends Controller
      * @bodyParam observacao text Observação. Example: Está faltando um parafuso
      * @bodyParam observacao_motivo enum Observação Motivo (nao_enviado, itens_faltando, extravio, furto, avaria). Example: itens_faltando
      * @bodyParam itens object required Lista de itens.
-     * @bodyParam itens[].entrada_id integer required ID da entrada. Example: 3
      * @bodyParam itens[].item_id integer required ID do item. Example: 5
      * @bodyParam itens[].quantidade integer required Quantidade de itens. Example: 355
      *
@@ -103,19 +104,17 @@ class TransferenciaMateriaisController extends Controller
      *      },
      *      "itens": [
      *          {
-     *              "entrada_id": 1,
      *              "item_id": 4,
      *              "quantidade": 1
      *          },
      *          {
-     *              "entrada_id": 1,
      *              "item_id": 45,
      *              "quantidade": 3
      *          }
      *      ]
      *  }
      */
-    public function store(Request $request)
+    public function store(TransferenciaFormRequest $request)
     {
         $transferencia = new TransferenciaDeMateriais();
 
@@ -128,24 +127,47 @@ class TransferenciaMateriaisController extends Controller
         $transferencia->observacao_motivo = $request->observacao_motivo;
         $transferencia->observacao_user_id = Auth::user()->id;
 
-        $transferencia->save();
+        DB::beginTransaction();
 
-        
-        $itens = $request->input('itens');
-        
-        foreach($itens as $item) {
-            TransferenciaItens::create([ 
-                'entrada_id' => $transferencia['id'],
-                'item_id' => $item['item_id'],
-                'quantidade' => $item['quantidade'],
-            ]);
-        }
-        
-        return response()->json([
-            'mensagem' => 'Transferencia cadastrada com sucesso!',
-            'transferencia' => $transferencia,
-            'itens' => $itens
-        ], 200);
+        if($transferencia->save()){
+            $itens = $request->input('itens');
+            foreach($itens as $item) {
+                $transferenciaItem = new TransferenciaItens();
+
+                $transferenciaItem->transferencia_materiais_id = $transferencia->id;
+
+                if (array_key_exists('item_id', $item)) {
+                    $transferenciaItem->item_id = $item["item_id"];
+                } else {
+                    DB::rollBack();
+
+                    return response()->json([
+                        'mensagem' => "item_id não informado, Transferencia não cadastrada."
+                    ], 420);
+                }
+
+                if (array_key_exists('quantidade', $item)){
+                    $transferenciaItem->quantidade = $item['quantidade'];
+                } else {
+                    DB::rollBack();
+
+                    return response()->json([
+                        'mensagem' => "quantidade não informada, Transferencia não cadastrada."
+                    ], 420);
+                }
+
+                $transferenciaItem->save();
+            }
+    
+            DB::commit();
+    
+            return response()->json([
+                'mensagem' => 'Transferencia cadastrada com sucesso!',
+                'transferencia' => $transferencia,
+                'itens' => $itens
+            ], 200);
+        };
+
     }
     
 
@@ -203,7 +225,7 @@ class TransferenciaMateriaisController extends Controller
      */
     public function show($id)
     {
-        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id')->findOrFail($id);
+        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id', 'itens_da_transferencia')->findOrFail($id);
 
         if($transferencia)
         {
@@ -249,7 +271,7 @@ class TransferenciaMateriaisController extends Controller
      *      }
      * }
      */
-    public function update(Request $request, $id)
+    public function update(TransferenciaFormRequest $request, $id)
     {
         $transferencia = TransferenciaDeMateriais::findOrFail($id);
 

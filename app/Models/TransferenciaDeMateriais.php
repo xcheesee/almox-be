@@ -29,4 +29,9 @@ class TransferenciaDeMateriais extends Model
     {
         return $this->belongsTo(Local::class, 'base_destino_id');
     }
+
+    public function itens_da_transferencia()
+    {
+        return $this->hasMany(TransferenciaItens::class, 'transferencia_materiais_id');
+    }
 }
