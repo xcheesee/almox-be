@@ -7,6 +7,7 @@ use App\Models\OcorrenciaItens;
 use App\Models\Ocorrencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 /**
  * @group Ocorrencias
@@ -92,7 +93,7 @@ class OcorrenciasController extends Controller
      *      ]
      * }
      */
-    public function store(Request $request)
+    public function store(OcorrenciaFormRequest $request)
     {
         $ocorrencia = new Ocorrencias();
 
@@ -103,25 +104,48 @@ class OcorrenciasController extends Controller
         $ocorrencia->justificativa = $request->input('justificativa');
         $ocorrencia->user_id = Auth::user()->id;
 
-        $ocorrencia->save();
+        DB::beginTransaction();
+        
+        if($ocorrencia->save()){
+            $itens = $request->input('itens');
+            
+            foreach($itens as $item) {
+                $ocorrenciaItem = new OcorrenciaItens();
 
-        $itens = $request->input('itens');
+                $ocorrenciaItem->ocorrencia_id = $ocorrencia->id;
 
-        foreach($itens as $item) {
-            OcorrenciaItens::create([ 
-                'ocorrencia_id' => $ocorrencia['id'],
-                'item_id' => $item['id'],
-                'quantidade' => $item['quantidade'],
-            ]);
+                if (array_key_exists('id', $item)){
+                    $ocorrenciaItem->item_id = $item["id"];
+                } else {
+                    DB::rollBack();
+
+                    return response()->json([
+                        'mesagem' => "id do item não informado, Ocorrencia não cadastrada."
+                    ], 420);
+                }
+
+                if (array_key_exists('quantidade', $item)){
+                    $ocorrenciaItem->quantidade = $item["quantidade"];
+                } else {
+                    DB::rollBack();
+
+                    return response()->json([
+                        'mensagem' => "quantidade não informado, Ocorrencia não cadastrada."
+                    ], 420);
+                }
+
+                $ocorrenciaItem->save();
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'mensagem' => "Ocorrencia cadastrada com sucesso!",
+                'Ocorrencia' => $ocorrencia,
+                'itens' => $itens
+            ], 200);
         }
-
-        return response()->json([
-            'mensagem' => 'Ocorrencia cadastrada com sucesso!',
-            'ocorrencia' => $ocorrencia,
-            'itens' => $itens
-        ], 200);
-        }
-    
+    }
 
         /**
      * Mostrar uma Ocorrencia

@@ -29,14 +29,16 @@ class OcorrenciaFormRequest extends FormRequest
             'tipo_ocorrencia' => 'required',
             'boletim_ocorrencia' => 'required',
             'justificativa' => 'required',
+            'itens' => 'required|array',
         ];
     }
     
     public function messages()
     {
         return [
-            'required' => 'O campo ":attribute" é obrigatório',
+            'required' => "O campo ':attribute' é obrigatório",
             'date' => 'A Data da Ocorrencia deve ser preenchida corretamente!',
+            'itens.array' => "No campo 'itens' deverá ser inserido uma lista"
         ];
     }
 }

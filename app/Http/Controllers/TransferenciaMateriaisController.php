@@ -136,13 +136,13 @@ class TransferenciaMateriaisController extends Controller
 
                 $transferenciaItem->transferencia_materiais_id = $transferencia->id;
 
-                if (array_key_exists('item_id', $item)) {
-                    $transferenciaItem->item_id = $item["item_id"];
+                if (array_key_exists('id', $item)) {
+                    $transferenciaItem->item_id = $item["id"];
                 } else {
                     DB::rollBack();
 
                     return response()->json([
-                        'mensagem' => "item_id não informado, Transferencia não cadastrada."
+                        'mensagem' => "id não informado, Transferencia não cadastrada."
                     ], 420);
                 }
 
@@ -271,17 +271,17 @@ class TransferenciaMateriaisController extends Controller
      *      }
      * }
      */
-    public function update(TransferenciaFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
         $transferencia = TransferenciaDeMateriais::findOrFail($id);
-
-        $transferencia->base_origem_id = $request->base_origem_id;
-        $transferencia->base_destino_id = $request->base_destino_id;
-        $transferencia->data_transferencia = $request->data_transferencia;
-        $transferencia->status = $request->status;
+        
+        $transferencia->base_origem_id = $request->input('base_origem_id');
+        $transferencia->base_destino_id = $request->input('base_destino_id');
+        $transferencia->data_transferencia = $request->input('data_transferencia');
+        $transferencia->status = $request->input('status');
         $transferencia->user_id = Auth::user()->id;
-        $transferencia->observacao = $request->observacao;
-        $transferencia->observacao_motivo = $request->observacao_motivo;
+        $transferencia->observacao = $request->input('observacao');
+        $transferencia->observacao_motivo = $request->input('observacao_motivo');
         $transferencia->observacao_user_id = Auth::user()->id;
 
         $transferencia->update();

@@ -28,7 +28,7 @@ class TransferenciaFormRequest extends FormRequest
             'base_destino_id' => 'required',
             'data_transferencia' => 'required|date',
             'status' => 'required',
-            "itens" => 'required|array',
+            'itens' => 'required|array',
         ];
     }
 
@@ -36,7 +36,8 @@ class TransferenciaFormRequest extends FormRequest
     {
         return [
             'required' => "O campo ':attribute' é obrigatório",
-            'date' => "A Data de Transferencia deve ser preenchida corretamente!"
+            'date' => "A Data de Transferencia deve ser preenchida corretamente!",
+            'intes.array' => "No campo 'itens' deverá ser inserido uma lista"
         ];
     }
 }

@@ -74,25 +74,25 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/transferencia', [TransferenciaMateriaisController::class, 'index']);
     Route::get('/transferencia/{id}', [TransferenciaMateriaisController::class, 'show']);
     Route::post('/transferencia', [TransferenciaMateriaisController::class, 'store']);
-    Route::put('/transferencia/{id}', [TransferenciaMateriaisController::class, 'update']);
+    Route::post('/transferencia/{id}', [TransferenciaMateriaisController::class, 'update']);
     Route::delete('/transferencia/{id}', [TransferenciaMateriaisController::class, 'destroy']);
     
     Route::get('/transferencia_itens', [TransferenciaItensController::class, 'index']);
     Route::get('/transferencia_itens/{id}', [TransferenciaItensController::class, 'show']);
     Route::post('/transferencia_itens', [TransferenciaItensController::class, 'store']);
-    Route::put('/transferencia_itens/{id}', [TransferenciaItensController::class, 'update']);
+    Route::post('/transferencia_itens/{id}', [TransferenciaItensController::class, 'update']);
     Route::delete('/transferencia_itens/{id}', [TransferenciaItensController::class, 'destroy']);
     
     Route::get('/ocorrencia', [OcorrenciasController::class, 'index']);
     Route::get('/ocorrencia/{id}', [OcorrenciasController::class, 'show']);
     Route::post('/ocorrencia', [OcorrenciasController::class, 'store']);
-    Route::put('/ocorrencia/{id}', [OcorrenciasController::class, 'update']);
+    Route::post('/ocorrencia/{id}', [OcorrenciasController::class, 'update']);
     Route::delete('/ocorrencia/{id}', [OcorrenciasController::class, 'destroy']);
 
     Route::get('/ocorrencia_itens', [OcorrenciaItensController::class, 'index']);
     Route::get('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'show']);
     Route::post('/ocorrencia_itens', [OcorrenciaItensController::class, 'store']);
-    Route::put('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'update']);
+    Route::post('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'update']);
     Route::delete('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'destroy']);
 });
 
