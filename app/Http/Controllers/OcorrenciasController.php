@@ -8,6 +8,7 @@ use App\Models\Ocorrencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Storage;
 
 /**
  * @group Ocorrencias
@@ -103,6 +104,16 @@ class OcorrenciasController extends Controller
         $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
         $ocorrencia->justificativa = $request->input('justificativa');
         $ocorrencia->user_id = Auth::user()->id;
+
+        if ($request->hasFile('boletim_ocorrencia')){
+            $tabela=DB::select("SHOW TABLE STATUS LIKE 'ocorrencias'");
+            $next_id=$tabela[0]->Auto_increment;
+            $file = $request->file('boletim_ocorrencia');
+            $extension = $file->extension();
+
+            $upload = $request->file('boletim_ocorrencia')->storeAs('files','ocorrencias'.$next_id.'-'.date('Ymdhis').'.'.$extension);
+            $ocorrencia->boletim_ocorrencia = $upload;
+        }
 
         DB::beginTransaction();
         
@@ -200,6 +211,15 @@ class OcorrenciasController extends Controller
                 'mensagem' => 'Ocorrencia não encontrada!',
             ], 404);
         }
+    }
+
+    public function mostrar_boletim_ocorrencia($id)
+    {
+        $ocorrencia = Ocorrencias::findOrFail($id);
+
+        $caminhoArquivo = $ocorrencia->boletim_ocorrencia;
+
+        return Storage::download($caminhoArquivo);
     }
 
     /**

@@ -38,7 +38,8 @@ class OcorrenciaFormRequest extends FormRequest
         return [
             'required' => "O campo ':attribute' é obrigatório",
             'date' => 'A Data da Ocorrencia deve ser preenchida corretamente!',
-            'itens.array' => "No campo 'itens' deverá ser inserido uma lista"
+            'itens.array' => "No campo 'itens' deverá ser inserido uma lista",
+            'itens.required' => "O campo 'itens' é obrigatório e devera ser preenchido com uma lista de seus respectivos itens."
         ];
     }
 }

@@ -88,7 +88,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/ocorrencia', [OcorrenciasController::class, 'store']);
     Route::post('/ocorrencia/{id}', [OcorrenciasController::class, 'update']);
     Route::delete('/ocorrencia/{id}', [OcorrenciasController::class, 'destroy']);
-
+    Route::get('/ocorrencia_pdf/{id}', [OcorrenciasController::class,'mostrar_boletim_ocorrencia']);
+    
     Route::get('/ocorrencia_itens', [OcorrenciaItensController::class, 'index']);
     Route::get('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'show']);
     Route::post('/ocorrencia_itens', [OcorrenciaItensController::class, 'store']);
