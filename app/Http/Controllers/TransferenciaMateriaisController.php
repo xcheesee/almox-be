@@ -322,11 +322,17 @@ class TransferenciaMateriaisController extends Controller
      */
     public function destroy($id)
     {
+        
         $transferencia = TransferenciaDeMateriais::where('id', $id)->first();
-
         
         if($transferencia)
         {
+            $transferenciaItens = TransferenciaItens::where('transferencia_materiais_id', $id)->get();
+    
+            foreach ($transferenciaItens as $itens){
+                $itens->delete();
+            }
+
             $transferencia->delete();
 
             return response()->json([
