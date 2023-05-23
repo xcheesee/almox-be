@@ -8,6 +8,9 @@ use App\Models\Ocorrencias;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Http\Resources\Ocorrencias as OcorrenciasResource;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 use Storage;
 
 /**
@@ -51,12 +54,19 @@ class OcorrenciasController extends Controller
      */
     public function index()
     {
-        $ocorrencia = Ocorrencias::with('local')->get();
+        $ocorrencias = QueryBuilder::for(Ocorrencias::class)
+        ->leftJoin('locais', 'locais.id', '=', 'ocorrencias.local_id')
+        ->select("locais.nome as local", "ocorrencias.*")
+        ->allowedSorts("data_ocorrencia", "local", "tipo_ocorrencia")
+        ->allowedFilters([
+            allowedFilter::partial("local", "locais.nome"),
+            allowedFilter::scope('ocorrencia_depois_de'),
+            allowedFilter::scope('ocorrencia_antes_de'),
+            "tipo_ocorrencia"
+        ])
+        ->get();
 
-        return response()->json([
-            'mensagem' => 'Todas ocorrencias cadastradas',
-            'ocorrencia' => $ocorrencia
-        ], 200);
+        return OcorrenciasResource::collection($ocorrencias);
     }
 
     /**
