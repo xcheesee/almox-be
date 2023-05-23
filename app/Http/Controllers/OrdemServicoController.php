@@ -55,8 +55,8 @@ class OrdemServicoController extends Controller
 
         $ordem_servicos = QueryBuilder::for(OrdemServico::class)
         ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
-        ->leftJoin('locais as origem', 'origem.id', 'ordem_servicos.origem_id')
-        ->leftJoin('locais', 'locais.id', 'ordem_servicos.local_servico_id')
+        ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
+        ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
         ->whereIn('ordem_servicos.departamento_id',$userDeptos)
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([

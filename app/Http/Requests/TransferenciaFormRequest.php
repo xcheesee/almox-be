@@ -27,7 +27,6 @@ class TransferenciaFormRequest extends FormRequest
             'base_origem_id' => 'required',
             'base_destino_id' => 'required',
             'data_transferencia' => 'required|date',
-            'status' => 'required',
             'itens' => 'required|array',
         ];
     }

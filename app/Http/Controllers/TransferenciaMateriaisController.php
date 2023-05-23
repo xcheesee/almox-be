@@ -8,6 +8,10 @@ use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use App\Http\Resources\TransferenciaDeMateriais as TransferenciaDeMateriaisResource;
+use App\Models\Local;
 
 /**
  * @group Tranferencia de Materiais
@@ -64,12 +68,20 @@ class TransferenciaMateriaisController extends Controller
      */
     public function index()
     {
-        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id')->get();
+        $transferencia = QueryBuilder::for(TransferenciaDeMateriais::class)
+        ->leftJoin('locais as origem', 'origem.id', '=', 'transferencia_de_materiais.base_origem_id')
+        ->leftJoin('locais', 'locais.id', '=', 'transferencia_de_materiais.base_destino_id')
+        ->select('locais.nome as destino', 'origem.nome as origem', 'transferencia_de_materiais.*')
+        ->allowedSorts('id', 'data_transferencia', 'destino', 'origem')
+        ->allowedFilters([
+            allowedFilter::partial('origem', 'origem.nome'),
+            allowedFilter::partial('destino', 'locais.nome'),
+            allowedFilter::scope('transferencia_depois_de'),
+            allowedFilter::scope('transferencia_antes_de')
+            ])
+        ->paginate(15);
 
-        return response()->json([
-            'mensagem' => 'Todas transferencias cadastradas',
-            'transferencias' => $transferencia
-        ], 200);
+        return TransferenciaDeMateriaisResource::collection($transferencia);
     }
 
     /**
@@ -118,13 +130,13 @@ class TransferenciaMateriaisController extends Controller
     {
         $transferencia = new TransferenciaDeMateriais();
 
-        $transferencia->base_origem_id = $request->base_origem_id;
-        $transferencia->base_destino_id = $request->base_destino_id;
-        $transferencia->data_transferencia = $request->data_transferencia;
-        $transferencia->status = $request->status;
+        $transferencia->base_origem_id = $request->input('base_origem_id');
+        $transferencia->base_destino_id = $request->input('base_destino_id');
+        $transferencia->data_transferencia = $request->input('data_transferencia');
+        $transferencia->status = "recebido";
         $transferencia->user_id = Auth::user()->id;
-        $transferencia->observacao = $request->observacao;
-        $transferencia->observacao_motivo = $request->observacao_motivo;
+        $transferencia->observacao = $request->input('observacao');
+        $transferencia->observacao_motivo = $request->input('observacao_motivo');
         $transferencia->observacao_user_id = Auth::user()->id;
 
         DB::beginTransaction();
