@@ -22,14 +22,14 @@ class TransferenciaDeMateriais extends Model
         'observacao_user_id',
     ];
 
-    public function base_origem_id()
+    public function base_origem()
     {
-        return $this->belongsTo(Local::class, 'base_origem_id');
+        return $this->belongsTo(Local::class, "base_origem_id");
     }
 
-    public function base_destino_id()
+    public function base_destino()
     {
-        return $this->belongsTo(Local::class, 'base_destino_id');
+        return $this->belongsTo(Local::class, "base_destino_id");
     }
 
     public function itens_da_transferencia()

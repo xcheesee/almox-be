@@ -237,14 +237,11 @@ class TransferenciaMateriaisController extends Controller
      */
     public function show($id)
     {
-        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id', 'itens_da_transferencia')->findOrFail($id);
+        $transferencia = TransferenciaDeMateriais::with('base_origem', 'base_destino', 'itens_da_transferencia')->findOrFail($id);
 
         if($transferencia)
         {
-            return response()->json([
-                'mensagem' => 'Transferencia encontrada com sucesso!',
-                'transferencia' => $transferencia
-            ], 200);
+            return new TransferenciaDeMateriaisResource($transferencia);
         } else {
             return response()->json([
                 'mensagem' => 'Transferencia naõ encontrada!',

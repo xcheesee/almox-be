@@ -16,8 +16,8 @@ class TransferenciaDeMateriais extends JsonResource
     {
         return [
             'id' => $this->id,
-            'destino' => $this->destino,
-            'origem' => $this->origem,
+            'destino' => $this->base_destino ? $this->base_destino->nome : null,
+            'origem' => $this->base_origem ? $this->base_origem->nome : null,
             'base_destino_id' => $this->base_destino_id,
             'base_origem_id' => $this->base_origem_id,
             'data_transferencia' => $this->data_transferencia,
