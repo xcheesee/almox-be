@@ -114,3 +114,4 @@ Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item
 Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);
 Route::get('profissionais', [App\Http\Controllers\ProfissionalController::class, 'profissionais_local']);
 Route::get('base/items', [App\Http\Controllers\InventarioController::class, 'items_local']);
+    Route::get('/transferencia/{id}/items', [TransferenciaMateriaisController::class, 'itens']);

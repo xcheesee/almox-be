@@ -10,8 +10,13 @@ class TransferenciaItens extends Model
     use HasFactory;
 
     protected $fillable = [
-        'entrada_id',
+        'transferencia_materiais_id',
         'item_id',
         'quantidade',
     ];
+
+    public function item()
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

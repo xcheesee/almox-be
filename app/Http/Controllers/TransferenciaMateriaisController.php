@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Resources\TransferenciaDeMateriais as TransferenciaDeMateriaisResource;
+use App\Http\Resources\TransferenciaDeMateriaisItem as TransferenciaDeMateriaisItemResource;
 use App\Models\Local;
 
 /**
@@ -353,5 +354,10 @@ class TransferenciaMateriaisController extends Controller
                 'mensagem' => 'Transferencia não encontrada para deletar!',
             ], 404);
         }
+    }
+
+    public function itens($id) {
+        $transferencia_itens = TransferenciaItens::where("transferencia_materiais_id","=",$id)->get();
+        return TransferenciaDeMateriaisItemResource::collection($transferencia_itens);
     }
 }
