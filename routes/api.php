@@ -73,6 +73,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     
     Route::get('/transferencia', [TransferenciaMateriaisController::class, 'index']);
     Route::get('/transferencia/{id}', [TransferenciaMateriaisController::class, 'show']);
+    Route::get('/transferencia/{id}/items', [TransferenciaMateriaisController::class, 'itens']);
     Route::post('/transferencia', [TransferenciaMateriaisController::class, 'store']);
     Route::post('/transferencia/{id}', [TransferenciaMateriaisController::class, 'update']);
     Route::delete('/transferencia/{id}', [TransferenciaMateriaisController::class, 'destroy']);
@@ -114,4 +115,3 @@ Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item
 Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);
 Route::get('profissionais', [App\Http\Controllers\ProfissionalController::class, 'profissionais_local']);
 Route::get('base/items', [App\Http\Controllers\InventarioController::class, 'items_local']);
-    Route::get('/transferencia/{id}/items', [TransferenciaMateriaisController::class, 'itens']);
