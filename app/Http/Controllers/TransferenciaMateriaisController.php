@@ -134,7 +134,7 @@ class TransferenciaMateriaisController extends Controller
         $transferencia->base_origem_id = $request->input('base_origem_id');
         $transferencia->base_destino_id = $request->input('base_destino_id');
         $transferencia->data_transferencia = $request->input('data_transferencia');
-        $transferencia->status = "recebido";
+        $transferencia->status = "enviado";
         $transferencia->user_id = Auth::user()->id;
         $transferencia->observacao = $request->input('observacao');
         $transferencia->observacao_motivo = $request->input('observacao_motivo');
@@ -355,6 +355,26 @@ class TransferenciaMateriaisController extends Controller
             ], 404);
         }
     }
+
+    /**
+     * Mostra os itens de uma transferencia
+     * @authenticated
+     *
+     * @urlParam id integer required ID da transferencia. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 3,
+     *             "transferencia_materiais_id": 2,
+     *             "item_id": 45,
+     *             "item": "Luva,pvc Soldavel Marrom,c/diam.32mm",
+     *             "medida": "PÇ",
+     *             "quantidade": 10
+     *         }
+     *     ]
+     * }
+     */
 
     public function itens($id) {
         $transferencia_itens = TransferenciaItens::where("transferencia_materiais_id","=",$id)->get();

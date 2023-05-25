@@ -83,14 +83,14 @@ endpoints:
         name: id
         description: 'The ID of the transferencia iten.'
         required: true
-        example: animi
+        example: corporis
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item.'
         required: false
-        example: occaecati
+        example: accusamus
         type: string
         custom: []
     queryParameters: []
@@ -177,74 +177,6 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
-    uri: 'api/transferencia_itens/{id}'
-    metadata:
-      title: 'Atualiza um Item de Transferencia'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the transferencia iten.'
-        required: true
-        example: aspernatur
-        type: string
-        custom: []
-      integer:
-        name: integer
-        description: 'ID do item que deseja atualizar. Example 5'
-        required: false
-        example: consectetur
-        type: string
-        custom: []
-    queryParameters: []
-    bodyParameters:
-      entrada_id:
-        name: entrada_id
-        description: 'ID da entrada.'
-        required: true
-        example: 244
-        type: integer
-        custom: []
-      item_id:
-        name: item_id
-        description: 'ID do item transferencia.'
-        required: true
-        example: 9
-        type: integer
-        custom: []
-      quantidade:
-        name: quantidade
-        description: 'Quantidade de itens.'
-        required: true
-        example: 4
-        type: integer
-        custom: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-               "mensagem": "Item de transferencia atualizado com sucesso!",
-               "itens": {
-                   "id": 5,
-                   "entrada_id": 244,
-                   "item_id": 9,
-                   "quantidade": 4,
-                   "created_at": "2023-05-10T14:41:11.000000Z",
-                   "updated_at": "2023-05-10T14:41:22.000000Z"
-               }
-          }
-        headers: []
-        description: '200'
-    responseFields: []
-  -
-    httpMethods:
       - DELETE
     uri: 'api/transferencia_itens/{id}'
     metadata:
@@ -260,7 +192,7 @@ endpoints:
         name: id
         description: 'The ID of the transferencia iten.'
         required: true
-        example: alias
+        example: dolor
         type: string
         custom: []
       integer:
@@ -340,14 +272,14 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia iten.'
         required: true
-        example: laboriosam
+        example: dolor
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja mostrar.'
         required: true
-        example: molestias
+        example: aliquam
         type: string
         custom: []
     queryParameters: []
@@ -434,7 +366,130 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
+      - DELETE
+    uri: 'api/ocorrencia_itens/{id}'
+    metadata:
+      title: 'Deleta um item de Ocorrencia'
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the ocorrencia iten.'
+        required: true
+        example: labore
+        type: string
+        custom: []
+      integer:
+        name: integer
+        description: 'ID do item que deseja deletar.'
+        required: true
+        example: voluptas
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+               "mensagem": "Ocorrencia deletada com sucesso!",
+               "ocorrencia": {
+                   "id": 2,
+                   "ocorrencia_id": 0,
+                   "item_id": 3,
+                   "quantidade": 1,
+                   "created_at": "2023-05-08T14:31:20.000000Z",
+                   "updated_at": "2023-05-08T14:32:24.000000Z"
+               }
+           }
+        headers: []
+        description: '200'
+      -
+        status: 404
+        content: |-
+          {
+               "mensagem": "Ocorrencia não encontrada para deletar."
+               }
+        headers: []
+        description: '404'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/transferencia_itens/{id}'
+    metadata:
+      title: 'Atualiza um Item de Transferencia'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the transferencia iten.'
+        required: true
+        example: eius
+        type: string
+        custom: []
+      integer:
+        name: integer
+        description: 'ID do item que deseja atualizar. Example 5'
+        required: false
+        example: similique
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      entrada_id:
+        name: entrada_id
+        description: 'ID da entrada.'
+        required: true
+        example: 244
+        type: integer
+        custom: []
+      item_id:
+        name: item_id
+        description: 'ID do item transferencia.'
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      quantidade:
+        name: quantidade
+        description: 'Quantidade de itens.'
+        required: true
+        example: 4
+        type: integer
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+               "mensagem": "Item de transferencia atualizado com sucesso!",
+               "itens": {
+                   "id": 5,
+                   "entrada_id": 244,
+                   "item_id": 9,
+                   "quantidade": 4,
+                   "created_at": "2023-05-10T14:41:11.000000Z",
+                   "updated_at": "2023-05-10T14:41:22.000000Z"
+               }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
     uri: 'api/ocorrencia_itens/{id}'
     metadata:
       title: 'Edita um Item de Ocorrencia.'
@@ -449,14 +504,14 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia iten.'
         required: true
-        example: voluptates
+        example: nihil
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja editar. Example 6'
         required: true
-        example: voluptatem
+        example: animi
         type: string
         custom: []
     queryParameters: []
@@ -499,59 +554,4 @@ endpoints:
           }
         headers: []
         description: '200'
-    responseFields: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/ocorrencia_itens/{id}'
-    metadata:
-      title: 'Deleta um item de Ocorrencia'
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'The ID of the ocorrencia iten.'
-        required: true
-        example: alias
-        type: string
-        custom: []
-      integer:
-        name: integer
-        description: 'ID do item que deseja deletar.'
-        required: true
-        example: enim
-        type: string
-        custom: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-               "mensagem": "Ocorrencia deletada com sucesso!",
-               "ocorrencia": {
-                   "id": 2,
-                   "ocorrencia_id": 0,
-                   "item_id": 3,
-                   "quantidade": 1,
-                   "created_at": "2023-05-08T14:31:20.000000Z",
-                   "updated_at": "2023-05-08T14:32:24.000000Z"
-               }
-           }
-        headers: []
-        description: '200'
-      -
-        status: 404
-        content: |-
-          {
-               "mensagem": "Ocorrencia não encontrada para deletar."
-               }
-        headers: []
-        description: '404'
     responseFields: []

@@ -181,6 +181,13 @@ endpoints:
         example: 2023/05/05
         type: date
         custom: []
+      itens:
+        name: itens
+        description: 'Lista de itens.'
+        required: true
+        example: []
+        type: object
+        custom: []
       status:
         name: status
         description: 'Status da transferencia (enviado, recebido, recusado).'
@@ -201,20 +208,6 @@ endpoints:
         required: false
         example: itens_faltando
         type: enum
-        custom: []
-      itens:
-        name: itens
-        description: 'Lista de itens.'
-        required: true
-        example: []
-        type: object
-        custom: []
-      'itens[].entrada_id':
-        name: 'itens[].entrada_id'
-        description: 'ID da entrada.'
-        required: true
-        example: 3
-        type: integer
         custom: []
       'itens[].item_id':
         name: 'itens[].item_id'
@@ -251,12 +244,10 @@ endpoints:
                },
                "itens": [
                    {
-                       "entrada_id": 1,
                        "item_id": 4,
                        "quantidade": 1
                    },
                    {
-                       "entrada_id": 1,
                        "item_id": 45,
                        "quantidade": 3
                    }
@@ -267,7 +258,101 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
+      - DELETE
+    uri: 'api/transferencia/{id}'
+    metadata:
+      title: 'Deleta uma Transferencia'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da Transferencia que deseja deletar.'
+        required: true
+        example: 4
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "mensagem": "Transferencia deletada com sucesso!",
+              "transferencia": {
+                  "id": 3,
+                  "base_origem_id": 1,
+                  "base_destino_id": 2,
+                  "data_transferencia": "2023-05-04 11:54:26",
+                  "status": "enviado",
+                  "user_id": 1,
+                  "observacao": null,
+                  "observacao_motivo": null,
+                  "observacao_user_id": null,
+                  "created_at": null,
+                  "updated_at": null
+              }
+          }
+        headers: []
+        description: '200'
+      -
+        status: 404
+        content: |-
+          {
+              "mensagem": "Transferencia não encontrada para deletar!"
+              }
+        headers: []
+        description: '404'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/transferencia/{id}/items'
+    metadata:
+      title: 'Mostra os itens de uma transferencia'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da transferencia.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 3,
+                      "transferencia_materiais_id": 2,
+                      "item_id": 45,
+                      "item": "Luva,pvc Soldavel Marrom,c/diam.32mm",
+                      "medida": "PÇ",
+                      "quantidade": 10
+                  }
+              ]
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
     uri: 'api/transferencia/{id}'
     metadata:
       title: 'Edita uma Transferencia.'
@@ -352,57 +437,4 @@ endpoints:
           }
         headers: []
         description: '200'
-    responseFields: []
-  -
-    httpMethods:
-      - DELETE
-    uri: 'api/transferencia/{id}'
-    metadata:
-      title: 'Deleta uma Transferencia'
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters:
-      id:
-        name: id
-        description: 'ID da Transferencia que deseja deletar.'
-        required: true
-        example: 4
-        type: integer
-        custom: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: |-
-          {
-              "mensagem": "Transferencia deletada com sucesso!",
-              "transferencia": {
-                  "id": 3,
-                  "base_origem_id": 1,
-                  "base_destino_id": 2,
-                  "data_transferencia": "2023-05-04 11:54:26",
-                  "status": "enviado",
-                  "user_id": 1,
-                  "observacao": null,
-                  "observacao_motivo": null,
-                  "observacao_user_id": null,
-                  "created_at": null,
-                  "updated_at": null
-              }
-          }
-        headers: []
-        description: '200'
-      -
-        status: 404
-        content: |-
-          {
-              "mensagem": "Transferencia não encontrada para deletar!"
-              }
-        headers: []
-        description: '404'
     responseFields: []
