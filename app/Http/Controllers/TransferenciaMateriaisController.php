@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\TransferenciaFormRequest;
+use App\Models\Inventario;
+use App\Models\Local;
 use App\Models\TransferenciaDeMateriais;
 use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
@@ -322,7 +324,6 @@ class TransferenciaMateriaisController extends Controller
      */
     public function destroy($id)
     {
-        
         $transferencia = TransferenciaDeMateriais::where('id', $id)->first();
         
         if($transferencia)
@@ -344,5 +345,94 @@ class TransferenciaMateriaisController extends Controller
                 'mensagem' => 'Transferencia não encontrada para deletar!',
             ], 404);
         }
+    }
+
+    public function transferir_itens(Request $request, $id)
+    {
+        $transferencia = TransferenciaDeMateriais::find($id);
+        
+        if ($request->status == "recebido"){
+               
+            $transferencia->status = $request->status;
+            
+            $transferencia->save();
+
+            $iventarios_base_origem = Inventario::where('local_id', $transferencia->base_origem_id)->get();
+            
+            foreach ($iventarios_base_origem as $iventario_origem) {
+
+                $itensTransferecia = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
+
+                foreach ($itensTransferecia as $item_transferencia) {
+                    
+                    if ($item_transferencia->item_id == $iventario_origem->item_id){
+                        
+                        $iventario_origem->quantidade -= $item_transferencia->quantidade;
+                        
+                        $iventario_origem->save();
+                    }
+                }
+            }
+
+            $inventarios_base_destino = Inventario::where('local_id', $transferencia->base_destino_id)->get();
+            $transferencia_itens = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
+
+            if($inventarios_base_destino->count() <= 0){
+                foreach ($transferencia_itens as $itens_transferencia) {
+
+                    $local = Local::where('id', $transferencia->base_destino_id)->first();
+
+                    $novo_item = new Inventario();
+
+                    $novo_item->departamento_id = $local->departamento_id;
+                    $novo_item->item_id = $itens_transferencia->item_id;
+                    $novo_item->local_id = $transferencia->base_destino_id;
+                    $novo_item->quantidade += $itens_transferencia->quantidade;
+                    $novo_item->qtd_alerta = 0; 
+
+                    $novo_item->save();
+                }
+            }
+
+            foreach ($transferencia_itens as $itens_transferencia) {
+                foreach ($inventarios_base_destino as $destino_itens){
+                    if($itens_transferencia->item_id == $destino_itens->item_id){
+
+                        $destino_itens->quantidade += $itens_transferencia->quantidade;
+    
+                        $destino_itens->save();
+                    }
+                }
+            }
+
+            foreach ($transferencia_itens as $itens_transferencia) {
+                foreach ($inventarios_base_destino as $destino_itens){
+                    $result = DB::table('inventarios')
+                    ->join('transferencia_itens', 'transferencia_itens.item_id', '=', 'inventarios.item_id')
+                    ->where('inventarios.item_id', $itens_transferencia->item_id)
+                    ->where('inventarios.local_id', $destino_itens->local_id)
+                    ->get();
+
+                    if ($result->count() <= 0) {
+
+                        $local = Local::where('id', $transferencia->base_destino_id)->first();
+
+                        $novo_item = new Inventario();
+
+                        $novo_item->departamento_id = $local->departamento_id;
+                        $novo_item->item_id = $itens_transferencia->item_id;
+                        $novo_item->local_id = $transferencia->base_destino_id;
+                        $novo_item->quantidade += $itens_transferencia->quantidade;
+                        $novo_item->qtd_alerta = 0; 
+
+                        $novo_item->save();
+                    }
+                }
+            }
+
+            return response()->json([
+                'mesagem' => 'Tranferencia de materiais realizada com sucesso!',
+            ], 200);
+       }
     }
 }
