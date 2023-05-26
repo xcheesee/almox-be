@@ -14,7 +14,6 @@ use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 use App\Http\Resources\TransferenciaDeMateriais as TransferenciaDeMateriaisResource;
 use App\Http\Resources\TransferenciaDeMateriaisItem as TransferenciaDeMateriaisItemResource;
-use App\Models\Local;
 
 /**
  * @group Tranferencia de Materiais
