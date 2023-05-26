@@ -10,6 +10,11 @@ use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
+use App\Http\Resources\TransferenciaDeMateriais as TransferenciaDeMateriaisResource;
+use App\Http\Resources\TransferenciaDeMateriaisItem as TransferenciaDeMateriaisItemResource;
+use App\Models\Local;
 
 /**
  * @group Tranferencia de Materiais
@@ -66,12 +71,20 @@ class TransferenciaMateriaisController extends Controller
      */
     public function index()
     {
-        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id')->get();
+        $transferencia = QueryBuilder::for(TransferenciaDeMateriais::class)
+        ->leftJoin('locais as origem', 'origem.id', '=', 'transferencia_de_materiais.base_origem_id')
+        ->leftJoin('locais', 'locais.id', '=', 'transferencia_de_materiais.base_destino_id')
+        ->select('locais.nome as destino', 'origem.nome as origem', 'transferencia_de_materiais.*')
+        ->allowedSorts('id', 'data_transferencia', 'destino', 'origem')
+        ->allowedFilters([
+            allowedFilter::partial('origem', 'origem.nome'),
+            allowedFilter::partial('destino', 'locais.nome'),
+            allowedFilter::scope('transferencia_depois_de'),
+            allowedFilter::scope('transferencia_antes_de')
+            ])
+        ->paginate(15);
 
-        return response()->json([
-            'mensagem' => 'Todas transferencias cadastradas',
-            'transferencias' => $transferencia
-        ], 200);
+        return TransferenciaDeMateriaisResource::collection($transferencia);
     }
 
     /**
@@ -120,13 +133,13 @@ class TransferenciaMateriaisController extends Controller
     {
         $transferencia = new TransferenciaDeMateriais();
 
-        $transferencia->base_origem_id = $request->base_origem_id;
-        $transferencia->base_destino_id = $request->base_destino_id;
-        $transferencia->data_transferencia = $request->data_transferencia;
-        $transferencia->status = $request->status;
+        $transferencia->base_origem_id = $request->input('base_origem_id');
+        $transferencia->base_destino_id = $request->input('base_destino_id');
+        $transferencia->data_transferencia = $request->input('data_transferencia');
+        $transferencia->status = "enviado";
         $transferencia->user_id = Auth::user()->id;
-        $transferencia->observacao = $request->observacao;
-        $transferencia->observacao_motivo = $request->observacao_motivo;
+        $transferencia->observacao = $request->input('observacao');
+        $transferencia->observacao_motivo = $request->input('observacao_motivo');
         $transferencia->observacao_user_id = Auth::user()->id;
 
         DB::beginTransaction();
@@ -227,14 +240,11 @@ class TransferenciaMateriaisController extends Controller
      */
     public function show($id)
     {
-        $transferencia = TransferenciaDeMateriais::with('base_origem_id', 'base_destino_id', 'itens_da_transferencia')->findOrFail($id);
+        $transferencia = TransferenciaDeMateriais::with('base_origem', 'base_destino', 'itens_da_transferencia')->findOrFail($id);
 
         if($transferencia)
         {
-            return response()->json([
-                'mensagem' => 'Transferencia encontrada com sucesso!',
-                'transferencia' => $transferencia
-            ], 200);
+            return new TransferenciaDeMateriaisResource($transferencia);
         } else {
             return response()->json([
                 'mensagem' => 'Transferencia naõ encontrada!',
@@ -434,5 +444,30 @@ class TransferenciaMateriaisController extends Controller
                 'mesagem' => 'Tranferencia de materiais realizada com sucesso!',
             ], 200);
        }
+    }
+    
+    /**
+     * Mostra os itens de uma transferencia
+     * @authenticated
+     *
+     * @urlParam id integer required ID da transferencia. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 3,
+     *             "transferencia_materiais_id": 2,
+     *             "item_id": 45,
+     *             "item": "Luva,pvc Soldavel Marrom,c/diam.32mm",
+     *             "medida": "PÇ",
+     *             "quantidade": 10
+     *         }
+     *     ]
+     * }
+     */
+
+     public function itens($id) {
+        $transferencia_itens = TransferenciaItens::where("transferencia_materiais_id","=",$id)->get();
+        return TransferenciaDeMateriaisItemResource::collection($transferencia_itens);
     }
 }

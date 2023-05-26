@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
+use Carbon\Carbon;
 
 class TransferenciaDeMateriais extends Model
 {
@@ -20,18 +22,28 @@ class TransferenciaDeMateriais extends Model
         'observacao_user_id',
     ];
 
-    public function base_origem_id()
+    public function base_origem()
     {
-        return $this->belongsTo(Local::class, 'base_origem_id');
+        return $this->belongsTo(Local::class, "base_origem_id");
     }
 
-    public function base_destino_id()
+    public function base_destino()
     {
-        return $this->belongsTo(Local::class, 'base_destino_id');
+        return $this->belongsTo(Local::class, "base_destino_id");
     }
 
     public function itens_da_transferencia()
     {
         return $this->hasMany(TransferenciaItens::class, 'transferencia_materiais_id');
+    }
+
+    public function scopeTransferenciaDepoisDe(Builder $query, $date): Builder
+    {
+        return $query->where('data_transferencia', '>=', Carbon::parse($date));
+    }
+
+    public function scopeTransferenciaAntesDe(Builder $query, $date): Builder
+    {
+        return $query->where('data_transferencia', '<=', Carbon::parse($date));
     }
 }

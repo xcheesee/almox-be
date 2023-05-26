@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
+use App\Http\Resources\TransferenciaDeMateriaisItem as TransferenciaDeMateriaisItemResource;
 
 
 class TransferenciaItensController extends Controller
@@ -82,19 +83,20 @@ class TransferenciaItensController extends Controller
      */
     public function show($id)
     {
-        $itens = TransferenciaItens::where('id', $id)->first();
+        $itens = TransferenciaItens::findOrFail($id);
+        return new TransferenciaDeMateriaisItemResource($itens);
 
-        if($itens)
-        {
-            return response()->json([
-                'mensagem' => 'Item de transferencia encontrado com sucesso!',
-                'itens' => $itens
-            ], 200);
-        } else {
-            return response()->json([
-                'mensagem' => 'Item de transferencia não encontrada!',
-            ], 404);
-        }
+        //if($itens)
+        //{
+        //    return response()->json([
+        //        'mensagem' => 'Item de transferencia encontrado com sucesso!',
+        //        'itens' => $itens
+        //    ], 200);
+        //} else {
+        //    return response()->json([
+        //        'mensagem' => 'Item de transferencia não encontrada!',
+        //    ], 404);
+        //}
     }
 
     /**

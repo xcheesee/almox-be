@@ -154,19 +154,27 @@ endpoints:
         example: furto
         type: enum
         custom: []
+      justificativa:
+        name: justificativa
+        description: 'Campo para justificativa da Ocorrencia'
+        required: true
+        example: in
+        type: text
+        custom: []
+      itens:
+        name: itens
+        description: ''
+        required: true
+        example:
+          - voluptates
+        type: 'string[]'
+        custom: []
       boletim_ocorrencia:
         name: boletim_ocorrencia
         description: 'Arquivo do boletim de Ocorrencia'
         required: true
         example: null
         type: file
-        custom: []
-      justificativa:
-        name: justificativa
-        description: 'Campo para justificativa da Ocorrencia'
-        required: true
-        example: illo
-        type: text
         custom: []
       'itens[].ocorrencia_id':
         name: 'itens[].ocorrencia_id'
@@ -219,7 +227,58 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - PUT
+      - DELETE
+    uri: 'api/ocorrencia/{id}'
+    metadata:
+      title: 'Deletar uma Ocorrencia'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da Ocorrencia que deseja deletar.'
+        required: true
+        example: 5
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "mensagem": "Ocorrencia deletada com sucesso!",
+               "ocorrencia": {
+                   "id": 6,
+                   "local_id": 1,
+                   "data_ocorrencia": "2023-05-04 00:00:00",
+                   "tipo_ocorrencia": "furto",
+                   "boletim_ocorrencia": "teste",
+                   "justificativa": "teste kk",
+                   "user_id": 1,
+                   "created_at": "2023-05-10T15:28:10.000000Z",
+                   "updated_at": "2023-05-10T15:28:10.000000Z"
+               }
+          }
+        headers: []
+        description: '200'
+      -
+        status: 404
+        content: |-
+          {
+              "mensagem": "Transferencia não encontrada para deletar!"
+              }
+        headers: []
+        description: '404'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
     uri: 'api/ocorrencia/{id}'
     metadata:
       title: 'Edita uma Ocorrencia.'
@@ -297,12 +356,12 @@ endpoints:
     responseFields: []
   -
     httpMethods:
-      - DELETE
-    uri: 'api/ocorrencia/{id}'
+      - GET
+    uri: 'api/ocorrencia_pdf/{id}'
     metadata:
-      title: 'Deletar uma Ocorrencia'
+      title: ''
       description: ''
-      authenticated: true
+      authenticated: false
       custom: []
     headers:
       Content-Type: application/json
@@ -310,39 +369,20 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'ID da Ocorrencia que deseja deletar.'
+        description: 'The ID of the ocorrencia pdf.'
         required: true
-        example: 5
-        type: integer
+        example: ut
+        type: string
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |-
-          {
-              "mensagem": "Ocorrencia deletada com sucesso!",
-               "ocorrencia": {
-                   "id": 6,
-                   "local_id": 1,
-                   "data_ocorrencia": "2023-05-04 00:00:00",
-                   "tipo_ocorrencia": "furto",
-                   "boletim_ocorrencia": "teste",
-                   "justificativa": "teste kk",
-                   "user_id": 1,
-                   "created_at": "2023-05-10T15:28:10.000000Z",
-                   "updated_at": "2023-05-10T15:28:10.000000Z"
-               }
-          }
-        headers: []
-        description: '200'
-      -
-        status: 404
-        content: |-
-          {
-              "mensagem": "Transferencia não encontrada para deletar!"
-              }
-        headers: []
-        description: '404'
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
     responseFields: []

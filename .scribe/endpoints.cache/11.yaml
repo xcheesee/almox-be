@@ -37,7 +37,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[]}'
+        content: '{"data":[{"id":1,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Profissional 1","profissao":"Arquiteto","completo":"Profissional 1 (Arquiteto)"},{"id":2,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Profissional 2","profissao":"Chefe de Obras","completo":"Profissional 2 (Chefe de Obras)"},{"id":3,"departamento_id":3,"departamento":"CGPABI\/DGPU","local_id":2,"local":"UEM Base Leopoldina","local_tipo":"base","nome":"Profissional 3","profissao":"Carpinteiro","completo":"Profissional 3 (Carpinteiro)"}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
