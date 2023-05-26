@@ -336,7 +336,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"data":[{"id":17,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"T\u00e1bua \"2,5  X 30\" cm em  Pinus; mista ou equivalente da regi\u00e3o - Bruta","descricao":"","quantidade":3},{"id":18,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi\u00faba)","descricao":"","quantidade":5},{"id":21,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"Compensado resinado 12 mm cola branca - chapa de \"2,20 x 1,10\"= 2,42 m2","descricao":"","quantidade":2}]}'
+        content: '{"data":[{"id":17,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"T\u00e1bua \"2,5  X 30\" cm em  Pinus; mista ou equivalente da regi\u00e3o - Bruta","descricao":"","quantidade":16},{"id":18,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"Ripa de Peroba do Norte 1,5 cm  X 5 cm  Bruta (cupi\u00faba)","descricao":"","quantidade":16},{"id":21,"departamento_id":3,"departamento":"CGPABI\/DGPU","medida_id":3,"medida":"MT","tipo_item_id":2,"tipo_item":"carpintaria","nome":"Compensado resinado 12 mm cola branca - chapa de \"2,20 x 1,10\"= 2,42 m2","descricao":"","quantidade":2}]}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json

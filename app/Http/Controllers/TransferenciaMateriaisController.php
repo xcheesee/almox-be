@@ -356,6 +356,19 @@ class TransferenciaMateriaisController extends Controller
         }
     }
 
+    /**
+     * Realiza a transferencia de materiais
+     * @authenticated
+     * 
+     * @urlParam id integer required ID da transferencia. Example: 199
+     * 
+     * @bodyParam status string required (enviado, recebido, recusado). Example: enviado
+     * 
+     * @response 200 {
+     *      "mensagem": "Tranferencia de materiais realizada com sucesso!"
+     *      }
+     * 
+     */
     public function transferir_itens(Request $request, $id)
     {
         $transferencia = TransferenciaDeMateriais::find($id);

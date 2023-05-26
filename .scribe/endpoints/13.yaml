@@ -436,3 +436,42 @@ endpoints:
         headers: []
         description: '200'
     responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/transferir_itens/{id}'
+    metadata:
+      title: 'Realiza a transferencia de materiais'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da transferencia.'
+        required: true
+        example: 199
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters:
+      status:
+        name: status
+        description: '(enviado, recebido, recusado).'
+        required: true
+        example: enviado
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+               "mensagem": "Tranferencia de materiais realizada com sucesso!"
+               }
+        headers: []
+        description: '200'
+    responseFields: []
