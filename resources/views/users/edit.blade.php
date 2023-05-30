@@ -22,6 +22,22 @@
                 {!! Form::select('departamentos[]', $departamentos, $userDeptos, array('class' => 'form-control','multiple')) !!}
             </div>
             <div class="form-group mb-3">
+                <strong>Local:</strong>
+                <select name="local_usuario" class="form-select" aria-label="Default select example" >
+                    @if (!isset($localUsers->local_id))
+                        <option value="" selected>Nenhum(a)</option>
+                            @foreach ($locais as $local)
+                                <option value="{{$local->id}}">{{ $local->nome }}</option>
+                            @endforeach
+                    @else
+                        @foreach ($locais as $local)
+                            <option value="{{$local->id}}"{{ $local->id == $localUsers->local_id ? 'selected' : '' }}>{{ $local->nome }}</option>
+                        @endforeach
+                    @endif
+                </select>
+            </div>
+            
+            <div class="form-group mb-3">
                 <strong>Senha:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Helpers\DepartamentoHelper;
 use App\Models\Departamento;
 use App\Models\DepartamentoUsuario;
+use App\Models\Local;
+use App\Models\local_users;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -114,9 +116,11 @@ class UserController extends Controller
         $roles = Role::pluck('name', 'name')->all();
         $userRole = $user->roles->pluck('name', 'name')->all();
         $departamentos = Departamento::pluck('nome', 'id')->all();
+        $localUsers = local_users::where('user_id', $user->id)->first();
+        $locais = Local::all();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'id',false);
 
-        return view('users.edit', compact('user', 'roles', 'userRole', 'departamentos', 'userDeptos'));
+        return view('users.edit', compact('user', 'roles', 'userRole', 'departamentos', 'userDeptos', 'locais', 'localUsers'));
     }
 
     /**
@@ -128,6 +132,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
@@ -162,6 +167,23 @@ class UserController extends Controller
             $depto_user->user_id = $id;
             $depto_user->save();
         }
+
+
+        $localUsers = local_users::where('user_id', $user->id)->first();
+
+        if($localUsers == null){
+            $localUsuario = new local_users();
+
+            $localUsuario->local_id = $request->input('local_usuario');
+            $localUsuario->user_id = $user->id;
+
+            $localUsuario->save();
+        } else {
+            $localUsers->local_id = $request->input('local_usuario');
+    
+            $localUsers->save();
+        }
+        
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully.');
