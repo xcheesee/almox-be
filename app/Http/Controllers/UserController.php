@@ -52,8 +52,9 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $departamentos = Departamento::pluck('nome', 'id')->all();
+        $locais = Local::all();
 
-        return view('users.create', compact('roles', 'departamentos'));
+        return view('users.create', compact('roles', 'departamentos', 'locais'));
     }
 
     /**
@@ -85,6 +86,13 @@ class UserController extends Controller
             $depto_user->save();
         }
 
+        $localUsuario = new local_users();
+
+        $localUsuario->local_id = $request->input('local_usuario');
+        $localUsuario->user_id = $user->id;
+
+        $localUsuario->save();
+
         return redirect()->route('users.index')
             ->with('success', 'User created successfully.');
     }
@@ -101,7 +109,13 @@ class UserController extends Controller
         $userRole = $user->roles->pluck('name')->all();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome',false);
 
-        return view('users.show', compact('user','userRole','userDeptos'));
+        $localUsers = DB::table('locais')
+                    ->join('local_users', 'local_users.local_id', '=', 'locais.id')
+                    ->where('user_id', $user->id)
+                    ->select('nome')
+                    ->first();
+                    
+        return view('users.show', compact('user','userRole','userDeptos', 'localUsers'));
     }
 
     /**
@@ -205,6 +219,10 @@ class UserController extends Controller
         DB::table('departamento_usuarios')
             ->where('user_id', $id)
             ->delete();
+
+        DB::table('local_users')
+        ->where('user_id', $user->id)
+        ->delete();
 
         return redirect()->route('users.index')
             ->with('success', 'User deleted successfully.');

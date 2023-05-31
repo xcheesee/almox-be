@@ -22,6 +22,15 @@
                 {!! Form::select('departamentos[]', $departamentos, [], array('class' => 'form-control','multiple')) !!}
             </div>
             <div class="form-group mb-3">
+                <strong>Local:</strong>
+                <select name="local_usuario" class="form-select" placeholder="valor" aria-label="Default select example">
+                    <option value="" selected disabled></option>
+                    @foreach ($locais as $local)
+                        <option value="{{$local->id}}">{{ $local->nome }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group mb-3">
                 <strong>Senha:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
             </div>

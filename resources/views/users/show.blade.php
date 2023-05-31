@@ -35,6 +35,16 @@
     </div>
     <div class="row">
         <div class="col">
+            <strong>Local do Usuário:</strong>
+            @if (!isset($localUsers->nome))
+                <label>Nenhum Local cadastrado.</label>
+            @else
+                <label>{{ $localUsers->nome }}</label>
+            @endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
             <strong>Senha:</strong>
             ********
         </div>
