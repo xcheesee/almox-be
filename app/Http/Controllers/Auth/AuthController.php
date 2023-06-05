@@ -114,7 +114,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'departamentos' => $userDeptos,
-            'local_id' => $localUser->local_id,
+            'local_id' => $localUser ? $localUser->local_id : "",
             'perfil' => $userRole[0],
         ]);
     }
