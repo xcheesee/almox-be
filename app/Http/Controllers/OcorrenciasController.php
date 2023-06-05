@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OcorrenciaFormRequest;
 use App\Models\Inventario;
+use App\Models\local_users;
 use App\Models\OcorrenciaItens;
 use App\Models\Ocorrencias;
 use App\Models\TransferenciaDeMateriais;
@@ -109,84 +110,98 @@ class OcorrenciasController extends Controller
      */
     public function store(OcorrenciaFormRequest $request)
     {
-        $ocorrencia = new Ocorrencias();
+        $user = auth()->user();
 
-        $ocorrencia->local_id = $request->input('local_id');
-        $ocorrencia->data_ocorrencia = $request->input('data_ocorrencia');
-        $ocorrencia->tipo_ocorrencia = $request->input('tipo_ocorrencia');
-        $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
-        $ocorrencia->justificativa = $request->input('justificativa');
-        $ocorrencia->user_id = Auth::user()->id;
-
-        if ($request->hasFile('boletim_ocorrencia')){
-            $tabela=DB::select("SHOW TABLE STATUS LIKE 'ocorrencias'");
-            $next_id=$tabela[0]->Auto_increment;
-            $file = $request->file('boletim_ocorrencia');
-            $extension = $file->extension();
-
-            $upload = $request->file('boletim_ocorrencia')->storeAs('files','ocorrencias'.$next_id.'-'.date('Ymdhis').'.'.$extension);
-            $ocorrencia->boletim_ocorrencia = $upload;
-        }
-
-        DB::beginTransaction();
-        
-        if($ocorrencia->save()){
-            $itens = $request->input('itens');
+        if ($user->hasRole(['almoxarife', 'encarregado'])){
             
+            $ocorrencia = new Ocorrencias();
+                    
+            $ocorrencia->local_id = $request->input('local_id');
+            $ocorrencia->data_ocorrencia = $request->input('data_ocorrencia');
+            $ocorrencia->tipo_ocorrencia = $request->input('tipo_ocorrencia');
+            $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
+            $ocorrencia->justificativa = $request->input('justificativa');
+            $ocorrencia->user_id = Auth::user()->id;
+        
+            if ($request->hasFile('boletim_ocorrencia')){
+                $tabela=DB::select("SHOW TABLE STATUS LIKE 'ocorrencias'");
+                $next_id=$tabela[0]->Auto_increment;
+                $file = $request->file('boletim_ocorrencia');
+                $extension = $file->extension();
+                
+                $upload = $request->file('boletim_ocorrencia')->storeAs('files','ocorrencias'.$next_id.'-'.date('Ymdhis').'.'.$extension);
+                $ocorrencia->boletim_ocorrencia = $upload;
+            }
+            
+            DB::beginTransaction();
+            
+            if($ocorrencia->save()){
+                
+                $localUsers = local_users::where('user_id', $user->id)->first();
+                
+                if(!($localUsers->local_id == $ocorrencia->local_id)){
+
+                        return response()->json([
+                            'mensagem' => 'Você não pode cadastrar uma ocorrencia de outra base.'
+                        ], 401);
+                    }
+                    
+            $itens = $request->input('itens');
+                    
             foreach($itens as $item) {
                 $ocorrenciaItem = new OcorrenciaItens();
-
+                
                 $ocorrenciaItem->ocorrencia_id = $ocorrencia->id;
-
+                
                 if (array_key_exists('id', $item)){
                     $ocorrenciaItem->item_id = $item["id"];
                 } else {
                     DB::rollBack();
-
+                    
                     return response()->json([
                         'mesagem' => "id do item não informado, Ocorrencia não cadastrada."
                     ], 420);
                 }
-
+                
                 if (array_key_exists('quantidade', $item)){
                     $ocorrenciaItem->quantidade = $item["quantidade"];
                 } else {
                     DB::rollBack();
-
+                    
                     return response()->json([
                         'mensagem' => "quantidade não informado, Ocorrencia não cadastrada."
                     ], 420);
                 }
-
+                
                 $ocorrenciaItem->save();
             }
+                    
+                $iventarios_local = Inventario::where('local_id', $ocorrencia->local_id)->get();   
+                        foreach ($iventarios_local as $iventario_local) {
 
-            
-            $iventarios_local = Inventario::where('local_id', $ocorrencia->local_id)->get();   
-                    foreach ($iventarios_local as $iventario_local) {
-        
                         $itensOcorrencia = OcorrenciaItens::where('ocorrencia_id', $ocorrencia->id)->get();
-    
+                                
                         foreach ($itensOcorrencia as $item_ocorrencia) {
-                            
-                            if ($item_ocorrencia->item_id == $iventario_local->item_id){
-                                
-                                $iventario_local->quantidade -= $item_ocorrencia->quantidade;
-                                
-                                $iventario_local->save();
-                            }
+
+                        if ($item_ocorrencia->item_id == $iventario_local->item_id){
+
+                            $iventario_local->quantidade -= $item_ocorrencia->quantidade;
+
+                            $iventario_local->save();
                         }
                     }
+                }       
+                    DB::commit();
+                            
+                    return response()->json([
+                        'mensagem' => "Ocorrencia cadastrada com sucesso!",
+                        'Ocorrencia' => $ocorrencia,
+                        'itens' => $itens
+                    ], 200);
+                }
+            }
 
-            DB::commit();
-
-            return response()->json([
-                'mensagem' => "Ocorrencia cadastrada com sucesso!",
-                'Ocorrencia' => $ocorrencia,
-                'itens' => $itens
-            ], 200);
         }
-    }
 
         /**
      * Mostrar uma Ocorrencia

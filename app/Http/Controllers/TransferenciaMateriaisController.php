@@ -477,19 +477,25 @@ class TransferenciaMateriaisController extends Controller
 
     public function recusar_transferencia(Request $request, $id)
     {
-        $transferencia = TransferenciaDeMateriais::find($id);
-
         $user = auth()->user();
 
-        $localUsers = local_users::where('user_id', $user->id)->first();
-
-        if($localUsers->local_id == $transferencia->base_destino_id) {
-
-            $transferencia->status = 'recusado';
+        if ($user->hasRole(['almoxarife', 'encarregado'])){
+            $transferencia = TransferenciaDeMateriais::find($id);
+    
+            $localUsers = local_users::where('user_id', $user->id)->first();
+    
+            if($localUsers->local_id == $transferencia->base_destino_id) {
+    
+                $transferencia->status = 'recusado';
+            } else {
+                return response()->json([
+                    'mensagem' => 'Voce não pode recusar uma transferencia de outra base.'
+                ], 403);
+            }
         } else {
             return response()->json([
-                'mensagem' => 'Voce não pode recusar uma transferencia de outra base.'
-            ], 403);
+                'mensagem' => 'Voce não tem permissão para recusar uma transferencia'
+            ], 401);
         }
     }
     
