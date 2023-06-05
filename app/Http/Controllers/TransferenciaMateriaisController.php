@@ -75,13 +75,14 @@ class TransferenciaMateriaisController extends Controller
         ->leftJoin('locais as origem', 'origem.id', '=', 'transferencia_de_materiais.base_origem_id')
         ->leftJoin('locais', 'locais.id', '=', 'transferencia_de_materiais.base_destino_id')
         ->select('locais.nome as destino', 'origem.nome as origem', 'transferencia_de_materiais.*')
-        ->allowedSorts('id', 'data_transferencia', 'destino', 'origem')
+        ->allowedSorts('id', 'data_transferencia', 'destino', 'origem', 'status')
         ->allowedFilters([
             allowedFilter::partial('origem', 'origem.nome'),
             allowedFilter::partial('destino', 'locais.nome'),
             allowedFilter::scope('transferencia_depois_de'),
-            allowedFilter::scope('transferencia_antes_de')
-            ])
+            allowedFilter::scope('transferencia_antes_de'),
+            "status"
+        ])
         ->paginate(15);
 
         return TransferenciaDeMateriaisResource::collection($transferencia);
