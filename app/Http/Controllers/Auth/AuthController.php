@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Helpers\DepartamentoHelper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -94,8 +95,14 @@ class AuthController extends Controller
         if (!Auth::attempt($request->only('email', 'password'))) {
             return response()->json(['message' => 'E-mail ou senha está incorreto'], 401);
         }
-
+        
+        
         $user = User::where('email', $request['email'])->firstOrFail();
+        $localUser = DB::table('locais')
+                    ->join('local_users', 'locais.id', 'local_users.local_id')
+                    ->where('user_id', '=', $user->id)
+                    ->first();
+
         $token = $user->createToken('auth_token')->plainTextToken;
         $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
         $userRole = $user->roles->pluck('name')->all();
@@ -107,6 +114,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'departamentos' => $userDeptos,
+            'local_id' => $localUser->local_id,
             'perfil' => $userRole[0],
         ]);
     }

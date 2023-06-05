@@ -474,6 +474,23 @@ class TransferenciaMateriaisController extends Controller
         }
     }
 
+    public function recusar_transferencia(Request $request, $id)
+    {
+        $transferencia = TransferenciaDeMateriais::find($id);
+
+        $user = auth()->user();
+
+        $localUsers = local_users::where('user_id', $user->id)->first();
+
+        if($localUsers->local_id == $transferencia->base_destino_id) {
+
+            $transferencia->status = 'recusado';
+        } else {
+            return response()->json([
+                'mensagem' => 'Voce não pode recusar uma transferencia de outra base.'
+            ], 403);
+        }
+    }
     
     /**
      * Mostra os itens de uma transferencia

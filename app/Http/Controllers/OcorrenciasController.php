@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OcorrenciaFormRequest;
+use App\Models\Inventario;
 use App\Models\OcorrenciaItens;
 use App\Models\Ocorrencias;
+use App\Models\TransferenciaDeMateriais;
+use App\Models\TransferenciaItens;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -157,6 +160,23 @@ class OcorrenciasController extends Controller
 
                 $ocorrenciaItem->save();
             }
+
+            
+            $iventarios_local = Inventario::where('local_id', $ocorrencia->local_id)->get();   
+                    foreach ($iventarios_local as $iventario_local) {
+        
+                        $itensOcorrencia = OcorrenciaItens::where('ocorrencia_id', $ocorrencia->id)->get();
+    
+                        foreach ($itensOcorrencia as $item_ocorrencia) {
+                            
+                            if ($item_ocorrencia->item_id == $iventario_local->item_id){
+                                
+                                $iventario_local->quantidade -= $item_ocorrencia->quantidade;
+                                
+                                $iventario_local->save();
+                            }
+                        }
+                    }
 
             DB::commit();
 
