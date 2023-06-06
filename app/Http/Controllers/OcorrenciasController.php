@@ -177,31 +177,35 @@ class OcorrenciasController extends Controller
             }
                     
                 $iventarios_local = Inventario::where('local_id', $ocorrencia->local_id)->get();   
-                        foreach ($iventarios_local as $iventario_local) {
+                
+                foreach ($iventarios_local as $iventario_local) {
 
-                        $itensOcorrencia = OcorrenciaItens::where('ocorrencia_id', $ocorrencia->id)->get();
+                $itensOcorrencia = OcorrenciaItens::where('ocorrencia_id', $ocorrencia->id)->get();
                                 
-                        foreach ($itensOcorrencia as $item_ocorrencia) {
+                foreach ($itensOcorrencia as $item_ocorrencia) {
+                    if ($item_ocorrencia->item_id == $iventario_local->item_id){
 
-                        if ($item_ocorrencia->item_id == $iventario_local->item_id){
+                        $iventario_local->quantidade -= $item_ocorrencia->quantidade;
 
-                            $iventario_local->quantidade -= $item_ocorrencia->quantidade;
-
-                            $iventario_local->save();
-                        }
+                        $iventario_local->save();
                     }
-                }       
-                    DB::commit();
-                            
-                    return response()->json([
-                        'mensagem' => "Ocorrencia cadastrada com sucesso!",
-                        'Ocorrencia' => $ocorrencia,
-                        'itens' => $itens
-                    ], 200);
                 }
+            }       
+                DB::commit();
+                            
+                return response()->json([
+                    'mensagem' => "Ocorrencia cadastrada com sucesso!",
+                    'Ocorrencia' => $ocorrencia,
+                    'itens' => $itens
+                ], 200);
             }
-
+        } else {
+            return response()->json([
+                'mensagem' => "Você não possui permissão para cadastrar um ocorrencia."
+            ], 401);
         }
+
+    }
 
         /**
      * Mostrar uma Ocorrencia

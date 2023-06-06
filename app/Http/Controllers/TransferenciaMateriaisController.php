@@ -132,58 +132,76 @@ class TransferenciaMateriaisController extends Controller
      */
     public function store(TransferenciaFormRequest $request)
     {
-        $transferencia = new TransferenciaDeMateriais();
+        $user = auth()->user();
 
-        $transferencia->base_origem_id = $request->input('base_origem_id');
-        $transferencia->base_destino_id = $request->input('base_destino_id');
-        $transferencia->data_transferencia = $request->input('data_transferencia');
-        $transferencia->status = "enviado";
-        $transferencia->user_id = Auth::user()->id;
-        $transferencia->observacao = $request->input('observacao');
-        $transferencia->observacao_motivo = $request->input('observacao_motivo');
-        $transferencia->observacao_user_id = Auth::user()->id;
+        if ($user->hasRole(['almoxarife', 'encarregado'])){
 
-        DB::beginTransaction();
+            $transferencia = new TransferenciaDeMateriais();
 
-        if($transferencia->save()){
-            $itens = $request->input('itens');
-            foreach($itens as $item) {
-                $transferenciaItem = new TransferenciaItens();
+            $transferencia->base_origem_id = $request->input('base_origem_id');
+            $transferencia->base_destino_id = $request->input('base_destino_id');
+            $transferencia->data_transferencia = $request->input('data_transferencia');
+            $transferencia->status = "enviado";
+            $transferencia->user_id = Auth::user()->id;
+            $transferencia->observacao = $request->input('observacao');
+            $transferencia->observacao_motivo = $request->input('observacao_motivo');
+            $transferencia->observacao_user_id = Auth::user()->id;
 
-                $transferenciaItem->transferencia_materiais_id = $transferencia->id;
+            DB::beginTransaction();
 
-                if (array_key_exists('id', $item)) {
-                    $transferenciaItem->item_id = $item["id"];
-                } else {
-                    DB::rollBack();
+            if($transferencia->save()){
 
-                    return response()->json([
-                        'mensagem' => "id não informado, Transferencia não cadastrada."
-                    ], 420);
+                $localUsers = local_users::where('user_id', $user->id)->first();
+                
+                if(!($localUsers->local_id == $transferencia->base_origem_id)){
+
+                        return response()->json([
+                            'mensagem' => 'Você não pode cadastrar uma ocorrencia de outra base.'
+                        ], 401);
+                    }
+
+                $itens = $request->input('itens');
+                foreach($itens as $item) {
+                    $transferenciaItem = new TransferenciaItens();
+
+                    $transferenciaItem->transferencia_materiais_id = $transferencia->id;
+
+                    if (array_key_exists('id', $item)) {
+                        $transferenciaItem->item_id = $item["id"];
+                    } else {
+                        DB::rollBack();
+
+                        return response()->json([
+                            'mensagem' => "id do item não informado, Transferencia não cadastrada."
+                        ], 420);
+                    }
+
+                    if (array_key_exists('quantidade', $item)){
+                        $transferenciaItem->quantidade = $item['quantidade'];
+                    } else {
+                        DB::rollBack();
+
+                        return response()->json([
+                            'mensagem' => "quantidade não informada, Transferencia não cadastrada."
+                        ], 420);
+                    }
+
+                    $transferenciaItem->save();
                 }
-
-                if (array_key_exists('quantidade', $item)){
-                    $transferenciaItem->quantidade = $item['quantidade'];
-                } else {
-                    DB::rollBack();
-
-                    return response()->json([
-                        'mensagem' => "quantidade não informada, Transferencia não cadastrada."
-                    ], 420);
-                }
-
-                $transferenciaItem->save();
-            }
-    
-            DB::commit();
-    
+        
+                DB::commit();
+        
+                return response()->json([
+                    'mensagem' => 'Transferencia cadastrada com sucesso!',
+                    'transferencia' => $transferencia,
+                    'itens' => $itens
+                ], 200);
+            };
+        } else {
             return response()->json([
-                'mensagem' => 'Transferencia cadastrada com sucesso!',
-                'transferencia' => $transferencia,
-                'itens' => $itens
-            ], 200);
-        };
-
+                'mensagem' => 'Você não possui permissão para cadastrar uma transferencia'
+            ], 401);
+        }
     }
     
 
