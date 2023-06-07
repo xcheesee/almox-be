@@ -68,7 +68,7 @@ class OcorrenciasController extends Controller
             allowedFilter::scope('ocorrencia_antes_de'),
             "tipo_ocorrencia"
         ])
-        ->get();
+        ->paginate(15);
 
         return OcorrenciasResource::collection($ocorrencias);
     }
