@@ -83,14 +83,14 @@ endpoints:
         name: id
         description: 'The ID of the transferencia iten.'
         required: true
-        example: ea
+        example: est
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item.'
         required: false
-        example: sit
+        example: totam
         type: string
         custom: []
     queryParameters: []
@@ -192,7 +192,7 @@ endpoints:
         name: id
         description: 'The ID of the transferencia iten.'
         required: true
-        example: similique
+        example: et
         type: string
         custom: []
       integer:
@@ -272,14 +272,14 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia iten.'
         required: true
-        example: minus
+        example: ut
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja mostrar.'
         required: true
-        example: qui
+        example: eum
         type: string
         custom: []
     queryParameters: []
@@ -381,14 +381,14 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia iten.'
         required: true
-        example: quo
+        example: voluptatem
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja deletar.'
         required: true
-        example: omnis
+        example: sit
         type: string
         custom: []
     queryParameters: []
@@ -436,14 +436,14 @@ endpoints:
         name: id
         description: 'The ID of the transferencia iten.'
         required: true
-        example: quis
+        example: nobis
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja atualizar. Example 5'
         required: false
-        example: minus
+        example: aspernatur
         type: string
         custom: []
     queryParameters: []
@@ -504,14 +504,14 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia iten.'
         required: true
-        example: debitis
+        example: sed
         type: string
         custom: []
       integer:
         name: integer
         description: 'ID do item que deseja editar. Example 6'
         required: true
-        example: non
+        example: dolore
         type: string
         custom: []
     queryParameters: []
