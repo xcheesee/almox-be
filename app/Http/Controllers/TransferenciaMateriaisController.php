@@ -514,6 +514,12 @@ class TransferenciaMateriaisController extends Controller
             if($localUsers->local_id == $transferencia->base_destino_id) {
     
                 $transferencia->status = 'recusado';
+                
+                $transferencia->save();
+
+                return response()->json([
+                    'mensagem' => 'Transferecia Recusada.'
+                ]);
             } else {
                 return response()->json([
                     'mensagem' => 'Voce não pode recusar uma transferencia de outra base.'
