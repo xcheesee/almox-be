@@ -459,14 +459,7 @@ endpoints:
         type: integer
         custom: []
     queryParameters: []
-    bodyParameters:
-      status:
-        name: status
-        description: '(enviado, recebido, recusado).'
-        required: true
-        example: enviado
-        type: string
-        custom: []
+    bodyParameters: []
     responses:
       -
         status: 200

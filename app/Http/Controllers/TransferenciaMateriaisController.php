@@ -382,8 +382,6 @@ class TransferenciaMateriaisController extends Controller
      * 
      * @urlParam id integer required ID da transferencia. Example: 199
      * 
-     * @bodyParam status string required (enviado, recebido, recusado). Example: enviado
-     * 
      * @response 200 {
      *      "mensagem": "Tranferencia de materiais realizada com sucesso!"
      *      }
@@ -493,6 +491,17 @@ class TransferenciaMateriaisController extends Controller
         }
     }
 
+    /**
+     * Recusar Transferencia
+     * @authenticated
+     * 
+     * @urlParam id integer required ID da transferencia. Example: 169
+     * 
+     * 
+     * @response 200 {
+     *      "mensagem": "Tranferencia recusada!"
+     *      }
+     */
     public function recusar_transferencia(Request $request, $id)
     {
         $user = auth()->user();
