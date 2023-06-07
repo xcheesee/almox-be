@@ -119,7 +119,13 @@ class OcorrenciasController extends Controller
             $ocorrencia->local_id = $request->input('local_id');
             $ocorrencia->data_ocorrencia = $request->input('data_ocorrencia');
             $ocorrencia->tipo_ocorrencia = $request->input('tipo_ocorrencia');
-            $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
+            if ($request->input('tipo_ocorrencia') == 'furto' or $request->input('tipo_ocorrencia') == 'extravio'){
+                $this->validate($request, [
+                    'boletim_ocorrencia' => 'required'
+                ]);
+            } else {
+                $ocorrencia->boletim_ocorrencia = $request->input('boletim_ocorrencia');
+            }
             $ocorrencia->justificativa = $request->input('justificativa');
             $ocorrencia->user_id = Auth::user()->id;
         
