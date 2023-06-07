@@ -76,6 +76,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/transferencia/{id}/items', [TransferenciaMateriaisController::class, 'itens']);
     Route::post('/transferencia', [TransferenciaMateriaisController::class, 'store']);
     Route::post('/transferencia/{id}', [TransferenciaMateriaisController::class, 'update']);
+    Route::post('/transferencia/recusar/{id}', [TransferenciaMateriaisController::class, 'recusar_transferencia']);
     Route::delete('/transferencia/{id}', [TransferenciaMateriaisController::class, 'destroy']);
     Route::post('/transferir_itens/{id}', [TransferenciaMateriaisController::class, 'transferir_itens']);
     
