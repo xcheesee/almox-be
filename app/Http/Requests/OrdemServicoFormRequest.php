@@ -28,8 +28,8 @@ class OrdemServicoFormRequest extends FormRequest
             'origem_id' => 'required',
             'local_servico_id' => 'required',
             'data_inicio_servico' => 'required',
-            'almoxarife_nome' => 'required',
-            'almoxarife_email' => 'required|email',
+            //'almoxarife_nome' => 'required',
+            //'almoxarife_email' => 'required|email',
             'user_id' => 'required',
         ];
     }

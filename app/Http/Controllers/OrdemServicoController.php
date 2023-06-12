@@ -145,6 +145,7 @@ class OrdemServicoController extends Controller
      */
     public function store(OrdemServicoFormRequest $request)
     {
+
         $ordem_servico = new OrdemServico();
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
@@ -152,13 +153,23 @@ class OrdemServicoController extends Controller
         $ordem_servico->status = $request->input('status');
         $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
         $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
-        $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
-        $ordem_servico->almoxarife_email = $request->input('almoxarife_email');
+        //$ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
+        //$ordem_servico->almoxarife_email = $request->input('almoxarife_email');
         $ordem_servico->especificacao = $request->input('especificacao');
-        $ordem_servico->profissional = $request->input('profissional');
-        $ordem_servico->horas_execucao = $request->input('horas_execucao');
+        //$ordem_servico->profissional = $request->input('profissional');
+        //$ordem_servico->horas_execucao = $request->input('horas_execucao');
         $ordem_servico->observacoes = $request->input('observacoes');
         $ordem_servico->user_id = Auth::user()->id;
+        
+        $ordem_servico->numero_ordem_servico = $request->input('numero_ordem_servico');
+        
+        if (is_null($ordem_servico->numero_ordem_servico)){
+            $this->validate($request, [
+                'justificativa_os' => 'required'
+            ]); 
+
+            $ordem_servico->justificativa_os = $request->input('justificativa_os');
+        }
 
         DB::beginTransaction();
         if ($ordem_servico->save()) {
