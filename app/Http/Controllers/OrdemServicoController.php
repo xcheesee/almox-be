@@ -61,7 +61,7 @@ class OrdemServicoController extends Controller
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([
                 AllowedFilter::partial('origem','origem.nome'), AllowedFilter::partial('local_servico','locais.nome'),
-                'almoxarife_nome', 'almoxarife_email',
+                "id", 'almoxarife_nome', 'almoxarife_email',
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
