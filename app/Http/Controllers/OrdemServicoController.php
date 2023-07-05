@@ -465,7 +465,20 @@ class OrdemServicoController extends Controller
      *
      */
     public function baixa_json($id){
+        //$saida = Saida::findOrFail($id);
+        //$ordem = OrdemServico::findOrFail($id);
+        //$saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
+
+        //$saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+        //dd($saida_items);
+        //return response()->json([
+        //    'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+        //    'ordem_servico' => new OrdemServicoResource($ordem),
+        //    'baixa' => new SaidaResource($saida),
+        //    'baixa_items' => SaidaItemResource::collection($saida_items)
+        //]);
         $saida = Saida::findOrFail($id);
+        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
 
         if ($saida->ordem_servico_id){
             $ordem = OrdemServico::findOrFail($id);
@@ -474,10 +487,9 @@ class OrdemServicoController extends Controller
                 'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
                 'ordem_servico' => new OrdemServicoResource($ordem),
                 //'baixa' => new SaidaResource($saida),
-                'baixa_items' => OrdemServicoItemResource::collection($ordem_servico_itens)
+                'baixa_items' => SaidaItemResource::collection($saida_items)
             ]);
         } else { //saida sem OS
-            $saida_itens = SaidaItem::where("saida_id","=",$id)->get();
             return response()->json([
                 'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
                 //'ordem_servico' => new OrdemServicoResource($ordem),
