@@ -58,7 +58,9 @@ class OrdemServicoController extends Controller
         ->whereIn('ordem_servicos.departamento_id',$userDeptos)
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([
-                AllowedFilter::partial('origem','origem.nome'), AllowedFilter::partial('local_servico','locais.nome'),
+                AllowedFilter::partial('origem','origem.nome'), 
+                AllowedFilter::partial('local_servico','locais.nome'),
+                "id",
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
