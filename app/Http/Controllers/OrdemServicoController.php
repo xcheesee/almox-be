@@ -486,7 +486,7 @@ class OrdemServicoController extends Controller
             return response()->json([
                 'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
                 'ordem_servico' => new OrdemServicoResource($ordem),
-                //'baixa' => new SaidaResource($saida),
+                'baixa' => new SaidaResource($saida),
                 'baixa_items' => SaidaItemResource::collection($saida_items)
             ]);
         } else { //saida sem OS
