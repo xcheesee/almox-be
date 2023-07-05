@@ -90,12 +90,6 @@
         </tr>
 
         <tr>
-            <td colspan="2" class="esquerda borderThin">
-                    <p><b>Duração prevista para o serviço:</b> {{ $ordem->created_at_formatado }}</p>
-            </td>
-        </tr>
-
-        <tr>
             <td colspan="2" class="tabela borderThin">
                 <table style="width: 100%">
                     <tr>
@@ -141,13 +135,13 @@
             <td colspan="2" class="tabela borderThin">
                 <table style="width: 100%">
                     <tr>
-                        <td style="text-align: left;"><br>
+                        <td style="text-align: center;"><br>
                             _______________________________<br>
-                            Fiscal do contrato SVMA<br>RF:
+                            Fiscal do contrato SVMA<br>RF:______________
                         </td>
-                        <td style="text-align: left;"><br>
+                        <td style="text-align: center;"><br>
                             _______________________________<br>
-                            Responsável técnico MPE<br>CPF:
+                            Responsável técnico MPE<br>CPF:______________
                         </td>
                     </tr>
                 </table>
@@ -156,18 +150,7 @@
 
         <tr>
             <td colspan="2" class="tabela borderThin">
-                <table style="width: 100%">
-                    <tr>
-                        <td style="text-align: center;"><br>
-                            <p><strong>Período previsto para execução dos serviços:</strong>
-                                <br>{{ $ordem->data_inicio_formatada_semhora }} a  {{ $ordem->data_fim_formatada_semhora }}
-                            </p>
-                        </td>
-                        <td style="text-align: center;"><br>
-                            <p><strong>Período efetivo de execução dos serviços de:</strong><br>___/___/____ a  ___/___/____</p>
-                        </td>
-                    </tr>
-                </table>
+                <p><strong>Período de execução dos serviços de:</strong> ___/___/____ a  ___/___/____</p>
             </td>
         </tr>
 
@@ -187,7 +170,7 @@
                         <td>{{ $dado_profissional->profissional->nome }}</td>
                         <td>{{ $dado_profissional->profissional->profissao }}</td>
                         <td>{{ $dado_profissional->data_inicio_formatada }}</td>
-                        <td>{{ $dado_profissional->horas_empregadas }}</td>
+                        <td>{{ $dado_profissional->horas_empregadas }}h</td>
                     </tr>
                     @endforeach
             </td>

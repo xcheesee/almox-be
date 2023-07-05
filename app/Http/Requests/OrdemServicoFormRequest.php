@@ -27,7 +27,7 @@ class OrdemServicoFormRequest extends FormRequest
             'departamento_id' => 'required',
             'origem_id' => 'required',
             'local_servico_id' => 'required',
-            'data_inicio_servico' => 'required',
+            //'data_inicio_servico' => 'required',
             //'almoxarife_nome' => 'required',
             //'almoxarife_email' => 'required|email',
             'user_id' => 'required',

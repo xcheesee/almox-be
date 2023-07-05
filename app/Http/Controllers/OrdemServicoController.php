@@ -41,8 +41,6 @@ class OrdemServicoController extends Controller
      *
      * @queryParam filter[origem] Filtro de Local (base) do item. Example: Leopoldina
      * @queryParam filter[local_servico] Filtro de nome do local de destino dos materiais. Example: Ibirapuera
-     * @queryParam filter[almoxarife_nome] Filtro do Nome do almoxarife responsável. Example: Fulano
-     * @queryParam filter[almoxarife_email] Filtro do e-mail do almoxarife responsável. Example: fulano@mail.com
      * @queryParam filter[servico_depois_de] Filtro inicial de período da data de serviço. Example: 2023-01-01
      * @queryParam filter[servico_antes_de] Filtro final de período da data de serviço. Example: 2023-12-31
      * @queryParam sort Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome' Example: -locais.nome
@@ -61,7 +59,6 @@ class OrdemServicoController extends Controller
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([
                 AllowedFilter::partial('origem','origem.nome'), AllowedFilter::partial('local_servico','locais.nome'),
-                "id", 'almoxarife_nome', 'almoxarife_email',
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
@@ -92,11 +89,7 @@ class OrdemServicoController extends Controller
      * @bodyParam status enum required ('A iniciar','Iniciada','Finalizada') Tipo. Example: Iniciada
      * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
      * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
-     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
-     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: joao@teste.com.br
      * @bodyParam especificacao text nullable Especificação. Example: reforma
-     * @bodyParam profissional string nullable Profissional. Example: José
-     * @bodyParam horas_execucao integer nullable Horas de execução. Example: 10
      * @bodyParam observacoes text nullable Observações. Example: observações referente ao serviço
      * @bodyParam user_id integer required ID do usuário. Example: 1
      *
@@ -110,11 +103,7 @@ class OrdemServicoController extends Controller
      *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "especificacao": "reforma",
-     *         "profissional": "José",
-     *         "horas_execucao": 10,
      *         "observacoes": "observações referente ao serviço",,
      *         "flg_baixa": 0,
      *         "user_id": 1,
@@ -150,26 +139,21 @@ class OrdemServicoController extends Controller
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
-        $ordem_servico->status = $request->input('status');
-        $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
-        $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
-        //$ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
-        //$ordem_servico->almoxarife_email = $request->input('almoxarife_email');
+        // $ordem_servico->status = $request->input('status');
+        // $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
+        // $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->especificacao = $request->input('especificacao');
-        //$ordem_servico->profissional = $request->input('profissional');
-        //$ordem_servico->horas_execucao = $request->input('horas_execucao');
         $ordem_servico->observacoes = $request->input('observacoes');
         $ordem_servico->user_id = Auth::user()->id;
-        
-        $ordem_servico->numero_ordem_servico = $request->input('numero_ordem_servico');
-        
-        if (is_null($ordem_servico->numero_ordem_servico)){
-            $this->validate($request, [
-                'justificativa_os' => 'required'
-            ]); 
 
-            $ordem_servico->justificativa_os = $request->input('justificativa_os');
-        }
+
+        // if (is_null($ordem_servico->numero_ordem_servico)){
+        //     $this->validate($request, [
+        //         'justificativa_os' => 'required'
+        //     ]);
+
+        //     $ordem_servico->justificativa_os = $request->input('justificativa_os');
+        // }
 
         DB::beginTransaction();
         if ($ordem_servico->save()) {
@@ -265,11 +249,7 @@ class OrdemServicoController extends Controller
      *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "especificacao": "reforma",
-     *         "profissional": "José",
-     *         "horas_execucao": 10,
      *         "observacoes": "observações referente ao serviço",
      *         "flg_baixa": 0,
      *         "user_id": 1
@@ -306,11 +286,7 @@ class OrdemServicoController extends Controller
      * @bodyParam status enum required ('A iniciar','Iniciada','Finalizada') Tipo. Example: Iniciada
      * @bodyParam data_inicio_servico datetime required Data do serviço. Example: 2022-08-30T14:48
      * @bodyParam data_fim_servico datetime required Data do serviço. Example: 2022-08-31T17:50
-     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: João
-     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: joao@teste.com.br
      * @bodyParam especificacao text nullable Especificação. Example: reforma
-     * @bodyParam profissional string nullable Profissional. Example: José
-     * @bodyParam horas_execucao integer nullable Horas de execução. Example: 10
      * @bodyParam observacoes text nullable Observações. Example: observações referente ao serviço
      * @bodyParam user_id integer required ID do usuário. Example: 1
      *
@@ -324,11 +300,7 @@ class OrdemServicoController extends Controller
      *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "especificacao": "reforma",
-     *         "profissional": "José",
-     *         "horas_execucao": 10,
      *         "observacoes": "observações referente ao serviço",
      *         "flg_baixa": 0,
      *         "user_id": 1
@@ -341,14 +313,10 @@ class OrdemServicoController extends Controller
         $ordem_servico->departamento_id = $request->input('departamento_id');
         $ordem_servico->origem_id = $request->input('origem_id');
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
-        $ordem_servico->status = $request->input('status');
-        $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
-        $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
-        $ordem_servico->almoxarife_nome = $request->input('almoxarife_nome');
-        $ordem_servico->almoxarife_email = $request->input('almoxarife_email');
+        // $ordem_servico->status = $request->input('status');
+        // $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
+        // $ordem_servico->data_fim_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_fim_servico'));
         $ordem_servico->especificacao = $request->input('especificacao');
-        $ordem_servico->profissional = $request->input('profissional');
-        $ordem_servico->horas_execucao = $request->input('horas_execucao');
         $ordem_servico->observacoes = $request->input('observacoes');
         $ordem_servico->user_id = Auth::user()->id;
 
@@ -413,108 +381,6 @@ class OrdemServicoController extends Controller
     }
 
     /**
-     * Emite a Baixa de uma ordem de serviço
-     * @authenticated
-     *
-     *
-     * @urlParam id integer required ID da ordem de serviço que deseja editar. Example: 1
-     *
-     * @bodyParam ordem_servico_items object[] required Itens da ordem de serviço. Example: [{"id": 2, "enviado": 60, "usado": 50, "retorno": 10},{"id": 3, "enviado": 5, "usado": 3, "retorno": 2}]
-     * @bodyParam ordem_servico_items.id integer required ID do item. Example: 2
-     * @bodyParam ordem_servico_items.enviado integer required Quantidade enviada do item para o local de serviço. Example: 60
-     * @bodyParam ordem_servico_items.usado integer required Quantidade usada do item para o serviço. Example: 50
-     * @bodyParam ordem_servico_items.retorno integer required Quantidade a ser devolvida do item para a base de origem. Example: 10
-     *
-     *
-     * @response 200 {
-     *     "message": "Baixa da Ordem de serviço efetuada com sucesso!",
-     *     "data": {
-     *         "id": 1,
-     *         "departamento_id": 2,
-     *         "origem_id": 1,
-     *         "local_servico_id": 2,
-     *         "status": "Iniciada",
-     *         "data_inicio_servico": "2022-08-30T14:48",
-     *         "data_fim_servico": "2022-08-31T17:50",
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
-     *         "especificacao": "reforma",
-     *         "profissional": "José",
-     *         "horas_execucao": 10,
-     *         "observacoes": "observações referente ao serviço",
-     *         "flg_baixa": 1,
-     *         "user_id": 1
-     *     }
-     * }
-     */
-    public function baixa(Request $request, $id){
-        $ordem_servico = OrdemServico::findOrFail($id);
-
-        //TODO: setar uma flag na ordem indicando que a baixa foi dada
-
-        $ordemServicoItens = $request->input('ordem_servico_items');
-        if($ordemServicoItens){
-            //salvando a baixa na BD
-            DB::beginTransaction();
-            $saida = new Saida();
-            $saida->departamento_id = $ordem_servico->departamento_id;
-            $saida->ordem_servico_id = $ordem_servico->id;
-            $saida->baixa_datahora = date('Y-m-d H:i:s');
-            $saida->baixa_user_id = auth()->user()->id;
-            if ($saida->save()) {
-                foreach ($ordemServicoItens as $ordem_servico_items){
-                    //Salvando itens na tabela ordem_servico_items
-                    $saida_item = new SaidaItem();
-                    $saida_item->saida_id = $saida->id;
-                    $saida_item->item_id = $ordem_servico_items["id"];
-                    $saida_item->enviado = $ordem_servico_items["enviado"];
-                    $saida_item->usado = $ordem_servico_items["usado"];
-                    $saida_item->retorno = $ordem_servico_items["retorno"];
-                    $saida_item->save();
-
-                    //lógica para retirar a quantidade dos itens no inventario
-                    $saida_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
-                                                        ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                        ->where('item_id','=',$ordem_servico_items["id"])->first();
-
-                    if ($saida_inventario) {
-                        $saida_inventario->quantidade += $ordem_servico_items["retorno"];
-                        $saida_inventario->save();
-                    }
-                }
-
-                $ordem_servico->flg_baixa = true;
-                $ordem_servico->save();
-
-                // Salva na tabela historicos
-                $historico = new Historico();
-                $historico->nome_tabela = 'Ordem_Servico e Saida_Inventario';
-                $historico->data_acao = date("Y-m-d");
-                $historico->tipo_acao = 'atualizacao';
-                $historico->user_id = Auth::user()->id;
-                $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
-                $historico->save();
-
-                DB::commit();
-            }else{
-                DB::rollBack();
-                return response()->json([
-                    'message' => 'Erro ao registrar a base, tente novamente mais tarde.'
-                ], 410);
-            }
-        }else{
-            return response()->json([
-                'message' => 'Para dar baixa, é preciso enviar a lista de itens e seus valores de usado e retornado.'
-            ], 410);
-        }
-
-        return response()->json([
-            'message' => 'Baixa da Ordem de serviço efetuada com sucesso!',
-            'data' => new OrdemServicoResource($ordem_servico)
-        ]);
-    }
-
-    /**
      * Deleta uma ordem de serviço
      * @authenticated
      *
@@ -531,11 +397,7 @@ class OrdemServicoController extends Controller
      *         "status": "Iniciada",
      *         "data_inicio_servico": "2022-08-30T14:48",
      *         "data_fim_servico": "2022-08-31T17:50",
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "especificacao": "reforma",
-     *         "profissional": "José",
-     *         "horas_execucao": 10,
      *         "observacoes": "observações referente ao serviço",
      *         "user_id": 1
      *     }
@@ -672,7 +534,7 @@ class OrdemServicoController extends Controller
      *     ]
      * }
      */
-    public function items_ordem($id){
+    public function items($id){
         $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$id)->get();
         return OrdemServicoItemResource::collection($ordem_servico_itens);
     }
@@ -701,8 +563,33 @@ class OrdemServicoController extends Controller
      *     ]
      * }
      */
-    public function profissionais_ordem($id){
+    public function profissionais($id){
         $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$id)->get();
         return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
+    }
+
+    /**
+     * Mostra as ordens de serviço pesquisando por número
+     * @authenticated
+     *
+     * @urlParam id integer required ID da ordem de serviço. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "ordem_servico_id": 2,
+     *             "data_inicio": '2022-11-07',
+     *         },{
+     *             "id": 2,
+     *             "ordem_servico_id": 2,
+     *             "data_inicio": '2022-11-07',
+     *         }
+     *     ]
+     * }
+     */
+    public function os_por_numero($id){
+        $ordem_servicos = OrdemServico::where("id","like",$id."%")->get();
+        return OrdemServicoResource::collection($ordem_servicos);
     }
 }
