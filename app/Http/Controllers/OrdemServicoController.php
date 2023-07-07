@@ -58,7 +58,9 @@ class OrdemServicoController extends Controller
         ->whereIn('ordem_servicos.departamento_id',$userDeptos)
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([
-                AllowedFilter::partial('origem','origem.nome'), AllowedFilter::partial('local_servico','locais.nome'),
+                AllowedFilter::partial('origem','origem.nome'), 
+                AllowedFilter::partial('local_servico','locais.nome'),
+                "id",
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
@@ -463,16 +465,38 @@ class OrdemServicoController extends Controller
      *
      */
     public function baixa_json($id){
-        $ordem = OrdemServico::findOrFail($id);
-        $saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
-        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+        //$saida = Saida::findOrFail($id);
+        //$ordem = OrdemServico::findOrFail($id);
+        //$saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
+
+        //$saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
         //dd($saida_items);
-        return response()->json([
-            'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
-            'ordem_servico' => new OrdemServicoResource($ordem),
-            'baixa' => new SaidaResource($saida),
-            'baixa_items' => SaidaItemResource::collection($saida_items)
-        ]);
+        //return response()->json([
+        //    'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+        //    'ordem_servico' => new OrdemServicoResource($ordem),
+        //    'baixa' => new SaidaResource($saida),
+        //    'baixa_items' => SaidaItemResource::collection($saida_items)
+        //]);
+        $saida = Saida::findOrFail($id);
+        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+
+        if ($saida->ordem_servico_id){
+            $ordem = OrdemServico::findOrFail($id);
+            $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
+            return response()->json([
+                'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+                'ordem_servico' => new OrdemServicoResource($ordem),
+                'baixa' => new SaidaResource($saida),
+                'baixa_items' => SaidaItemResource::collection($saida_items)
+            ]);
+        } else { //saida sem OS
+            return response()->json([
+                'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+                //'ordem_servico' => new OrdemServicoResource($ordem),
+                'baixa' => new SaidaResource($saida),
+                'baixa_items' => SaidaItemResource::collection($saida_items)
+            ]);
+        }
     }
 
     /**
