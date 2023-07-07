@@ -155,6 +155,8 @@ class SaidaController extends Controller
                     $saida_item->saida_id = $saida->id;
                     $saida_item->item_id = $saida_items["id"];
                     $saida_item->enviado = $saida_items["enviado"];
+                    // $saida_item->usado = 0;
+                    // $saida_item->retorno = 0;
                     $saida_item->save();
 
                     //lógica para retirar a quantidade dos itens no inventario
