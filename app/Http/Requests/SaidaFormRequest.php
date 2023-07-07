@@ -25,10 +25,8 @@ class SaidaFormRequest extends FormRequest
     {
         return [
             'departamento_id' => 'required',
-            'ordem_servico_id' => 'required',
-            'almoxarife_nome' => 'required',
-            'almoxarife_email' => 'required|email',
-            'baixa_datahora' => 'required',
+            'origem_id' => 'required',
+            'local_servico_id' => 'required',
         ];
     }
 
@@ -36,7 +34,6 @@ class SaidaFormRequest extends FormRequest
     {
         return [
             'required' => "O campo ':attribute' é obrigatório",
-            'email' => "O campo ':attribute' precisa ser um e-mail válido",
         ];
     }
 }

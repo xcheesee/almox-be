@@ -129,8 +129,7 @@ class SaidaController extends Controller
         $saida->local_servico_id = $request->input('local_servico_id');
         $saida->status = "A iniciar";
         $saida->flg_baixa = 0;
-        $saida->user_id = Auth::user()->id;
-        // $saida->baixa_user_id = $request->input('baixa_user_id');
+        $saida->baixa_user_id = Auth::user()->id;
         // $saida->baixa_datahora = $request->input('baixa_datahora');
 
         if (is_null($saida->ordem_servico_id)){
@@ -291,7 +290,7 @@ class SaidaController extends Controller
         $saida->local_servico_id = $request->input('local_servico_id');
         $saida->status = $request->input('status');
         $saida->flg_baixa = 0;
-        $saida->user_id = Auth::user()->id;
+        $saida->baixa_user_id = Auth::user()->id;
 
         if (is_null($saida->ordem_servico_id)){
             $this->validate($request, [
