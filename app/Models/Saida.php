@@ -25,6 +25,16 @@ class Saida extends Model
         return $this->belongsTo(Departamento::class);
     }
 
+    public function origem()
+    {
+        return $this->belongsTo(Local::class);
+    }
+
+    public function local_servico()
+    {
+        return $this->belongsTo(Local::class);
+    }
+
     public function ordem_servico()
     {
         return $this->belongsTo(OrdemServico::class);

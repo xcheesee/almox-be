@@ -28,6 +28,7 @@ class Saida extends JsonResource
             'baixa_user_id' => $this->baixa_user_id,
             'baixa_user' => $this->baixa_user ? $this->baixa_user->name : null,
             'baixa_datahora' => $this->baixa_datahora,
+            'flg_baixa' => $this->flg_baixa
         ];
     }
 }

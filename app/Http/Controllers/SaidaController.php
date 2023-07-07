@@ -143,7 +143,7 @@ class SaidaController extends Controller
         DB::beginTransaction();
         if ($saida->save()) {
             // Lidando com os itens adicionados (caso não tenha OS nessa saída)
-            $saidaItens = $request->input('saida_items');
+            $saidaItens = json_decode($request->input('saida_items'), true);
             if ($saidaItens){
                 $items_acabando = array();
                 foreach ($saidaItens as $saida_items){
@@ -187,7 +187,7 @@ class SaidaController extends Controller
             }
 
             //Lidando com a lista de profissionais  (caso não tenha OS nessa saída)
-            $saidaProfissionais = $request->input('saida_profissionais');
+            $saidaProfissionais = json_decode($request->input('saida_profissionais'), true);
             if ($saidaProfissionais){
                 foreach ($saidaProfissionais as $saida_profissionais){
                     //Salvando itens na tabela saida_items
