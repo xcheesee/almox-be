@@ -165,17 +165,11 @@ class SaidaController extends Controller
                                                         ->where('item_id','=',$saida_items["id"])->first();
 
                     if ($inventario) {
-                        $inventario->quantidade -= $saida_items["quantidade"];
-                        $resultado = $inventario->quantidade;
+                        $resultado = $inventario->quantidade - $saida_items["quantidade"];
                         if ($resultado <= 0) {
                             DB::rollBack();
                             $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
                             return $erroQtd;
-                        } else {
-                            $inventario->save();
-                            if ($inventario->quantidade <= $inventario->qtd_alerta) {
-                                $items_acabando[]=$inventario;
-                            }
                         }
                     }else{
                         DB::rollBack();
@@ -333,14 +327,11 @@ class SaidaController extends Controller
                                                         ->first();
 
                     if ($inventario) {
-                        $inventario->quantidade = $saida_items["quantidade"];
-                        $resultado = $inventario->quantidade;
+                        $resultado = $inventario->quantidade - $saida_items["quantidade"];
                         if ($resultado <= 0) {
                             DB::rollBack();
                             $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
                             return $erroQtd;
-                        } else {
-                            $inventario->save();
                         }
                     }
                 }
@@ -481,7 +472,7 @@ class SaidaController extends Controller
                                                         ->where('item_id','=',$saida_items["id"])->first();
 
                     if ($saida_inventario) {
-                        $saida_inventario->quantidade += $saida_items["retorno"];
+                        $saida_inventario->quantidade -= $saida_items["usado"];
                         $saida_inventario->save();
                     }
                 }
