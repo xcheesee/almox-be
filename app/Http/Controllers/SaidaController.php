@@ -154,7 +154,8 @@ class SaidaController extends Controller
                     $saida_item = new SaidaItem();
                     $saida_item->saida_id = $saida->id;
                     $saida_item->item_id = $saida_items["id"];
-                    $saida_item->enviado = $saida_items["enviado"];
+                    $saida_item->quantidade = $saida_items["quantidade"];
+                    $saida_item->enviado = $saida_items["quantidade"];
                     // $saida_item->usado = 0;
                     // $saida_item->retorno = 0;
                     $saida_item->save();
@@ -310,6 +311,7 @@ class SaidaController extends Controller
                         $saida_item->ordem_servico_id = $saida->id;
                         $saida_item->item_id = $saida_items["item_id"];
                         $saida_item->quantidade = $saida_items["quantidade"];
+                        $saida_item->enviado = $saida_items["quantidade"];
                         $saida_item->save();
                     } else {
                         // Criando item na tabela saida_items
@@ -317,6 +319,7 @@ class SaidaController extends Controller
                         $saida_item->ordem_servico_id = $saida->id;
                         $saida_item->item_id = $saida_items["item_id"];
                         $saida_item->quantidade = $saida_items["quantidade"];
+                        $saida_item->enviado = $saida_items["quantidade"];
                         $saida_item->save();
                     }
 
@@ -414,8 +417,9 @@ class SaidaController extends Controller
      *
      * @urlParam id integer required ID da ordem de serviço que deseja editar. Example: 1
      *
-     * @bodyParam saida_items object[] required Itens da ordem de serviço. Example: [{"id": 2, "enviado": 60, "usado": 50, "retorno": 10},{"id": 3, "enviado": 5, "usado": 3, "retorno": 2}]
+     * @bodyParam saida_items object[] required Itens da ordem de serviço. Example: [{"id": 2, "quantidade": 60, "usado": 50, "retorno": 10},{"id": 3, "quantidade": 5, "usado": 3, "retorno": 2}]
      * @bodyParam saida_items.id integer required ID do item. Example: 2
+     * @bodyParam saida_items.quantidade integer required Quantidade solicitada do item para o local de serviço. Example: 60
      * @bodyParam saida_items.enviado integer required Quantidade enviada do item para o local de serviço. Example: 60
      * @bodyParam saida_items.usado integer required Quantidade usada do item para o serviço. Example: 50
      * @bodyParam saida_items.retorno integer required Quantidade a ser devolvida do item para a base de origem. Example: 10
@@ -461,6 +465,7 @@ class SaidaController extends Controller
                         $origem = $saida->origem_id;
                         $saida = SaidaItem::findOrFail($saida_items["id"]);
                     }
+                    $saida_item->quantidade = $saida_items["quantidade"];
                     $saida_item->enviado = $saida_items["enviado"];
                     $saida_item->usado = $saida_items["usado"];
                     $saida_item->retorno = $saida_items["retorno"];

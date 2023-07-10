@@ -26,7 +26,7 @@ class SaidaItemFormRequest extends FormRequest
         return [
             'saida_id' => 'required',
             'item_id' => 'required',
-            'quantidade' => 'required',
+            //'quantidade' => 'required',
         ];
     }
 

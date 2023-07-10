@@ -13,6 +13,9 @@ class SaidaItem extends Model
         'saida_id',
         'item_id',
         'quantidade',
+        'enviado',
+        'usado',
+        'retorno',
     ];
 
     public function saida()
