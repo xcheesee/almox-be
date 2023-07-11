@@ -21,6 +21,7 @@ class OrdemServicoitem extends JsonResource
             'item' => $this->item ? $this->item->nome : null,
             'medida' => $this->item ? $this->item->medida->tipo : null,
             'quantidade' => $this->quantidade,
+            'enviado' => $this->quantidade,
         ];
     }
 }
