@@ -468,7 +468,9 @@ class SaidaController extends Controller
                         $saida_item->item_id = $saida_items["id"];
                     }else{
                         $origem = $saida->origem_id;
-                        $saida = SaidaItem::findOrFail($saida_items["id"]);
+                        $saida_item = SaidaItem::where('saida_id', '=', $saida->id)
+                                            ->where('item_id', '=', $saida_items["id"])
+                                            ->first();
                     }
                     $saida_item->quantidade = $saida_items["quantidade"];
                     $saida_item->enviado = $saida_items["enviado"];

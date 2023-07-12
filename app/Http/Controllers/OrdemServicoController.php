@@ -481,17 +481,17 @@ class OrdemServicoController extends Controller
         $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
 
         if ($saida->ordem_servico_id){
-            $ordem = OrdemServico::findOrFail($id);
+            $ordem = OrdemServico::findOrFail($saida->ordem_servico_id);
             $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
             return response()->json([
-                'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+                'message' => 'Dados da baixa da Ordem de Serviço #'.$saida->ordem_servico_id,
                 'ordem_servico' => new OrdemServicoResource($ordem),
                 'baixa' => new SaidaResource($saida),
                 'baixa_items' => SaidaItemResource::collection($saida_items)
             ]);
         } else { //saida sem OS
             return response()->json([
-                'message' => 'Dados da baixa da Ordem de Serviço #'.$id,
+                'message' => 'Dados da baixa da Saida de Materiais #'.$id,
                 //'ordem_servico' => new OrdemServicoResource($ordem),
                 'baixa' => new SaidaResource($saida),
                 'baixa_items' => SaidaItemResource::collection($saida_items)
