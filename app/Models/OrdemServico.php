@@ -100,11 +100,11 @@ class OrdemServico extends Model
 
     public function scopeServicoDepoisDe(Builder $query, $date): Builder
     {
-        return $query->where('created_at', '>=', Carbon::parse($date));
+        return $query->where('ordem_servicos.created_at', '>=', Carbon::parse($date));
     }
 
     public function scopeServicoAntesDe(Builder $query, $date): Builder
     {
-        return $query->where('created_at', '<=', Carbon::parse($date));
+        return $query->where('ordem_servicos.created_at', '<=', Carbon::parse($date));
     }
 }

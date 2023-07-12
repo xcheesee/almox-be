@@ -549,7 +549,7 @@ class SaidaController extends Controller
         $saida = Saida::findOrFail($id);
 
         if ($saida->ordem_servico_id){
-            $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$id)->get();
+            $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
             return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
         } else { //saida sem OS
             $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
