@@ -8,12 +8,15 @@ use App\Http\Requests\SaidaFormRequest;
 use App\Models\Saida;
 use App\Http\Resources\Saida as SaidaResource;
 use App\Http\Resources\OrdemServicoItem as OrdemServicoItemResource;
+use App\Http\Resources\OrdemServicoProfissional as OrdemServicoProfissionalResource;
 use App\Http\Resources\SaidaItem as SaidaItemResource;
+use App\Http\Resources\SaidaProfissional as SaidaProfissionalResource;
 use App\Mail\ItemAcabando;
 use App\Models\Historico;
 use App\Models\Inventario;
 use App\Models\OrdemServico;
 use App\Models\OrdemServicoItem;
+use App\Models\OrdemServicoProfissional;
 use App\Models\ResponsaveisEmail;
 use App\Models\SaidaItem;
 use App\Models\SaidaProfissional;
@@ -55,8 +58,10 @@ class SaidaController extends Controller
                 AllowedFilter::partial('origem','origem.nome'),
                 AllowedFilter::partial('local_servico','locais.nome'),
                 AllowedFilter::partial('status','locais.status'),
+                AllowedFilter::scope('baixa_depois_de'),
+                AllowedFilter::scope('baixa_antes_de'),
             ])
-        ->allowedSorts('id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome')
+        ->allowedSorts('id', 'baixa_datahora', 'created_at', 'origem.nome', 'locais.nome')
         ->paginate(15);
 
         return SaidaResource::collection($saidas);
@@ -511,5 +516,43 @@ class SaidaController extends Controller
             'message' => 'Baixa da Ordem de serviço efetuada com sucesso!',
             'data' => new SaidaResource($saida)
         ]);
+    }
+
+    /**
+     * Mostra os profissionais de uma ordem de serviço
+     * @authenticated
+     *
+     * @urlParam id integer required ID da ordem de serviço. Example: 2
+     *
+     * @response 200 {
+     *     "data": [
+     *         {
+     *             "id": 1,
+     *             "ordem_servico_id": 2,
+     *             "profissional_id": 1,
+     *             "data_inicio": '2022-11-07',
+     *             "horas_empregadas": 10
+     *         },{
+     *             "id": 2,
+     *             "ordem_servico_id": 2,
+     *             "profissional_id": 2,
+     *             "data_inicio": '2022-11-07',
+     *             "horas_empregadas": 6
+     *         }
+     *     ]
+     * }
+     */
+    public function profissionais($id){
+
+        $saida = Saida::findOrFail($id);
+
+        if ($saida->ordem_servico_id){
+            $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$id)->get();
+            return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
+        } else { //saida sem OS
+            $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
+            return SaidaProfissionalResource::collection($saida_profissionais);
+        }
+
     }
 }

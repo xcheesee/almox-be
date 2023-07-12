@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -52,5 +53,15 @@ class Saida extends Model
         }
 
         return null;
+    }
+
+    public function scopeBaixaDepoisDe(Builder $query, $date): Builder
+    {
+        return $query->where('baixa_datahora', '>=', Carbon::parse($date));
+    }
+
+    public function scopeBaixaAntesDe(Builder $query, $date): Builder
+    {
+        return $query->where('baixa_datahora', '<=', Carbon::parse($date));
     }
 }

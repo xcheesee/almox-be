@@ -58,13 +58,13 @@ class OrdemServicoController extends Controller
         ->whereIn('ordem_servicos.departamento_id',$userDeptos)
         ->where('ordem_servicos.ativo','=',1)
         ->allowedFilters([
-                AllowedFilter::partial('origem','origem.nome'), 
+                AllowedFilter::partial('origem','origem.nome'),
                 AllowedFilter::partial('local_servico','locais.nome'),
                 "id",
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
-        ->allowedSorts('id', 'data_inicio_servico', 'data_fim_servico', 'origem.nome', 'locais.nome')
+        ->allowedSorts('id', 'created_at', 'origem.nome', 'locais.nome')
         ->paginate(15);
 
         return OrdemServicoResource::collection($ordem_servicos);
