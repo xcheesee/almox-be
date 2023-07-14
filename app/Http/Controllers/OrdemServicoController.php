@@ -160,7 +160,7 @@ class OrdemServicoController extends Controller
         DB::beginTransaction();
         if ($ordem_servico->save()) {
             // Lidando com os itens adicionados
-            $ordemServicoItens = $request->input('ordem_servico_items');
+            $ordemServicoItens = json_decode($request->input('ordem_servico_items'), true);
             if ($ordemServicoItens){
                 $items_acabando = array();
                 foreach ($ordemServicoItens as $ordem_servico_items){

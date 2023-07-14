@@ -134,7 +134,7 @@ class EntradaController extends Controller
         DB::beginTransaction();
         if ($entrada->save()) {
             // Lidando com os itens adicionados
-            $entradaItens = $request->input('entrada_items');
+            $entradaItens = json_decode($request->input('entrada_items'), true);
             if ($entradaItens){
                 foreach ($entradaItens as $entrada_items){
                     //Salvando item na tabela entrada_items

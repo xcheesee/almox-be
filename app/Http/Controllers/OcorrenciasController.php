@@ -152,7 +152,7 @@ class OcorrenciasController extends Controller
                         ], 401);
                     }
                     
-            $itens = $request->input('itens');
+            $itens = json_decode($request->input('itens'), true);
                     
             foreach($itens as $item) {
                 $ocorrenciaItem = new OcorrenciaItens();
