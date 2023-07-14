@@ -172,7 +172,7 @@ class SaidaController extends Controller
 
                     if ($inventario) {
                         $resultado = $inventario->quantidade - $saida_items["quantidade"];
-                        if ($resultado <= 0) {
+                        if ($resultado < 0) {
                             DB::rollBack();
                             $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
                             return $erroQtd;
