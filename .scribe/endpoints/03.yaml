@@ -68,7 +68,7 @@ endpoints:
         custom: []
       sort:
         name: sort
-        description: "Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'numero_nota_fiscal', 'data_entrada', 'processo_sei', 'numero_contrato', 'locais.nome', 'tipo_items.nome'"
+        description: 'Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: ''numero_nota_fiscal'', ''data_entrada'', ''processo_sei'', ''numero_contrato'', ''locais.nome'', ''tipo_items.nome'''
         required: false
         example: '-processo_sei'
         type: string

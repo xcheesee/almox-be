@@ -153,8 +153,6 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "ordem_servico_id": 1,
-                  "almoxarife_nome": "João",
-                  "almoxarife_email": "joao@teste.com.br",
                   "baixa_user_id": 1,
                   "baixa_datahora": "2022-08-12 08:59"
               }
@@ -195,14 +193,14 @@ endpoints:
         name: origem_id
         description: ''
         required: true
-        example: voluptatem
+        example: placeat
         type: string
         custom: []
       local_servico_id:
         name: local_servico_id
         description: ''
         required: true
-        example: suscipit
+        example: dignissimos
         type: string
         custom: []
       ordem_servico_id:
@@ -211,20 +209,6 @@ endpoints:
         required: false
         example: 1
         type: integer
-        custom: []
-      almoxarife_nome:
-        name: almoxarife_nome
-        description: 'Nome do Almoxarife.'
-        required: true
-        example: '"João"'
-        type: string
-        custom: []
-      almoxarife_email:
-        name: almoxarife_email
-        description: 'E-mail do Almoxarife.'
-        required: true
-        example: '"joao@teste.com.br"'
-        type: string
         custom: []
       baixa_user_id:
         name: baixa_user_id
@@ -249,8 +233,6 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "ordem_servico_id": 1,
-                  "almoxarife_nome": "João",
-                  "almoxarife_email": "joao@teste.com.br",
                   "baixa_user_id": 1,
                   "baixa_datahora": "2022-08-12 08:59"
               }
@@ -290,8 +272,6 @@ endpoints:
                   "id": 1,
                   "departamento_id": 2,
                   "ordem_servico_id": 1,
-                  "almoxarife_nome": "João",
-                  "almoxarife_email": "joao@teste.com.br",
                   "baixa_user_id": 1,
                   "baixa_datahora": "2022-08-12 08:59"
               }
@@ -372,12 +352,12 @@ endpoints:
         example:
           -
             id: 2
-            enviado: 60
+            quantidade: 60
             usado: 50
             retorno: 10
           -
             id: 3
-            enviado: 5
+            quantidade: 5
             usado: 3
             retorno: 2
         type: 'object[]'
@@ -387,6 +367,13 @@ endpoints:
         description: 'ID do item.'
         required: true
         example: 2
+        type: integer
+        custom: []
+      saida_items.quantidade:
+        name: saida_items.quantidade
+        description: 'Quantidade solicitada do item para o local de serviço.'
+        required: true
+        example: 60
         type: integer
         custom: []
       saida_items.enviado:
@@ -429,6 +416,52 @@ endpoints:
                   "flg_baixa": 1,
                   "user_id": 1
               }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/saida/{id}/profissionais'
+    metadata:
+      title: 'Mostra os profissionais de uma ordem de serviço'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'ID da ordem de serviço.'
+        required: true
+        example: 2
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+              "data": [
+                  {
+                      "id": 1,
+                      "ordem_servico_id": 2,
+                      "profissional_id": 1,
+                      "data_inicio": '2022-11-07',
+                      "horas_empregadas": 10
+                  },{
+                      "id": 2,
+                      "ordem_servico_id": 2,
+                      "profissional_id": 2,
+                      "data_inicio": '2022-11-07',
+                      "horas_empregadas": 6
+                  }
+              ]
           }
         headers: []
         description: '200'

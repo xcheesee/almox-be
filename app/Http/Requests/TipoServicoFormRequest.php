@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class OrdemServicoFormRequest extends FormRequest
+class TipoServicoFormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class OrdemServicoFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'departamento_id' => 'required',
-            'origem_id' => 'required',
-            'local_servico_id' => 'required',
-            'user_id' => 'required',
+            'servico' => 'required',
         ];
     }
 
@@ -35,7 +32,6 @@ class OrdemServicoFormRequest extends FormRequest
     {
         return [
             'required' => "O campo ':attribute' é obrigatório",
-            'email' => "O campo ':attribute' precisa ser um e-mail válido",
         ];
     }
 }

@@ -132,6 +132,9 @@ class SaidaController extends Controller
         $saida->ordem_servico_id = $request->input('ordem_servico_id');
         $saida->origem_id = $request->input('origem_id');
         $saida->local_servico_id = $request->input('local_servico_id');
+        $saida->tipo_servico_id = $request->input('tipo_servico_id');
+        $saida->especificacao = $request->input('especificacao');
+        $saida->observacoes = $request->input('observacoes');
         $saida->status = "A iniciar";
         $saida->flg_baixa = 0;
         $saida->baixa_user_id = Auth::user()->id;
@@ -232,8 +235,6 @@ class SaidaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "ordem_servico_id": 1,
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "baixa_user_id": 1,
      *         "baixa_datahora": "2022-08-12 08:59"
      *     }
@@ -265,8 +266,6 @@ class SaidaController extends Controller
      *
      * @bodyParam departamento_id integer ID do Departamento. Example: 2
      * @bodyParam ordem_servico_id integer ID da Ordem de serviço. Example: 1
-     * @bodyParam almoxarife_nome string required Nome do Almoxarife. Example: "João"
-     * @bodyParam almoxarife_email string required E-mail do Almoxarife. Example: "joao@teste.com.br"
      * @bodyParam baixa_user_id integer ID do usuario. Example: 1
      * @bodyParam baixa_datahora datetime required Data e hora da baixa. Example: "2022-08-12 08:59"
      *
@@ -276,8 +275,6 @@ class SaidaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "ordem_servico_id": 1,
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "baixa_user_id": 1,
      *         "baixa_datahora": "2022-08-12 08:59"
      *     }
@@ -290,6 +287,9 @@ class SaidaController extends Controller
         $saida->ordem_servico_id = $request->input('ordem_servico_id');
         $saida->origem_id = $request->input('origem_id');
         $saida->local_servico_id = $request->input('local_servico_id');
+        $saida->tipo_servico_id = $request->input('tipo_servico_id');
+        $saida->especificacao = $request->input('especificacao');
+        $saida->observacoes = $request->input('observacoes');
         $saida->status = $request->input('status');
         $saida->flg_baixa = 0;
         $saida->baixa_user_id = Auth::user()->id;
@@ -362,8 +362,6 @@ class SaidaController extends Controller
      *         "id": 1,
      *         "departamento_id": 2,
      *         "ordem_servico_id": 1,
-     *         "almoxarife_nome": "João",
-     *         "almoxarife_email": "joao@teste.com.br",
      *         "baixa_user_id": 1,
      *         "baixa_datahora": "2022-08-12 08:59"
      *     }

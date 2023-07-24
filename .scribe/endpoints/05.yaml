@@ -281,7 +281,7 @@ endpoints:
         custom: []
       sort:
         name: sort
-        description: "Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: 'id', 'items.nome', 'tipo_items.nome', 'medidas.tipo', 'locais.nome', 'quantidade'"
+        description: 'Campo a ser ordenado (padrão ascendente, inserir um hífen antes para decrescente). Colunas possíveis: ''id'', ''items.nome'', ''tipo_items.nome'', ''medidas.tipo'', ''locais.nome'', ''quantidade'''
         required: false
         example: '-locais.nome'
         type: string

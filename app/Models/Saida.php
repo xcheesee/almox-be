@@ -14,9 +14,11 @@ class Saida extends Model
     protected $fillable = [
         'departamento_id',
         'ordem_servico_id',
-        'almoxarife_nome',
-        'almoxarife_email',
-        'almoxarife_cargo',
+        'local_servico_id',
+        'tipo_servico_id',
+        'justificativa_os',
+        'especificacao',
+        'observacoes',
         'baixa_user_id',
         'baixa_datahora',
     ];
@@ -34,6 +36,11 @@ class Saida extends Model
     public function local_servico()
     {
         return $this->belongsTo(Local::class);
+    }
+
+    public function tipo_servico()
+    {
+        return $this->belongsTo(TipoServico::class);
     }
 
     public function ordem_servico()

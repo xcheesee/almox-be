@@ -17,8 +17,6 @@ class OrdemServico extends Model
         'local_servico_id',
         'data_inicio_servico',
         'data_fim_servico',
-        'almoxarife_nome',
-        'almoxarife_email',
         'especificacao',
         'profissional',
         'horas_execucao',

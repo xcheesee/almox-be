@@ -156,7 +156,7 @@ endpoints:
         name: justificativa
         description: 'Campo para justificativa da Ocorrencia'
         required: true
-        example: aspernatur
+        example: quas
         type: text
         custom: []
       itens:
@@ -164,7 +164,7 @@ endpoints:
         description: ''
         required: true
         example:
-          - eius
+          - iure
         type: 'string[]'
         custom: []
       boletim_ocorrencia:
@@ -369,7 +369,7 @@ endpoints:
         name: id
         description: 'The ID of the ocorrencia pdf.'
         required: true
-        example: distinctio
+        example: sed
         type: string
         custom: []
     queryParameters: []

@@ -30,3 +30,28 @@ endpoints:
           access-control-allow-origin: '*'
         description: null
     responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/tipo_servicos
+    metadata:
+      title: 'Lista os departamentos'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
