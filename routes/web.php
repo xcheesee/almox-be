@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::prefix(env('APP_FOLDER', ''))->group(function () { //considerando que o projeto estará em subdiretório em homol/prod
+Route::prefix(env('APP_FOLDER', 'almoxarifado'))->group(function () { //considerando que o projeto estará em subdiretório em homol/prod
 
     //Custom Login
     Route::get('/entrar', [App\Http\Controllers\Auth\LoginController::class, 'index'])->name('entrar');
@@ -25,7 +25,7 @@ Route::prefix(env('APP_FOLDER', ''))->group(function () { //considerando que o p
     // Route::post('/registrar', [App\Http\Controllers\Auth\RegisterController::class, 'create'])->middleware('autenticador');
     Route::get('/sair', function () {
         Auth::logout();
-        return redirect('/'.env('APP_FOLDER', 'contratos'));
+        return redirect('/'.env('APP_FOLDER', 'almoxarifado'));
     })->name('sair');
 
     Route::get('/', [App\Http\Controllers\HomeController::class, 'welcome'])->name('welcome');
