@@ -15,7 +15,7 @@ class AlterarNulls extends Migration
     {
         Schema::table('saidas', function (Blueprint $table) {
             //
-            $table->unsignedBigInteger('baixa_user_id')->nullable()->change();
+            //$table->unsignedBigInteger('baixa_user_id')->nullable()->change();
             $table->dateTime('baixa_datahora')->nullable()->change();
         });
     }

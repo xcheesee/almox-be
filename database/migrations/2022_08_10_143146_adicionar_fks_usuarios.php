@@ -22,7 +22,7 @@ class AdicionarFksUsuarios extends Migration
             $table->foreign('user_id')->references('id')->on('users');
         });
         Schema::table('saidas', function (Blueprint $table) {
-            $table->unsignedBigInteger('baixa_user_id');
+            $table->unsignedBigInteger('baixa_user_id')->nullable();
             //Foreigns
             $table->foreign('baixa_user_id')->references('id')->on('users');
         });
