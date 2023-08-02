@@ -47,7 +47,7 @@
                 <label class="control-label"><strong>Descrição: </strong></label>
                 {!! Form::textarea('descricao', null, array('placeholder' => 'Texto de descrição do Item','class' => 'form-control','rows'=>4,'maxlength'=>255)) !!}
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

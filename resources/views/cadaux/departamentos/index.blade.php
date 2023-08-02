@@ -14,14 +14,14 @@
                 <label for="f-nome" class="col-form-label">Nome</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-nome" name="f-nome" placeholder="Parte do nome do Departamento" value="{{$filtros['nome']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-andar" class="col-form-label">Andar</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-andar" name="f-andar" placeholder="Número Andar" value="{{$filtros['andar']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
@@ -37,11 +37,11 @@
         </div>
         <div class="row align-items-end mb-2">
             <div class="col col-3 mb-2">
-                <button type="submit" class="btn btn-success btnForm"><i class="fas fa-filter"></i> Filtrar</button>
+                <button type="submit" class="btn btn-primary btnForm"><i class="fas fa-filter"></i> Filtrar</button>
             </div>
             <div class="col col-6"></div>
             <div class="col col-3 text-end">
-                <a class="btn btn-success" href="{{ route('cadaux-departamentos-create') }}"><i class="fas fa-file"></i> Novo Departamento</a>
+                <a class="btn btn-secondary" href="{{ route('cadaux-departamentos-create') }}"><i class="fas fa-file"></i> Novo Departamento</a>
             </div>
         </div>
     </form>
@@ -69,8 +69,8 @@
                             @endif
                         </td>
                         <td class="text-end">
-                            <a class="btn btn-success" href="{{ route('cadaux-departamentos-show',$departamento->id) }}"><i class="far fa-eye"></i></a>
-                            <a class="btn btn-success" href="{{ route('cadaux-departamentos-edit',$departamento->id) }}"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-primary" href="{{ route('cadaux-departamentos-show',$departamento->id) }}"><i class="far fa-eye"></i></a>
+                            <a class="btn btn-primary" href="{{ route('cadaux-departamentos-edit',$departamento->id) }}"><i class="fas fa-edit"></i></a>
                             @can('permission-edit')
                             @endcan
                         </td>

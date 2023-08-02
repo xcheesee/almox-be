@@ -34,6 +34,50 @@ Route::prefix(env('APP_FOLDER', 'almoxarifado'))->group(function () { //consider
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         Route::get('/grafico', [App\Http\Controllers\ChartController::class, 'index'])->name('chart');
 
+        //inventário
+        Route::get('/inventario', [App\Http\Controllers\InventarioController::class, 'index_web'])->name('inventario');
+        Route::post('/inventario_alerta/{id}', [App\Http\Controllers\InventarioController::class, 'salvar_alerta'])->name('inventario_alerta');
+
+        //Entrada
+        Route::get('/entradas', [App\Http\Controllers\EntradaController::class, 'index_web'])->name('entradas');
+        Route::get('/entradas/criar', [App\Http\Controllers\EntradaController::class, 'create'])->name('entradas-create');
+        Route::post('/entradas/criar', [App\Http\Controllers\EntradaController::class, 'store'])->name('entradas-store');
+        Route::get('/entradas/{id}/ver', [App\Http\Controllers\EntradaController::class, 'show'])->name('entradas-show');
+        Route::get('/entradas/{id}/editar', [App\Http\Controllers\EntradaController::class, 'edit'])->name('entradas-edit');
+        Route::post('/entradas/{id}/editar', [App\Http\Controllers\EntradaController::class, 'update'])->name('entradas-update');
+
+        //Ordem de Serviço
+        Route::get('/ordem_servicos', [App\Http\Controllers\OrdemServicoController::class, 'index_web'])->name('ordem_servicos');
+        Route::get('/ordem_servicos/criar', [App\Http\Controllers\OrdemServicoController::class, 'create'])->name('ordem_servicos-create');
+        Route::post('/ordem_servicos/criar', [App\Http\Controllers\OrdemServicoController::class, 'store'])->name('ordem_servicos-store');
+        Route::get('/ordem_servicos/{id}/ver', [App\Http\Controllers\OrdemServicoController::class, 'show'])->name('ordem_servicos-show');
+        Route::get('/ordem_servicos/{id}/editar', [App\Http\Controllers\OrdemServicoController::class, 'edit'])->name('ordem_servicos-edit');
+        Route::post('/ordem_servicos/{id}/editar', [App\Http\Controllers\OrdemServicoController::class, 'update'])->name('ordem_servicos-update');
+
+        //Saída
+        Route::get('/saidas', [App\Http\Controllers\SaidaController::class, 'index_web'])->name('saidas');
+        Route::get('/saidas/criar', [App\Http\Controllers\OrdemServicoController::class, 'create'])->name('saidas-create');
+        Route::post('/saidas/criar', [App\Http\Controllers\OrdemServicoController::class, 'store'])->name('saidas-store');
+        Route::get('/saidas/{id}/ver', [App\Http\Controllers\OrdemServicoController::class, 'show'])->name('saidas-show');
+        Route::get('/saidas/{id}/editar', [App\Http\Controllers\OrdemServicoController::class, 'edit'])->name('saidas-edit');
+        Route::post('/saidas/{id}/editar', [App\Http\Controllers\OrdemServicoController::class, 'update'])->name('saidas-update');
+
+        //Transferência
+        Route::get('/transferencias', [App\Http\Controllers\TransferenciaMateriaisController::class, 'index_web'])->name('transferencias');
+        Route::get('/transferencias/criar', [App\Http\Controllers\TransferenciaMateriaisController::class, 'create'])->name('transferencias-create');
+        Route::post('/transferencias/criar', [App\Http\Controllers\TransferenciaMateriaisController::class, 'store'])->name('transferencias-store');
+        Route::get('/transferencias/{id}/ver', [App\Http\Controllers\TransferenciaMateriaisController::class, 'show'])->name('transferencias-show');
+        Route::get('/transferencias/{id}/editar', [App\Http\Controllers\TransferenciaMateriaisController::class, 'edit'])->name('transferencias-edit');
+        Route::post('/transferencias/{id}/editar', [App\Http\Controllers\TransferenciaMateriaisController::class, 'update'])->name('transferencias-update');
+
+        //Ocorrência
+        Route::get('/ocorrencias', [App\Http\Controllers\OcorrenciasController::class, 'index_web'])->name('ocorrencias');
+        Route::get('/ocorrencias/criar', [App\Http\Controllers\OcorrenciasController::class, 'create'])->name('ocorrencias-create');
+        Route::post('/ocorrencias/criar', [App\Http\Controllers\OcorrenciasController::class, 'store'])->name('ocorrencias-store');
+        Route::get('/ocorrencias/{id}/ver', [App\Http\Controllers\OcorrenciasController::class, 'show'])->name('ocorrencias-show');
+        Route::get('/ocorrencias/{id}/editar', [App\Http\Controllers\OcorrenciasController::class, 'edit'])->name('ocorrencias-edit');
+        Route::post('/ocorrencias/{id}/editar', [App\Http\Controllers\OcorrenciasController::class, 'update'])->name('ocorrencias-update');
+
         //Cadastros auxiliares
         Route::get('/cadaux', [App\Http\Controllers\HomeController::class, 'cadaux'])->name('cadaux');
         Route::get('/medidas', [App\Http\Controllers\MedidaController::class, 'index'])->name('cadaux-medidas');

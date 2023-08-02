@@ -11,7 +11,7 @@
             <h4>Departamento ID {{ $departamento->id }}</h4>
         </div>
         <div class="col col-3 text-end mb-3">
-            <a class="btn btn-success" href="{{ route('cadaux-departamentos-edit',$departamento->id) }}"><i class="fas fa-edit"></i> Editar</a>
+            <a class="btn btn-secondary" href="{{ route('cadaux-departamentos-edit',$departamento->id) }}"><i class="fas fa-edit"></i> Editar</a>
         </div>
     </div>
     <div class="row">

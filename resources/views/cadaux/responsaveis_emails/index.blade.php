@@ -13,7 +13,7 @@
         <div class="col-10">
         </div>
         <div class="col-2 text-end">
-            <a class="btn btn-success" href="{{ route('cadaux-responsaveis_emails-create') }}"><i class="fas fa-file"></i> Novo(a) Responsável</a>
+            <a class="btn btn-secondary" href="{{ route('cadaux-responsaveis_emails-create') }}"><i class="fas fa-file"></i> Novo(a) Responsável</a>
         </div>
     </div>
     <div class="row">
@@ -35,7 +35,7 @@
                         <td>{{ $responsaveis_email->nome }}</td>
                         <td>{!! $responsaveis_email->email !!}</td>
                         <td class="text-end">
-                            <a class="btn btn-success" href="{{ route('cadaux-responsaveis_emails-edit',$responsaveis_email->id) }}"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-primary" href="{{ route('cadaux-responsaveis_emails-edit',$responsaveis_email->id) }}"><i class="fas fa-edit"></i></a>
                             @can('permission-edit')
                             @endcan
                         </td>

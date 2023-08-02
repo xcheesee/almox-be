@@ -14,28 +14,28 @@
                 <label for="f-nome" class="col-form-label">Nome</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-nome" name="f-nome" placeholder="Parte do Nome do Item" value="{{$filtros['nome']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-departamento" class="col-form-label">Departamento</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-departamento" name="f-departamento" placeholder="Escopo/Depto do Item" value="{{$filtros['departamento']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-local" class="col-form-label">Local</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-local" name="f-local" placeholder="Tipo de Item" value="{{$filtros['local']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-profissao" class="col-form-label">Profissão</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-profissao" name="f-profissao" placeholder="Tipo de Medida" value="{{$filtros['profissao']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
         </div>

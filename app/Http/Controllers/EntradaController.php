@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\DepartamentoHelper;
+use App\Helpers\LocalHelper;
+use App\Helpers\TipoItemHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\EntradaFormRequest;
 use App\Http\Requests\EntradaUpdateFormRequest;
@@ -10,11 +12,15 @@ use App\Models\Entrada;
 use App\Models\EntradaItem;
 use App\Models\Inventario;
 use App\Http\Resources\Entrada as EntradaResource;
+use App\Http\Resources\EntradaItem as EntradaItemResource;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
 use App\Models\Historico;
+use App\Models\Local;
+use App\Models\TipoItem;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 /**
@@ -63,14 +69,72 @@ class EntradaController extends Controller
         return EntradaResource::collection($entradas);
     }
 
+    public function index_web(Request $request)
+    {
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
+        $filtros = array();
+        $filtros['local'] = $request->query('f-local');
+        $filtros['tipo'] = $request->query('f-tipo');
+        $filtros['processo_sei'] = $request->query('f-processo_sei');
+        $filtros['numero_contrato'] = $request->query('f-numero_contrato');
+        $filtros['numero_nota_fiscal'] = $request->query('f-numero_nota_fiscal');
+        $filtros['entrada_depois_de'] = $request->query('f-entrada_depois_de');
+        $filtros['entrada_antes_de'] = $request->query('f-entrada_antes_de');
+
+        $entradas = Entrada::query()
+        ->select('locais.nome', 'tipo_items.nome', 'entradas.*')
+        ->leftJoin('locais', 'locais.id', 'entradas.local_id')
+        ->leftJoin('tipo_items', 'tipo_items.id', 'entradas.tipo_item_id')
+        ->where('entradas.ativo','=',1)
+        ->whereIn('entradas.departamento_id',$userDeptos)
+        ->when($filtros['local'], function ($query, $val) {
+            return $query->where('locais.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['tipo'], function ($query, $val) {
+            return $query->where('tipo_items.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['processo_sei'], function ($query, $val) {
+            return $query->where('entradas.processo_sei','like','%'.$val.'%');
+        })
+        ->when($filtros['numero_contrato'], function ($query, $val) {
+            return $query->where('entradas.numero_contrato','like','%'.$val.'%');
+        })
+        ->when($filtros['numero_nota_fiscal'], function ($query, $val) {
+            return $query->where('entradas.numero_nota_fiscal','like','%'.$val.'%');
+        })
+        ->when($filtros['entrada_depois_de'], function ($query, $val) {
+            $date = Carbon::createFromFormat('d/m/Y', $val);
+            $data = $date->format("Y-m-d");
+            return $query->where('entradas.data_entrada','>=',$data);
+        })
+        ->when($filtros['entrada_antes_de'], function ($query, $val) {
+            $date = Carbon::createFromFormat('d/m/Y', $val);
+            $data = $date->format("Y-m-d");
+            return $query->where('entradas.data_entrada','<=',$data);
+        })
+        ->sortable()
+        ->paginate(15);
+
+        $tipo_items = TipoItem::whereIn('departamento_id',$userDeptos)->get();
+
+        $mensagem = $request->session()->get('mensagem');
+        return view('entradas.index', compact('entradas','tipo_items','mensagem','filtros'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $user = auth()->user();
+        $departamentos = DepartamentoHelper::deptosByUser($user,'nome');
+        $locais = LocalHelper::dropDownList(DepartamentoHelper::ids_deptos($user),'base');
+        $tipo_items = TipoItemHelper::dropDownList(DepartamentoHelper::ids_deptos($user));
+        $mensagem = $request->session()->get('mensagem');
+        return view ('entradas.create',compact('departamentos','locais','tipo_items','mensagem'));
     }
 
     /**
@@ -112,12 +176,15 @@ class EntradaController extends Controller
      */
     public function store(EntradaFormRequest $request)
     {
+        //dd($request);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+
         $entrada = new Entrada();
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
-        $entrada->data_entrada = $request->input('data_entrada');
-        $entrada->processo_sei = $request->input('processo_sei');
-        $entrada->numero_contrato = $request->input('numero_contrato');
+        $entrada->data_entrada = $is_api_request ? $request->input('data_entrada') : Carbon::createFromFormat('d/m/Y', $request->input('data_entrada'));
+        $entrada->processo_sei = str_replace([".","/","-"],"",$request->input('processo_sei'));
+        $entrada->numero_contrato = str_replace([".","/","-"],"",$request->input('numero_contrato'));
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
 
         // Lidando com o upload de arquivo
@@ -134,7 +201,13 @@ class EntradaController extends Controller
         DB::beginTransaction();
         if ($entrada->save()) {
             // Lidando com os itens adicionados
-            $entradaItens = json_decode($request->input('entrada_items'), true);
+            if($is_api_request){
+                $entradaItens = json_decode($request->input('entrada_items'), true);
+            }else{
+                $entradaItens = $request->input('entrada_items');
+            }
+
+
             if ($entradaItens){
                 foreach ($entradaItens as $entrada_items){
                     //Salvando item na tabela entrada_items
@@ -175,7 +248,12 @@ class EntradaController extends Controller
             $historico->save();
 
             DB::commit();
-            return new EntradaResource($entrada);
+
+            if($is_api_request){
+                return new EntradaResource($entrada);
+            }
+            $request->session()->flash('mensagem',"Entrada de Material #{$entrada->id} criada com sucesso");
+            return redirect()->route('entradas');
         }
     }
 
@@ -200,10 +278,20 @@ class EntradaController extends Controller
      *     }
      * }
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
         $entrada = Entrada::findOrFail($id);
-        return new EntradaResource($entrada);
+
+        if($is_api_request){
+            return new EntradaResource($entrada);
+        }
+
+        $entrada_items = EntradaItem::where('entrada_id','=',$id)->get();
+        return response()->json([
+            'entrada' => new EntradaResource($entrada),
+            'entrada_items' => EntradaItemResource::collection($entrada_items)]
+            , 200);
     }
 
     /**
@@ -212,9 +300,22 @@ class EntradaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $entrada = Entrada::findOrFail($id);
+        $entrada_items = EntradaItem::query()->where('entrada_id','=',$id)->get();
+        $itens_adicionados = array();
+        foreach($entrada_items as $item){
+            $itens_adicionados[]= $item->item_id;
+        }
+        $itens_adicionados = implode(",",$itens_adicionados);
+
+        $user = auth()->user();
+        $departamentos = DepartamentoHelper::deptosByUser($user,'nome');
+        $locais = LocalHelper::dropDownList(DepartamentoHelper::ids_deptos($user),'base');
+        $tipo_items = TipoItemHelper::dropDownList(DepartamentoHelper::ids_deptos($user));
+        $mensagem = $request->session()->get('mensagem');
+        return view ('entradas.edit',compact('entrada','entrada_items','itens_adicionados','departamentos','locais','tipo_items','mensagem'));
     }
 
     /**
@@ -248,12 +349,14 @@ class EntradaController extends Controller
     public function update(EntradaUpdateFormRequest $request, $id)
     {
         //dd($request);
+        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
-        $entrada->data_entrada = $request->input('data_entrada');
-        $entrada->processo_sei = $request->input('processo_sei');
-        $entrada->numero_contrato = $request->input('numero_contrato');
+        $entrada->data_entrada = $is_api_request ? $request->input('data_entrada') : Carbon::createFromFormat('d/m/Y', $request->input('data_entrada'));
+        $entrada->processo_sei = str_replace([".","/","-"],"",$request->input('processo_sei'));
+        $entrada->numero_contrato = str_replace([".","/","-"],"",$request->input('numero_contrato'));
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
 
         // Lidando com o upload de arquivo
@@ -271,40 +374,46 @@ class EntradaController extends Controller
 
         DB::beginTransaction();
         if ($entrada->save()) {
+            // deletando itens para readicionar a nova lista
+            $entrada_items = EntradaItem::where('entrada_id','=',$id)->get();
+            //dd($entrada_items);
+            foreach($entrada_items as $item){
+                //lógica para retirar a quantidade dos itens no inventario
+                $saida_inventario = Inventario::query()->where('local_id','=',$entrada->local_id)
+                    ->where('departamento_id','=',$entrada->departamento_id)
+                    ->where('item_id','=',$item->item_id)->first();
+
+                if ($saida_inventario) {
+                    $saida_inventario->quantidade -= $item->quantidade;
+                    $saida_inventario->save();
+                }
+                $item->delete();
+            }
+
             // Lidando com os itens adicionados
             $entradaItens = $request->input('entrada_items');
             if ($entradaItens){
                 foreach ($entradaItens as $entrada_items){
-                    // Atualizando item na tabela entrada_items
-                    $entrada_item = EntradaItem::query()->where('item_id','=',$entrada_items["item_id"])->first();
+                    //Salvando item na tabela entrada_items
+                    $entrada_item = new EntradaItem();
+                    $entrada_item->entrada_id = $entrada->id;
+                    $entrada_item->item_id = $entrada_items["id"];
+                    $entrada_item->quantidade = $entrada_items["quantidade"];
+                    $entrada_item->save();
 
-                    if ($entrada_item) {
-                        $entrada_item->entrada_id = $entrada->id;
-                        $entrada_item->item_id = $entrada_items["item_id"];
-                        $entrada_item->quantidade = $entrada_items["quantidade"];
-                        $entrada_item->save();
-                    } else {
-                        // Criando item na tabela entrada_items
-                        $entrada_item = new EntradaItem();
-                        $entrada_item->entrada_id = $entrada->id;
-                        $entrada_item->item_id = $entrada_items["item_id"];
-                        $entrada_item->quantidade = $entrada_items["quantidade"];
-                        $entrada_item->save();
-                    }
-
-                    // lógica para atualizar ou adicionar a quantidade dos itens no inventario
+                    //lógica para adicionar a quantidade dos itens de entrada no inventario
                     $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
                                             ->where('local_id','=',$entrada->local_id)
-                                            ->where('item_id','=',$entrada_items["item_id"])
+                                            ->where('item_id','=',$entrada_items["id"])
                                             ->first();
 
                     if ($inventario) {
-                        $inventario->quantidade = $entrada_items["quantidade"];
+                        $inventario->quantidade += $entrada_items["quantidade"];
                         $inventario->save();
                     } else {
                         $inventario = new Inventario();
                         $inventario->departamento_id = $entrada->departamento_id;
-                        $inventario->item_id = $entrada_items["item_id"];
+                        $inventario->item_id = $entrada_items["id"];
                         $inventario->local_id = $entrada->local_id;
                         $inventario->quantidade = $entrada_items["quantidade"];
                         $inventario->qtd_alerta = 0;
@@ -323,7 +432,13 @@ class EntradaController extends Controller
             $historico->save();
 
             DB::commit();
-            return new EntradaResource($entrada);
+
+
+            if($is_api_request){
+                return new EntradaResource($entrada);
+            }
+            $request->session()->flash('mensagem',"Entrada de Material #{$entrada->id} editada com sucesso");
+            return redirect()->route('entradas');
         }
     }
 

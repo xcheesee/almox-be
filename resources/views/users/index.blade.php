@@ -12,7 +12,7 @@
         <div class="col-10">
         </div>
         <div class="col-2 text-end">
-            <a class="btn btn-success" href="{{ route('users.create') }}">Novo Usuário</a>
+            <a class="btn btn-secondary" href="{{ route('users.create') }}">Novo Usuário</a>
         </div>
     </div>
     <div class="row">
@@ -40,7 +40,7 @@
                             @endif
                         </td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('users.show',$user->id) }}"><i class="far fa-eye"></i></a>
+                            <a class="btn btn-primary" href="{{ route('users.show',$user->id) }}"><i class="far fa-eye"></i></a>
                             @can('user-edit')
                                 <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}"><i class="fas fa-edit"></i></a>
                             @endcan

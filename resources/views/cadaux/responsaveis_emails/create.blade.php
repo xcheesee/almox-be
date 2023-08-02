@@ -29,7 +29,7 @@
                 <label class="control-label"><strong>E-mail: </strong></label>
                 {!! Form::text('email', null, array('placeholder' => 'email do responsável','class' => 'form-control','maxlength'=>255)) !!}
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

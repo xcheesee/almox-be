@@ -14,38 +14,38 @@
                 <label for="f-nome" class="col-form-label">Nome</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-nome" name="f-nome" placeholder="Parte do Nome do Local" value="{{$filtros['nome']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-departamento" class="col-form-label">Departamento</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-departamento" name="f-departamento" placeholder="Escopo/Depto do Local" value="{{$filtros['departamento']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-tipo" class="col-form-label">Tipo</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-tipo" name="f-tipo" placeholder="Tipo de Local" value="{{$filtros['tipo']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
             <div class="col col-3 mb-2">
                 <label for="f-cep" class="col-form-label">CEP</label>
                 <div class="d-flex">
                     <input type="text" class="form-control" id="f-cep" name="f-cep" placeholder="Tipo de Medida" value="{{$filtros['cep']}}">
-                    <button type="button" class="btn bg-transparent" style="margin-left: -40px; z-index: 100;" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
                 </div>
             </div>
         </div>
         <div class="row align-items-end mb-2">
             <div class="col col-3 mb-2">
-                <button type="submit" class="btn btn-success btnForm"><i class="fas fa-filter"></i> Filtrar</button>
+                <button type="submit" class="btn btn-primary btnForm"><i class="fas fa-filter"></i> Filtrar</button>
             </div>
             <div class="col col-6"></div>
             <div class="col col-3 text-end">
-                <a class="btn btn-success" href="{{ route('cadaux-locais-create') }}"><i class="fas fa-file"></i> Novo Local</a>
+                <a class="btn btn-secondary" href="{{ route('cadaux-locais-create') }}"><i class="fas fa-file"></i> Novo Local</a>
             </div>
         </div>
     </form>
@@ -70,8 +70,8 @@
                         <td>{{ $local->tipo }}</td>
                         <td>{{ $local->cep }}</td>
                         <td class="text-end">
-                            <a class="btn btn-success" href="{{ route('cadaux-locais-show',$local->id) }}"><i class="far fa-eye"></i></a>
-                            <a class="btn btn-success" href="{{ route('cadaux-locais-edit',$local->id) }}"><i class="fas fa-edit"></i></a>
+                            <a class="btn btn-primary" href="{{ route('cadaux-locais-show',$local->id) }}"><i class="far fa-eye"></i></a>
+                            <a class="btn btn-primary" href="{{ route('cadaux-locais-edit',$local->id) }}"><i class="fas fa-edit"></i></a>
                             @can('permission-edit')
                             @endcan
                         </td>

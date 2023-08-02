@@ -6,25 +6,24 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Kyslik\ColumnSortable\Sortable;
 
 class OrdemServico extends Model
 {
     use HasFactory;
+    use Sortable;
 
     protected $fillable = [
         'departamento_id',
         'origem_id',
         'local_servico_id',
-        'data_inicio_servico',
-        'data_fim_servico',
         'especificacao',
-        'profissional',
-        'horas_execucao',
         'observacoes',
         'flg_baixa',
         'ativo',
         'user_id',
     ];
+    public $sortable = ['id','created_at'];
 
     public function departamento()
     {

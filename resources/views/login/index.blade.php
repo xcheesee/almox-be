@@ -19,7 +19,7 @@
             <input type="password" name="password" id="password" required min="1" class="form-control">
         </div>
 
-        <button type="submit" class="btn btn-success mt-3">
+        <button type="submit" class="btn btn-secondary mt-3">
             Entrar
         </button>
     </form>

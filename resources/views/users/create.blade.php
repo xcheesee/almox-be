@@ -42,7 +42,7 @@
                 <strong>Perfis de Usuário:</strong>
                 {!! Form::select('roles[]', $roles,[], array('class' => 'form-control')) !!}
             </div>
-            <button type="submit" class="btn btn-dark">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

@@ -24,7 +24,7 @@
                 <input type="checkbox" class="form-check-input" name="ativo" value="1">
                 <label for="ativo" class="form-check-label" >Ativo?</label>
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

@@ -13,7 +13,7 @@
         <div class="col-10">
         </div>
         <div class="col-2 text-end">
-            <button class="btn btn-success" onclick="scrollToNewForm('newform')">Nova Medida</a>
+            <button class="btn btn-secondary" onclick="scrollToNewForm('newform')">Nova Medida</a>
         </div>
     </div>
     <div class="row">
@@ -38,12 +38,12 @@
                         <td>
                             <span class="d-flex flex-row-reverse">
                                 <span id="btn-edit-{{ $medida->id }}" >
-                                    <button class="btn btn-success" onclick="toggleInput({{ $medida->id }})">
+                                    <button class="btn btn-primary" onclick="toggleInput({{ $medida->id }})">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </span>
                                 <div id="btn-submit-{{ $medida->id }}" class="me-2" hidden>
-                                    <button class="btn btn-success" onclick="editarMedida({{ $medida->id }})">
+                                    <button class="btn btn-primary" onclick="editarMedida({{ $medida->id }})">
                                         <i class="fas fa-check"></i>
                                     </button>
                                     @csrf
@@ -68,7 +68,7 @@
                 <input type="text" class="inputForm form-control" name="tipo">
             </div>
         </div>
-        <button class="btn btn-success mt-3 btnForm"><i class="far fa-criar"></i> Criar</button>
+        <button class="btn btn-secondary mt-3 btnForm"><i class="far fa-criar"></i> Criar</button>
     </form>
 </div>
 
@@ -104,7 +104,7 @@
         formData.append('tipo', tipo);
         formData.append('_token', token);
 
-        const url = `/medidas/${Id}`;
+        const url = `/{{ env('APP_FOLDER', 'almoxarifado') }}/medidas/${Id}`;
         fetch(url, {
             body: formData,
             method: 'POST'

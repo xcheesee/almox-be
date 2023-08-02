@@ -20,6 +20,8 @@ class Inventario extends Model
         'qtd_alerta',
     ];
 
+    public $sortable = ['id','quantidade'];
+
     public function departamento()
     {
         return $this->belongsTo(Departamento::class);
@@ -43,5 +45,15 @@ class Inventario extends Model
     public function scopeQuantidadeMenorQue(Builder $query, $val): Builder
     {
         return $query->where('quantidade', '<=', $val);
+    }
+
+    public function medidaSortable($query, $direction)
+    {
+        return $query->orderBy('md.tipo', $direction);
+    }
+
+    public function tipoSortable($query, $direction)
+    {
+        return $query->orderBy('tpi.nome', $direction);
     }
 }

@@ -60,7 +60,7 @@
                 {!! Form::text('cidade', null, array('id'=>'cidade','placeholder' => 'Cidade','class' => 'form-control','maxlength'=>45)) !!}
             </div>
         </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

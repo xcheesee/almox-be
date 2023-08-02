@@ -36,7 +36,7 @@
                     @endif
                 </select>
             </div>
-            
+
             <div class="form-group mb-3">
                 <strong>Senha:</strong>
                 {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
@@ -49,7 +49,7 @@
                 <strong>Perfis de Usuário:</strong>
                 {!! Form::select('roles[]', $roles, $userRole, array('class' => 'form-control')) !!}
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

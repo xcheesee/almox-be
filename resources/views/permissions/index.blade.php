@@ -12,7 +12,7 @@
         <div class="col-10">
         </div>
         <div class="col-2 text-end">
-            <a class="btn btn-success" href="{{ route('permissions.create') }}">Nova Permissão</a>
+            <a class="btn btn-secondary" href="{{ route('permissions.create') }}">Nova Permissão</a>
         </div>
     </div>
     <div class="row">
@@ -30,7 +30,7 @@
                         <td>{{ $permission->id }}</td>
                         <td>{{ $permission->name }}</td>
                         <td>
-                            <a class="btn btn-success" href="{{ route('permissions.show',$permission->id) }}"><i class="far fa-eye"></i></a>
+                            <a class="btn btn-primary" href="{{ route('permissions.show',$permission->id) }}"><i class="far fa-eye"></i></a>
                             @can('permission-edit')
                                 <a class="btn btn-primary" href="{{ route('permissions.edit',$permission->id) }}"><i class="fas fa-edit"></i></a>
                             @endcan

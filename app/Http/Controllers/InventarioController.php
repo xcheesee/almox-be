@@ -58,6 +58,51 @@ class InventarioController extends Controller
         return InventarioResource::collection($inventarios);
     }
 
+    public function index_web(Request $request){
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
+        $filtros = array();
+        $filtros['base'] = $request->query('f-base');
+        $filtros['item'] = $request->query('f-item');
+        $filtros['tipo_item'] = $request->query('f-tipo_item');
+        $filtros['medida'] = $request->query('f-medida');
+        $filtros['quantidade_maior_que'] = $request->query('f-quantidade_maior_que');
+        $filtros['quantidade_menor_que'] = $request->query('f-quantidade_menor_que');
+        //dd($filter);
+
+        $inventarios = Inventario::query()
+        ->select('l.nome', 'tpi.nome', 'md.tipo', 'i.nome', 'inventarios.*')
+        ->leftJoin('locais as l', 'l.id', 'inventarios.local_id')
+        ->leftJoin('items as i', 'i.id', 'inventarios.item_id')
+        ->leftJoin('tipo_items as tpi', 'tpi.id', 'i.tipo_item_id')
+        ->leftJoin('medidas as md', 'md.id', 'i.medida_id')
+        ->whereIn('inventarios.departamento_id',$userDeptos)
+        ->when($filtros['base'], function ($query, $val) {
+            return $query->where('l.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['item'], function ($query, $val) {
+            return $query->where('i.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['tipo_item'], function ($query, $val) {
+            return $query->where('tpi.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['medida'], function ($query, $val) {
+            return $query->where('md.tipo','like','%'.$val.'%');
+        })
+        ->when($filtros['quantidade_maior_que'], function ($query, $val) {
+            return $query->where('quantidade','>',$val);
+        })
+        ->when($filtros['quantidade_menor_que'], function ($query, $val) {
+            return $query->where('quantidade','<',$val);
+        })
+        ->sortable()
+        ->paginate(10);
+
+        //dd($filter);
+        $mensagem = $request->session()->get('mensagem');
+        return view('inventario.index', compact('inventarios','mensagem','filtros'));
+    }
+
     /**
      * Lista os itens de inventário do local e departamento especificados
      * @authenticated
@@ -201,14 +246,24 @@ class InventarioController extends Controller
     public function update(InventarioFormRequest $request, $id)
     {
         $inventario = Inventario::findOrFail($id);
-        $inventario->departamento_id = $request->input('departamento_id');
-        $inventario->item_id = $request->input('item_id');
-        $inventario->local_id = $request->input('local_id');
-        $inventario->quantidade = $request->input('quantidade');
+        $inventario->departamento_id = $request->input('departamento_id') ? $request->input('departamento_id') : $inventario->departamento_id;
+        $inventario->item_id = $request->input('item_id') ? $request->input('item_id') : $inventario->item_id;
+        $inventario->local_id = $request->input('local_id') ? $request->input('local_id') : $inventario->local_id;
+        $inventario->quantidade = $request->input('quantidade') ? $request->input('quantidade') : $inventario->quantidade;
         $inventario->qtd_alerta = $request->input('qtd_alerta');
 
         if ($inventario->save()) {
             return new InventarioResource($inventario);
+        }
+    }
+
+    public function salvar_alerta(Request $request, $id)
+    {
+        $inventario = Inventario::findOrFail($id);
+        $inventario->qtd_alerta = $request->input('qtd_alerta');
+
+        if ($inventario->save()) {
+            return response()->json(['mensagem' => "Alerta para ID {$inventario->id} definido com sucesso!"], 200);
         }
     }
 

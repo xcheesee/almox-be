@@ -38,7 +38,7 @@
                 <label class="control-label"><strong>Profissão: </strong></label>
                 {!! Form::text('profissao', null, array('placeholder' => 'Profissão/Cargo','class' => 'form-control','maxlength'=>255)) !!}
             </div>
-            <button type="submit" class="btn btn-success">Salvar</button>
+            <button type="submit" class="btn btn-secondary">Salvar</button>
         {!! Form::close() !!}
     </div>
 </div>

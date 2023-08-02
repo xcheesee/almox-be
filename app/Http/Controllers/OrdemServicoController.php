@@ -26,6 +26,7 @@ use Spatie\QueryBuilder\QueryBuilder;
 use App\Models\Historico;
 use App\Models\OrdemServicoProfissional;
 use App\Models\ResponsaveisEmail;
+use Illuminate\Support\Carbon;
 
 /**
  * @group OrdemServico
@@ -68,6 +69,45 @@ class OrdemServicoController extends Controller
         ->paginate(15);
 
         return OrdemServicoResource::collection($ordem_servicos);
+    }
+
+    public function index_web(Request $request)
+    {
+        $user = auth()->user();
+        $userDeptos = DepartamentoHelper::ids_deptos($user);
+        $filtros = array();
+        $filtros['origem'] = $request->query('f-origem');
+        $filtros['local_servico'] = $request->query('f-local_servico');
+        $filtros['servico_depois_de'] = $request->query('f-servico_depois_de');
+        $filtros['servico_antes_de'] = $request->query('f-servico_antes_de');
+
+        $ordem_servicos = OrdemServico::query()
+        ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
+        ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
+        ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
+        ->whereIn('ordem_servicos.departamento_id',$userDeptos)
+        ->where('ordem_servicos.ativo','=',1)
+        ->when($filtros['origem'], function ($query, $val) {
+            return $query->where('origem.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['local_servico'], function ($query, $val) {
+            return $query->where('locais.nome','like','%'.$val.'%');
+        })
+        ->when($filtros['servico_depois_de'], function ($query, $val) {
+            $date = Carbon::createFromFormat('d/m/Y', $val);
+            $data = $date->format("Y-m-d");
+            return $query->where('ordem_servicos.created_at','>=',$data);
+        })
+        ->when($filtros['servico_antes_de'], function ($query, $val) {
+            $date = Carbon::createFromFormat('d/m/Y', $val);
+            $data = $date->format("Y-m-d");
+            return $query->where('ordem_servicos.created_at','<=',$data);
+        })
+        ->sortable()
+        ->paginate(15);
+
+        $mensagem = $request->session()->get('mensagem');
+        return view('ordem_servicos.index', compact('ordem_servicos','mensagem','filtros'));
     }
 
     /**
