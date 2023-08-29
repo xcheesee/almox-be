@@ -565,7 +565,14 @@ class SaidaController extends Controller
     public function profissionais($id){
 
         $saida = Saida::findOrFail($id);
-        $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
-        return SaidaProfissionalResource::collection($saida_profissionais);
+
+        //if ($saida->ordem_servico_id){
+        //    $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
+        //    return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
+        //} else { //saida sem OS
+            $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
+            return SaidaProfissionalResource::collection($saida_profissionais);
+        //}
+
     }
 }
