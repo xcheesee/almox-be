@@ -290,6 +290,11 @@ class SaidaController extends Controller
     public function update(SaidaFormRequest $request, $id)
     {
         $saida = Saida::findOrFail($id);
+
+        if($saida->flg_baixa != 0 ) {
+            return response()->json(['message'=> "Não é possivel realizar a edição dos dados de uma saída apos sua baixa!" ]);
+        }
+
         //$saida->departamento_id = $request->input('departamento_id');
         $saida->ordem_servico_id = $request->input('ordem_servico_id');
         //$saida->origem_id = $request->input('origem_id');
