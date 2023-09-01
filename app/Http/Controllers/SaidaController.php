@@ -281,16 +281,23 @@ class SaidaController extends Controller
      *         "departamento_id": 2,
      *         "ordem_servico_id": 1,
      *         "baixa_user_id": 1,
-     *         "baixa_datahora": "2022-08-12 08:59"
+     *         "baixa_datahora": "2022-08-12 08:59",
+     *         "saida_profissionais": [
+     *              {
+     *                  "id": 1,
+     *                  "horas_empregadas": 42
+     *                  "data_inicio": "2023-01-01"
+     *              }
+     *          ]
      *     }
      * }
      */
     public function update(SaidaFormRequest $request, $id)
     {
         $saida = Saida::findOrFail($id);
-        $saida->departamento_id = $request->input('departamento_id');
+        //$saida->departamento_id = $request->input('departamento_id');
         $saida->ordem_servico_id = $request->input('ordem_servico_id');
-        $saida->origem_id = $request->input('origem_id');
+        //$saida->origem_id = $request->input('origem_id');
         $saida->local_servico_id = $request->input('local_servico_id');
         $saida->tipo_servico_id = $request->input('tipo_servico_id');
         $saida->especificacao = $request->input('especificacao');
@@ -308,7 +315,7 @@ class SaidaController extends Controller
         }
 
         if ($saida->save()) {
-            $saidaItens = $request->input('saida_items');
+            /*$saidaItens = $request->input('saida_items');
             if ($saidaItens){
                 foreach ($saidaItens as $saida_items){
                     //verifica se o frontend enviou lista vazia de materiais
@@ -353,6 +360,19 @@ class SaidaController extends Controller
                         }
                     }
                 }
+            }*/
+
+            $input_profissionais = json_decode($request->input('saida_profissionais'),true);
+            SaidaProfissional::where('saida_id', $id)->delete();
+
+            foreach($input_profissionais as $profissional) {
+                if(!$profissional) continue;
+                $saida_profissional = new SaidaProfissional();
+                $saida_profissional->saida_id = $saida->id;
+                $saida_profissional->profissional_id = $profissional["id"];
+                $saida_profissional->data_inicio = $profissional["data_inicio"];
+                $saida_profissional->horas_empregadas = $profissional["horas_empregadas"];
+                $saida_profissional->save();
             }
 
             return new SaidaResource($saida);
@@ -556,13 +576,13 @@ class SaidaController extends Controller
 
         $saida = Saida::findOrFail($id);
 
-        if ($saida->ordem_servico_id){
-            $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
-            return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
-        } else { //saida sem OS
+        //if ($saida->ordem_servico_id){
+        //    $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
+        //    return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
+        //} else { //saida sem OS
             $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
             return SaidaProfissionalResource::collection($saida_profissionais);
-        }
+        //}
 
     }
 }

@@ -52,6 +52,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('locais', [App\Http\Controllers\LocalController::class, 'index']);
     Route::get('departamentos', [App\Http\Controllers\DepartamentoController::class, 'index']);
     Route::get('tipo_servicos', [App\Http\Controllers\TipoServicoController::class, 'index']);
+    Route::get('tipo_servicos/{id}', [App\Http\Controllers\TipoServicoController::class, 'ServicosPorDepto']);
 
     //CRUDs
     Route::get('entradas', [App\Http\Controllers\EntradaController::class, 'index']);

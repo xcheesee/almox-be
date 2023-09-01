@@ -187,4 +187,30 @@ class TipoServicoController extends Controller
             ]);
         }
     }
+
+    /**
+     * Irá retornar os serviços pelo Id do departamento.
+     * 
+     * @urlParam id integer required ID do departemento que deseja ver os serviços. Example: 1
+     * 
+     * @response 200 {
+     *     "message": "Tipo de Serviço deletado com sucesso!",
+     *     "data": {
+     *         "id": 1,
+     *         "departamento_id": 1,
+     *         "servico": "carpintaria"
+     *     }
+     */
+    public function ServicosPorDepto ($id)
+    {
+        $servicos = TipoServico::where('departamento_id', $id)
+        ->select('id', 'servico')
+        ->get();
+
+
+        return response()->json([
+            'mensagem' => "Serviços do departamento solicitado",
+            'servicos' => $servicos
+        ], 200);
+    }
 }

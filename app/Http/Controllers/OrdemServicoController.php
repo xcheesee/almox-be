@@ -248,8 +248,8 @@ class OrdemServicoController extends Controller
             }
 
             //Lidando com a lista de profissionais da ordem de serviço
-            $ordemServicoProfissionais = $request->input('ordem_servico_profissionais');
-            if ($ordemServicoProfissionais){
+            $ordemServicoProfissionais = json_decode($request->input('ordem_servico_profissionais'), true);
+            if (!count($ordemServicoProfissionais) == 0){
                 foreach ($ordemServicoProfissionais as $ordem_servico_profissionais){
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_profissional = new OrdemServicoProfissional();

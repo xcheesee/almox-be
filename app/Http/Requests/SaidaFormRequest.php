@@ -24,8 +24,8 @@ class SaidaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'departamento_id' => 'required',
-            'origem_id' => 'required',
+            //'departamento_id' => 'required',
+            //'origem_id' => 'required',
             'local_servico_id' => 'required',
         ];
     }
