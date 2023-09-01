@@ -8,6 +8,7 @@
 
 @include('layouts.mensagem', ['mensagem' => $mensagem])
 <div class="row d-flex justify-content-center mt-3 containerTabela">
+	@can('inventario')
     <div class="row d-flex justify-content-center m-3" style="height: 160px;">
         @can('entrada')
         <div class="col d-grid gap-2">
@@ -25,8 +26,9 @@
         </div>
         @endcan
     </div>
+    @endcan
 
-    @hasrole(['admin','almoxarife','gestao_MPE','gestao_dgpu'])
+    @if(auth()->user()->can('saida') || auth()->user()->can('transferencia') || auth()->user()->can('ocorrencia'))
     <div class="row d-flex justify-content-center m-2" style="height: 160px;">
         @can('saida')
         <div class="col d-grid gap-2">
@@ -44,7 +46,8 @@
         </div>
         @endcan
     </div>
-    @endhasrole
+    @endif
+
     @hasrole(['admin','gestao_dgpu'])
     <div class="row d-flex justify-content-center m-2" style="height: 160px;">
         @can('cadaux-list')
