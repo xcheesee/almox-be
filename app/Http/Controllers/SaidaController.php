@@ -179,6 +179,11 @@ class SaidaController extends Controller
                             DB::rollBack();
                             $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
                             return $erroQtd;
+                        } else {
+                            $inventario->save();
+                            if ($inventario->quantidade <= $inventario->qtd_alerta) {
+                                $items_acabando[]=$inventario;
+                            }
                         }
                     }else{
                         DB::rollBack();
@@ -326,20 +331,25 @@ class SaidaController extends Controller
                         $saida_item->quantidade = $saida_items["quantidade"];
                         $saida_item->enviado = $saida_items["quantidade"];
                         $saida_item->save();
-                    }
 
-                    // lógica para retirar a quantidade dos itens no inventario
-                    $inventario = Inventario::query()->where('local_id','=',$saida->origem_id)
-                                                        ->where('departamento_id','=',$saida->departamento_id)
-                                                        ->where('item_id','=',$saida_items["item_id"])
-                                                        ->first();
+                        // lógica para retirar a quantidade dos itens no inventario (sem O.S.)
+                        $inventario = Inventario::query()->where('local_id','=',$saida->origem_id)
+                                                            ->where('departamento_id','=',$saida->departamento_id)
+                                                            ->where('item_id','=',$saida_items["item_id"])
+                                                            ->first();
 
-                    if ($inventario) {
-                        $resultado = $inventario->quantidade - $saida_items["quantidade"];
-                        if ($resultado <= 0) {
-                            DB::rollBack();
-                            $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
-                            return $erroQtd;
+                        if ($inventario) {
+                            $resultado = $inventario->quantidade - $saida_items["quantidade"];
+                            if ($resultado <= 0) {
+                                DB::rollBack();
+                                $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
+                                return $erroQtd;
+                            } else {
+                                $inventario->save();
+                                if ($inventario->quantidade <= $inventario->qtd_alerta) {
+                                    $items_acabando[]=$inventario;
+                                }
+                            }
                         }
                     }
                 }
