@@ -151,12 +151,12 @@ class OrdemServicoController extends Controller
      *         "user_id": 1,
      *         "ordem_servico_profissionais": [
      *             {
-     *                 "id": 1,
+     *                 "nome": "Jane Doe",
      *                 "data_inicio": "2022-08-30",
      *                 "horas_empregadas": 6
      *             },
      *             {
-     *                 "id": 2,
+     *                 "nome": "John Doe",
      *                 "data_inicio": "2022-08-31",
      *                 "horas_empregadas": 4
      *             }
@@ -254,7 +254,8 @@ class OrdemServicoController extends Controller
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_profissional = new OrdemServicoProfissional();
                     $ordem_servico_profissional->ordem_servico_id = $ordem_servico->id;
-                    $ordem_servico_profissional->profissional_id = $ordem_servico_profissionais["id"];
+                    //$ordem_servico_profissional->profissional_id = $ordem_servico_profissionais["id"];
+                    $ordem_servico_profissional->nome = $ordem_servico_profissionais["nome"];
                     $ordem_servico_profissional->data_inicio = $ordem_servico_profissionais["data_inicio"];
                     $ordem_servico_profissional->horas_empregadas = $ordem_servico_profissionais["horas_empregadas"];
                     $ordem_servico_profissional->save();
@@ -405,6 +406,22 @@ class OrdemServicoController extends Controller
                             $inventario->save();
                         }
                     }
+                }
+            }
+
+            if($request->input('ordem_servico_profissionais')){
+                $input_profissionais = json_decode($request->input('ordem_servico_profissionais'),true);
+                OrdemServicoProfissional::where('ordem_servico_id', $id)->delete();
+
+                foreach($input_profissionais as $profissional) {
+                    if(!$profissional) continue;
+                    $os_profissional = new OrdemServicoProfissional();
+                    $os_profissional->ordem_servico_id = $ordem_servico->id;
+                    //$os_profissional->profissional_id = $profissional["id"];
+                    $os_profissional->nome = $profissional["nome"];
+                    $os_profissional->data_inicio = $profissional["data_inicio"];
+                    $os_profissional->horas_empregadas = $profissional["horas_empregadas"];
+                    $os_profissional->save();
                 }
             }
 

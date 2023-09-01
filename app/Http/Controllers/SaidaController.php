@@ -102,12 +102,12 @@ class SaidaController extends Controller
      *         "baixa_user_id": 1,
      *         "saida_profissionais": [
      *             {
-     *                 "id": 1,
+     *                 "nome": "Jane Doe",
      *                 "data_inicio": "2022-08-30",
      *                 "horas_empregadas": 6
      *             },
      *             {
-     *                 "id": 2,
+     *                 "nome": "John Doe",
      *                 "data_inicio": "2022-08-31",
      *                 "horas_empregadas": 4
      *             }
@@ -207,7 +207,8 @@ class SaidaController extends Controller
                     //Salvando itens na tabela saida_items
                     $saida_profissional = new SaidaProfissional();
                     $saida_profissional->saida_id = $saida->id;
-                    $saida_profissional->profissional_id = $saida_profissionais["id"];
+                    // $saida_profissional->profissional_id = $saida_profissionais["id"];
+                    $saida_profissional->nome = $saida_profissionais["nome"];
                     $saida_profissional->data_inicio = $saida_profissionais["data_inicio"];
                     $saida_profissional->horas_empregadas = $saida_profissionais["horas_empregadas"];
                     $saida_profissional->save();
@@ -362,17 +363,20 @@ class SaidaController extends Controller
                 }
             }*/
 
-            $input_profissionais = json_decode($request->input('saida_profissionais'),true);
-            SaidaProfissional::where('saida_id', $id)->delete();
+            if($request->input('saida_profissionais')){
+                $input_profissionais = json_decode($request->input('saida_profissionais'),true);
+                SaidaProfissional::where('saida_id', $id)->delete();
 
-            foreach($input_profissionais as $profissional) {
-                if(!$profissional) continue;
-                $saida_profissional = new SaidaProfissional();
-                $saida_profissional->saida_id = $saida->id;
-                $saida_profissional->profissional_id = $profissional["id"];
-                $saida_profissional->data_inicio = $profissional["data_inicio"];
-                $saida_profissional->horas_empregadas = $profissional["horas_empregadas"];
-                $saida_profissional->save();
+                foreach($input_profissionais as $profissional) {
+                    if(!$profissional) continue;
+                    $saida_profissional = new SaidaProfissional();
+                    $saida_profissional->saida_id = $saida->id;
+                    //$saida_profissional->profissional_id = $profissional["id"];
+                    $saida_profissional->nome = $profissional["nome"];
+                    $saida_profissional->data_inicio = $profissional["data_inicio"];
+                    $saida_profissional->horas_empregadas = $profissional["horas_empregadas"];
+                    $saida_profissional->save();
+                }
             }
 
             return new SaidaResource($saida);
