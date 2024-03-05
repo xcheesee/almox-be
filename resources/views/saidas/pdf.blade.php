@@ -161,14 +161,12 @@
                 <table class="borderThinb" style="width: 100%; border-collapse: collapse;">
                     <tr>
                         <th width="40%" style="text-align: left;">Nome</th>
-                        <th width="30%" style="text-align: left;">Função</th>
                         <th width="20%" style="text-align: left;">Data</th>
                         <th width="10%" style="text-align: left;">Tempo</th>
                     </tr>
                     @foreach ($profissionais as $dado_profissional)
                     <tr>
-                        <td>{{ $dado_profissional->profissional->nome }}</td>
-                        <td>{{ $dado_profissional->profissional->profissao }}</td>
+                        <td>{{ $dado_profissional->nome }}</td>
                         <td>{{ $dado_profissional->data_inicio_formatada }}</td>
                         <td>{{ $dado_profissional->horas_empregadas }}h</td>
                     </tr>
