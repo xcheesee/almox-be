@@ -206,7 +206,7 @@ class SaidaController extends Controller
                 foreach ($saidaProfissionais as $saida_profissionais){
                     //Salvando itens na tabela saida_items
                     $saida_profissional = new SaidaProfissional();
-                    //$saida_profissional->saida_nome = $saida->id;
+                    $saida_profissional->saida_id = $saida->id;
                     // $saida_profissional->profissional_id = $saida_profissionais["id"];
                     $saida_profissional->nome = $saida_profissionais["nome"];
                     $saida_profissional->data_inicio = $saida_profissionais["data_inicio"];
