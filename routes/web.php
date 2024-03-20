@@ -34,6 +34,10 @@ Route::prefix(env('APP_FOLDER', 'almoxarifado'))->group(function () { //consider
         Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
         Route::get('/grafico', [App\Http\Controllers\ChartController::class, 'index'])->name('chart');
 
+        //Historico
+        Route::get('/historico', [App\Http\Controllers\HistoricoController::class, 'index_web'])->name('historico');
+        Route::get('/historico/{id}', [App\Http\Controllers\HistoricoController::class, 'show'])->name('historico-show');
+
         //inventário
         Route::get('/inventario', [App\Http\Controllers\InventarioController::class, 'index_web'])->name('inventario');
         Route::post('/inventario_alerta/{id}', [App\Http\Controllers\InventarioController::class, 'salvar_alerta'])->name('inventario_alerta');

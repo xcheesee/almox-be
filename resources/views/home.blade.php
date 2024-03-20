@@ -56,7 +56,7 @@
         </div>
         @endcan
         <div class="col d-grid gap-2">
-            <button onclick="location.href='{{ route('cadaux') }}'" class="btn btn-primary"><i class="fas fa-book-open fa-5x"></i><br>Histórico</button>
+            <button onclick="location.href='{{ route('historico') }}'" class="btn btn-primary"><i class="fas fa-book-open fa-5x"></i><br>Histórico</button>
         </div>
         @can('relatorio-none')
         {{-- proposital para não exibir ainda o dashboard --}}
