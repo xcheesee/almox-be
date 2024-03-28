@@ -20,8 +20,11 @@ class OrdemServicoitem extends JsonResource
             'item_id' => $this->item_id,
             'item' => $this->item ? $this->item->nome : null,
             'medida' => $this->item ? $this->item->medida->tipo : null,
+            'medida_id' => $this->item ? $this->item->medida->id : null,
             'quantidade' => $this->quantidade,
             'enviado' => $this->quantidade,
+            'tipo_item_id'=> $this->item ? $this->item->tipo_item_id : null,
+            'tipo_item' => $this->item ? $this->item->tipo_item->nome : null,
         ];
     }
 }
