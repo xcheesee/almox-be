@@ -322,72 +322,76 @@ class SaidaController extends Controller
         }
 
         if ($saida->save()) {
-            /*$saidaItens = $request->input('saida_items');
-            if ($saidaItens){
-                foreach ($saidaItens as $saida_items){
-                    //verifica se o frontend enviou lista vazia de materiais
-                    if (!$saida_items["id"]) continue;
 
-                    // Atualizando item na tabela saida_items
-                    $saida_item = saidaItem::query()->where('item_id','=',$saida_items["item_id"])->first();
+            //deletando items da ordem de servico
+            $saidaItems = SaidaItem::where('saida_id', $id)->get();
+            foreach ($saidaItems as $item) {
 
-                    if ($saida_item) {
-                        $saida_item->ordem_servico_id = $saida->id;
-                        $saida_item->item_id = $saida_items["item_id"];
-                        $saida_item->quantidade = $saida_items["quantidade"];
-                        $saida_item->enviado = $saida_items["quantidade"];
-                        $saida_item->save();
-                    } else {
-                        // Criando item na tabela saida_items
-                        $saida_item = new saidaItem();
-                        $saida_item->ordem_servico_id = $saida->id;
-                        $saida_item->item_id = $saida_items["item_id"];
-                        $saida_item->quantidade = $saida_items["quantidade"];
-                        $saida_item->enviado = $saida_items["quantidade"];
-                        $saida_item->save();
+                $inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
+                    ->where('departamento_id', '=', $saida->departamento_id)
+                    ->where('item_id', '=', $item->item_id)->first();
 
-                        // lógica para retirar a quantidade dos itens no inventario (sem O.S.)
-                        $inventario = Inventario::query()->where('local_id','=',$saida->origem_id)
-                                                            ->where('departamento_id','=',$saida->departamento_id)
-                                                            ->where('item_id','=',$saida_items["item_id"])
-                                                            ->first();
+                if ($inventario) {
+                    $inventario->quantidade += $item->quantidade;
+                    $inventario->save();
+                }
+
+                $item->delete();
+            }
+
+            $saidaItens = json_decode($request->input('saida_items'), true);
+            if ($saidaItens) {
+                foreach ($saidaItens as $saida_items) {
+
+                    $saida_item = new saidaItem();
+                    $saida_item->saida_id = $saida->id;
+                    $saida_item->item_id = $saida_items["id"];
+                    $saida_item->quantidade = $saida_items["quantidade"];
+                    $saida_item->enviado = $saida_items["quantidade"];
+                    $saida_item->save();
+
+                    // lógica para retirar a quantidade dos itens no inventario (sem O.S.)
+                    $inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
+                        ->where('departamento_id', '=', $saida->departamento_id)
+                        ->where('item_id', '=', $saida_items["id"])
+                        ->first();
 
                         if ($inventario) {
                             $resultado = $inventario->quantidade - $saida_items["quantidade"];
-                            if ($resultado <= 0) {
-                                DB::rollBack();
-                                $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
-                                return $erroQtd;
-                            } else {
-                                $inventario->save();
-                                if ($inventario->quantidade <= $inventario->qtd_alerta) {
-                                    $items_acabando[]=$inventario;
-                                }
+                        if ($resultado <= 0) {
+                            DB::rollBack();
+                            $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
+                            return $erroQtd;
+                        } else {
+                            $inventario->quantidade = $resultado;
+                            $inventario->save();
+                            if ($inventario->quantidade <= $inventario->qtd_alerta) {
+                                $items_acabando[] = $inventario;
                             }
                         }
                     }
                 }
-            }*/
-
-            if ($request->input('saida_profissionais')) {
-                $input_profissionais = json_decode($request->input('saida_profissionais'), true);
-                SaidaProfissional::where('saida_id', $id)->delete();
-
-                foreach ($input_profissionais as $profissional) {
-                    if (!$profissional)
-                        continue;
-                    $saida_profissional = new SaidaProfissional();
-                    $saida_profissional->saida_id = $saida->id;
-                    //$saida_profissional->profissional_id = $profissional["id"];
-                    $saida_profissional->nome = $profissional["nome"];
-                    $saida_profissional->data_inicio = $profissional["data_inicio"];
-                    $saida_profissional->horas_empregadas = $profissional["horas_empregadas"];
-                    $saida_profissional->save();
-                }
             }
-
-            return new SaidaResource($saida);
         }
+
+        if ($request->input('saida_profissionais')) {
+            $input_profissionais = json_decode($request->input('saida_profissionais'), true);
+            SaidaProfissional::where('saida_id', $id)->delete();
+
+            foreach ($input_profissionais as $profissional) {
+                if (!$profissional)
+                    continue;
+                $saida_profissional = new SaidaProfissional();
+                $saida_profissional->saida_id = $saida->id;
+                //$saida_profissional->profissional_id = $profissional["id"];
+                $saida_profissional->nome = $profissional["nome"];
+                $saida_profissional->data_inicio = $profissional["data_inicio"];
+                $saida_profissional->horas_empregadas = $profissional["horas_empregadas"];
+                $saida_profissional->save();
+            }
+        }
+
+        return new SaidaResource($saida);
     }
 
     /**

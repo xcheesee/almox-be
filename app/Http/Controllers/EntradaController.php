@@ -348,52 +348,53 @@ class EntradaController extends Controller
      */
     public function update(EntradaUpdateFormRequest $request, $id)
     {
-        //dd($request);
-        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
+        $is_api_request = in_array('api', $request->route()->getAction('middleware'));
 
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
         $entrada->local_id = $request->input('local_id');
         $entrada->data_entrada = $is_api_request ? $request->input('data_entrada') : Carbon::createFromFormat('d/m/Y', $request->input('data_entrada'));
-        $entrada->processo_sei = str_replace([".","/","-"],"",$request->input('processo_sei'));
-        $entrada->numero_contrato = str_replace([".","/","-"],"",$request->input('numero_contrato'));
+        $entrada->processo_sei = str_replace([".", "/", "-"], "", $request->input('processo_sei'));
+        $entrada->numero_contrato = str_replace([".", "/", "-"], "", $request->input('numero_contrato'));
         $entrada->numero_nota_fiscal = $request->input('numero_nota_fiscal');
 
         // Lidando com o upload de arquivo
-        if ($request->hasFile('arquivo_nota_fiscal')){
-            if($entrada->arquivo_nota_fiscal){
+        if ($request->hasFile('arquivo_nota_fiscal')) {
+            if ($entrada->arquivo_nota_fiscal) {
                 Storage::delete($entrada->arquivo_nota_fiscal);
             }
 
             $file = $request->file('arquivo_nota_fiscal');
             $extension = $file->extension();
 
-            $upload = $request->file('arquivo_nota_fiscal')->storeAs('files','entrada_'.$entrada->id.'-'.date('Ymdhis').'.'.$extension);
+            $upload = $request->file('arquivo_nota_fiscal')->storeAs('files', 'entrada_' . $entrada->id . '-' . date('Ymdhis') . '.' . $extension);
             $entrada->arquivo_nota_fiscal = $upload;
         }
 
         DB::beginTransaction();
         if ($entrada->save()) {
             // deletando itens para readicionar a nova lista
-            $entrada_items = EntradaItem::where('entrada_id','=',$id)->get();
-            //dd($entrada_items);
-            foreach($entrada_items as $item){
-                //lógica para retirar a quantidade dos itens no inventario
-                $saida_inventario = Inventario::query()->where('local_id','=',$entrada->local_id)
-                    ->where('departamento_id','=',$entrada->departamento_id)
-                    ->where('item_id','=',$item->item_id)->first();
+            $entrada_items = EntradaItem::where('entrada_id', '=', $id)->get();
+
+            //esta parte esta apagando todos os items da tabela entrada_items e devolvendo a quantidade para o iventario
+            foreach ($entrada_items as $item) {
+                //lógica para remover a quantidade dos itens no inventario
+                $saida_inventario = Inventario::query()->where('local_id', '=', $entrada->local_id)
+                    ->where('departamento_id', '=', $entrada->departamento_id)
+                    ->where('item_id', '=', $item->item_id)->first();
 
                 if ($saida_inventario) {
                     $saida_inventario->quantidade -= $item->quantidade;
                     $saida_inventario->save();
                 }
+
                 $item->delete();
             }
 
             // Lidando com os itens adicionados
-            $entradaItens = $request->input('entrada_items');
-            if ($entradaItens){
-                foreach ($entradaItens as $entrada_items){
+            $entradaItens = json_decode($request->input('entrada_items'), true);
+            if ($entradaItens) {
+                foreach ($entradaItens as $entrada_items) {
                     //Salvando item na tabela entrada_items
                     $entrada_item = new EntradaItem();
                     $entrada_item->entrada_id = $entrada->id;
@@ -401,11 +402,11 @@ class EntradaController extends Controller
                     $entrada_item->quantidade = $entrada_items["quantidade"];
                     $entrada_item->save();
 
-                    //lógica para adicionar a quantidade dos itens de entrada no inventario
-                    $inventario = Inventario::where('departamento_id','=',$entrada->departamento_id)
-                                            ->where('local_id','=',$entrada->local_id)
-                                            ->where('item_id','=',$entrada_items["id"])
-                                            ->first();
+                    //lógica para remover a quantidade dos itens de entrada no inventario
+                    $inventario = Inventario::where('departamento_id', '=', $entrada->departamento_id)
+                        ->where('local_id', '=', $entrada->local_id)
+                        ->where('item_id', '=', $entrada_items["id"])
+                        ->first();
 
                     if ($inventario) {
                         $inventario->quantidade += $entrada_items["quantidade"];
@@ -434,10 +435,10 @@ class EntradaController extends Controller
             DB::commit();
 
 
-            if($is_api_request){
+            if ($is_api_request) {
                 return new EntradaResource($entrada);
             }
-            $request->session()->flash('mensagem',"Entrada de Material #{$entrada->id} editada com sucesso");
+            $request->session()->flash('mensagem', "Entrada de Material #{$entrada->id} editada com sucesso");
             return redirect()->route('entradas');
         }
     }

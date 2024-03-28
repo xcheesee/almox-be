@@ -365,78 +365,89 @@ class OrdemServicoController extends Controller
 
         DB::beginTransaction();
         if ($ordem_servico->save()) {
+
+            //deletando items da ordem de servico
+            $OsItems = OrdemServicoItem::where('ordem_servico_id', $id)->get();
+            foreach ($OsItems as $item) {
+
+                $inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
+                    ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                    ->where('item_id', '=', $item->item_id)->first();
+
+                if ($inventario) {
+                    $inventario->quantidade += $item->quantidade;
+                    $inventario->save();
+                }
+
+                $item->delete();
+            }
+
             // Lidando com os itens adicionados
-            $ordemServicoItens = $request->input('ordem_servico_items');
-            if ($ordemServicoItens){
-                foreach ($ordemServicoItens as $ordem_servico_items){
-                    //verifica se o frontend enviou lista vazia de materiais
-                    if (!$ordem_servico_items["id"]) continue;
+            $ordemServicoItens = json_decode($request->input('ordem_servico_items'), true);
+            if ($ordemServicoItens) {
+                foreach ($ordemServicoItens as $ordem_servico_items) {
 
-                    // Atualizando item na tabela ordem_servico_items
-                    $ordem_servico_item = OrdemServicoItem::query()->where('item_id','=',$ordem_servico_items["item_id"])->first();
+                    // lógica para retirar a quantidade dos itens no inventario
+                    $inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
+                    ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                    ->where('item_id', '=', $ordem_servico_items["id"])
+                    ->first();
+                    
+                    if ($inventario) {
+                        $resultado = $inventario->quantidade - $ordem_servico_items["quantidade"];
+                        $inventario->quantidade = $resultado;
 
-                    if ($ordem_servico_item) {
-                        $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
-                        $ordem_servico_item->item_id = $ordem_servico_items["item_id"];
-                        $ordem_servico_item->quantidade = $ordem_servico_items["quantidade"];
-                        $ordem_servico_item->save();
-                    } else {
                         // Criando item na tabela ordem_servico_items
                         $ordem_servico_item = new OrdemServicoItem();
                         $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
-                        $ordem_servico_item->item_id = $ordem_servico_items["item_id"];
+                        $ordem_servico_item->item_id = $ordem_servico_items["id"];
                         $ordem_servico_item->quantidade = $ordem_servico_items["quantidade"];
                         $ordem_servico_item->save();
-                    }
 
-                    // lógica para retirar a quantidade dos itens no inventario
-                    $inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
-                                                        ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                        ->where('item_id','=',$ordem_servico_items["item_id"])
-                                                        ->first();
-
-                    if ($inventario) {
-                        $inventario->quantidade = $ordem_servico_items["quantidade"];
-                        $resultado = $inventario->quantidade;
-                        if ($resultado <= 0) {
+                        if ($resultado < 0) {
                             DB::rollBack();
-                            $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
-                            return $erroQtd;
+                            return response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
                         } else {
                             $inventario->save();
                         }
+                    } else {
+                        DB::rollBack();
+                        return response()->json([
+                            "error" => "Algum desses items não possui no estoque.",
+                        ]);
                     }
                 }
             }
-
-            if($request->input('ordem_servico_profissionais')){
-                $input_profissionais = json_decode($request->input('ordem_servico_profissionais'),true);
-                OrdemServicoProfissional::where('ordem_servico_id', $id)->delete();
-
-                foreach($input_profissionais as $profissional) {
-                    if(!$profissional) continue;
-                    $os_profissional = new OrdemServicoProfissional();
-                    $os_profissional->ordem_servico_id = $ordem_servico->id;
-                    //$os_profissional->profissional_id = $profissional["id"];
-                    $os_profissional->nome = $profissional["nome"];
-                    $os_profissional->data_inicio = $profissional["data_inicio"];
-                    $os_profissional->horas_empregadas = $profissional["horas_empregadas"];
-                    $os_profissional->save();
-                }
-            }
-
-            // Salva na tabela historicos
-            $historico = new Historico();
-            $historico->nome_tabela = 'Ordem_Servico';
-            $historico->data_acao = date("Y-m-d");
-            $historico->tipo_acao = 'atualizacao';
-            $historico->user_id = Auth::user()->id;
-            $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
-            $historico->save();
-
-            DB::commit();
-            return new OrdemServicoResource($ordem_servico);
         }
+
+        if ($request->input('ordem_servico_profissionais')) {
+            $input_profissionais = json_decode($request->input('ordem_servico_profissionais'), true);
+            OrdemServicoProfissional::where('ordem_servico_id', $id)->delete();
+
+            foreach ($input_profissionais as $profissional) {
+                if (!$profissional)
+                    continue;
+                $os_profissional = new OrdemServicoProfissional();
+                $os_profissional->ordem_servico_id = $ordem_servico->id;
+                //$os_profissional->profissional_id = $profissional["id"];
+                $os_profissional->nome = $profissional["nome"];
+                $os_profissional->data_inicio = $profissional["data_inicio"];
+                $os_profissional->horas_empregadas = $profissional["horas_empregadas"];
+                $os_profissional->save();
+            }
+        }
+
+        // Salva na tabela historicos
+        $historico = new Historico();
+        $historico->nome_tabela = 'Ordem_Servico';
+        $historico->data_acao = date("Y-m-d");
+        $historico->tipo_acao = 'atualizacao';
+    $historico->user_id = Auth::user()->id;
+        $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
+        $historico->save();
+
+        DB::commit();
+        return new OrdemServicoResource($ordem_servico);
     }
 
     /**
