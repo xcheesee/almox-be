@@ -28,7 +28,7 @@ class OcorrenciaFormRequest extends FormRequest
             'data_ocorrencia' => 'required|date',
             'tipo_ocorrencia' => 'required',
             'justificativa' => 'required',
-            'itens' => 'required|array',
+            'itens' => 'required',
         ];
     }
     
