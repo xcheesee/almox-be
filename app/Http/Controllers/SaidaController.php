@@ -49,20 +49,20 @@ class SaidaController extends Controller
         $userDeptos = DepartamentoHelper::ids_deptos($user);
 
         $saidas = QueryBuilder::for(Saida::class)
-        ->select('locais.nome', 'origem.nome', 'saidas.*')
-        ->leftJoin('locais as origem', 'origem.id', '=', 'saidas.origem_id')
-        ->leftJoin('locais', 'locais.id', '=', 'saidas.local_servico_id')
-        ->whereIn('saidas.departamento_id',$userDeptos)
-        //->where('saidas.ativo','=',1)
-        ->allowedFilters([
-                AllowedFilter::partial('origem','origem.nome'),
-                AllowedFilter::partial('local_servico','locais.nome'),
-                AllowedFilter::partial('status','locais.status'),
+            ->select('locais.nome', 'origem.nome', 'saidas.*')
+            ->leftJoin('locais as origem', 'origem.id', '=', 'saidas.origem_id')
+            ->leftJoin('locais', 'locais.id', '=', 'saidas.local_servico_id')
+            ->whereIn('saidas.departamento_id', $userDeptos)
+            //->where('saidas.ativo','=',1)
+            ->allowedFilters([
+                AllowedFilter::partial('origem', 'origem.nome'),
+                AllowedFilter::partial('local_servico', 'locais.nome'),
+                AllowedFilter::partial('status', 'locais.status'),
                 AllowedFilter::scope('baixa_depois_de'),
                 AllowedFilter::scope('baixa_antes_de'),
             ])
-        ->allowedSorts('id', 'baixa_datahora', 'created_at', 'origem.nome', 'locais.nome')
-        ->paginate(15);
+            ->allowedSorts('id', 'baixa_datahora', 'created_at', 'origem.nome', 'locais.nome')
+            ->paginate(15);
 
         return SaidaResource::collection($saidas);
     }
@@ -140,7 +140,7 @@ class SaidaController extends Controller
         $saida->baixa_user_id = Auth::user()->id;
         // $saida->baixa_datahora = $request->input('baixa_datahora');
 
-        if (is_null($saida->ordem_servico_id)){
+        if (is_null($saida->ordem_servico_id)) {
             $this->validate($request, [
                 'justificativa_os' => 'required'
             ]);
@@ -152,11 +152,12 @@ class SaidaController extends Controller
         if ($saida->save()) {
             // Lidando com os itens adicionados (caso não tenha OS nessa saída)
             $saidaItens = json_decode($request->input('saida_items'), true);
-            if ($saidaItens){
+            if ($saidaItens) {
                 $items_acabando = array();
-                foreach ($saidaItens as $saida_items){
+                foreach ($saidaItens as $saida_items) {
                     //verifica se o frontend enviou lista vazia de materiais
-                    if (!$saida_items["id"]) continue;
+                    if (!$saida_items["id"])
+                        continue;
 
                     //Salvando itens na tabela saida_items
                     $saida_item = new SaidaItem();
@@ -169,9 +170,9 @@ class SaidaController extends Controller
                     $saida_item->save();
 
                     //lógica para retirar a quantidade dos itens no inventario
-                    $inventario = Inventario::query()->where('local_id','=',$saida->origem_id)
-                                                        ->where('departamento_id','=',$saida->departamento_id)
-                                                        ->where('item_id','=',$saida_items["id"])->first();
+                    $inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
+                        ->where('departamento_id', '=', $saida->departamento_id)
+                        ->where('item_id', '=', $saida_items["id"])->first();
 
                     if ($inventario) {
                         $resultado = $inventario->quantidade - $saida_items["quantidade"];
@@ -182,19 +183,19 @@ class SaidaController extends Controller
                         } else {
                             $inventario->save();
                             if ($inventario->quantidade <= $inventario->qtd_alerta) {
-                                $items_acabando[]=$inventario;
+                                $items_acabando[] = $inventario;
                             }
                         }
-                    }else{
+                    } else {
                         DB::rollBack();
                         $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
                         return $erroQtd;
                     }
                 }
-                if (count($items_acabando) > 0){
+                if (count($items_acabando) > 0) {
                     //Enviar e-mail aos responsáveis
-                    $responsaveis = ResponsaveisEmail::query()->where('departamento_id','=',$saida->departamento_id)->get();
-                    foreach($responsaveis as $responsavel){
+                    $responsaveis = ResponsaveisEmail::query()->where('departamento_id', '=', $saida->departamento_id)->get();
+                    foreach ($responsaveis as $responsavel) {
                         Mail::to($responsavel->email)->send(new ItemAcabando($items_acabando));
                     }
                 }
@@ -202,8 +203,8 @@ class SaidaController extends Controller
 
             //Lidando com a lista de profissionais  (caso não tenha OS nessa saída)
             $saidaProfissionais = json_decode($request->input('saida_profissionais'), true);
-            if ($saidaProfissionais){
-                foreach ($saidaProfissionais as $saida_profissionais){
+            if ($saidaProfissionais) {
+                foreach ($saidaProfissionais as $saida_profissionais) {
                     //Salvando itens na tabela saida_items
                     $saida_profissional = new SaidaProfissional();
                     $saida_profissional->saida_nome = $saida->id;
@@ -248,7 +249,7 @@ class SaidaController extends Controller
      */
     public function show($id)
     {
-        $saida= Saida::findOrFail($id);
+        $saida = Saida::findOrFail($id);
         return new SaidaResource($saida);
     }
 
@@ -297,8 +298,8 @@ class SaidaController extends Controller
     {
         $saida = Saida::findOrFail($id);
 
-        if($saida->flg_baixa != 0 ) {
-            return response()->json(['message'=> "Não é possivel realizar a edição dos dados de uma saída apos sua baixa!" ]);
+        if ($saida->flg_baixa != 0) {
+            return response()->json(['message' => "Não é possivel realizar a edição dos dados de uma saída apos sua baixa!"]);
         }
 
         //$saida->departamento_id = $request->input('departamento_id');
@@ -312,7 +313,7 @@ class SaidaController extends Controller
         $saida->flg_baixa = 0;
         $saida->baixa_user_id = Auth::user()->id;
 
-        if (is_null($saida->ordem_servico_id)){
+        if (is_null($saida->ordem_servico_id)) {
             $this->validate($request, [
                 'justificativa_os' => 'required'
             ]);
@@ -355,8 +356,8 @@ class SaidaController extends Controller
                         ->where('item_id', '=', $saida_items["id"])
                         ->first();
 
-                        if ($inventario) {
-                            $resultado = $inventario->quantidade - $saida_items["quantidade"];
+                    if ($inventario) {
+                        $resultado = $inventario->quantidade - $saida_items["quantidade"];
                         if ($resultado <= 0) {
                             DB::rollBack();
                             $erroQtd = response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
@@ -445,16 +446,24 @@ class SaidaController extends Controller
      *     ]
      * }
      */
-    public function items($id){
+    public function items($id)
+    {
         $saida = Saida::findOrFail($id);
 
-        if ($saida->ordem_servico_id){
-            $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
+        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
+        $saida_itens = SaidaItem::where("saida_id", "=", $id)->get();
+
+        if($ordem_servico_itens->isNotEmpty()){
             return OrdemServicoItemResource::collection($ordem_servico_itens);
-        } else { //saida sem OS
-            $saida_itens = SaidaItem::where("saida_id","=",$id)->get();
+        } elseif($saida_itens->isNotEmpty()){
             return SaidaItemResource::collection($saida_itens);
+        } else {
+            return response()->json([
+                'mensagem' => "nada cadastrado."
+            ]);
         }
+
+
     }
 
     /**
@@ -489,30 +498,31 @@ class SaidaController extends Controller
      *     }
      * }
      */
-    public function baixa(Request $request, $id){
+    public function baixa(Request $request, $id)
+    {
         $saida = Saida::findOrFail($id);
 
         //TODO: setar uma flag na ordem indicando que a baixa foi dada
         $ordemServicoItens = $request->input('saida_items');
-        if($ordemServicoItens){
+        if ($ordemServicoItens) {
             //salvando a baixa na BD
             DB::beginTransaction();
             $saida->baixa_datahora = date('Y-m-d H:i:s');
             $saida->baixa_user_id = auth()->user()->id;
             if ($saida->save()) {
-                foreach ($ordemServicoItens as $saida_items){
+                foreach ($ordemServicoItens as $saida_items) {
                     //Salvando itens na tabela saida_items
-                    if ($saida->ordem_servico_id){
+                    if ($saida->ordem_servico_id) {
                         $origem = $saida->ordem_servico->origem_id;
 
                         $saida_item = new SaidaItem();
                         $saida_item->saida_id = $saida->id;
                         $saida_item->item_id = $saida_items["id"];
-                    }else{
+                    } else {
                         $origem = $saida->origem_id;
                         $saida_item = SaidaItem::where('saida_id', '=', $saida->id)
-                                            ->where('item_id', '=', $saida_items["id"])
-                                            ->first();
+                            ->where('item_id', '=', $saida_items["id"])
+                            ->first();
                     }
                     $saida_item->quantidade = $saida_items["quantidade"];
                     $saida_item->enviado = $saida_items["enviado"];
@@ -521,9 +531,9 @@ class SaidaController extends Controller
                     $saida_item->save();
 
                     //lógica para devolver a quantidade dos itens retornados para o inventario de origem
-                    $saida_inventario = Inventario::query()->where('local_id','=',$origem)
-                                                        ->where('departamento_id','=',$saida->departamento_id)
-                                                        ->where('item_id','=',$saida_items["id"])->first();
+                    $saida_inventario = Inventario::query()->where('local_id', '=', $origem)
+                        ->where('departamento_id', '=', $saida->departamento_id)
+                        ->where('item_id', '=', $saida_items["id"])->first();
 
                     if ($saida_inventario) {
                         $saida_inventario->quantidade -= $saida_items["usado"];
@@ -544,13 +554,13 @@ class SaidaController extends Controller
                 $historico->save();
 
                 DB::commit();
-            }else{
+            } else {
                 DB::rollBack();
                 return response()->json([
                     'message' => 'Erro ao registrar a base, tente novamente mais tarde.'
                 ], 410);
             }
-        }else{
+        } else {
             return response()->json([
                 'message' => 'Para dar baixa, é preciso enviar a lista de itens e seus valores de usado e retornado.'
             ], 410);
@@ -586,7 +596,8 @@ class SaidaController extends Controller
      *     ]
      * }
      */
-    public function profissionais($id){
+    public function profissionais($id)
+    {
 
         $saida = Saida::findOrFail($id);
 
@@ -594,8 +605,8 @@ class SaidaController extends Controller
         //    $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
         //    return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
         //} else { //saida sem OS
-            $saida_profissionais = SaidaProfissional::where("saida_id","=",$id)->get();
-            return SaidaProfissionalResource::collection($saida_profissionais);
+        $saida_profissionais = SaidaProfissional::where("saida_id", "=", $id)->get();
+        return SaidaProfissionalResource::collection($saida_profissionais);
         //}
 
     }
