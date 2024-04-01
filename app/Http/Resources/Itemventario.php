@@ -24,7 +24,7 @@ class Itemventario extends JsonResource
             'tipo_item' => $this->tipo_item ? $this->tipo_item->nome : null,
             'nome' => $this->nome,
             'descricao' => $this->descricao,
-            'quantidade' => $this->quantidade,
+            'estoque' => $this->quantidade,
         ];
     }
 }
