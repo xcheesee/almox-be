@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\DepartamentoHelper;
+use App\Helpers\LocalHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\InventarioFormRequest;
 use App\Models\Inventario;
@@ -10,6 +11,8 @@ use App\Http\Resources\Inventario as InventarioResource;
 use App\Http\Resources\Item as ItemResource;
 use App\Http\Resources\Itemventario;
 use App\Models\Item;
+use App\Models\Local;
+use App\Models\TipoItem;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -99,8 +102,10 @@ class InventarioController extends Controller
         ->paginate(10);
 
         //dd($filter);
+        $tipo_items = TipoItem::whereIn('departamento_id',$userDeptos)->get();
+        $locais = Local::whereIn('departamento_id',$userDeptos)->where('tipo','=','base')->get();
         $mensagem = $request->session()->get('mensagem');
-        return view('inventario.index', compact('inventarios','mensagem','filtros'));
+        return view('inventario.index', compact('inventarios','tipo_items','locais','mensagem','filtros'));
     }
 
     /**

@@ -492,6 +492,7 @@ class SaidaController extends Controller
         if($ordemServicoItens){
             //salvando a baixa na BD
             DB::beginTransaction();
+            $saida->status = 'Finalizada';
             $saida->baixa_datahora = date('Y-m-d H:i:s');
             $saida->baixa_user_id = auth()->user()->id;
             if ($saida->save()) {
