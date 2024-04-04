@@ -18,7 +18,7 @@ class OrdemServicoProfissional extends JsonResource
             'id' => $this->id,
             'ordem_servico_id' => $this->ordem_servico_id,
             'profissional_id' => $this->profissional_id,
-            'profissional' => $this->nome ? $this->nome : null,
+            'nome' => $this->nome ? $this->nome : null,
             'data_inicio' => $this->data_inicio,
             'data_inicio_formatada' => $this->data_inicio_formatada,
             'horas_empregadas' => $this->horas_empregadas,
