@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Http\Requests\TransferenciaFormRequest;
 use App\Models\Inventario;
 use App\Models\Local;
@@ -72,18 +73,18 @@ class TransferenciaMateriaisController extends Controller
     public function index()
     {
         $transferencia = QueryBuilder::for(TransferenciaDeMateriais::class)
-        ->leftJoin('locais as origem', 'origem.id', '=', 'transferencia_de_materiais.base_origem_id')
-        ->leftJoin('locais', 'locais.id', '=', 'transferencia_de_materiais.base_destino_id')
-        ->select('locais.nome as destino', 'origem.nome as origem', 'transferencia_de_materiais.*')
-        ->allowedSorts('id', 'data_transferencia', 'destino', 'origem', 'status')
-        ->allowedFilters([
-            allowedFilter::partial('origem', 'origem.nome'),
-            allowedFilter::partial('destino', 'locais.nome'),
-            allowedFilter::scope('transferencia_depois_de'),
-            allowedFilter::scope('transferencia_antes_de'),
-            "status"
-        ])
-        ->paginate(15);
+            ->leftJoin('locais as origem', 'origem.id', '=', 'transferencia_de_materiais.base_origem_id')
+            ->leftJoin('locais', 'locais.id', '=', 'transferencia_de_materiais.base_destino_id')
+            ->select('locais.nome as destino', 'origem.nome as origem', 'transferencia_de_materiais.*')
+            ->allowedSorts('id', 'data_transferencia', 'destino', 'origem', 'status')
+            ->allowedFilters([
+                allowedFilter::partial('origem', 'origem.nome'),
+                allowedFilter::partial('destino', 'locais.nome'),
+                allowedFilter::scope('transferencia_depois_de'),
+                allowedFilter::scope('transferencia_antes_de'),
+                "status"
+            ])
+            ->paginate(15);
 
         return TransferenciaDeMateriaisResource::collection($transferencia);
     }
@@ -133,12 +134,19 @@ class TransferenciaMateriaisController extends Controller
     public function store(TransferenciaFormRequest $request)
     {
         $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
 
-        if ($user->hasRole(['almoxarife', 'encarregado'])){
+        if ($user->hasRole(['almoxarife', 'encarregado'])) {
 
             $transferencia = new TransferenciaDeMateriais();
 
-            $transferencia->base_origem_id = $request->input('base_origem_id');
+            if (in_array($request->input('base_origem_id'), $localUser)) {
+                $transferencia->base_origem_id = $request->input('base_origem_id');
+            } else {
+                return response()->json([
+                    'error' => "Você deve selecionar alguma base em que esteja cadastrado."
+                ]);
+            }
             $transferencia->base_destino_id = $request->input('base_destino_id');
             $transferencia->data_transferencia = $request->input('data_transferencia');
             $transferencia->status = "enviado";
@@ -149,19 +157,9 @@ class TransferenciaMateriaisController extends Controller
 
             DB::beginTransaction();
 
-            if($transferencia->save()){
-
-                $localUsers = local_users::where('user_id', $user->id)->first();
-                
-                if(!($localUsers->local_id == $transferencia->base_origem_id)){
-
-                        return response()->json([
-                            'mensagem' => 'Você não pode cadastrar uma ocorrencia de outra base.'
-                        ], 401);
-                    }
-
+            if ($transferencia->save()) {
                 $itens = json_decode($request->input('itens'), true);
-                foreach($itens as $item) {
+                foreach ($itens as $item) {
                     $transferenciaItem = new TransferenciaItens();
 
                     $transferenciaItem->transferencia_materiais_id = $transferencia->id;
@@ -176,7 +174,7 @@ class TransferenciaMateriaisController extends Controller
                         ], 420);
                     }
 
-                    if (array_key_exists('quantidade', $item)){
+                    if (array_key_exists('quantidade', $item)) {
                         $transferenciaItem->quantidade = $item['quantidade'];
                     } else {
                         DB::rollBack();
@@ -188,22 +186,23 @@ class TransferenciaMateriaisController extends Controller
 
                     $transferenciaItem->save();
                 }
-        
+
                 DB::commit();
-        
+
                 return response()->json([
                     'mensagem' => 'Transferencia cadastrada com sucesso!',
                     'transferencia' => $transferencia,
                     'itens' => $itens
                 ], 200);
-            };
+            }
+            ;
         } else {
             return response()->json([
                 'mensagem' => 'Você não possui permissão para cadastrar uma transferencia'
             ], 401);
         }
     }
-    
+
 
 
     /**
@@ -261,8 +260,7 @@ class TransferenciaMateriaisController extends Controller
     {
         $transferencia = TransferenciaDeMateriais::with('base_origem', 'base_destino', 'itens_da_transferencia')->findOrFail($id);
 
-        if($transferencia)
-        {
+        if ($transferencia) {
             return new TransferenciaDeMateriaisResource($transferencia);
         } else {
             return response()->json([
@@ -304,9 +302,17 @@ class TransferenciaMateriaisController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $transferencia = TransferenciaDeMateriais::findOrFail($id);
-        
-        $transferencia->base_origem_id = $request->input('base_origem_id');
+
+        if (in_array($request->input('base_origem_id'), $localUser)) {
+            $transferencia->base_origem_id = $request->input('base_origem_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar alguma base em que esteja cadastrado."
+            ]);
+        }
         $transferencia->base_destino_id = $request->input('base_destino_id');
         $transferencia->data_transferencia = $request->input('data_transferencia');
         $transferencia->status = $request->input('status');
@@ -316,7 +322,7 @@ class TransferenciaMateriaisController extends Controller
         $transferencia->observacao_user_id = Auth::user()->id;
 
         $transferencia->update();
-        
+
         return response()->json([
             'mensagem' => 'Transferencia atualizada com sucesso!',
             'transferencia' => $transferencia
@@ -354,12 +360,11 @@ class TransferenciaMateriaisController extends Controller
     public function destroy($id)
     {
         $transferencia = TransferenciaDeMateriais::where('id', $id)->first();
-        
-        if($transferencia)
-        {
+
+        if ($transferencia) {
             $transferenciaItens = TransferenciaItens::where('transferencia_materiais_id', $id)->get();
-    
-            foreach ($transferenciaItens as $itens){
+
+            foreach ($transferenciaItens as $itens) {
                 $itens->delete();
             }
 
@@ -395,90 +400,90 @@ class TransferenciaMateriaisController extends Controller
 
         $localUsers = local_users::where('user_id', $user->id)->first();
 
-        if($localUsers->local_id == $transferencia->base_destino_id) {
-    
-                if ($user->hasRole(['almoxarife', 'encarregado'])){
-                       
-                    $transferencia->status = 'recebido';
-                    
-                    $transferencia->save();
-        
-                    $iventarios_base_origem = Inventario::where('local_id', $transferencia->base_origem_id)->get();
-                    
-                    foreach ($iventarios_base_origem as $iventario_origem) {
-        
-                        $itensTransferecia = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
-        
-                        foreach ($itensTransferecia as $item_transferencia) {
-                            
-                            if ($item_transferencia->item_id == $iventario_origem->item_id){
-                                
-                                $iventario_origem->quantidade -= $item_transferencia->quantidade;
-                                
-                                $iventario_origem->save();
-                            }
+        if ($localUsers->local_id == $transferencia->base_destino_id) {
+
+            if ($user->hasRole(['almoxarife', 'encarregado'])) {
+
+                $transferencia->status = 'recebido';
+
+                $transferencia->save();
+
+                $iventarios_base_origem = Inventario::where('local_id', $transferencia->base_origem_id)->get();
+
+                foreach ($iventarios_base_origem as $iventario_origem) {
+
+                    $itensTransferecia = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
+
+                    foreach ($itensTransferecia as $item_transferencia) {
+
+                        if ($item_transferencia->item_id == $iventario_origem->item_id) {
+
+                            $iventario_origem->quantidade -= $item_transferencia->quantidade;
+
+                            $iventario_origem->save();
                         }
                     }
-        
-                    $inventarios_base_destino = Inventario::where('local_id', $transferencia->base_destino_id)->get();
-                    $transferencia_itens = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
-        
-                    if($inventarios_base_destino->count() <= 0){
-                        foreach ($transferencia_itens as $itens_transferencia) {
-        
-                            $local = Local::where('id', $transferencia->base_destino_id)->first();
-        
-                            $novo_item = new Inventario();
-        
-                            $novo_item->departamento_id = $local->departamento_id;
-                            $novo_item->item_id = $itens_transferencia->item_id;
-                            $novo_item->local_id = $transferencia->base_destino_id;
-                            $novo_item->quantidade += $itens_transferencia->quantidade;
-                            $novo_item->qtd_alerta = 0; 
-        
-                            $novo_item->save();
-                        }
-                    }
-        
+                }
+
+                $inventarios_base_destino = Inventario::where('local_id', $transferencia->base_destino_id)->get();
+                $transferencia_itens = TransferenciaItens::where('transferencia_materiais_id', $transferencia->id)->get();
+
+                if ($inventarios_base_destino->count() <= 0) {
                     foreach ($transferencia_itens as $itens_transferencia) {
-                        foreach ($inventarios_base_destino as $destino_itens){
-                            if($itens_transferencia->item_id == $destino_itens->item_id){
-        
-                                $destino_itens->quantidade += $itens_transferencia->quantidade;
-            
-                                $destino_itens->save();
-                            }
+
+                        $local = Local::where('id', $transferencia->base_destino_id)->first();
+
+                        $novo_item = new Inventario();
+
+                        $novo_item->departamento_id = $local->departamento_id;
+                        $novo_item->item_id = $itens_transferencia->item_id;
+                        $novo_item->local_id = $transferencia->base_destino_id;
+                        $novo_item->quantidade += $itens_transferencia->quantidade;
+                        $novo_item->qtd_alerta = 0;
+
+                        $novo_item->save();
+                    }
+                }
+
+                foreach ($transferencia_itens as $itens_transferencia) {
+                    foreach ($inventarios_base_destino as $destino_itens) {
+                        if ($itens_transferencia->item_id == $destino_itens->item_id) {
+
+                            $destino_itens->quantidade += $itens_transferencia->quantidade;
+
+                            $destino_itens->save();
                         }
                     }
-        
-                    foreach ($transferencia_itens as $itens_transferencia) {
-                        foreach ($inventarios_base_destino as $destino_itens){
-                            $result = DB::table('inventarios')
+                }
+
+                foreach ($transferencia_itens as $itens_transferencia) {
+                    foreach ($inventarios_base_destino as $destino_itens) {
+                        $result = DB::table('inventarios')
                             ->join('transferencia_itens', 'transferencia_itens.item_id', '=', 'inventarios.item_id')
                             ->where('inventarios.item_id', $itens_transferencia->item_id)
                             ->where('inventarios.local_id', $destino_itens->local_id)
                             ->get();
-        
-                            if ($result->count() <= 0) {
-        
-                                $local = Local::where('id', $transferencia->base_destino_id)->first();
-        
-                                $novo_item = new Inventario();
-        
-                                $novo_item->departamento_id = $local->departamento_id;
-                                $novo_item->item_id = $itens_transferencia->item_id;
-                                $novo_item->local_id = $transferencia->base_destino_id;
-                                $novo_item->quantidade += $itens_transferencia->quantidade;
-                                $novo_item->qtd_alerta = 0; 
-        
-                                $novo_item->save();
-                            }
+
+                        if ($result->count() <= 0) {
+
+                            $local = Local::where('id', $transferencia->base_destino_id)->first();
+
+                            $novo_item = new Inventario();
+
+                            $novo_item->departamento_id = $local->departamento_id;
+                            $novo_item->item_id = $itens_transferencia->item_id;
+                            $novo_item->local_id = $transferencia->base_destino_id;
+                            $novo_item->quantidade += $itens_transferencia->quantidade;
+                            $novo_item->qtd_alerta = 0;
+
+                            $novo_item->save();
                         }
                     }
-        
-                    return response()->json([
-                        'mesagem' => 'Tranferencia de materiais realizada com sucesso!',
-                    ], 200);
+                }
+
+                return response()->json([
+                    'mesagem' => 'Tranferencia de materiais realizada com sucesso!',
+                ], 200);
             } else {
                 return response()->json([
                     'mensagem' => 'Você não possui cargo para aceitar transferencia.'
@@ -506,15 +511,15 @@ class TransferenciaMateriaisController extends Controller
     {
         $user = auth()->user();
 
-        if ($user->hasRole(['almoxarife', 'encarregado'])){
+        if ($user->hasRole(['almoxarife', 'encarregado'])) {
             $transferencia = TransferenciaDeMateriais::find($id);
-    
+
             $localUsers = local_users::where('user_id', $user->id)->first();
-    
-            if($localUsers->local_id == $transferencia->base_destino_id) {
-    
+
+            if ($localUsers->local_id == $transferencia->base_destino_id) {
+
                 $transferencia->status = 'recusado';
-                
+
                 $transferencia->save();
 
                 return response()->json([
@@ -531,7 +536,7 @@ class TransferenciaMateriaisController extends Controller
             ], 401);
         }
     }
-    
+
     /**
      * Mostra os itens de uma transferencia
      * @authenticated
@@ -552,8 +557,9 @@ class TransferenciaMateriaisController extends Controller
      * }
      */
 
-     public function itens($id) {
-        $transferencia_itens = TransferenciaItens::where("transferencia_materiais_id","=",$id)->get();
+    public function itens($id)
+    {
+        $transferencia_itens = TransferenciaItens::where("transferencia_materiais_id", "=", $id)->get();
         return TransferenciaDeMateriaisItemResource::collection($transferencia_itens);
     }
 }

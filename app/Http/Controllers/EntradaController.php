@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Helpers\DepartamentoHelper;
 use App\Helpers\LocalHelper;
 use App\Helpers\TipoItemHelper;
@@ -178,10 +179,18 @@ class EntradaController extends Controller
     {
         //dd($request);
         $is_api_request = in_array('api',$request->route()->getAction('middleware'));
-
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
+        
         $entrada = new Entrada();
         $entrada->departamento_id = $request->input('departamento_id');
-        $entrada->local_id = $request->input('local_id');
+        if (in_array($request->input('local_id'), $localUser)) {
+            $entrada->local_id = $request->input('local_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
         $entrada->data_entrada = $is_api_request ? $request->input('data_entrada') : Carbon::createFromFormat('d/m/Y', $request->input('data_entrada'));
         $entrada->processo_sei = str_replace([".","/","-"],"",$request->input('processo_sei'));
         $entrada->numero_contrato = str_replace([".","/","-"],"",$request->input('numero_contrato'));
@@ -347,12 +356,20 @@ class EntradaController extends Controller
      * }
      */
     public function update(EntradaUpdateFormRequest $request, $id)
-    {
+    {   
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $is_api_request = in_array('api', $request->route()->getAction('middleware'));
-
+        
         $entrada = Entrada::findOrFail($id);
         $entrada->departamento_id = $request->input('departamento_id');
-        $entrada->local_id = $request->input('local_id');
+        if (in_array($request->input('local_id'), $localUser)) {
+            $entrada->local_id = $request->input('local_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
         $entrada->data_entrada = $is_api_request ? $request->input('data_entrada') : Carbon::createFromFormat('d/m/Y', $request->input('data_entrada'));
         $entrada->processo_sei = str_replace([".", "/", "-"], "", $request->input('processo_sei'));
         $entrada->numero_contrato = str_replace([".", "/", "-"], "", $request->input('numero_contrato'));

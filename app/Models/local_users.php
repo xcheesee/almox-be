@@ -13,4 +13,9 @@ class local_users extends Model
         'local_id',
         'user_id',
     ];
+
+    public function local()
+    {
+        return $this->belongsTo(Local::class);
+    }
 }

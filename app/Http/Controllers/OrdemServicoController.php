@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Helpers\DepartamentoHelper;
 use App\Helpers\HtmlHelper;
 use Illuminate\Http\Request;
@@ -53,20 +54,20 @@ class OrdemServicoController extends Controller
         $userDeptos = DepartamentoHelper::ids_deptos($user);
 
         $ordem_servicos = QueryBuilder::for(OrdemServico::class)
-        ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
-        ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
-        ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
-        ->whereIn('ordem_servicos.departamento_id',$userDeptos)
-        ->where('ordem_servicos.ativo','=',1)
-        ->allowedFilters([
-                AllowedFilter::partial('origem','origem.nome'),
-                AllowedFilter::partial('local_servico','locais.nome'),
+            ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
+            ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
+            ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
+            ->whereIn('ordem_servicos.departamento_id', $userDeptos)
+            ->where('ordem_servicos.ativo', '=', 1)
+            ->allowedFilters([
+                AllowedFilter::partial('origem', 'origem.nome'),
+                AllowedFilter::partial('local_servico', 'locais.nome'),
                 "id",
                 AllowedFilter::scope('servico_depois_de'),
                 AllowedFilter::scope('servico_antes_de'),
             ])
-        ->allowedSorts('id', 'created_at', 'origem.nome', 'locais.nome')
-        ->paginate(15);
+            ->allowedSorts('id', 'created_at', 'origem.nome', 'locais.nome')
+            ->paginate(15);
 
         return OrdemServicoResource::collection($ordem_servicos);
     }
@@ -82,32 +83,32 @@ class OrdemServicoController extends Controller
         $filtros['servico_antes_de'] = $request->query('f-servico_antes_de');
 
         $ordem_servicos = OrdemServico::query()
-        ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
-        ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
-        ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
-        ->whereIn('ordem_servicos.departamento_id',$userDeptos)
-        ->where('ordem_servicos.ativo','=',1)
-        ->when($filtros['origem'], function ($query, $val) {
-            return $query->where('origem.nome','like','%'.$val.'%');
-        })
-        ->when($filtros['local_servico'], function ($query, $val) {
-            return $query->where('locais.nome','like','%'.$val.'%');
-        })
-        ->when($filtros['servico_depois_de'], function ($query, $val) {
-            $date = Carbon::createFromFormat('d/m/Y', $val);
-            $data = $date->format("Y-m-d");
-            return $query->where('ordem_servicos.created_at','>=',$data);
-        })
-        ->when($filtros['servico_antes_de'], function ($query, $val) {
-            $date = Carbon::createFromFormat('d/m/Y', $val);
-            $data = $date->format("Y-m-d");
-            return $query->where('ordem_servicos.created_at','<=',$data);
-        })
-        ->sortable()
-        ->paginate(15);
+            ->select('locais.nome', 'origem.nome', 'ordem_servicos.*')
+            ->leftJoin('locais as origem', 'origem.id', '=', 'ordem_servicos.origem_id')
+            ->leftJoin('locais', 'locais.id', '=', 'ordem_servicos.local_servico_id')
+            ->whereIn('ordem_servicos.departamento_id', $userDeptos)
+            ->where('ordem_servicos.ativo', '=', 1)
+            ->when($filtros['origem'], function ($query, $val) {
+                return $query->where('origem.nome', 'like', '%' . $val . '%');
+            })
+            ->when($filtros['local_servico'], function ($query, $val) {
+                return $query->where('locais.nome', 'like', '%' . $val . '%');
+            })
+            ->when($filtros['servico_depois_de'], function ($query, $val) {
+                $date = Carbon::createFromFormat('d/m/Y', $val);
+                $data = $date->format("Y-m-d");
+                return $query->where('ordem_servicos.created_at', '>=', $data);
+            })
+            ->when($filtros['servico_antes_de'], function ($query, $val) {
+                $date = Carbon::createFromFormat('d/m/Y', $val);
+                $data = $date->format("Y-m-d");
+                return $query->where('ordem_servicos.created_at', '<=', $data);
+            })
+            ->sortable()
+            ->paginate(15);
 
         $mensagem = $request->session()->get('mensagem');
-        return view('ordem_servicos.index', compact('ordem_servicos','mensagem','filtros'));
+        return view('ordem_servicos.index', compact('ordem_servicos', 'mensagem', 'filtros'));
     }
 
     /**
@@ -176,10 +177,21 @@ class OrdemServicoController extends Controller
      */
     public function store(OrdemServicoFormRequest $request)
     {
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
 
         $ordem_servico = new OrdemServico();
+
         $ordem_servico->departamento_id = $request->input('departamento_id');
-        $ordem_servico->origem_id = $request->input('origem_id');
+
+        if (in_array($request->input('origem_id'), $localUser)) {
+            $ordem_servico->origem_id = $request->input('origem_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
+
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
         // $ordem_servico->status = $request->input('status');
         // $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
@@ -201,11 +213,12 @@ class OrdemServicoController extends Controller
         if ($ordem_servico->save()) {
             // Lidando com os itens adicionados
             $ordemServicoItens = json_decode($request->input('ordem_servico_items'), true);
-            if ($ordemServicoItens){
+            if ($ordemServicoItens) {
                 $items_acabando = array();
-                foreach ($ordemServicoItens as $ordem_servico_items){
+                foreach ($ordemServicoItens as $ordem_servico_items) {
                     //verifica se o frontend enviou lista vazia de materiais
-                    if (!$ordem_servico_items["id"]) continue;
+                    if (!$ordem_servico_items["id"])
+                        continue;
 
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_item = new OrdemServicoItem();
@@ -215,9 +228,9 @@ class OrdemServicoController extends Controller
                     $ordem_servico_item->save();
 
                     //lógica para retirar a quantidade dos itens no inventario
-                    $inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
-                                                        ->where('departamento_id','=',$ordem_servico->departamento_id)
-                                                        ->where('item_id','=',$ordem_servico_items["id"])->first();
+                    $inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
+                        ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                        ->where('item_id', '=', $ordem_servico_items["id"])->first();
 
                     if ($inventario) {
                         $inventario->quantidade -= $ordem_servico_items["quantidade"];
@@ -229,19 +242,19 @@ class OrdemServicoController extends Controller
                         } else {
                             $inventario->save();
                             if ($inventario->quantidade <= $inventario->qtd_alerta) {
-                                $items_acabando[]=$inventario;
+                                $items_acabando[] = $inventario;
                             }
                         }
-                    }else{
+                    } else {
                         DB::rollBack();
                         $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
                         return $erroQtd;
                     }
                 }
-                if (count($items_acabando) > 0){
+                if (count($items_acabando) > 0) {
                     //Enviar e-mail aos responsáveis
-                    $responsaveis = ResponsaveisEmail::query()->where('departamento_id','=',$ordem_servico->departamento_id)->get();
-                    foreach($responsaveis as $responsavel){
+                    $responsaveis = ResponsaveisEmail::query()->where('departamento_id', '=', $ordem_servico->departamento_id)->get();
+                    foreach ($responsaveis as $responsavel) {
                         Mail::to($responsavel->email)->send(new ItemAcabando($items_acabando));
                     }
                 }
@@ -249,8 +262,8 @@ class OrdemServicoController extends Controller
 
             //Lidando com a lista de profissionais da ordem de serviço
             $ordemServicoProfissionais = json_decode($request->input('ordem_servico_profissionais'), true);
-            if (!count($ordemServicoProfissionais) == 0){
-                foreach ($ordemServicoProfissionais as $ordem_servico_profissionais){
+            if (!count($ordemServicoProfissionais) == 0) {
+                foreach ($ordemServicoProfissionais as $ordem_servico_profissionais) {
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_profissional = new OrdemServicoProfissional();
                     $ordem_servico_profissional->ordem_servico_id = $ordem_servico->id;
@@ -301,7 +314,7 @@ class OrdemServicoController extends Controller
      */
     public function show($id)
     {
-        $ordem_servico= OrdemServico::findOrFail($id);
+        $ordem_servico = OrdemServico::findOrFail($id);
         return new OrdemServicoResource($ordem_servico);
     }
 
@@ -352,9 +365,18 @@ class OrdemServicoController extends Controller
      */
     public function update(OrdemServicoFormRequest $request, $id)
     {
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $ordem_servico = OrdemServico::findOrFail($id);
+        
         $ordem_servico->departamento_id = $request->input('departamento_id');
-        $ordem_servico->origem_id = $request->input('origem_id');
+        if (in_array($request->input('origem_id'), $localUser)) {
+            $ordem_servico->origem_id = $request->input('origem_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
         // $ordem_servico->status = $request->input('status');
         // $ordem_servico->data_inicio_servico = HtmlHelper::converteDatetimeLocal2MySQL($request->input('data_inicio_servico'));
@@ -389,10 +411,10 @@ class OrdemServicoController extends Controller
 
                     // lógica para retirar a quantidade dos itens no inventario
                     $inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
-                    ->where('departamento_id', '=', $ordem_servico->departamento_id)
-                    ->where('item_id', '=', $ordem_servico_items["id"])
-                    ->first();
-                    
+                        ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                        ->where('item_id', '=', $ordem_servico_items["id"])
+                        ->first();
+
                     if ($inventario) {
                         $resultado = $inventario->quantidade - $ordem_servico_items["quantidade"];
                         $inventario->quantidade = $resultado;
@@ -442,7 +464,7 @@ class OrdemServicoController extends Controller
         $historico->nome_tabela = 'Ordem_Servico';
         $historico->data_acao = date("Y-m-d");
         $historico->tipo_acao = 'atualizacao';
-    $historico->user_id = Auth::user()->id;
+        $historico->user_id = Auth::user()->id;
         $historico->registro = json_encode(new OrdemServicoResource($ordem_servico));
         $historico->save();
 
@@ -480,7 +502,7 @@ class OrdemServicoController extends Controller
         /**
          * O seguinte código é para remoção "lógica", apenas setamos o ativo=0 e reduzimos a quantidade do item no inventário
          */
-        if ($ordem_servico->ativo == 0){
+        if ($ordem_servico->ativo == 0) {
             return response()->json([
                 'message' => 'Ordem de serviço inativa na base de dados do sistema; a mesma foi removida anteriormente.'
             ], 410);
@@ -488,12 +510,12 @@ class OrdemServicoController extends Controller
         $ordem_servico->ativo = 0;
         $ordem_servico->save();
 
-        $ordem_servico_items = OrdemServicoItem::where('ordem_servico_id','=',$id)->get();
-        foreach($ordem_servico_items as $item){
+        $ordem_servico_items = OrdemServicoItem::where('ordem_servico_id', '=', $id)->get();
+        foreach ($ordem_servico_items as $item) {
             //lógica para devolver a quantidade dos itens no inventario
-            $entrada_inventario = Inventario::query()->where('local_id','=',$ordem_servico->origem_id)
-                ->where('departamento_id','=',$ordem_servico->departamento_id)
-                ->where('item_id','=',$item->item_id)->first();
+            $entrada_inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
+                ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                ->where('item_id', '=', $item->item_id)->first();
 
             if ($entrada_inventario) {
                 $entrada_inventario->quantidade += $item->quantidade;
@@ -532,7 +554,8 @@ class OrdemServicoController extends Controller
      * @urlParam id integer required ID da ordem de serviço que deseja deletar. Example: 1
      *
      */
-    public function baixa_json($id){
+    public function baixa_json($id)
+    {
         //$saida = Saida::findOrFail($id);
         //$ordem = OrdemServico::findOrFail($id);
         //$saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
@@ -546,20 +569,20 @@ class OrdemServicoController extends Controller
         //    'baixa_items' => SaidaItemResource::collection($saida_items)
         //]);
         $saida = Saida::findOrFail($id);
-        $saida_items = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
+        $saida_items = SaidaItem::query()->where('saida_id', '=', $saida->id)->get();
 
-        if ($saida->ordem_servico_id){
+        if ($saida->ordem_servico_id) {
             $ordem = OrdemServico::findOrFail($saida->ordem_servico_id);
-            $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$saida->ordem_servico_id)->get();
+            $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
             return response()->json([
-                'message' => 'Dados da baixa da Ordem de Serviço #'.$saida->ordem_servico_id,
+                'message' => 'Dados da baixa da Ordem de Serviço #' . $saida->ordem_servico_id,
                 'ordem_servico' => new OrdemServicoResource($ordem),
                 'baixa' => new SaidaResource($saida),
                 'baixa_items' => SaidaItemResource::collection($saida_items)
             ]);
         } else { //saida sem OS
             return response()->json([
-                'message' => 'Dados da baixa da Saida de Materiais #'.$id,
+                'message' => 'Dados da baixa da Saida de Materiais #' . $id,
                 //'ordem_servico' => new OrdemServicoResource($ordem),
                 'baixa' => new SaidaResource($saida),
                 'baixa_items' => SaidaItemResource::collection($saida_items)
@@ -576,15 +599,16 @@ class OrdemServicoController extends Controller
      * @urlParam id integer required ID da ordem de serviço que deseja deletar. Example: 1
      *
      */
-    public function baixa_pdf($id){
+    public function baixa_pdf($id)
+    {
         $pdf = App::make('dompdf.wrapper');
         $ordem = OrdemServico::findOrFail($id);
-        $ordem_servico_items = OrdemServicoItem::query()->where('ordem_servico_id','=',$id)->get();
-        $saida = Saida::query()->where('ordem_servico_id','=',$id)->first();
+        $ordem_servico_items = OrdemServicoItem::query()->where('ordem_servico_id', '=', $id)->get();
+        $saida = Saida::query()->where('ordem_servico_id', '=', $id)->first();
         $saida_items = array();
-        if ($saida){
-            $dados = SaidaItem::query()->where('saida_id','=',$saida->id)->get();
-            foreach($dados as $saida_item){
+        if ($saida) {
+            $dados = SaidaItem::query()->where('saida_id', '=', $saida->id)->get();
+            foreach ($dados as $saida_item) {
                 $saida_items[$saida_item->item_id] = [
                     $saida_item->enviado,
                     $saida_item->usado,
@@ -592,14 +616,14 @@ class OrdemServicoController extends Controller
                 ];
             }
         }
-        $profissionais = OrdemServicoProfissional::query()->where('ordem_servico_id','=',$id)->get();
-        view()->share('ordem',$ordem);
-        view()->share('ordem_servico_items',$ordem_servico_items);
-        view()->share('saida',$saida);
-        view()->share('saida_items',$saida_items);
-        view()->share('profissionais',$profissionais);
+        $profissionais = OrdemServicoProfissional::query()->where('ordem_servico_id', '=', $id)->get();
+        view()->share('ordem', $ordem);
+        view()->share('ordem_servico_items', $ordem_servico_items);
+        view()->share('saida', $saida);
+        view()->share('saida_items', $saida_items);
+        view()->share('profissionais', $profissionais);
         $pdf->loadView('saidas.pdf');
-        return $pdf->stream('baixa_'.$ordem->id.'_'.date('Ymd-His').'.pdf');
+        return $pdf->stream('baixa_' . $ordem->id . '_' . date('Ymd-His') . '.pdf');
 
         // return view ('saidas.pdf', compact('ordem','saida','saida_items'));
     }
@@ -626,8 +650,9 @@ class OrdemServicoController extends Controller
      *     ]
      * }
      */
-    public function items($id){
-        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id","=",$id)->get();
+    public function items($id)
+    {
+        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $id)->get();
         return OrdemServicoItemResource::collection($ordem_servico_itens);
     }
 
@@ -655,8 +680,9 @@ class OrdemServicoController extends Controller
      *     ]
      * }
      */
-    public function profissionais($id){
-        $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id","=",$id)->get();
+    public function profissionais($id)
+    {
+        $ordem_servico_profissionais = OrdemServicoProfissional::where("ordem_servico_id", "=", $id)->get();
         return OrdemServicoProfissionalResource::collection($ordem_servico_profissionais);
     }
 
@@ -680,8 +706,9 @@ class OrdemServicoController extends Controller
      *     ]
      * }
      */
-    public function os_por_numero($id){
-        $ordem_servicos = OrdemServico::where("id","like",$id."%")->get();
+    public function os_por_numero($id)
+    {
+        $ordem_servicos = OrdemServico::where("id", "like", $id . "%")->get();
         return OrdemServicoResource::collection($ordem_servicos);
     }
 }

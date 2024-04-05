@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Http\Requests\OcorrenciaFormRequest;
 use App\Models\Inventario;
 use App\Models\local_users;
@@ -111,12 +112,19 @@ class OcorrenciasController extends Controller
     public function store(OcorrenciaFormRequest $request)
     {
         $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
 
         if ($user->hasRole(['almoxarife', 'encarregado'])){
             
             $ocorrencia = new Ocorrencias();
-                    
-            $ocorrencia->local_id = $request->input('local_id');
+            
+            if (in_array($request->input('local_id'), $localUser)) {
+                $ocorrencia->local_id = $request->input('local_id');
+            } else {
+                return response()->json([
+                    'error' => "Você deve selecionar uma base em que esteja cadastrado."
+                ]);
+            }
             $ocorrencia->data_ocorrencia = $request->input('data_ocorrencia');
             $ocorrencia->tipo_ocorrencia = $request->input('tipo_ocorrencia');
             if ($request->input('tipo_ocorrencia') == 'furto' or $request->input('tipo_ocorrencia') == 'extravio'){
@@ -306,9 +314,17 @@ class OcorrenciasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $ocorrencia = Ocorrencias::findOrFail($id);
         
-        $ocorrencia->local_id = $request->local_id;
+        if (in_array($request->input('local_id'), $localUser)) {
+            $ocorrencia->local_id = $request->local_id;
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
         $ocorrencia->data_ocorrencia = $request->data_ocorrencia;
         $ocorrencia->tipo_ocorrencia = $request->tipo_ocorrencia;
         $ocorrencia->boletim_ocorrencia = $request->boletim_ocorrencia;

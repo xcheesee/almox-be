@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\LocalFormRequest;
@@ -30,13 +31,21 @@ class LocalController extends Controller
      */
     public function index(Request $request)
     {
-        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
-        if ($is_api_request){
+        $autenticado = $request->query('autenticado');
+
+        if ($autenticado === "true") {
+            $localUsers = BasesUsuariosHelper::ExibirBasesUsuarios(auth()->user()->id);
+            return $localUsers;
+        }
+
+        $is_api_request = in_array('api', $request->route()->getAction('middleware'));
+        if ($is_api_request) {
             $user = auth()->user();
             $userDeptos = DepartamentoHelper::ids_deptos($user);
             $locais = QueryBuilder::for(Local::class)
                 //->whereIn('locais.departamento_id',$userDeptos)
-                ->allowedFilters(['departamento_id',
+                ->allowedFilters([
+                    'departamento_id',
                     AllowedFilter::partial('nome'),
                     AllowedFilter::partial('tipo'),
                     AllowedFilter::partial('cep'),
@@ -55,21 +64,21 @@ class LocalController extends Controller
             ->select('locais.*')
             ->leftJoin('departamentos as dp', 'departamento_id', '=', 'dp.id')
             ->when($filtros['tipo'], function ($query, $val) {
-                return $query->where('tipo','like','%'.$val.'%');
+                return $query->where('tipo', 'like', '%' . $val . '%');
             })
             ->when($filtros['cep'], function ($query, $val) {
-                return $query->where('cep','like','%'.$val.'%');
+                return $query->where('cep', 'like', '%' . $val . '%');
             })
             ->when($filtros['departamento'], function ($query, $val) {
-                return $query->where('dp.nome','like','%'.$val.'%');
+                return $query->where('dp.nome', 'like', '%' . $val . '%');
             })
             ->when($filtros['nome'], function ($query, $val) {
-                return $query->where('locais.nome','like','%'.$val.'%');
+                return $query->where('locais.nome', 'like', '%' . $val . '%');
             })
             ->paginate(10);
 
         $mensagem = $request->session()->get('mensagem');
-        return view('cadaux.locais.index', compact('data','mensagem','filtros'));
+        return view('cadaux.locais.index', compact('data', 'mensagem', 'filtros'));
     }
 
     /**
@@ -80,7 +89,7 @@ class LocalController extends Controller
     public function create(Request $request)
     {
         $user = auth()->user();
-        $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
+        $userDeptos = DepartamentoHelper::deptosByUser($user, 'nome');
         $mensagem = $request->session()->get('mensagem');
         $tipos = [
             'autarquia' => "Autarquia",
@@ -89,7 +98,7 @@ class LocalController extends Controller
             'secretaria' => "Secretaria",
             'subprefeitura' => "Subprefeitura"
         ];
-        return view ('cadaux.locais.create',compact('mensagem','userDeptos','tipos'));
+        return view('cadaux.locais.create', compact('mensagem', 'userDeptos', 'tipos'));
     }
 
     /**
@@ -134,12 +143,12 @@ class LocalController extends Controller
         $local->cidade = $request->input('cidade');
 
         if ($local->save()) {
-            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
-            if ($is_api_request){
+            $is_api_request = in_array('api', $request->route()->getAction('middleware'));
+            if ($is_api_request) {
                 return new LocalResource($local);
             }
 
-            $request->session()->flash('mensagem',"Local '{$local->nome}' (ID {$local->id}) criado com sucesso");
+            $request->session()->flash('mensagem', "Local '{$local->nome}' (ID {$local->id}) criado com sucesso");
             return redirect()->route('cadaux-locais');
         }
     }
@@ -166,9 +175,9 @@ class LocalController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $local= Local::findOrFail($id);
-        $is_api_request = in_array('api',$request->route()->getAction('middleware'));
-        if ($is_api_request){
+        $local = Local::findOrFail($id);
+        $is_api_request = in_array('api', $request->route()->getAction('middleware'));
+        if ($is_api_request) {
             return new LocalResource($local);
         }
         return view('cadaux.locais.show', compact('local'));
@@ -191,9 +200,9 @@ class LocalController extends Controller
             'secretaria' => "Secretaria",
             'subprefeitura' => "Subprefeitura"
         ];
-        $userDeptos = DepartamentoHelper::deptosByUser($user,'nome');
+        $userDeptos = DepartamentoHelper::deptosByUser($user, 'nome');
         $mensagem = $request->session()->get('mensagem');
-        return view ('cadaux.locais.edit',compact('local','mensagem','userDeptos','tipos'));
+        return view('cadaux.locais.edit', compact('local', 'mensagem', 'userDeptos', 'tipos'));
     }
 
     /**
@@ -240,12 +249,12 @@ class LocalController extends Controller
         $local->cidade = $request->input('cidade');
 
         if ($local->save()) {
-            $is_api_request = in_array('api',$request->route()->getAction('middleware'));
-            if ($is_api_request){
+            $is_api_request = in_array('api', $request->route()->getAction('middleware'));
+            if ($is_api_request) {
                 return new LocalResource($local);
             }
 
-            $request->session()->flash('mensagem',"Local '{$local->nome}' (ID {$local->id}) editado com sucesso");
+            $request->session()->flash('mensagem', "Local '{$local->nome}' (ID {$local->id}) editado com sucesso");
             return redirect()->route('cadaux-locais');
         }
     }
@@ -286,7 +295,7 @@ class LocalController extends Controller
 
     public function filtrar_dpt(int $id)
     {
-        if (empty($id)){
+        if (empty($id)) {
             return response()->json(['mensagem' => 'Departamento é obrigatório'], 400);
         }
 

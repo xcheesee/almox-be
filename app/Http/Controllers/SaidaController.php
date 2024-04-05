@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\BasesUsuariosHelper;
 use App\Helpers\DepartamentoHelper;
 use Illuminate\Http\Request;
 use App\Http\Requests\SaidaFormRequest;
@@ -127,10 +128,19 @@ class SaidaController extends Controller
      */
     public function store(SaidaFormRequest $request)
     {
+        $user = auth()->user();
+        $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $saida = new Saida();
+
         $saida->departamento_id = $request->input('departamento_id');
         $saida->ordem_servico_id = $request->input('ordem_servico_id');
-        $saida->origem_id = $request->input('origem_id');
+        if (in_array($request->input('origem_id'), $localUser)) {
+            $saida->origem_id = $request->input('origem_id');
+        } else {
+            return response()->json([
+                'error' => "Você deve selecionar uma base em que esteja cadastrado."
+            ]);
+        }
         $saida->local_servico_id = $request->input('local_servico_id');
         $saida->tipo_servico_id = $request->input('tipo_servico_id');
         $saida->especificacao = $request->input('especificacao');
