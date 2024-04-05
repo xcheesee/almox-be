@@ -124,6 +124,7 @@ Route::get('ordem_servico/{id}/baixa_json', [App\Http\Controllers\OrdemServicoCo
 Route::get('ordem_servico/{id}/baixa_pdf', [App\Http\Controllers\OrdemServicoController::class, 'baixa_pdf']);
 
 //listagens para criar combos/filtros
+Route::get('tipo_items/{id}', [App\Http\Controllers\TipoItemController::class, 'TiposPorDepto']);
 Route::get('items/tipo/{id}', [App\Http\Controllers\ItemController::class, 'item_por_tipo']);
 Route::get('medidas', [App\Http\Controllers\MedidaController::class, 'index']);
 Route::get('profissionais', [App\Http\Controllers\ProfissionalController::class, 'profissionais_local']);

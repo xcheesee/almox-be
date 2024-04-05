@@ -217,7 +217,7 @@ class SaidaController extends Controller
                 foreach ($saidaProfissionais as $saida_profissionais) {
                     //Salvando itens na tabela saida_items
                     $saida_profissional = new SaidaProfissional();
-                    $saida_profissional->saida_nome = $saida->id;
+                    $saida_profissional->saida_id = $saida->id;
                     // $saida_profissional->profissional_id = $saida_profissionais["id"];
                     $saida_profissional->nome = $saida_profissionais["nome"];
                     $saida_profissional->data_inicio = $saida_profissionais["data_inicio"];
@@ -517,6 +517,7 @@ class SaidaController extends Controller
         if ($ordemServicoItens) {
             //salvando a baixa na BD
             DB::beginTransaction();
+            $saida->status = 'Finalizada';
             $saida->baixa_datahora = date('Y-m-d H:i:s');
             $saida->baixa_user_id = auth()->user()->id;
             if ($saida->save()) {

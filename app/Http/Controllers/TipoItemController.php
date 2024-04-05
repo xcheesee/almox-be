@@ -193,4 +193,22 @@ class TipoItemController extends Controller
             ]);
         }
     }
+
+    /**
+     * Irá retornar os tipos de item pelo Id do departamento.
+     *
+     * @urlParam id integer required ID do departemento que deseja ver os tipos de item. Example: 1
+     *
+     * @response 200 {
+     *     "data": {
+     *         "id": 1,
+     *         "departamento_id": 1,
+     *         "nome": "carpintaria"
+     *     }
+     */
+    public function TiposPorDepto($id){
+
+        $tipo_items = TipoItem::where('departamento_id', $id)->get();
+        return TipoItemResource::collection($tipo_items);
+    }
 }

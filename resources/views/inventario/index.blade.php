@@ -11,10 +11,14 @@
     <form class="form-inline" method="GET">
         <div class="row align-items-end mb-2">
             <div class="col col-3 mb-2">
-                <label for="f-base" class="col-form-label">Local</label>
+                <label for="f-base" class="col-form-label">Base</label>
                 <div class="d-flex">
-                    <input type="text" class="form-control" id="f-base" name="f-base" placeholder="Base do inventário" value="{{$filtros['base']}}">
-                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <select name="f-base" id="f-base" class="form-control" placeholder="-- Selecione --">
+                        <option value="">-- Selecione --</option>
+                        @foreach ($locais as $local)
+                            <option value="{{ $local->id }}" @if ($filtros['base'] == $local->id) selected @endif>{{ $local->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col col-3 mb-2">
@@ -27,8 +31,12 @@
             <div class="col col-3 mb-2">
                 <label for="f-tipo_item" class="col-form-label">Tipo</label>
                 <div class="d-flex">
-                    <input type="text" class="form-control" id="f-tipo_item" name="f-tipo_item" placeholder="Tipo do Item" value="{{$filtros['tipo_item']}}">
-                    <button type="button" class="btn bg-primary btn_limpafiltro" onclick="$(this).siblings('input[type=\'text\']').val('')"><i class="fa fa-times"></i></button>
+                    <select name="f-tipo_item" id="f-tipo_item" class="form-control" placeholder="-- Selecione --">
+                        <option value="">-- Selecione --</option>
+                        @foreach ($tipo_items as $tipo_item)
+                            <option value="{{ $tipo_item->id }}" @if ($filtros['tipo_item'] == $tipo_item->id) selected @endif>{{ $tipo_item->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="col col-3 mb-2">
