@@ -35,7 +35,7 @@ class LocalController extends Controller
 
         if ($autenticado === "true") {
             $localUsers = BasesUsuariosHelper::ExibirBasesUsuarios(auth()->user()->id);
-            return $localUsers;
+            return LocalResource::collection($localUsers);
         }
 
         $is_api_request = in_array('api', $request->route()->getAction('middleware'));
