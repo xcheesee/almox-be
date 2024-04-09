@@ -41,7 +41,7 @@ class LocalController extends Controller
             //$localUsers = BasesUsuariosHelper::ExibirBasesUsuarios($user->id);
             if($autenticado === "true") {
                 $locais = QueryBuilder::for(Local::class)
-                ->select('locais.*', 'local_users.*')
+                ->select('locais.*', 'local_users.local_id')
                 ->join('local_users', 'locais.id', '=', 'local_users.local_id')
                 ->allowedFilters([
                     'departamento_id',
@@ -60,8 +60,8 @@ class LocalController extends Controller
                     AllowedFilter::partial('cep'),
                 ])  
                 ->get();
+                return LocalResource::collection($locais);
             }
-            return LocalResource::collection($locais);
         }
 
         $filtros = array();
