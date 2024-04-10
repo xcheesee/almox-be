@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LocalUsersController;
 use App\Http\Controllers\OcorrenciaItensController;
 use App\Http\Controllers\OcorrenciasController;
 use App\Http\Controllers\TransferenciaItensController;
@@ -108,6 +109,8 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::post('/ocorrencia_itens', [OcorrenciaItensController::class, 'store']);
     Route::post('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'update']);
     Route::delete('/ocorrencia_itens/{id}', [OcorrenciaItensController::class, 'destroy']);
+
+    Route::get('/local_users/{id}', [LocalUsersController::class, 'LocalUsuarios']);
 });
 
 
