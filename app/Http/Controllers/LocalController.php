@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helpers\BasesUsuariosHelper;
 use App\Helpers\DepartamentoHelper;
+use App\Models\local_users;
 use Illuminate\Http\Request;
 use App\Http\Requests\LocalFormRequest;
 use App\Models\Local;
@@ -33,17 +34,15 @@ class LocalController extends Controller
     {
         $autenticado = $request->query('autenticado');
 
-        if ($autenticado === "true") {
-            $localUsers = BasesUsuariosHelper::ExibirBasesUsuarios(auth()->user()->id);
-            return $localUsers;
-        }
-
         $is_api_request = in_array('api', $request->route()->getAction('middleware'));
         if ($is_api_request) {
             $user = auth()->user();
             $userDeptos = DepartamentoHelper::ids_deptos($user);
-            $locais = QueryBuilder::for(Local::class)
-                //->whereIn('locais.departamento_id',$userDeptos)
+            //$localUsers = BasesUsuariosHelper::ExibirBasesUsuarios($user->id);
+            if($autenticado === "true") {
+                $locais = QueryBuilder::for(Local::class)
+                ->select('locais.*', 'local_users.local_id')
+                ->join('local_users', 'locais.id', '=', 'local_users.local_id')
                 ->allowedFilters([
                     'departamento_id',
                     AllowedFilter::partial('nome'),
@@ -51,7 +50,18 @@ class LocalController extends Controller
                     AllowedFilter::partial('cep'),
                 ])
                 ->get();
-            return LocalResource::collection($locais);
+                return LocalResource::collection($locais);
+            } else {
+                $locais = QueryBuilder::for(Local::class)
+                ->allowedFilters([
+                    'departamento_id',
+                    AllowedFilter::partial('nome'),
+                    AllowedFilter::partial('tipo'),
+                    AllowedFilter::partial('cep'),
+                ])  
+                ->get();
+                return LocalResource::collection($locais);
+            }
         }
 
         $filtros = array();
