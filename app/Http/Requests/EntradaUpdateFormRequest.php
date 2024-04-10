@@ -26,8 +26,8 @@ class EntradaUpdateFormRequest extends FormRequest
         return [
             'departamento_id' => 'required',
             'local_id' => 'required',
-            'processo_sei' => 'required',
-            'numero_contrato' => 'required',
+            // 'processo_sei' => 'required',
+            // 'numero_contrato' => 'required',
             'numero_nota_fiscal' => 'required',
             //'arquivo_nota_fiscal' => 'required|mimes:png,jpg,jpeg,gif,pdf|max:2048',
         ];

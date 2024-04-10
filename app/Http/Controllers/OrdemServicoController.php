@@ -189,7 +189,7 @@ class OrdemServicoController extends Controller
         } else {
             return response()->json([
                 'error' => "Você deve selecionar uma base em que esteja cadastrado."
-            ]);
+            ],401);
         }
 
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
@@ -368,14 +368,14 @@ class OrdemServicoController extends Controller
         $user = auth()->user();
         $localUser = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
         $ordem_servico = OrdemServico::findOrFail($id);
-        
+
         $ordem_servico->departamento_id = $request->input('departamento_id');
         if (in_array($request->input('origem_id'), $localUser)) {
             $ordem_servico->origem_id = $request->input('origem_id');
         } else {
             return response()->json([
                 'error' => "Você deve selecionar uma base em que esteja cadastrado."
-            ]);
+            ],401);
         }
         $ordem_servico->local_servico_id = $request->input('local_servico_id');
         // $ordem_servico->status = $request->input('status');
@@ -428,7 +428,7 @@ class OrdemServicoController extends Controller
 
                         if ($resultado < 0) {
                             DB::rollBack();
-                            return response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.']);
+                            return response()->json(['error' => 'Quantidade usada não pode exceder a quantidade em estoque.'],401);
                         } else {
                             $inventario->save();
                         }
@@ -436,7 +436,7 @@ class OrdemServicoController extends Controller
                         DB::rollBack();
                         return response()->json([
                             "error" => "Algum desses items não possui no estoque.",
-                        ]);
+                        ],401);
                     }
                 }
             }

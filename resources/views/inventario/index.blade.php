@@ -90,7 +90,7 @@
                     <tr>
                         <td>{{ $inventario->id }}</td>
                         <td>{{ $inventario->local->nome }}</td>
-                        <td>{{ $inventario->item->nome }}</td>
+                        <td>{{ $inventario->item->nome }} ({{ $inventario->item->id }})</td>
                         <td>{{ $inventario->item->tipo_item->nome }}</td>
                         <td>{{ $inventario->item->medida->tipo }}</td>
                         <td>{{ $inventario->quantidade }}</td>

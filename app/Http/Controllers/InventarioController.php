@@ -128,6 +128,7 @@ class InventarioController extends Controller
         $inventarios = Item::query()
             ->select('inventarios.*','items.*')
             ->join('inventarios', 'inventarios.item_id', '=', 'items.id')
+            ->where('inventarios.quantidade','>','0')
             ->when($local_id, function ($query, $val) {
                 return $query->where('inventarios.local_id','=',$val);
             })
