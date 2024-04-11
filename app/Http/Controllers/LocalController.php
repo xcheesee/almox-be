@@ -38,11 +38,12 @@ class LocalController extends Controller
         if ($is_api_request) {
             $user = auth()->user();
             $userDeptos = DepartamentoHelper::ids_deptos($user);
-            //$localUsers = BasesUsuariosHelper::ExibirBasesUsuarios($user->id);
+            $localUsers = BasesUsuariosHelper::ExibirIdsBasesUsuarios($user->id);
+
             if($autenticado === "true") {
                 $locais = QueryBuilder::for(Local::class)
-                ->select('locais.*', 'local_users.local_id')
-                ->join('local_users', 'locais.id', '=', 'local_users.local_id')
+                ->whereIn('departamento_id',$userDeptos)
+                ->whereIn('locais.id',$localUsers)
                 ->allowedFilters([
                     'departamento_id',
                     AllowedFilter::partial('nome'),
@@ -58,7 +59,7 @@ class LocalController extends Controller
                     AllowedFilter::partial('nome'),
                     AllowedFilter::partial('tipo'),
                     AllowedFilter::partial('cep'),
-                ])  
+                ])
                 ->get();
                 return LocalResource::collection($locais);
             }
