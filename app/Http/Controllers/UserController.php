@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $departamentos = Departamento::pluck('nome', 'id')->all();
-        $locais = Local::all();
+        $locais = Local::query()->where('tipo','=','base')->get();
 
         return view('users.create', compact('roles', 'departamentos', 'locais'));
     }
@@ -114,7 +114,7 @@ class UserController extends Controller
                     ->where('user_id', $user->id)
                     ->select('nome')
                     ->first();
-                    
+
         return view('users.show', compact('user','userRole','userDeptos', 'localUsers'));
     }
 
@@ -131,7 +131,7 @@ class UserController extends Controller
         $userRole = $user->roles->pluck('name', 'name')->all();
         $departamentos = Departamento::pluck('nome', 'id')->all();
         $localUsers = local_users::where('user_id', $user->id)->first();
-        $locais = Local::all();
+        $locais = Local::query()->where('tipo','=','base')->get();
         $userDeptos = DepartamentoHelper::deptosByUser($user,'id',false);
 
         return view('users.edit', compact('user', 'roles', 'userRole', 'departamentos', 'userDeptos', 'locais', 'localUsers'));
@@ -194,10 +194,10 @@ class UserController extends Controller
             $localUsuario->save();
         } else {
             $localUsers->local_id = $request->input('local_usuario');
-    
+
             $localUsers->save();
         }
-        
+
 
         return redirect()->route('users.index')
             ->with('success', 'User updated successfully.');
