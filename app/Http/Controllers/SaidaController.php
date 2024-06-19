@@ -547,7 +547,7 @@ class SaidaController extends Controller
                         ->where('item_id', '=', $saida_items["id"])->first();
 
                     if ($saida_inventario) {
-                        $saida_inventario->quantidade -= $saida_items["usado"];
+                        $saida_inventario->quantidade += $saida_items["retorno"];
                         $saida_inventario->save();
                     }
                 }

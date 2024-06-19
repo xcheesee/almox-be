@@ -50,6 +50,7 @@ class LocalController extends Controller
                     AllowedFilter::partial('tipo'),
                     AllowedFilter::partial('cep'),
                 ])
+                ->orderBy('nome')
                 ->get();
                 return LocalResource::collection($locais);
             } else {
@@ -60,6 +61,7 @@ class LocalController extends Controller
                     AllowedFilter::partial('tipo'),
                     AllowedFilter::partial('cep'),
                 ])
+                ->orderBy('nome')
                 ->get();
                 return LocalResource::collection($locais);
             }
