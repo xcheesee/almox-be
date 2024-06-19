@@ -14,7 +14,7 @@ class LocalUsersController extends Controller
 
         return $localUser;
     }
-
+    
     public function LocalUsuarios($id){
         $bases = local_users::where('user_id', $id)->get();
         
