@@ -27,6 +27,7 @@ class SaidaFormRequest extends FormRequest
             //'departamento_id' => 'required',
             //'origem_id' => 'required',
             'local_servico_id' => 'required',
+            'ordem_servico_id' => 'unique:saidas,ordem_servico_id'
         ];
     }
 
@@ -34,6 +35,7 @@ class SaidaFormRequest extends FormRequest
     {
         return [
             'required' => "O campo ':attribute' é obrigatório",
+            'ordem_servico_id.unique' => "Ordem de serviço ja cadastrada em uma saida."
         ];
     }
 }
