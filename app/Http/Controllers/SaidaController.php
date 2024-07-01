@@ -160,7 +160,7 @@ class SaidaController extends Controller
 
         DB::beginTransaction();
         if ($saida->save()) {
-            $saidaItens = $request->input('saida_items');
+            $saidaItens = json_decode($request->input('saida_items'), true);
             if ($saidaItens) {
                 $items_acabando = array();
                 foreach ($saidaItens as $saida_items) {
