@@ -460,12 +460,12 @@ class SaidaController extends Controller
     {
         $saida = Saida::findOrFail($id);
 
-        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
+        //$ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
         $saida_itens = SaidaItem::where("saida_id", "=", $id)->get();
 
-        if($ordem_servico_itens->isNotEmpty()){
-            return OrdemServicoItemResource::collection($ordem_servico_itens);
-        } elseif($saida_itens->isNotEmpty()){
+        //if($ordem_servico_itens->isNotEmpty()){
+        //    return OrdemServicoItemResource::collection($ordem_servico_itens);
+        if($saida_itens->isNotEmpty()){
             return SaidaItemResource::collection($saida_itens);
         } else {
             return response()->json([
