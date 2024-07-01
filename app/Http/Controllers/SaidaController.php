@@ -160,7 +160,7 @@ class SaidaController extends Controller
 
         DB::beginTransaction();
         if ($saida->save()) {
-            $saidaItens = json_decode($request->input('saida_items'), true);
+            $saidaItens = $request->input('saida_items');
             if ($saidaItens) {
                 $items_acabando = array();
                 foreach ($saidaItens as $saida_items) {
@@ -180,9 +180,9 @@ class SaidaController extends Controller
 
                     //lógica para retirar a quantidade dos itens no inventario
                     $inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
-                        ->where('departamento_id', '=', $saida->departamento_id)
-                        ->where('item_id', '=', $saida_items["id"])->first();
-
+                    ->where('departamento_id', '=', $saida->departamento_id)
+                    ->where('item_id', '=', $saida_items["id"])->first();
+                    
                     if ($inventario) {
                         $resultado = $inventario->quantidade - $saida_items["quantidade"];
                         if ($resultado < 0) {
@@ -190,6 +190,7 @@ class SaidaController extends Controller
                             $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
                             return $erroQtd;
                         } else {
+                            $inventario->quantidade = $resultado;
                             $inventario->save();
                             if ($inventario->quantidade <= $inventario->qtd_alerta) {
                                 $items_acabando[] = $inventario;
