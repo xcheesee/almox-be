@@ -219,7 +219,6 @@ class OrdemServicoController extends Controller
                     //verifica se o frontend enviou lista vazia de materiais
                     if (!$ordem_servico_items["id"])
                         continue;
-
                     //Salvando itens na tabela ordem_servico_items
                     $ordem_servico_item = new OrdemServicoItem();
                     $ordem_servico_item->ordem_servico_id = $ordem_servico->id;
@@ -228,28 +227,28 @@ class OrdemServicoController extends Controller
                     $ordem_servico_item->save();
 
                     //lógica para retirar a quantidade dos itens no inventario
-                    $inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
-                        ->where('departamento_id', '=', $ordem_servico->departamento_id)
-                        ->where('item_id', '=', $ordem_servico_items["id"])->first();
+                    //$inventario = Inventario::query()->where('local_id', '=', $ordem_servico->origem_id)
+                    //    ->where('departamento_id', '=', $ordem_servico->departamento_id)
+                    //    ->where('item_id', '=', $ordem_servico_items["id"])->first();
 
-                    if ($inventario) {
-                        $inventario->quantidade -= $ordem_servico_items["quantidade"];
-                        $resultado = $inventario->quantidade;
-                        if ($resultado <= 0) {
-                            DB::rollBack();
-                            $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
-                            return $erroQtd;
-                        } else {
-                            $inventario->save();
-                            if ($inventario->quantidade <= $inventario->qtd_alerta) {
-                                $items_acabando[] = $inventario;
-                            }
-                        }
-                    } else {
-                        DB::rollBack();
-                        $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
-                        return $erroQtd;
-                    }
+                    //if ($inventario) {
+                    //    $inventario->quantidade -= $ordem_servico_items["quantidade"];
+                    //    $resultado = $inventario->quantidade;
+                    //    if ($resultado <= 0) {
+                    //        DB::rollBack();
+                    //        $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
+                    //        return $erroQtd;
+                    //    } else {
+                    //        $inventario->save();
+                    //        if ($inventario->quantidade <= $inventario->qtd_alerta) {
+                    //            $items_acabando[] = $inventario;
+                    //        }
+                    //    }
+                    //} else {
+                    //    DB::rollBack();
+                    //    $erroQtd = response()->json(['message' => 'O item informado não se encontra na base de origem selecionada.'], 410);
+                    //    return $erroQtd;
+                    //}
                 }
                 if (count($items_acabando) > 0) {
                     //Enviar e-mail aos responsáveis
@@ -571,23 +570,28 @@ class OrdemServicoController extends Controller
         $saida = Saida::findOrFail($id);
         $saida_items = SaidaItem::query()->where('saida_id', '=', $saida->id)->get();
 
-        if ($saida->ordem_servico_id) {
-            $ordem = OrdemServico::findOrFail($saida->ordem_servico_id);
-            $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
-            return response()->json([
-                'message' => 'Dados da baixa da Ordem de Serviço #' . $saida->ordem_servico_id,
-                'ordem_servico' => new OrdemServicoResource($ordem),
-                'baixa' => new SaidaResource($saida),
-                'baixa_items' => SaidaItemResource::collection($saida_items)
-            ]);
-        } else { //saida sem OS
-            return response()->json([
-                'message' => 'Dados da baixa da Saida de Materiais #' . $id,
-                //'ordem_servico' => new OrdemServicoResource($ordem),
-                'baixa' => new SaidaResource($saida),
-                'baixa_items' => SaidaItemResource::collection($saida_items)
-            ]);
-        }
+        return response()->json([
+            'message' => 'Dados da baixa de Saida' . $saida->ordem_servico_id,
+            'baixa' => new SaidaResource($saida),
+            'baixa_items' => SaidaItemResource::collection($saida_items)
+        ]);
+
+        //if ($saida->ordem_servico_id) {
+        //    $ordem = OrdemServico::findOrFail($saida->ordem_servico_id);
+        //    return response()->json([
+        //        'message' => 'Dados da baixa da Ordem de Serviço #' . $saida->ordem_servico_id,
+        //        'ordem_servico' => new OrdemServicoResource($ordem),
+        //        'baixa' => new SaidaResource($saida),
+        //        'baixa_items' => SaidaItemResource::collection($saida_items)
+        //    ]);
+        //} else { //saida sem OS
+        //    return response()->json([
+        //        'message' => 'Dados da baixa da Saida de Materiais #' . $id,
+        //        //'ordem_servico' => new OrdemServicoResource($ordem),
+        //        'baixa' => new SaidaResource($saida),
+        //        'baixa_items' => SaidaItemResource::collection($saida_items)
+        //    ]);
+        //}
     }
 
     /**

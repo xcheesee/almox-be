@@ -160,7 +160,6 @@ class SaidaController extends Controller
 
         DB::beginTransaction();
         if ($saida->save()) {
-            // Lidando com os itens adicionados (caso não tenha OS nessa saída)
             $saidaItens = json_decode($request->input('saida_items'), true);
             if ($saidaItens) {
                 $items_acabando = array();
@@ -181,9 +180,9 @@ class SaidaController extends Controller
 
                     //lógica para retirar a quantidade dos itens no inventario
                     $inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
-                        ->where('departamento_id', '=', $saida->departamento_id)
-                        ->where('item_id', '=', $saida_items["id"])->first();
-
+                    ->where('departamento_id', '=', $saida->departamento_id)
+                    ->where('item_id', '=', $saida_items["id"])->first();
+                    
                     if ($inventario) {
                         $resultado = $inventario->quantidade - $saida_items["quantidade"];
                         if ($resultado < 0) {
@@ -191,6 +190,7 @@ class SaidaController extends Controller
                             $erroQtd = response()->json(['message' => 'Quantidade usada não pode exceder a quantidade em estoque.'], 410);
                             return $erroQtd;
                         } else {
+                            $inventario->quantidade = $resultado;
                             $inventario->save();
                             if ($inventario->quantidade <= $inventario->qtd_alerta) {
                                 $items_acabando[] = $inventario;
@@ -460,12 +460,12 @@ class SaidaController extends Controller
     {
         $saida = Saida::findOrFail($id);
 
-        $ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
+        //$ordem_servico_itens = OrdemServicoItem::where("ordem_servico_id", "=", $saida->ordem_servico_id)->get();
         $saida_itens = SaidaItem::where("saida_id", "=", $id)->get();
 
-        if($ordem_servico_itens->isNotEmpty()){
-            return OrdemServicoItemResource::collection($ordem_servico_itens);
-        } elseif($saida_itens->isNotEmpty()){
+        //if($ordem_servico_itens->isNotEmpty()){
+        //    return OrdemServicoItemResource::collection($ordem_servico_itens);
+        if($saida_itens->isNotEmpty()){
             return SaidaItemResource::collection($saida_itens);
         } else {
             return response()->json([
@@ -512,37 +512,30 @@ class SaidaController extends Controller
     {
         $saida = Saida::findOrFail($id);
 
-        //TODO: setar uma flag na ordem indicando que a baixa foi dada
-        $ordemServicoItens = $request->input('saida_items');
-        if ($ordemServicoItens) {
+        $items = $request->input('saida_items');
+        if ($items) {
             //salvando a baixa na BD
             DB::beginTransaction();
             $saida->status = 'Finalizada';
             $saida->baixa_datahora = date('Y-m-d H:i:s');
             $saida->baixa_user_id = auth()->user()->id;
             if ($saida->save()) {
-                foreach ($ordemServicoItens as $saida_items) {
-                    //Salvando itens na tabela saida_items
-                    if ($saida->ordem_servico_id) {
-                        $origem = $saida->ordem_servico->origem_id;
+                SaidaItem::where('saida_id', '=', $saida->id)->delete();
+                foreach ($items as $saida_items) {
 
-                        $saida_item = new SaidaItem();
-                        $saida_item->saida_id = $saida->id;
-                        $saida_item->item_id = $saida_items["id"];
-                    } else {
-                        $origem = $saida->origem_id;
-                        $saida_item = SaidaItem::where('saida_id', '=', $saida->id)
-                            ->where('item_id', '=', $saida_items["id"])
-                            ->first();
-                    }
-                    $saida_item->quantidade = $saida_items["quantidade"];
-                    $saida_item->enviado = $saida_items["enviado"];
-                    $saida_item->usado = $saida_items["usado"];
-                    $saida_item->retorno = $saida_items["retorno"];
-                    $saida_item->save();
-
+                        // Cria um novo SaidaItem
+                        $novo_item = new SaidaItem();
+                        $novo_item->saida_id = $saida->id;
+                        $novo_item->item_id = $saida_items["id"];
+                        $novo_item->quantidade = $saida_items["quantidade"];
+                        $novo_item->enviado = $saida_items["enviado"];
+                        $novo_item->usado = $saida_items["usado"];
+                        $novo_item->retorno = $saida_items["retorno"];
+                        $novo_item->save();
+                    
+                    
                     //lógica para devolver a quantidade dos itens retornados para o inventario de origem
-                    $saida_inventario = Inventario::query()->where('local_id', '=', $origem)
+                    $saida_inventario = Inventario::query()->where('local_id', '=', $saida->origem_id)
                         ->where('departamento_id', '=', $saida->departamento_id)
                         ->where('item_id', '=', $saida_items["id"])->first();
 
