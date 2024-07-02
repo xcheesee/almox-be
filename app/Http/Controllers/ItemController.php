@@ -99,6 +99,7 @@ class ItemController extends Controller
     {
         $itens = Item::query()
             ->where('tipo_item_id','=',$tipo)
+            ->orderBy('nome')
             ->get();
 
         return ItemResource::collection($itens);;
