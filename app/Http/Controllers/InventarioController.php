@@ -138,6 +138,7 @@ class InventarioController extends Controller
             ->when($tipo_item_id, function ($query, $val) {
                 return $query->where('items.tipo_item_id','=',$val);
             })
+            ->orderBy('nome')
             ->get();
 
         return Itemventario::collection($inventarios);
