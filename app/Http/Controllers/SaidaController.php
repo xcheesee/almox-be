@@ -424,6 +424,9 @@ class SaidaController extends Controller
      */
     public function destroy($id)
     {
+
+        SaidaProfissional::where('saida_id', $id)->delete();
+        SaidaItem::where('saida_id', $id)->delete();
         $saida = Saida::findOrFail($id);
 
         if ($saida->delete()) {
